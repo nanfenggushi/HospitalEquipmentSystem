@@ -75,5 +75,19 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalEquipment.BLL\HospitalEquipment.BLL.csproj">
+      <Project>{df76a82b-ac7f-4267-9242-a22f5d16cd32}</Project>
+      <Name>HospitalEquipment.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalEquipment.Common\HospitalEquipment.Util.csproj">
+      <Project>{45124520-4eef-43a0-88b8-91da7b2191f9}</Project>
+      <Name>HospitalEquipment.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalEquipment.Model\HospitalEquipment.Model.csproj">
+      <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>
+      <Name>HospitalEquipment.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
