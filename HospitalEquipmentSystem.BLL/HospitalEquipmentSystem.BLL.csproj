@@ -45,17 +45,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HospitalEquipment.Common\HospitalEquipment.Util.csproj">
+    <ProjectReference Include="..\HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Util.csproj">
       <Project>{45124520-4eef-43a0-88b8-91da7b2191f9}</Project>
-      <Name>HospitalEquipment.Util</Name>
+      <Name>HospitalEquipmentSystem.Util</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HospitalEquipment.DAL\HospitalEquipment.DAL.csproj">
+    <ProjectReference Include="..\HospitalEquipmentSystem.DAL\HospitalEquipmentSystem.DAL.csproj">
       <Project>{9668c859-e101-4b62-a841-a2581fee52c4}</Project>
-      <Name>HospitalEquipment.DAL</Name>
+      <Name>HospitalEquipmentSystem.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HospitalEquipment.Model\HospitalEquipment.Model.csproj">
+    <ProjectReference Include="..\HospitalEquipmentSystem.Model\HospitalEquipmentSystem.Model.csproj">
       <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>
-      <Name>HospitalEquipment.Model</Name>
+      <Name>HospitalEquipmentSystem.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
