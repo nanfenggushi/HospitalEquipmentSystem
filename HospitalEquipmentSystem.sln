@@ -13,6 +13,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalEquipmentSystem.Uti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalEquipmentSystem.BLL", "HospitalEquipmentSystem.BLL\HospitalEquipmentSystem.BLL.csproj", "{DF76A82B-AC7F-4267-9242-A22F5D16CD32}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\C#编码与开发规范.md = Docs\C#编码与开发规范.md
+		Docs\需求规格说明书.md = Docs\需求规格说明书.md
+		Docs\项目Git& Gitee协作与分支规范.md = Docs\项目Git& Gitee协作与分支规范.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{ED19BAE5-4E72-42A2-B7F4-C70D213A4FA5}"
+	ProjectSection(SolutionItems) = preProject
+		Sql\HospitalEquipmentDB_v2.sql = Sql\HospitalEquipmentDB_v2.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
