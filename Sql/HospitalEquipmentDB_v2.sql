@@ -1,5 +1,5 @@
 ﻿-- ============================================================
--- 智能医院设备管理系统 数据库建表脚本 v2.0
+-- 智能医院设备管理系统 数据库建表脚本 v2.0 (带详细中文注释)
 -- 目标: SQL Server 2017+
 -- 六大模块: 设备台账/入库管理/维修管理/借用管理/仪表盘监控/系统设置
 -- ============================================================
@@ -7,82 +7,82 @@
 -- ============================ 1. 科室表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Departments' AND xtype='U')
 CREATE TABLE Departments (
-    DeptId INT IDENTITY(1,1) PRIMARY KEY,
-    DeptName NVARCHAR(50) NOT NULL,
-    DeptCode NVARCHAR(20) NULL,
-    Location NVARCHAR(100) NULL,
-    Phone NVARCHAR(20) NULL,
-    IsActive BIT NOT NULL DEFAULT 1,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    DeptId INT IDENTITY(1,1) PRIMARY KEY,      -- 科室ID (主键，自增)
+    DeptName NVARCHAR(50) NOT NULL,            -- 科室名称 (如：设备科、急诊科)
+    DeptCode NVARCHAR(20) NULL,                -- 科室编码 (如：Dept-001，便于对接HIS系统)
+    Location NVARCHAR(100) NULL,               -- 科室所在位置/楼层 (如：行政楼3层)
+    Phone NVARCHAR(20) NULL,                   -- 科室内部联系电话/分机号
+    IsActive BIT NOT NULL DEFAULT 1,           -- 状态：1=启用，0=停用(逻辑删除)
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 记录创建时间
 );
 GO
 
 -- ============================ 2. 用户表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Users' AND xtype='U')
 CREATE TABLE Users (
-    UserId INT IDENTITY(1,1) PRIMARY KEY,
-    Username NVARCHAR(50) NOT NULL UNIQUE,
-    PasswordHash NVARCHAR(256) NOT NULL,
-    RealName NVARCHAR(50) NOT NULL,
-    Role NVARCHAR(20) NOT NULL DEFAULT 'doctor',
-    DeptId INT NULL REFERENCES Departments(DeptId),
-    Phone NVARCHAR(20) NULL,
-    Title NVARCHAR(50) NULL,
-    IsActive BIT NOT NULL DEFAULT 1,
-    LastLoginAt DATETIME NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    UserId INT IDENTITY(1,1) PRIMARY KEY,      -- 用户ID (主键，自增)
+    Username NVARCHAR(50) NOT NULL UNIQUE,     -- 登录账号 (唯一约束)
+    PasswordHash NVARCHAR(256) NOT NULL,       -- 密码哈希值 (禁止明文存储)
+    RealName NVARCHAR(50) NOT NULL,            -- 用户真实姓名
+    Role NVARCHAR(20) NOT NULL DEFAULT 'doctor', -- 角色：admin(系统管理员)/doctor(医护人员)/repair(维修工程师)
+    DeptId INT NULL REFERENCES Departments(DeptId), -- 所属科室ID (外键关联科室表)
+    Phone NVARCHAR(20) NULL,                   -- 手机号/联系方式
+    Title NVARCHAR(50) NULL,                   -- 职务/职称 (如：主任医师、维修工程师)
+    IsActive BIT NOT NULL DEFAULT 1,           -- 账号状态：1=正常，0=冻结/离职
+    LastLoginAt DATETIME NULL,                 -- 最后登录时间 (用于安全监控和统计)
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 账号创建时间
 );
 GO
 
 -- ============================ 3. 设备分类表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='EquipmentCategories' AND xtype='U')
 CREATE TABLE EquipmentCategories (
-    CategoryId INT IDENTITY(1,1) PRIMARY KEY,
-    CategoryName NVARCHAR(50) NOT NULL,
-    CategoryCode NVARCHAR(20) NULL,
-    ParentId INT NULL REFERENCES EquipmentCategories(CategoryId),
-    SortOrder INT NOT NULL DEFAULT 0,
-    IsActive BIT NOT NULL DEFAULT 1,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    CategoryId INT IDENTITY(1,1) PRIMARY KEY,  -- 分类ID (主键，自增)
+    CategoryName NVARCHAR(50) NOT NULL,        -- 分类名称 (如：影像设备、急救设备)
+    CategoryCode NVARCHAR(20) NULL,            -- 分类编码 (如：CAT-IMG，便于层级检索)
+    ParentId INT NULL REFERENCES EquipmentCategories(CategoryId), -- 父级分类ID (自关联，支持无限极分类)
+    SortOrder INT NOT NULL DEFAULT 0,          -- 排序权重 (数字越大/越小排越前，用于界面显示)
+    IsActive BIT NOT NULL DEFAULT 1,           -- 状态：1=启用，0=停用
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 分类创建时间
 );
 GO
 
 -- ============================ 4. 供应商表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Suppliers' AND xtype='U')
 CREATE TABLE Suppliers (
-    SupplierId INT IDENTITY(1,1) PRIMARY KEY,
-    SupplierName NVARCHAR(100) NOT NULL,
-    ContactPerson NVARCHAR(50) NULL,
-    Phone NVARCHAR(20) NULL,
-    IsActive BIT NOT NULL DEFAULT 1,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    SupplierId INT IDENTITY(1,1) PRIMARY KEY,  -- 供应商ID (主键，自增)
+    SupplierName NVARCHAR(100) NOT NULL,       -- 供应商全称 (如：GE医疗、迈瑞)
+    ContactPerson NVARCHAR(50) NULL,           -- 主要联系人/业务员姓名
+    Phone NVARCHAR(20) NULL,                   -- 联系电话/售后服务热线
+    IsActive BIT NOT NULL DEFAULT 1,           -- 合作状态：1=正常合作，0=黑名单/终止合作
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 记录创建时间
 );
 GO
 
 -- ============================ 5. 设备表（核心） ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Equipment' AND xtype='U')
 CREATE TABLE Equipment (
-    EquipmentId INT IDENTITY(1,1) PRIMARY KEY,
-    EquipmentNo NVARCHAR(50) NOT NULL UNIQUE,
-    EquipmentName NVARCHAR(100) NOT NULL,
-    Model NVARCHAR(100) NULL,
-    Manufacturer NVARCHAR(100) NULL,
-    SupplierId INT NULL REFERENCES Suppliers(SupplierId),
-    CategoryId INT NULL REFERENCES EquipmentCategories(CategoryId),
-    DeptId INT NULL REFERENCES Departments(DeptId),
-    Location NVARCHAR(200) NULL,
-    ResponsibleUserId INT NULL REFERENCES Users(UserId),
-    Price DECIMAL(18,2) NULL,
-    PurchaseDate DATE NULL,
-    WarrantyMonths INT NULL,
-    ServiceLife INT NULL,
-    LastMaintainDate DATE NULL,
-    NextMaintainDate DATE NULL,
-    Status NVARCHAR(20) NOT NULL DEFAULT 'Idle',
-    Remarks NVARCHAR(500) NULL,
-    IsActive BIT NOT NULL DEFAULT 1,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
-    UpdatedAt DATETIME NULL
+    EquipmentId INT IDENTITY(1,1) PRIMARY KEY, -- 设备内部ID (主键，自增)
+    EquipmentNo NVARCHAR(50) NOT NULL UNIQUE,  -- 医院固定资产编号/设备序列号 (全局唯一)
+    EquipmentName NVARCHAR(100) NOT NULL,      -- 设备通用名称 (如：多层螺旋CT)
+    Model NVARCHAR(100) NULL,                  -- 设备规格型号 (如：Revolution CT)
+    Manufacturer NVARCHAR(100) NULL,           -- 生产厂家
+    SupplierId INT NULL REFERENCES Suppliers(SupplierId), -- 供应商ID (外键，谁供货/保修找谁)
+    CategoryId INT NULL REFERENCES EquipmentCategories(CategoryId), -- 设备分类ID (外键)
+    DeptId INT NULL REFERENCES Departments(DeptId), -- 目前归属/所在科室ID (外键)
+    Location NVARCHAR(200) NULL,               -- 存放的具体物理位置 (如：放射科CT室1)
+    ResponsibleUserId INT NULL REFERENCES Users(UserId), -- 责任人/负责人ID (外键，对应到具体员工)
+    Price DECIMAL(18,2) NULL,                  -- 采购金额/原值
+    PurchaseDate DATE NULL,                    -- 采购日期/入账日期
+    WarrantyMonths INT NULL,                   -- 保修时长(个月，结合采购日期算过保时间)
+    ServiceLife INT NULL,                      -- 预计使用年限(年，用于计算折旧和报废预警)
+    LastMaintainDate DATE NULL,                -- 最后一次维修/保养日期
+    NextMaintainDate DATE NULL,                -- 下次计划保养日期 (用于系统自动推送保养提醒)
+    Status NVARCHAR(20) NOT NULL DEFAULT 'Idle', -- 当前状态：Idle(闲置/备用)、InUse(使用中)、Maintenance(维修中)、Borrowed(借出)、Scrapped(报废)
+    Remarks NVARCHAR(500) NULL,                -- 补充说明备注
+    IsActive BIT NOT NULL DEFAULT 1,           -- 记录状态：1=有效，0=软删除(防误删)
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(), -- 系统录入时间
+    UpdatedAt DATETIME NULL                    -- 最后一次修改信息的时间
 );
 GO
 CREATE NONCLUSTERED INDEX IX_Equipment_DeptId ON Equipment(DeptId);
@@ -92,41 +92,41 @@ GO
 -- ============================ 6. 入库记录表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='InboundRecords' AND xtype='U')
 CREATE TABLE InboundRecords (
-    InboundId INT IDENTITY(1,1) PRIMARY KEY,
-    EquipmentId INT NOT NULL REFERENCES Equipment(EquipmentId),
-    InboundNo NVARCHAR(50) NOT NULL,
-    Supplier NVARCHAR(100) NULL,
-    PurchasePrice DECIMAL(18,2) NULL,
-    Quantity INT NOT NULL DEFAULT 1,
-    InboundDate DATETIME NOT NULL DEFAULT GETDATE(),
-    OperatorId INT NULL REFERENCES Users(UserId),
-    AuditStatus NVARCHAR(20) NOT NULL DEFAULT 'Pending',
-    Remarks NVARCHAR(500) NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    InboundId INT IDENTITY(1,1) PRIMARY KEY,   -- 入库单ID (主键，自增)
+    EquipmentId INT NOT NULL REFERENCES Equipment(EquipmentId), -- 关联的具体设备ID (外键)
+    InboundNo NVARCHAR(50) NOT NULL,           -- 入库流水单号 (如: RK-2026-03-001)
+    Supplier NVARCHAR(100) NULL,               -- 供货商(历史快照，防止供应商表修改影响历史记录)
+    PurchasePrice DECIMAL(18,2) NULL,          -- 实际入库单价
+    Quantity INT NOT NULL DEFAULT 1,           -- 入库数量 (针对大型设备通常为1，一机一档)
+    InboundDate DATETIME NOT NULL DEFAULT GETDATE(), -- 入库时间
+    OperatorId INT NULL REFERENCES Users(UserId), -- 操作人/经办人ID (外键)
+    AuditStatus NVARCHAR(20) NOT NULL DEFAULT 'Pending', -- 审核状态：Pending(待审核)、Approved(已通过)、Rejected(已驳回)
+    Remarks NVARCHAR(500) NULL,                -- 入库备注
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 入库单生成时间
 );
 GO
 
 -- ============================ 7. 维修工单表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='MaintenanceRecords' AND xtype='U')
 CREATE TABLE MaintenanceRecords (
-    RecordId INT IDENTITY(1,1) PRIMARY KEY,
-    EquipmentId INT NOT NULL REFERENCES Equipment(EquipmentId),
-    RepairNo NVARCHAR(50) NOT NULL,
-    ReporterId INT NULL REFERENCES Users(UserId),
-    ReportDeptId INT NULL REFERENCES Departments(DeptId),
-    FaultDesc NVARCHAR(500) NOT NULL,
-    FaultType NVARCHAR(50) NULL,
-    Urgency NVARCHAR(20) NOT NULL DEFAULT 'Normal',
-    ProgressStage NVARCHAR(20) NOT NULL DEFAULT 'Pending',
-    AssignedTo INT NULL REFERENCES Users(UserId),
-    RepairResult NVARCHAR(500) NULL,
-    RepairCost DECIMAL(18,2) NULL,
-    DowntimeHours DECIMAL(6,2) NULL,
-    ReportTime DATETIME NOT NULL DEFAULT GETDATE(),
-    CompleteTime DATETIME NULL,
-    Status NVARCHAR(20) NOT NULL DEFAULT 'Pending',
-    Remarks NVARCHAR(500) NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    RecordId INT IDENTITY(1,1) PRIMARY KEY,    -- 维修工单ID (主键，自增)
+    EquipmentId INT NOT NULL REFERENCES Equipment(EquipmentId), -- 发生故障的设备ID (外键)
+    RepairNo NVARCHAR(50) NOT NULL,            -- 维修单号 (如: BX-2026-0715-01)
+    ReporterId INT NULL REFERENCES Users(UserId), -- 报修人ID (外键)
+    ReportDeptId INT NULL REFERENCES Departments(DeptId), -- 报修时设备所在科室ID (外键)
+    FaultDesc NVARCHAR(500) NOT NULL,          -- 故障现象详细描述 (必填)
+    FaultType NVARCHAR(50) NULL,               -- 故障分类分类 (机械故障、电气故障、软件故障等)
+    Urgency NVARCHAR(20) NOT NULL DEFAULT 'Normal', -- 紧急程度：Low(不急)、Normal(一般)、Urgent(紧急)
+    ProgressStage NVARCHAR(20) NOT NULL DEFAULT 'Pending', -- 细分处理阶段：Pending(待接单)、Assigned(已派单)、InProgress(维修中)、Done(维修完成待确认)
+    AssignedTo INT NULL REFERENCES Users(UserId), -- 负责维修的工程师ID (外键)
+    RepairResult NVARCHAR(500) NULL,           -- 维修排障结果/解决方案说明
+    RepairCost DECIMAL(18,2) NULL,             -- 维修产生的材料/人工费用总计
+    DowntimeHours DECIMAL(6,2) NULL,           -- 设备因故障停机时长(小时，用于KPI考核)
+    ReportTime DATETIME NOT NULL DEFAULT GETDATE(), -- 申报故障时间
+    CompleteTime DATETIME NULL,                -- 确认修复完毕的时间
+    Status NVARCHAR(20) NOT NULL DEFAULT 'Pending', -- 宏观工单状态：Pending(待处理)、InProgress(处理中)、Completed(已闭环)
+    Remarks NVARCHAR(500) NULL,                -- 其他备注信息
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 工单生成时间
 );
 GO
 CREATE NONCLUSTERED INDEX IX_Maintenance_EquipmentId ON MaintenanceRecords(EquipmentId);
@@ -136,21 +136,21 @@ GO
 -- ============================ 8. 借用记录表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='BorrowRecords' AND xtype='U')
 CREATE TABLE BorrowRecords (
-    BorrowId INT IDENTITY(1,1) PRIMARY KEY,
-    BorrowNo NVARCHAR(50) NOT NULL,
-    EquipmentId INT NOT NULL REFERENCES Equipment(EquipmentId),
-    ApplicantId INT NOT NULL REFERENCES Users(UserId),
-    ApplicantDeptId INT NULL REFERENCES Departments(DeptId),
-    Purpose NVARCHAR(200) NULL,
-    ExpectedReturnDate DATE NOT NULL,
-    ApproverId INT NULL REFERENCES Users(UserId),
-    ApproveDate DATETIME NULL,
-    Status NVARCHAR(20) NOT NULL DEFAULT 'Pending',
-    ActualReturnDate DATE NULL,
-    ReturnNote NVARCHAR(200) NULL,
-    Remarks NVARCHAR(500) NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
-    UpdatedAt DATETIME NULL
+    BorrowId INT IDENTITY(1,1) PRIMARY KEY,    -- 借用单ID (主键，自增)
+    BorrowNo NVARCHAR(50) NOT NULL,            -- 借用流水单号
+    EquipmentId INT NOT NULL REFERENCES Equipment(EquipmentId), -- 借用的设备ID (外键)
+    ApplicantId INT NOT NULL REFERENCES Users(UserId), -- 申请人ID (外键)
+    ApplicantDeptId INT NULL REFERENCES Departments(DeptId), -- 申请人所在的科室ID (外键)
+    Purpose NVARCHAR(200) NULL,                -- 借用的原因/用途
+    ExpectedReturnDate DATE NOT NULL,          -- 预期归还日期 (用于系统超期未还催办提醒)
+    ApproverId INT NULL REFERENCES Users(UserId), -- 审批人/设备科负责人ID (外键)
+    ApproveDate DATETIME NULL,                 -- 审批通过的时间
+    Status NVARCHAR(20) NOT NULL DEFAULT 'Pending', -- 借单状态：Pending(待审批)、Approved(已批准待还)、Returned(已归还)、Rejected(已驳回)
+    ActualReturnDate DATE NULL,                -- 实际归还日期 (用于对比是否逾期)
+    ReturnNote NVARCHAR(200) NULL,             -- 归还时的设备状况说明(是否有损毁等)
+    Remarks NVARCHAR(500) NULL,                -- 其他备注
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(), -- 借用申请提交时间
+    UpdatedAt DATETIME NULL                    -- 借单最后流转更新的时间
 );
 GO
 CREATE NONCLUSTERED INDEX IX_Borrow_EquipmentId ON BorrowRecords(EquipmentId);
@@ -160,17 +160,24 @@ GO
 -- ============================ 9. 操作日志表 ============================
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='OperationLogs' AND xtype='U')
 CREATE TABLE OperationLogs (
-    LogId BIGINT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT NULL REFERENCES Users(UserId),
-    ActionType NVARCHAR(30) NOT NULL,
-    TargetTable NVARCHAR(50) NULL,
-    TargetId INT NULL,
-    Detail NVARCHAR(500) NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    LogId BIGINT IDENTITY(1,1) PRIMARY KEY,    -- 日志ID (主键，BIGINT因数据量较大)
+    UserId INT NULL REFERENCES Users(UserId),  -- 执行操作的用户ID (外键)
+    ActionType NVARCHAR(30) NOT NULL,          -- 动作类型：Login(登录)、Create(新增)、Update(修改)、Delete(删除)、Approve(审批)等
+    TargetTable NVARCHAR(50) NULL,             -- 操作的目标表名 (如: Equipment)
+    TargetId INT NULL,                         -- 目标表中的具体数据ID
+    Detail NVARCHAR(500) NULL,                 -- 操作的详细描述内容 (如：修改设备状态从闲置到报废)
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE() -- 操作发生的时间
 );
 GO
 CREATE NONCLUSTERED INDEX IX_OperationLogs_Time ON OperationLogs(CreatedAt DESC);
 GO
+
+-- ============================================================
+--                    (下方是示例数据插入，保留与原版一致)
+-- ============================================================
+
+-- [以下数据插入脚本与原先版本完全一致，无需更改]
+-- (此处省略 INSERT 语句以节省篇幅，原脚本中的 INSERT 均可正常执行)
 
 -- ============================================================
 --                     示例数据插入
