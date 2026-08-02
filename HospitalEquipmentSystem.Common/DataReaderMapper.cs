@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data; // 改用 System.Data 以支持更通用的 IDataReader
 using System.Reflection;
 
-namespace HospitalEquipmentSystem.Util
+namespace HospitalEquipmentSystem.Common
 {
     /// <summary>
     /// 数据读取器映射工具类

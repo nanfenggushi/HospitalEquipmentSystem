@@ -80,9 +80,9 @@
       <Project>{df76a82b-ac7f-4267-9242-a22f5d16cd32}</Project>
       <Name>HospitalEquipmentSystem.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Util.csproj">
+    <ProjectReference Include="..\HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Common.csproj">
       <Project>{45124520-4eef-43a0-88b8-91da7b2191f9}</Project>
-      <Name>HospitalEquipmentSystem.Util</Name>
+      <Name>HospitalEquipmentSystem.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\HospitalEquipmentSystem.Model\HospitalEquipmentSystem.Model.csproj">
       <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>

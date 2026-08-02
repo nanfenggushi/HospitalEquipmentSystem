@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Util.csproj">
+    <ProjectReference Include="..\HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Common.csproj">
       <Project>{45124520-4eef-43a0-88b8-91da7b2191f9}</Project>
-      <Name>HospitalEquipmentSystem.Util</Name>
+      <Name>HospitalEquipmentSystem.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\HospitalEquipmentSystem.DAL\HospitalEquipmentSystem.DAL.csproj">
       <Project>{9668c859-e101-4b62-a841-a2581fee52c4}</Project>

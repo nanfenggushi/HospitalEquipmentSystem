@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace HospitalEquipmentSystem.Util
+namespace HospitalEquipmentSystem.Common
 {
     /// <summary>
     /// 数据库操作通用辅助类 (针对 SQL Server)
