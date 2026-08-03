@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalEquipmentSystem.UI.Dashboard;
+using System;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -13,7 +14,7 @@ namespace HospitalEquipmentSystem.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new UcDashboard());
         }
     }
 }
