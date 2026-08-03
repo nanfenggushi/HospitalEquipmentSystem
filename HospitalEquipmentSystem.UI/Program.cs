@@ -14,7 +14,7 @@ namespace HospitalEquipmentSystem.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UcDashboard());
+            Application.Run(new MainTainManagement());
         }
     }
 }

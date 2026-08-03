@@ -9,7 +9,10 @@
     <RootNamespace>HospitalEquipmentSystem.UI</RootNamespace>
     <AssemblyName>HospitalEquipmentSystem.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     <FileAlignment>512</FileAlignment>
+    <GenerateResourceUsePreserializedResources>false</GenerateResourceUsePreserializedResources>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -41,8 +44,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,10 +67,40 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainTainManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainTainManagement.Designer.cs">
+      <DependentUpon>MainTainManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderEditForm.Designer.cs">
+      <DependentUpon>OrderEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEngineerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectEngineerForm.Designer.cs">
+      <DependentUpon>SelectEngineerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dashboard\UcDashboard.resx">
       <DependentUpon>UcDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainTainManagement.resx">
+      <DependentUpon>MainTainManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderEditForm.resx">
+      <DependentUpon>OrderEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectEngineerForm.resx">
+      <DependentUpon>SelectEngineerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,9 +110,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
     <None Include="App.config.example" />
+    <None Include="packages.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -105,6 +138,20 @@
     <ProjectReference Include="..\HospitalEquipmentSystem.Model\HospitalEquipmentSystem.Model.csproj">
       <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>
       <Name>HospitalEquipmentSystem.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalEquipmentSystem.BLL\HospitalEquipmentSystem.BLL.csproj">
+      <Project>{df76a82b-ac7f-4267-9242-a22f5d16cd32}</Project>
+      <Name>HospitalEquipment.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Common.csproj">
+      <Project>{45124520-4eef-43a0-88b8-91da7b2191f9}</Project>
+      <Name>HospitalEquipment.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalEquipmentSystem.Model\HospitalEquipmentSystem.Model.csproj">
+      <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>
+      <Name>HospitalEquipment.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
