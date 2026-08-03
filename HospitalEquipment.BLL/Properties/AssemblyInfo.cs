@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("HospitalEquipmentSystem.UI")]
+[assembly: AssemblyTitle("HospitalEquipment.BLL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ReviOS 11 24.12")]
-[assembly: AssemblyProduct("HospitalEquipmentSystem.UI")]
+[assembly: AssemblyProduct("HospitalEquipment.BLL")]
 [assembly: AssemblyCopyright("Copyright © ReviOS 11 24.12 2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("582d46cc-f9b4-498b-8c7d-2650b4a9bc90")]
+[assembly: Guid("df76a82b-ac7f-4267-9242-a22f5d16cd32")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
