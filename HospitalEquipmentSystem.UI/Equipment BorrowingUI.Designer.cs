@@ -1,0 +1,1107 @@
+using System;
+
+namespace HospitalEquipmentSystem.UI
+{
+    partial class Equipment_BorrowingUI
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.uiPanelHeader = new Sunny.UI.UIPanel();
+            this.lblUser = new Sunny.UI.UILabel();
+            this.lblTitle = new Sunny.UI.UILabel();
+            this.lblSubtitle = new Sunny.UI.UILabel();
+            this.btnApply = new Sunny.UI.UISymbolButton();
+            this.uiPanelPager = new Sunny.UI.UIPanel();
+            this.uiPagination1 = new Sunny.UI.UIPagination();
+            this.lblTotalLabel = new Sunny.UI.UILabel();
+            this.uiPanelBody = new Sunny.UI.UIPanel();
+            this.pnlViews = new Sunny.UI.UIPanel();
+            this.pnlChart = new Sunny.UI.UIPanel();
+            this.chartLayout = new Sunny.UI.UITableLayoutPanel();
+            this.titlePanel4 = new Sunny.UI.UITitlePanel();
+            this.chartDoughnut = new Sunny.UI.UIDoughnutChart();
+            this.titlePanel3 = new Sunny.UI.UITitlePanel();
+            this.chartLine = new Sunny.UI.UILineChart();
+            this.titlePanel2 = new Sunny.UI.UITitlePanel();
+            this.chartPie = new Sunny.UI.UIPieChart();
+            this.titlePanel1 = new Sunny.UI.UITitlePanel();
+            this.chartBar = new Sunny.UI.UIBarChart();
+            this.pnlCalendar = new Sunny.UI.UIPanel();
+            this.pnlCalendarRight = new Sunny.UI.UIPanel();
+            this.lstCalendar = new Sunny.UI.UIListBox();
+            this.lblCalendarHint = new Sunny.UI.UILabel();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.pnlList = new Sunny.UI.UIPanel();
+            this.dgvList = new Sunny.UI.UIDataGridView();
+            this.pnlToolbar = new Sunny.UI.UIPanel();
+            this.btnChartView = new Sunny.UI.UISymbolButton();
+            this.btnCalendarView = new Sunny.UI.UISymbolButton();
+            this.btnListView = new Sunny.UI.UISymbolButton();
+            this.lblKeyword = new Sunny.UI.UILabel();
+            this.txtKeyword = new Sunny.UI.UITextBox();
+            this.lblStatus = new Sunny.UI.UILabel();
+            this.cmbStatus = new Sunny.UI.UIComboBox();
+            this.lblEquip = new Sunny.UI.UILabel();
+            this.cmbEquipment = new Sunny.UI.UIComboBox();
+            this.btnSearch = new Sunny.UI.UISymbolButton();
+            this.btnReset = new Sunny.UI.UIButton();
+            this.btnRefresh = new Sunny.UI.UISymbolButton();
+            this.lblDateRange = new Sunny.UI.UILabel();
+            this.dpFrom = new Sunny.UI.UIDatePicker();
+            this.lblTo = new Sunny.UI.UILabel();
+            this.dpTo = new Sunny.UI.UIDatePicker();
+            this.lblHint = new Sunny.UI.UILabel();
+            this.pnlStats = new Sunny.UI.UIPanel();
+            this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
+            this.cardDueToday = new Sunny.UI.UIPanel();
+            this.lblDueTodayCaption = new Sunny.UI.UISymbolLabel();
+            this.lblDueTodayValue = new Sunny.UI.UILabel();
+            this.cardOverdue = new Sunny.UI.UIPanel();
+            this.lblOverdueCaption = new Sunny.UI.UISymbolLabel();
+            this.lblOverdueValue = new Sunny.UI.UILabel();
+            this.cardBorrowing = new Sunny.UI.UIPanel();
+            this.lblBorrowingCaption = new Sunny.UI.UISymbolLabel();
+            this.lblBorrowingValue = new Sunny.UI.UILabel();
+            this.cardPending = new Sunny.UI.UIPanel();
+            this.lblPendingCaption = new Sunny.UI.UISymbolLabel();
+            this.lblPendingValue = new Sunny.UI.UILabel();
+            this.uiPanelHeader.SuspendLayout();
+            this.uiPanelPager.SuspendLayout();
+            this.uiPanelBody.SuspendLayout();
+            this.pnlViews.SuspendLayout();
+            this.pnlChart.SuspendLayout();
+            this.chartLayout.SuspendLayout();
+            this.titlePanel4.SuspendLayout();
+            this.titlePanel3.SuspendLayout();
+            this.titlePanel2.SuspendLayout();
+            this.titlePanel1.SuspendLayout();
+            this.pnlCalendar.SuspendLayout();
+            this.pnlCalendarRight.SuspendLayout();
+            this.pnlList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
+            this.pnlToolbar.SuspendLayout();
+            this.pnlStats.SuspendLayout();
+            this.uiTableLayoutPanel1.SuspendLayout();
+            this.cardDueToday.SuspendLayout();
+            this.cardOverdue.SuspendLayout();
+            this.cardBorrowing.SuspendLayout();
+            this.cardPending.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // uiPanelHeader
+            // 
+            this.uiPanelHeader.Controls.Add(this.lblUser);
+            this.uiPanelHeader.Controls.Add(this.lblTitle);
+            this.uiPanelHeader.Controls.Add(this.lblSubtitle);
+            this.uiPanelHeader.Controls.Add(this.btnApply);
+            this.uiPanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiPanelHeader.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanelHeader.Location = new System.Drawing.Point(0, 0);
+            this.uiPanelHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanelHeader.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanelHeader.Name = "uiPanelHeader";
+            this.uiPanelHeader.Size = new System.Drawing.Size(1300, 96);
+            this.uiPanelHeader.TabIndex = 0;
+            this.uiPanelHeader.Text = null;
+            this.uiPanelHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblUser
+            // 
+            this.lblUser.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblUser.Location = new System.Drawing.Point(1012, 32);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(100, 37);
+            this.lblUser.TabIndex = 3;
+            this.lblUser.Text = "用户";
+            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblTitle.Location = new System.Drawing.Point(24, 14);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(150, 40);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "借用管理";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblSubtitle
+            // 
+            this.lblSubtitle.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblSubtitle.Location = new System.Drawing.Point(24, 58);
+            this.lblSubtitle.Name = "lblSubtitle";
+            this.lblSubtitle.Size = new System.Drawing.Size(620, 26);
+            this.lblSubtitle.TabIndex = 1;
+            this.lblSubtitle.Text = "设备借用申请 → 审批 → 使用 → 归还验收 全流程管理";
+            this.lblSubtitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnApply
+            // 
+            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApply.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnApply.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.btnApply.FillHoverColor = System.Drawing.Color.LightGreen;
+            this.btnApply.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnApply.Location = new System.Drawing.Point(1150, 32);
+            this.btnApply.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Radius = 6;
+            this.btnApply.Size = new System.Drawing.Size(134, 37);
+            this.btnApply.Symbol = 61543;
+            this.btnApply.TabIndex = 2;
+            this.btnApply.Text = "申请借用";
+            this.btnApply.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // uiPanelPager
+            // 
+            this.uiPanelPager.Controls.Add(this.uiPagination1);
+            this.uiPanelPager.Controls.Add(this.lblTotalLabel);
+            this.uiPanelPager.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiPanelPager.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanelPager.Location = new System.Drawing.Point(0, 672);
+            this.uiPanelPager.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanelPager.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanelPager.Name = "uiPanelPager";
+            this.uiPanelPager.Size = new System.Drawing.Size(1300, 58);
+            this.uiPanelPager.TabIndex = 1;
+            this.uiPanelPager.Text = null;
+            this.uiPanelPager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiPagination1
+            // 
+            this.uiPagination1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.uiPagination1.ButtonFillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            this.uiPagination1.ButtonStyleInherited = false;
+            this.uiPagination1.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiPagination1.Location = new System.Drawing.Point(24, 12);
+            this.uiPagination1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPagination1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPagination1.Name = "uiPagination1";
+            this.uiPagination1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.uiPagination1.ShowText = false;
+            this.uiPagination1.Size = new System.Drawing.Size(700, 36);
+            this.uiPagination1.TabIndex = 0;
+            this.uiPagination1.Text = "uiPagination1";
+            this.uiPagination1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotalLabel
+            // 
+            this.lblTotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalLabel.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblTotalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblTotalLabel.Location = new System.Drawing.Point(1140, 16);
+            this.lblTotalLabel.Name = "lblTotalLabel";
+            this.lblTotalLabel.Size = new System.Drawing.Size(140, 28);
+            this.lblTotalLabel.TabIndex = 1;
+            this.lblTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // uiPanelBody
+            // 
+            this.uiPanelBody.Controls.Add(this.pnlViews);
+            this.uiPanelBody.Controls.Add(this.pnlToolbar);
+            this.uiPanelBody.Controls.Add(this.pnlStats);
+            this.uiPanelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPanelBody.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanelBody.Location = new System.Drawing.Point(0, 96);
+            this.uiPanelBody.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanelBody.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanelBody.Name = "uiPanelBody";
+            this.uiPanelBody.Size = new System.Drawing.Size(1300, 576);
+            this.uiPanelBody.TabIndex = 2;
+            this.uiPanelBody.Text = null;
+            this.uiPanelBody.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlViews
+            // 
+            this.pnlViews.Controls.Add(this.pnlChart);
+            this.pnlViews.Controls.Add(this.pnlCalendar);
+            this.pnlViews.Controls.Add(this.pnlList);
+            this.pnlViews.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlViews.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlViews.Location = new System.Drawing.Point(0, 198);
+            this.pnlViews.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlViews.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlViews.Name = "pnlViews";
+            this.pnlViews.Size = new System.Drawing.Size(1300, 378);
+            this.pnlViews.TabIndex = 2;
+            this.pnlViews.Text = null;
+            this.pnlViews.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlChart
+            // 
+            this.pnlChart.Controls.Add(this.chartLayout);
+            this.pnlChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlChart.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlChart.Location = new System.Drawing.Point(0, 0);
+            this.pnlChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlChart.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlChart.Name = "pnlChart";
+            this.pnlChart.Size = new System.Drawing.Size(1300, 378);
+            this.pnlChart.TabIndex = 2;
+            this.pnlChart.Text = null;
+            this.pnlChart.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pnlChart.Visible = false;
+            // 
+            // chartLayout
+            // 
+            this.chartLayout.ColumnCount = 2;
+            this.chartLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.chartLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.chartLayout.Controls.Add(this.titlePanel4, 1, 1);
+            this.chartLayout.Controls.Add(this.titlePanel3, 0, 1);
+            this.chartLayout.Controls.Add(this.titlePanel2, 1, 0);
+            this.chartLayout.Controls.Add(this.titlePanel1, 0, 0);
+            this.chartLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartLayout.Location = new System.Drawing.Point(0, 0);
+            this.chartLayout.Margin = new System.Windows.Forms.Padding(4);
+            this.chartLayout.Name = "chartLayout";
+            this.chartLayout.RowCount = 2;
+            this.chartLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.chartLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.chartLayout.Size = new System.Drawing.Size(1300, 378);
+            this.chartLayout.TabIndex = 0;
+            this.chartLayout.TagString = null;
+            // 
+            // titlePanel4
+            // 
+            this.titlePanel4.Controls.Add(this.chartDoughnut);
+            this.titlePanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel4.Location = new System.Drawing.Point(658, 197);
+            this.titlePanel4.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel4.Name = "titlePanel4";
+            this.titlePanel4.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel4.ShowText = false;
+            this.titlePanel4.Size = new System.Drawing.Size(634, 173);
+            this.titlePanel4.TabIndex = 3;
+            this.titlePanel4.Text = "设备状态分布";
+            this.titlePanel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel4.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel4.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel4.TitleHeight = 34;
+            // 
+            // chartDoughnut
+            // 
+            this.chartDoughnut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartDoughnut.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartDoughnut.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartDoughnut.Location = new System.Drawing.Point(1, 34);
+            this.chartDoughnut.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartDoughnut.Name = "chartDoughnut";
+            this.chartDoughnut.Size = new System.Drawing.Size(632, 138);
+            this.chartDoughnut.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartDoughnut.TabIndex = 0;
+            // 
+            // titlePanel3
+            // 
+            this.titlePanel3.Controls.Add(this.chartLine);
+            this.titlePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel3.Location = new System.Drawing.Point(8, 197);
+            this.titlePanel3.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel3.Name = "titlePanel3";
+            this.titlePanel3.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel3.ShowText = false;
+            this.titlePanel3.Size = new System.Drawing.Size(634, 173);
+            this.titlePanel3.TabIndex = 2;
+            this.titlePanel3.Text = "近12个月借用/归还趋势";
+            this.titlePanel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel3.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel3.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel3.TitleHeight = 34;
+            // 
+            // chartLine
+            // 
+            this.chartLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartLine.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartLine.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartLine.Location = new System.Drawing.Point(1, 34);
+            this.chartLine.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartLine.MouseDownType = Sunny.UI.UILineChartMouseDownType.Zoom;
+            this.chartLine.Name = "chartLine";
+            this.chartLine.Size = new System.Drawing.Size(632, 138);
+            this.chartLine.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartLine.TabIndex = 0;
+            // 
+            // titlePanel2
+            // 
+            this.titlePanel2.Controls.Add(this.chartPie);
+            this.titlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel2.Location = new System.Drawing.Point(658, 8);
+            this.titlePanel2.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel2.Name = "titlePanel2";
+            this.titlePanel2.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel2.ShowText = false;
+            this.titlePanel2.Size = new System.Drawing.Size(634, 173);
+            this.titlePanel2.TabIndex = 1;
+            this.titlePanel2.Text = "科室借用分布";
+            this.titlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel2.TitleHeight = 34;
+            // 
+            // chartPie
+            // 
+            this.chartPie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartPie.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartPie.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.Location = new System.Drawing.Point(1, 34);
+            this.chartPie.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartPie.Name = "chartPie";
+            this.chartPie.Size = new System.Drawing.Size(632, 138);
+            this.chartPie.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.TabIndex = 0;
+            // 
+            // titlePanel1
+            // 
+            this.titlePanel1.Controls.Add(this.chartBar);
+            this.titlePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel1.Location = new System.Drawing.Point(8, 8);
+            this.titlePanel1.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel1.Name = "titlePanel1";
+            this.titlePanel1.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel1.ShowText = false;
+            this.titlePanel1.Size = new System.Drawing.Size(634, 173);
+            this.titlePanel1.TabIndex = 0;
+            this.titlePanel1.Text = "设备借用 TOP10";
+            this.titlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel1.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel1.TitleHeight = 34;
+            // 
+            // chartBar
+            // 
+            this.chartBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartBar.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartBar.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartBar.Location = new System.Drawing.Point(1, 34);
+            this.chartBar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartBar.Name = "chartBar";
+            this.chartBar.Size = new System.Drawing.Size(632, 138);
+            this.chartBar.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartBar.TabIndex = 0;
+            // 
+            // pnlCalendar
+            // 
+            this.pnlCalendar.Controls.Add(this.pnlCalendarRight);
+            this.pnlCalendar.Controls.Add(this.monthCalendar1);
+            this.pnlCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCalendar.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlCalendar.Location = new System.Drawing.Point(0, 0);
+            this.pnlCalendar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlCalendar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlCalendar.Name = "pnlCalendar";
+            this.pnlCalendar.Size = new System.Drawing.Size(1300, 378);
+            this.pnlCalendar.TabIndex = 1;
+            this.pnlCalendar.Text = null;
+            this.pnlCalendar.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pnlCalendar.Visible = false;
+            // 
+            // pnlCalendarRight
+            // 
+            this.pnlCalendarRight.Controls.Add(this.lstCalendar);
+            this.pnlCalendarRight.Controls.Add(this.lblCalendarHint);
+            this.pnlCalendarRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCalendarRight.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlCalendarRight.Location = new System.Drawing.Point(0, 207);
+            this.pnlCalendarRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlCalendarRight.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlCalendarRight.Name = "pnlCalendarRight";
+            this.pnlCalendarRight.Size = new System.Drawing.Size(1300, 171);
+            this.pnlCalendarRight.TabIndex = 1;
+            this.pnlCalendarRight.Text = null;
+            this.pnlCalendarRight.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lstCalendar
+            // 
+            this.lstCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstCalendar.Font = new System.Drawing.Font("宋体", 12F);
+            this.lstCalendar.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.lstCalendar.ItemHeight = 36;
+            this.lstCalendar.ItemSelectForeColor = System.Drawing.Color.White;
+            this.lstCalendar.Location = new System.Drawing.Point(0, 36);
+            this.lstCalendar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lstCalendar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.lstCalendar.Name = "lstCalendar";
+            this.lstCalendar.Padding = new System.Windows.Forms.Padding(2);
+            this.lstCalendar.ShowText = false;
+            this.lstCalendar.Size = new System.Drawing.Size(1300, 135);
+            this.lstCalendar.TabIndex = 1;
+            this.lstCalendar.Text = null;
+            // 
+            // lblCalendarHint
+            // 
+            this.lblCalendarHint.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblCalendarHint.Font = new System.Drawing.Font("宋体", 13F);
+            this.lblCalendarHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblCalendarHint.Location = new System.Drawing.Point(0, 0);
+            this.lblCalendarHint.Name = "lblCalendarHint";
+            this.lblCalendarHint.Size = new System.Drawing.Size(1300, 36);
+            this.lblCalendarHint.TabIndex = 0;
+            this.lblCalendarHint.Text = "选择日期查看当日应还借用";
+            this.lblCalendarHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(4, 1);
+            this.monthCalendar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.monthCalendar1.Location = new System.Drawing.Point(0, 0);
+            this.monthCalendar1.MaxSelectionCount = 1;
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.TitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
+            // 
+            // pnlList
+            // 
+            this.pnlList.Controls.Add(this.dgvList);
+            this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlList.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlList.Location = new System.Drawing.Point(0, 0);
+            this.pnlList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlList.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlList.Name = "pnlList";
+            this.pnlList.Size = new System.Drawing.Size(1300, 378);
+            this.pnlList.TabIndex = 0;
+            this.pnlList.Text = null;
+            this.pnlList.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvList
+            // 
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgvList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvList.ColumnHeadersHeight = 32;
+            this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvList.EnableHeadersVisualStyles = false;
+            this.dgvList.Font = new System.Drawing.Font("宋体", 12F);
+            this.dgvList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.dgvList.Location = new System.Drawing.Point(0, 0);
+            this.dgvList.Name = "dgvList";
+            this.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dgvList.RowHeadersWidth = 51;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvList.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgvList.SelectedIndex = -1;
+            this.dgvList.Size = new System.Drawing.Size(1300, 378);
+            this.dgvList.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgvList.TabIndex = 0;
+            // 
+            // pnlToolbar
+            // 
+            this.pnlToolbar.Controls.Add(this.btnChartView);
+            this.pnlToolbar.Controls.Add(this.btnCalendarView);
+            this.pnlToolbar.Controls.Add(this.btnListView);
+            this.pnlToolbar.Controls.Add(this.lblKeyword);
+            this.pnlToolbar.Controls.Add(this.txtKeyword);
+            this.pnlToolbar.Controls.Add(this.lblStatus);
+            this.pnlToolbar.Controls.Add(this.cmbStatus);
+            this.pnlToolbar.Controls.Add(this.lblEquip);
+            this.pnlToolbar.Controls.Add(this.cmbEquipment);
+            this.pnlToolbar.Controls.Add(this.btnSearch);
+            this.pnlToolbar.Controls.Add(this.btnReset);
+            this.pnlToolbar.Controls.Add(this.btnRefresh);
+            this.pnlToolbar.Controls.Add(this.lblDateRange);
+            this.pnlToolbar.Controls.Add(this.dpFrom);
+            this.pnlToolbar.Controls.Add(this.lblTo);
+            this.pnlToolbar.Controls.Add(this.dpTo);
+            this.pnlToolbar.Controls.Add(this.lblHint);
+            this.pnlToolbar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlToolbar.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlToolbar.Location = new System.Drawing.Point(0, 110);
+            this.pnlToolbar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlToolbar.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlToolbar.Name = "pnlToolbar";
+            this.pnlToolbar.Size = new System.Drawing.Size(1300, 88);
+            this.pnlToolbar.TabIndex = 1;
+            this.pnlToolbar.Text = null;
+            this.pnlToolbar.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnChartView
+            // 
+            this.btnChartView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChartView.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnChartView.GroupIndex = 1;
+            this.btnChartView.Location = new System.Drawing.Point(240, 6);
+            this.btnChartView.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnChartView.Name = "btnChartView";
+            this.btnChartView.Size = new System.Drawing.Size(108, 38);
+            this.btnChartView.Symbol = 61568;
+            this.btnChartView.TabIndex = 2;
+            this.btnChartView.Text = "统计视图";
+            this.btnChartView.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // btnCalendarView
+            // 
+            this.btnCalendarView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCalendarView.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnCalendarView.GroupIndex = 1;
+            this.btnCalendarView.Location = new System.Drawing.Point(126, 6);
+            this.btnCalendarView.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnCalendarView.Name = "btnCalendarView";
+            this.btnCalendarView.Size = new System.Drawing.Size(108, 38);
+            this.btnCalendarView.Symbol = 61555;
+            this.btnCalendarView.TabIndex = 1;
+            this.btnCalendarView.Text = "日历视图";
+            this.btnCalendarView.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // btnListView
+            // 
+            this.btnListView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnListView.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnListView.GroupIndex = 1;
+            this.btnListView.Location = new System.Drawing.Point(12, 6);
+            this.btnListView.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnListView.Name = "btnListView";
+            this.btnListView.Size = new System.Drawing.Size(108, 38);
+            this.btnListView.Symbol = 61642;
+            this.btnListView.TabIndex = 0;
+            this.btnListView.Text = "列表视图";
+            this.btnListView.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // lblKeyword
+            // 
+            this.lblKeyword.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblKeyword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblKeyword.Location = new System.Drawing.Point(360, 12);
+            this.lblKeyword.Name = "lblKeyword";
+            this.lblKeyword.Size = new System.Drawing.Size(91, 26);
+            this.lblKeyword.TabIndex = 3;
+            this.lblKeyword.Text = "关键字：";
+            this.lblKeyword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtKeyword
+            // 
+            this.txtKeyword.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtKeyword.Font = new System.Drawing.Font("宋体", 12F);
+            this.txtKeyword.Location = new System.Drawing.Point(458, 5);
+            this.txtKeyword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtKeyword.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Padding = new System.Windows.Forms.Padding(5);
+            this.txtKeyword.ShowText = false;
+            this.txtKeyword.Size = new System.Drawing.Size(190, 38);
+            this.txtKeyword.TabIndex = 4;
+            this.txtKeyword.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtKeyword.Watermark = "";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblStatus.Location = new System.Drawing.Point(669, 12);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(72, 26);
+            this.lblStatus.TabIndex = 5;
+            this.lblStatus.Text = "状态：";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.DataSource = null;
+            this.cmbStatus.FillColor = System.Drawing.Color.White;
+            this.cmbStatus.Font = new System.Drawing.Font("宋体", 12F);
+            this.cmbStatus.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cmbStatus.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbStatus.Location = new System.Drawing.Point(748, 8);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbStatus.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cmbStatus.Size = new System.Drawing.Size(120, 38);
+            this.cmbStatus.SymbolSize = 24;
+            this.cmbStatus.TabIndex = 6;
+            this.cmbStatus.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmbStatus.Watermark = "";
+            // 
+            // lblEquip
+            // 
+            this.lblEquip.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblEquip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblEquip.Location = new System.Drawing.Point(669, 56);
+            this.lblEquip.Name = "lblEquip";
+            this.lblEquip.Size = new System.Drawing.Size(72, 26);
+            this.lblEquip.TabIndex = 7;
+            this.lblEquip.Text = "设备：";
+            this.lblEquip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cmbEquipment
+            // 
+            this.cmbEquipment.DataSource = null;
+            this.cmbEquipment.FillColor = System.Drawing.Color.White;
+            this.cmbEquipment.Font = new System.Drawing.Font("宋体", 12F);
+            this.cmbEquipment.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.Location = new System.Drawing.Point(748, 49);
+            this.cmbEquipment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbEquipment.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cmbEquipment.Name = "cmbEquipment";
+            this.cmbEquipment.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cmbEquipment.Size = new System.Drawing.Size(170, 38);
+            this.cmbEquipment.SymbolSize = 24;
+            this.cmbEquipment.TabIndex = 8;
+            this.cmbEquipment.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmbEquipment.Watermark = "";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnSearch.Location = new System.Drawing.Point(1060, 6);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(84, 38);
+            this.btnSearch.Symbol = 61442;
+            this.btnSearch.TabIndex = 9;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnReset.Location = new System.Drawing.Point(1150, 6);
+            this.btnReset.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(84, 38);
+            this.btnReset.TabIndex = 10;
+            this.btnReset.Text = "重置";
+            this.btnReset.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.Font = new System.Drawing.Font("宋体", 12F);
+            this.btnRefresh.Location = new System.Drawing.Point(1240, 6);
+            this.btnRefresh.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(46, 38);
+            this.btnRefresh.Symbol = 61473;
+            this.btnRefresh.TabIndex = 11;
+            this.btnRefresh.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRefresh.TipsText = "刷新";
+            // 
+            // lblDateRange
+            // 
+            this.lblDateRange.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblDateRange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblDateRange.Location = new System.Drawing.Point(12, 56);
+            this.lblDateRange.Name = "lblDateRange";
+            this.lblDateRange.Size = new System.Drawing.Size(90, 26);
+            this.lblDateRange.TabIndex = 12;
+            this.lblDateRange.Text = "归还日期：";
+            this.lblDateRange.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dpFrom
+            // 
+            this.dpFrom.CanEmpty = true;
+            this.dpFrom.DateCultureInfo = new System.Globalization.CultureInfo("");
+            this.dpFrom.FillColor = System.Drawing.Color.White;
+            this.dpFrom.Font = new System.Drawing.Font("宋体", 12F);
+            this.dpFrom.Location = new System.Drawing.Point(106, 50);
+            this.dpFrom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dpFrom.MaxLength = 10;
+            this.dpFrom.MinimumSize = new System.Drawing.Size(1, 1);
+            this.dpFrom.Name = "dpFrom";
+            this.dpFrom.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.dpFrom.Size = new System.Drawing.Size(130, 34);
+            this.dpFrom.SymbolDropDown = 61555;
+            this.dpFrom.SymbolNormal = 61555;
+            this.dpFrom.SymbolSize = 24;
+            this.dpFrom.TabIndex = 13;
+            this.dpFrom.Text = "2026-07-31";
+            this.dpFrom.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dpFrom.Value = new System.DateTime(2026, 7, 31, 14, 51, 18, 777);
+            this.dpFrom.Watermark = "";
+            // 
+            // lblTo
+            // 
+            this.lblTo.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.lblTo.Location = new System.Drawing.Point(244, 56);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(30, 26);
+            this.lblTo.TabIndex = 14;
+            this.lblTo.Text = "至";
+            this.lblTo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dpTo
+            // 
+            this.dpTo.CanEmpty = true;
+            this.dpTo.DateCultureInfo = new System.Globalization.CultureInfo("");
+            this.dpTo.FillColor = System.Drawing.Color.White;
+            this.dpTo.Font = new System.Drawing.Font("宋体", 12F);
+            this.dpTo.Location = new System.Drawing.Point(282, 50);
+            this.dpTo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dpTo.MaxLength = 10;
+            this.dpTo.MinimumSize = new System.Drawing.Size(1, 1);
+            this.dpTo.Name = "dpTo";
+            this.dpTo.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.dpTo.Size = new System.Drawing.Size(130, 34);
+            this.dpTo.SymbolDropDown = 61555;
+            this.dpTo.SymbolNormal = 61555;
+            this.dpTo.SymbolSize = 24;
+            this.dpTo.TabIndex = 15;
+            this.dpTo.Text = "2026-07-31";
+            this.dpTo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dpTo.Value = new System.DateTime(2026, 7, 31, 14, 51, 18, 851);
+            this.dpTo.Watermark = "";
+            // 
+            // lblHint
+            // 
+            this.lblHint.Font = new System.Drawing.Font("宋体", 12F);
+            this.lblHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblHint.Location = new System.Drawing.Point(430, 56);
+            this.lblHint.Name = "lblHint";
+            this.lblHint.Size = new System.Drawing.Size(260, 26);
+            this.lblHint.TabIndex = 16;
+            this.lblHint.Text = "（选填，留空查询全部）";
+            this.lblHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pnlStats
+            // 
+            this.pnlStats.Controls.Add(this.uiTableLayoutPanel1);
+            this.pnlStats.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlStats.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pnlStats.Location = new System.Drawing.Point(0, 0);
+            this.pnlStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlStats.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlStats.Name = "pnlStats";
+            this.pnlStats.Size = new System.Drawing.Size(1300, 110);
+            this.pnlStats.TabIndex = 0;
+            this.pnlStats.Text = null;
+            this.pnlStats.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiTableLayoutPanel1
+            // 
+            this.uiTableLayoutPanel1.ColumnCount = 4;
+            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.uiTableLayoutPanel1.Controls.Add(this.cardDueToday, 3, 0);
+            this.uiTableLayoutPanel1.Controls.Add(this.cardOverdue, 2, 0);
+            this.uiTableLayoutPanel1.Controls.Add(this.cardBorrowing, 1, 0);
+            this.uiTableLayoutPanel1.Controls.Add(this.cardPending, 0, 0);
+            this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
+            this.uiTableLayoutPanel1.Padding = new System.Windows.Forms.Padding(12, 8, 12, 8);
+            this.uiTableLayoutPanel1.RowCount = 1;
+            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1300, 110);
+            this.uiTableLayoutPanel1.TabIndex = 0;
+            this.uiTableLayoutPanel1.TagString = null;
+            // 
+            // cardDueToday
+            // 
+            this.cardDueToday.Controls.Add(this.lblDueTodayCaption);
+            this.cardDueToday.Controls.Add(this.lblDueTodayValue);
+            this.cardDueToday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardDueToday.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cardDueToday.Location = new System.Drawing.Point(973, 12);
+            this.cardDueToday.Margin = new System.Windows.Forms.Padding(4);
+            this.cardDueToday.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cardDueToday.Name = "cardDueToday";
+            this.cardDueToday.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.cardDueToday.Size = new System.Drawing.Size(311, 86);
+            this.cardDueToday.TabIndex = 3;
+            this.cardDueToday.Text = null;
+            this.cardDueToday.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDueTodayCaption
+            // 
+            this.lblDueTodayCaption.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblDueTodayCaption.Location = new System.Drawing.Point(87, 5);
+            this.lblDueTodayCaption.MinimumSize = new System.Drawing.Size(1, 1);
+            this.lblDueTodayCaption.Name = "lblDueTodayCaption";
+            this.lblDueTodayCaption.Size = new System.Drawing.Size(170, 35);
+            this.lblDueTodayCaption.Symbol = 61683;
+            this.lblDueTodayCaption.SymbolColor = System.Drawing.Color.Orange;
+            this.lblDueTodayCaption.TabIndex = 1;
+            this.lblDueTodayCaption.Text = "今日过期";
+            // 
+            // lblDueTodayValue
+            // 
+            this.lblDueTodayValue.Font = new System.Drawing.Font("宋体", 22F, System.Drawing.FontStyle.Bold);
+            this.lblDueTodayValue.ForeColor = System.Drawing.Color.Orange;
+            this.lblDueTodayValue.Location = new System.Drawing.Point(149, 42);
+            this.lblDueTodayValue.Name = "lblDueTodayValue";
+            this.lblDueTodayValue.Size = new System.Drawing.Size(37, 44);
+            this.lblDueTodayValue.TabIndex = 0;
+            this.lblDueTodayValue.Text = "0";
+            this.lblDueTodayValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cardOverdue
+            // 
+            this.cardOverdue.Controls.Add(this.lblOverdueCaption);
+            this.cardOverdue.Controls.Add(this.lblOverdueValue);
+            this.cardOverdue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardOverdue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cardOverdue.Location = new System.Drawing.Point(654, 12);
+            this.cardOverdue.Margin = new System.Windows.Forms.Padding(4);
+            this.cardOverdue.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cardOverdue.Name = "cardOverdue";
+            this.cardOverdue.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.cardOverdue.Size = new System.Drawing.Size(311, 86);
+            this.cardOverdue.TabIndex = 2;
+            this.cardOverdue.Text = null;
+            this.cardOverdue.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOverdueCaption
+            // 
+            this.lblOverdueCaption.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblOverdueCaption.Location = new System.Drawing.Point(85, 5);
+            this.lblOverdueCaption.MinimumSize = new System.Drawing.Size(1, 1);
+            this.lblOverdueCaption.Name = "lblOverdueCaption";
+            this.lblOverdueCaption.Size = new System.Drawing.Size(170, 35);
+            this.lblOverdueCaption.Symbol = 61453;
+            this.lblOverdueCaption.SymbolColor = System.Drawing.Color.Red;
+            this.lblOverdueCaption.TabIndex = 1;
+            this.lblOverdueCaption.Text = "已过期";
+            // 
+            // lblOverdueValue
+            // 
+            this.lblOverdueValue.Font = new System.Drawing.Font("宋体", 22F, System.Drawing.FontStyle.Bold);
+            this.lblOverdueValue.ForeColor = System.Drawing.Color.Red;
+            this.lblOverdueValue.Location = new System.Drawing.Point(148, 43);
+            this.lblOverdueValue.Name = "lblOverdueValue";
+            this.lblOverdueValue.Size = new System.Drawing.Size(32, 44);
+            this.lblOverdueValue.TabIndex = 0;
+            this.lblOverdueValue.Text = "0";
+            this.lblOverdueValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cardBorrowing
+            // 
+            this.cardBorrowing.Controls.Add(this.lblBorrowingCaption);
+            this.cardBorrowing.Controls.Add(this.lblBorrowingValue);
+            this.cardBorrowing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardBorrowing.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cardBorrowing.Location = new System.Drawing.Point(335, 12);
+            this.cardBorrowing.Margin = new System.Windows.Forms.Padding(4);
+            this.cardBorrowing.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cardBorrowing.Name = "cardBorrowing";
+            this.cardBorrowing.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.cardBorrowing.Size = new System.Drawing.Size(311, 86);
+            this.cardBorrowing.TabIndex = 1;
+            this.cardBorrowing.Text = null;
+            this.cardBorrowing.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBorrowingCaption
+            // 
+            this.lblBorrowingCaption.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblBorrowingCaption.Location = new System.Drawing.Point(64, 5);
+            this.lblBorrowingCaption.MinimumSize = new System.Drawing.Size(1, 1);
+            this.lblBorrowingCaption.Name = "lblBorrowingCaption";
+            this.lblBorrowingCaption.Size = new System.Drawing.Size(170, 35);
+            this.lblBorrowingCaption.Symbol = 61452;
+            this.lblBorrowingCaption.SymbolColor = System.Drawing.Color.Green;
+            this.lblBorrowingCaption.TabIndex = 1;
+            this.lblBorrowingCaption.Text = "已借用";
+            // 
+            // lblBorrowingValue
+            // 
+            this.lblBorrowingValue.Font = new System.Drawing.Font("宋体", 22F, System.Drawing.FontStyle.Bold);
+            this.lblBorrowingValue.ForeColor = System.Drawing.Color.Green;
+            this.lblBorrowingValue.Location = new System.Drawing.Point(126, 43);
+            this.lblBorrowingValue.Name = "lblBorrowingValue";
+            this.lblBorrowingValue.Size = new System.Drawing.Size(35, 44);
+            this.lblBorrowingValue.TabIndex = 0;
+            this.lblBorrowingValue.Text = "0";
+            this.lblBorrowingValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cardPending
+            // 
+            this.cardPending.Controls.Add(this.lblPendingCaption);
+            this.cardPending.Controls.Add(this.lblPendingValue);
+            this.cardPending.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardPending.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cardPending.Location = new System.Drawing.Point(16, 12);
+            this.cardPending.Margin = new System.Windows.Forms.Padding(4);
+            this.cardPending.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cardPending.Name = "cardPending";
+            this.cardPending.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.cardPending.Size = new System.Drawing.Size(311, 86);
+            this.cardPending.TabIndex = 0;
+            this.cardPending.Text = null;
+            this.cardPending.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPendingCaption
+            // 
+            this.lblPendingCaption.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblPendingCaption.Location = new System.Drawing.Point(50, 5);
+            this.lblPendingCaption.MinimumSize = new System.Drawing.Size(1, 1);
+            this.lblPendingCaption.Name = "lblPendingCaption";
+            this.lblPendingCaption.Size = new System.Drawing.Size(170, 35);
+            this.lblPendingCaption.Symbol = 361914;
+            this.lblPendingCaption.SymbolColor = System.Drawing.Color.Blue;
+            this.lblPendingCaption.TabIndex = 0;
+            this.lblPendingCaption.Text = "待审批";
+            // 
+            // lblPendingValue
+            // 
+            this.lblPendingValue.Font = new System.Drawing.Font("宋体", 22F, System.Drawing.FontStyle.Bold);
+            this.lblPendingValue.ForeColor = System.Drawing.Color.Blue;
+            this.lblPendingValue.Location = new System.Drawing.Point(103, 42);
+            this.lblPendingValue.Name = "lblPendingValue";
+            this.lblPendingValue.Size = new System.Drawing.Size(35, 44);
+            this.lblPendingValue.TabIndex = 0;
+            this.lblPendingValue.Text = "0";
+            this.lblPendingValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Equipment_BorrowingUI
+            // 
+            this.AllowShowTitle = false;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1300, 730);
+            this.Controls.Add(this.uiPanelBody);
+            this.Controls.Add(this.uiPanelPager);
+            this.Controls.Add(this.uiPanelHeader);
+            this.MinimumSize = new System.Drawing.Size(1024, 640);
+            this.Name = "Equipment_BorrowingUI";
+            this.Padding = new System.Windows.Forms.Padding(0);
+            this.ShowTitle = false;
+            this.Text = "设备借用管理";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(19, 19, 1260, 700);
+            this.uiPanelHeader.ResumeLayout(false);
+            this.uiPanelPager.ResumeLayout(false);
+            this.uiPanelBody.ResumeLayout(false);
+            this.pnlViews.ResumeLayout(false);
+            this.pnlChart.ResumeLayout(false);
+            this.chartLayout.ResumeLayout(false);
+            this.titlePanel4.ResumeLayout(false);
+            this.titlePanel3.ResumeLayout(false);
+            this.titlePanel2.ResumeLayout(false);
+            this.titlePanel1.ResumeLayout(false);
+            this.pnlCalendar.ResumeLayout(false);
+            this.pnlCalendarRight.ResumeLayout(false);
+            this.pnlList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
+            this.pnlToolbar.ResumeLayout(false);
+            this.pnlStats.ResumeLayout(false);
+            this.uiTableLayoutPanel1.ResumeLayout(false);
+            this.cardDueToday.ResumeLayout(false);
+            this.cardOverdue.ResumeLayout(false);
+            this.cardBorrowing.ResumeLayout(false);
+            this.cardPending.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private Sunny.UI.UIPanel uiPanelHeader;
+        private Sunny.UI.UILabel lblTitle;
+        private Sunny.UI.UILabel lblSubtitle;
+        private Sunny.UI.UIPanel uiPanelPager;
+        private Sunny.UI.UIPagination uiPagination1;
+        private Sunny.UI.UILabel lblTotalLabel;
+        private Sunny.UI.UIPanel uiPanelBody;
+        private Sunny.UI.UIPanel pnlStats;
+        private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel1;
+        private Sunny.UI.UIPanel cardPending;
+        private Sunny.UI.UILabel lblPendingValue;
+        private Sunny.UI.UIPanel cardBorrowing;
+        private Sunny.UI.UILabel lblBorrowingValue;
+        private Sunny.UI.UIPanel cardOverdue;
+        private Sunny.UI.UILabel lblOverdueValue;
+        private Sunny.UI.UIPanel cardDueToday;
+        private Sunny.UI.UILabel lblDueTodayValue;
+        private Sunny.UI.UIPanel pnlToolbar;
+        private Sunny.UI.UISymbolButton btnListView;
+        private Sunny.UI.UISymbolButton btnCalendarView;
+        private Sunny.UI.UISymbolButton btnChartView;
+        private Sunny.UI.UILabel lblKeyword;
+        private Sunny.UI.UITextBox txtKeyword;
+        private Sunny.UI.UILabel lblStatus;
+        private Sunny.UI.UIComboBox cmbStatus;
+        private Sunny.UI.UILabel lblEquip;
+        private Sunny.UI.UIComboBox cmbEquipment;
+        private Sunny.UI.UISymbolButton btnSearch;
+        private Sunny.UI.UIButton btnReset;
+        private Sunny.UI.UISymbolButton btnRefresh;
+        private Sunny.UI.UILabel lblDateRange;
+        private Sunny.UI.UIDatePicker dpFrom;
+        private Sunny.UI.UILabel lblTo;
+        private Sunny.UI.UIDatePicker dpTo;
+        private Sunny.UI.UILabel lblHint;
+        private Sunny.UI.UIPanel pnlViews;
+        private Sunny.UI.UIPanel pnlList;
+        private Sunny.UI.UIDataGridView dgvList;
+        private Sunny.UI.UIPanel pnlCalendar;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private Sunny.UI.UIPanel pnlCalendarRight;
+        private Sunny.UI.UILabel lblCalendarHint;
+        private Sunny.UI.UIListBox lstCalendar;
+        private Sunny.UI.UIPanel pnlChart;
+        private Sunny.UI.UITableLayoutPanel chartLayout;
+        private Sunny.UI.UITitlePanel titlePanel1;
+        private Sunny.UI.UIBarChart chartBar;
+        private Sunny.UI.UITitlePanel titlePanel2;
+        private Sunny.UI.UIPieChart chartPie;
+        private Sunny.UI.UITitlePanel titlePanel3;
+        private Sunny.UI.UILineChart chartLine;
+        private Sunny.UI.UITitlePanel titlePanel4;
+        private Sunny.UI.UIDoughnutChart chartDoughnut;
+        private Sunny.UI.UISymbolLabel lblPendingCaption;
+        private Sunny.UI.UISymbolLabel lblDueTodayCaption;
+        private Sunny.UI.UISymbolLabel lblOverdueCaption;
+        private Sunny.UI.UISymbolLabel lblBorrowingCaption;
+        private Sunny.UI.UISymbolButton btnApply;
+        private Sunny.UI.UILabel lblUser;
+    }
+}

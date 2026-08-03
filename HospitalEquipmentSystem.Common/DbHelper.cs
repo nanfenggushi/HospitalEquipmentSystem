@@ -69,6 +69,43 @@ namespace HospitalEquipmentSystem.Common
         }
 
         /// <summary>
+        /// 在事务中执行一组数据库操作（成功自动提交，异常自动回滚）
+        /// </summary>
+        /// <param name="action">在事务中执行的委托（返回受影响行数）</param>
+        /// <returns>委托返回的结果</returns>
+        public static int ExecuteInTransaction(Func<SqlConnection, SqlTransaction, int> action)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnStr))
+            {
+                conn.Open();
+                SqlTransaction tx = conn.BeginTransaction();
+                try
+                {
+                    int result = action(conn, tx);
+                    tx.Commit();
+                    return result;
+                }
+                catch
+                {
+                    try { tx.Rollback(); } catch { /* 回滚失败则保持原异常 */ }
+                    throw;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 在指定连接和事务中执行 SQL，返回受影响行数（供事务内使用）
+        /// </summary>
+        public static int ExecuteNonQuery(SqlConnection conn, SqlTransaction tx, string sql, params SqlParameter[] parameters)
+        {
+            using (SqlCommand cmd = PrepareCommand(conn, sql, CommandType.Text, parameters))
+            {
+                cmd.Transaction = tx;
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
         /// 执行 SQL 查询，返回第一行第一列的值（用于 COUNT、SUM、获取自增 ID 等）
         /// </summary>
         /// <param name="sql">SQL 语句</param>

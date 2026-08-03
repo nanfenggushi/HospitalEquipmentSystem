@@ -61,6 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MaintenanceRecordDto.cs" />
+    <Compile Include="BorrowConst.cs" />
+    <Compile Include="BorrowRecord.cs" />
+    <Compile Include="CountItem.cs" />
+    <Compile Include="Equipment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticCardDto.cs" />
   </ItemGroup>
