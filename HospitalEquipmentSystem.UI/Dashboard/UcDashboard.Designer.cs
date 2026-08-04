@@ -23,11 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.uiTableLayoutPanel4 = new Sunny.UI.UITableLayoutPanel();
             this.uiPanel10 = new Sunny.UI.UIPanel();
@@ -56,12 +56,15 @@
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiTableLayoutPanel3 = new Sunny.UI.UITableLayoutPanel();
             this.uiPanel8 = new Sunny.UI.UIPanel();
-            this.uiBarChart1 = new Sunny.UI.UIBarChart();
             this.uiPanel7 = new Sunny.UI.UIPanel();
-            this.uiPanel11 = new Sunny.UI.UIPanel();
             this.uiPanel12 = new Sunny.UI.UIPanel();
             this.uiDoughnutChart1 = new Sunny.UI.UIDoughnutChart();
+            this.uiPanel11 = new Sunny.UI.UIPanel();
             this.uiSymbolLabel2 = new Sunny.UI.UISymbolLabel();
+            this.uiPanel13 = new Sunny.UI.UIPanel();
+            this.uiPanel14 = new Sunny.UI.UIPanel();
+            this.uiSymbolLabel3 = new Sunny.UI.UISymbolLabel();
+            this.uiBarChart1 = new Sunny.UI.UIBarChart();
             this.uiTableLayoutPanel1.SuspendLayout();
             this.uiTableLayoutPanel4.SuspendLayout();
             this.uiPanel10.SuspendLayout();
@@ -77,8 +80,10 @@
             this.uiTableLayoutPanel3.SuspendLayout();
             this.uiPanel8.SuspendLayout();
             this.uiPanel7.SuspendLayout();
-            this.uiPanel11.SuspendLayout();
             this.uiPanel12.SuspendLayout();
+            this.uiPanel11.SuspendLayout();
+            this.uiPanel13.SuspendLayout();
+            this.uiPanel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiTableLayoutPanel1
@@ -133,27 +138,27 @@
             // 
             // uiDataGridView1
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.uiDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.uiDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.uiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle13;
             this.uiDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiDataGridView1.EnableHeadersVisualStyles = false;
             this.uiDataGridView1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -161,18 +166,18 @@
             this.uiDataGridView1.Location = new System.Drawing.Point(0, 0);
             this.uiDataGridView1.Name = "uiDataGridView1";
             this.uiDataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.uiDataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.uiDataGridView1.RowTemplate.Height = 27;
             this.uiDataGridView1.SelectedIndex = -1;
             this.uiDataGridView1.Size = new System.Drawing.Size(619, 273);
@@ -482,7 +487,8 @@
             // 
             // uiPanel8
             // 
-            this.uiPanel8.Controls.Add(this.uiBarChart1);
+            this.uiPanel8.Controls.Add(this.uiPanel14);
+            this.uiPanel8.Controls.Add(this.uiPanel13);
             this.uiPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiPanel8.Location = new System.Drawing.Point(631, 5);
@@ -493,19 +499,6 @@
             this.uiPanel8.TabIndex = 1;
             this.uiPanel8.Text = null;
             this.uiPanel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiBarChart1
-            // 
-            this.uiBarChart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiBarChart1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiBarChart1.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiBarChart1.Location = new System.Drawing.Point(0, 0);
-            this.uiBarChart1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiBarChart1.Name = "uiBarChart1";
-            this.uiBarChart1.Size = new System.Drawing.Size(619, 289);
-            this.uiBarChart1.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiBarChart1.TabIndex = 2;
-            this.uiBarChart1.Text = "uiBarChart1";
             // 
             // uiPanel7
             // 
@@ -522,19 +515,6 @@
             this.uiPanel7.Text = null;
             this.uiPanel7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiPanel11
-            // 
-            this.uiPanel11.Controls.Add(this.uiSymbolLabel2);
-            this.uiPanel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiPanel11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel11.Location = new System.Drawing.Point(0, 0);
-            this.uiPanel11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPanel11.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiPanel11.Name = "uiPanel11";
-            this.uiPanel11.Size = new System.Drawing.Size(619, 39);
-            this.uiPanel11.TabIndex = 1;
-            this.uiPanel11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // uiPanel12
             // 
             this.uiPanel12.Controls.Add(this.uiDoughnutChart1);
@@ -546,6 +526,7 @@
             this.uiPanel12.Name = "uiPanel12";
             this.uiPanel12.Size = new System.Drawing.Size(619, 250);
             this.uiPanel12.TabIndex = 2;
+            this.uiPanel12.Text = null;
             this.uiPanel12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiDoughnutChart1
@@ -561,6 +542,20 @@
             this.uiDoughnutChart1.TabIndex = 0;
             this.uiDoughnutChart1.Text = "uiDoughnutChart1";
             // 
+            // uiPanel11
+            // 
+            this.uiPanel11.Controls.Add(this.uiSymbolLabel2);
+            this.uiPanel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiPanel11.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel11.Location = new System.Drawing.Point(0, 0);
+            this.uiPanel11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel11.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel11.Name = "uiPanel11";
+            this.uiPanel11.Size = new System.Drawing.Size(619, 39);
+            this.uiPanel11.TabIndex = 1;
+            this.uiPanel11.Text = null;
+            this.uiPanel11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // uiSymbolLabel2
             // 
             this.uiSymbolLabel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -572,6 +567,57 @@
             this.uiSymbolLabel2.TabIndex = 5;
             this.uiSymbolLabel2.Text = "设备状态占比分布";
             this.uiSymbolLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiPanel13
+            // 
+            this.uiPanel13.Controls.Add(this.uiSymbolLabel3);
+            this.uiPanel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiPanel13.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel13.Location = new System.Drawing.Point(0, 0);
+            this.uiPanel13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel13.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel13.Name = "uiPanel13";
+            this.uiPanel13.Size = new System.Drawing.Size(619, 39);
+            this.uiPanel13.TabIndex = 0;
+            this.uiPanel13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel14
+            // 
+            this.uiPanel14.Controls.Add(this.uiBarChart1);
+            this.uiPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPanel14.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel14.Location = new System.Drawing.Point(0, 39);
+            this.uiPanel14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel14.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel14.Name = "uiPanel14";
+            this.uiPanel14.Size = new System.Drawing.Size(619, 250);
+            this.uiPanel14.TabIndex = 0;
+            this.uiPanel14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSymbolLabel3
+            // 
+            this.uiSymbolLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSymbolLabel3.Location = new System.Drawing.Point(3, 10);
+            this.uiSymbolLabel3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolLabel3.Name = "uiSymbolLabel3";
+            this.uiSymbolLabel3.Size = new System.Drawing.Size(196, 21);
+            this.uiSymbolLabel3.Symbol = 61568;
+            this.uiSymbolLabel3.TabIndex = 6;
+            this.uiSymbolLabel3.Text = "使用率柱状图";
+            this.uiSymbolLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiBarChart1
+            // 
+            this.uiBarChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiBarChart1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiBarChart1.LegendFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiBarChart1.Location = new System.Drawing.Point(0, 0);
+            this.uiBarChart1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiBarChart1.Name = "uiBarChart1";
+            this.uiBarChart1.Size = new System.Drawing.Size(619, 250);
+            this.uiBarChart1.SubFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiBarChart1.TabIndex = 0;
+            this.uiBarChart1.Text = "uiBarChart1";
             // 
             // UcDashboard
             // 
@@ -601,8 +647,10 @@
             this.uiTableLayoutPanel3.ResumeLayout(false);
             this.uiPanel8.ResumeLayout(false);
             this.uiPanel7.ResumeLayout(false);
-            this.uiPanel11.ResumeLayout(false);
             this.uiPanel12.ResumeLayout(false);
+            this.uiPanel11.ResumeLayout(false);
+            this.uiPanel13.ResumeLayout(false);
+            this.uiPanel14.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -637,11 +685,14 @@
         private Sunny.UI.UIPanel uiPanel9;
         private Sunny.UI.UIPanel uiPanel8;
         private Sunny.UI.UILineChart uiLineChart1;
-        private Sunny.UI.UIBarChart uiBarChart1;
         private Sunny.UI.UIDataGridView uiDataGridView1;
         private Sunny.UI.UIPanel uiPanel11;
         private Sunny.UI.UIPanel uiPanel12;
         private Sunny.UI.UIDoughnutChart uiDoughnutChart1;
         private Sunny.UI.UISymbolLabel uiSymbolLabel2;
+        private Sunny.UI.UIPanel uiPanel14;
+        private Sunny.UI.UIPanel uiPanel13;
+        private Sunny.UI.UISymbolLabel uiSymbolLabel3;
+        private Sunny.UI.UIBarChart uiBarChart1;
     }
 }

@@ -1,9 +1,10 @@
+using HospitalEquipment.Model;
+using HospitalEquipment.Model.Dashboard;
+using HospitalEquipmentSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using HospitalEquipment.Model;
-using HospitalEquipmentSystem.Common;
 
 namespace HospitalEquipment.DAL
 {
@@ -146,6 +147,25 @@ namespace HospitalEquipment.DAL
                 list.Add(e);
             }
             return list;
+        }
+
+
+        public List<CategoryUsageDto> GetCategoryUsageData()
+        {
+            string sql = @"SELECT 
+                         c.CategoryName,
+                         CAST(
+                            CASE 
+                            WHEN COUNT(e.EquipmentId) = 0 THEN 0.0
+       ELSE SUM(CASE WHEN e.Status IN ('InUse', 'Borrowed') THEN 1.0 ELSE 0 END) * 100.0 / COUNT(e.EquipmentId)
+                         END AS DECIMAL(5, 1)
+                         ) AS UsageRate
+                         FROM EquipmentCategories c
+             LEFT JOIN Equipment e ON c.CategoryId = e.CategoryId AND e.IsActive = 1 AND e.Status != 'Scrapped'
+                        GROUP BY c.CategoryId, c.CategoryName;
+                         ";
+
+            return DataReaderMapper.MapToList<CategoryUsageDto>(DbHelper.ExecuteReader(sql));
         }
     }
 }

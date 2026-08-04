@@ -1,6 +1,7 @@
-using System;
+using HospitalEquipmentSystem.UI.Dashboard;
+using System;                          // 引用基础命名空间，STAThread 特性在这里
 using System.IO;
-using System.Windows.Forms;
+using System.Windows.Forms;            // 引用 WinForms，Application 在这里
 
 namespace HospitalEquipmentSystem.UI
 {
@@ -21,18 +22,8 @@ namespace HospitalEquipmentSystem.UI
             // 设置控件文本渲染方式为兼容模式
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // 全局异常捕获必须在进入消息循环前注册，否则不会生效
-            Application.ThreadException += OnThreadException;
-            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-
-            // 先登录：取消则直接退出
-            using (var login = new LoginForm())
-            {
-                if (login.ShowDialog() != DialogResult.OK) return;
-            }
-
-            // 登录成功后进入带侧边栏的页面切换外壳（SwitchPages）
-            Application.Run(new SwitchPages());
+            // 启动主窗体（设备监控中心），程序运行期间会一直停留在这里
+            Application.Run(new UcDashboard());
         }
 
         private static void OnThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {

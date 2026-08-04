@@ -1,4 +1,4 @@
-﻿namespace HospitalEquipment.Model
+﻿namespace HospitalEquipment.Model.Dashboard
 {
     public class StatisticCardDto
     {

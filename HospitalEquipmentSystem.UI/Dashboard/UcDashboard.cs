@@ -1,7 +1,8 @@
 ﻿using HospitalEquipment.BLL;
-using HospitalEquipment.Model;
+using HospitalEquipment.Model.Dashboard;
 using Sunny.UI;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace HospitalEquipmentSystem.UI.Dashboard
@@ -18,14 +19,15 @@ namespace HospitalEquipmentSystem.UI.Dashboard
 
         private void UcDashboard_Load(object sender, EventArgs e)
         {
-            LoadStatisticCards();
-            RenderDoughnutChart();
+            LoadStatisticCardsDb();
+            LoadDoughnutChartDb();
+            LoadUsageBarChartFromDb();
         }
 
         /// <summary>
         /// 加载统计卡片内容
         /// </summary>
-        private void LoadStatisticCards()
+        private void LoadStatisticCardsDb()
         {
             try
             {
@@ -43,7 +45,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         }
 
 
-        private void RenderDoughnutChart()
+        private void LoadDoughnutChartDb()
         {
             // 1. 去掉控件内部的灰底和蓝框，和外层卡片融为一体（解决双重框丑的问题）
             uiDoughnutChart1.FillColor = Color.White;
@@ -89,6 +91,43 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             // 6. 刷入配置并刷新图表
             option.Series.Add(series);
             uiDoughnutChart1.SetOption(option);
+        }
+
+        /// <summary>
+        /// 从数据库动态加载使用率柱状图
+        /// </summary>
+        private void LoadUsageBarChartFromDb()
+        {
+            try
+            {
+                List<CategoryUsageDto> dt = _equipmentBLL.GetCategoryUsageData();
+
+                uiBarChart1.FillColor = Color.White;
+                uiBarChart1.RectColor = Color.Transparent;
+
+                UIBarOption option = new UIBarOption();
+                option.Title = null; // 清空内置标题
+                option.ToolTip = new UIBarToolTip { Visible = true };
+
+                var series = new UIBarSeries { Name = "使用率 (%)" };
+
+                // 2. 循环添加数据库查询到的真实数据
+                foreach (var item in dt)
+                {
+                    string categoryName = item.CategoryName;
+                    double usageRate = item.UsageRate;
+
+                    // X 轴添加名称，Series 添加数值
+                    option.XAxis.Data.Add(categoryName);
+                    series.AddData(usageRate);
+                }
+
+                option.Series.Add(series);
+                uiBarChart1.SetOption(option);
+            } catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"加载柱状图失败: {ex.Message}");
+            }
         }
     }
 }
