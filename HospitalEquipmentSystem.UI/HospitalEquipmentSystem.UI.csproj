@@ -216,6 +216,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
     <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
