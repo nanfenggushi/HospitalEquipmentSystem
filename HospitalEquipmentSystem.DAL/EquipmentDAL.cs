@@ -19,7 +19,9 @@ namespace HospitalEquipment.DAL
                          SUM(CASE WHEN Status IN ('Idle', 'InUse') THEN 1 ELSE 0 END) AS NormalCount,
                          SUM(CASE WHEN Status = 'Maintenance' THEN 1 ELSE 0 END) AS MaintenanceCount,
                          SUM(CASE WHEN Status = 'Borrowed' THEN 1 ELSE 0 END) AS BorrowedCount,
-                         SUM(CASE WHEN Status = 'Scrapped' THEN 1 ELSE 0 END) AS ScrappedCount
+                         SUM(CASE WHEN Status = 'Scrapped' THEN 1 ELSE 0 END) AS ScrappedCount,
+                         SUM(CASE WHEN Status = 'Idle' THEN 1 ELSE 0 END) AS IdleCount,
+                         SUM(CASE WHEN Status = 'InUse' THEN 1 ELSE 0 END) AS InUseCount
                          FROM Equipment
                          WHERE IsActive = 1;";
             return DataReaderMapper.MapToList<StatisticCardDto>(DbHelper.ExecuteReader(sql))[0];
