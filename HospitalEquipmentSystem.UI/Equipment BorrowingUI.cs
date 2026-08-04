@@ -44,6 +44,8 @@ namespace HospitalEquipmentSystem.UI
         public Equipment_BorrowingUI()
         {
             InitializeComponent();
+            // 使用 exe 自带的空白图标替换 SunnyUI 默认图标（不涉及图表逻辑）
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             InitControls();
             this.Load += Equipment_BorrowingUI_Load;
         }
@@ -643,9 +645,23 @@ namespace HospitalEquipmentSystem.UI
             chartBar.Refresh();
         }
 
+        private void pnlChart_SizeChanged(object sender, EventArgs e)
+        {
+            // pnlChart 改为标准 Panel 后支持 AutoScroll：窗体放大时图表跟随容器变大，
+            // 窗体缩小时保持最小高度 620，超出部分用滚动条查看，避免图表被压扁。
+            if (chartLayout == null) return;
+            int w = Math.Max(pnlChart.ClientSize.Width, 300);
+            int h = Math.Max(pnlChart.ClientSize.Height, 620);
+            if (chartLayout.Size.Width != w || chartLayout.Size.Height != h)
+                chartLayout.Size = new Size(w, h);
+        }
+
         private void LoadBarChart(List<CountItem> top)
         {
             var option = new UIBarOption();
+            // UIBarOption 默认 Title.Text = "SunnyUI Chart"，会显示在图表顶部，需清空
+            option.Title.Text = "";
+            option.Title.SubText = "";
             option.ShowValue = true;
             option.XAxis.Name = "设备";
             option.YAxis.Name = "借用次数";
@@ -667,6 +683,9 @@ namespace HospitalEquipmentSystem.UI
         private void LoadPieChart(List<CountItem> dept)
         {
             var option = new UIPieOption();
+            // 同上：清掉默认的 "SunnyUI Chart" 标题
+            option.Title.Text = "";
+            option.Title.SubText = "";
             var series = new UIPieSeries { Name = "科室借用" };
             for (int i = 0; i < dept.Count; i++)
             {
@@ -686,11 +705,18 @@ namespace HospitalEquipmentSystem.UI
                 .ToList();
             if (months.Count == 0)
             {
-                chartLine.SetOption(new UILineOption());
+                // 无数据时也用一个空 option，但要清掉默认的 "SunnyUI Chart" 标题
+                var empty = new UILineOption();
+                empty.Title.Text = "";
+                empty.Title.SubText = "";
+                chartLine.SetOption(empty);
                 return;
             }
 
             var option = new UILineOption();
+            // 清掉默认的 "SunnyUI Chart" 标题
+            option.Title.Text = "";
+            option.Title.SubText = "";
             option.XAxis.Name = "月份";
             option.YAxis.Name = "数量";
             option.XAxisType = UIAxisType.DateTime;
@@ -714,6 +740,9 @@ namespace HospitalEquipmentSystem.UI
         private void LoadDoughnutChart(List<CountItem> status)
         {
             var option = new UIDoughnutOption();
+            // 同上：清掉默认的 "SunnyUI Chart" 标题
+            option.Title.Text = "";
+            option.Title.SubText = "";
             var series = new UIDoughnutSeries { Name = "设备状态" };
             for (int i = 0; i < status.Count; i++)
             {
@@ -722,6 +751,11 @@ namespace HospitalEquipmentSystem.UI
             }
             option.AddSeries(series);
             chartDoughnut.SetOption(option);
+        }
+
+        private void lblOverdueCaption_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

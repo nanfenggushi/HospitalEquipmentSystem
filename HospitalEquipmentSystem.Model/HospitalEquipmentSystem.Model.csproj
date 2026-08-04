@@ -74,6 +74,7 @@
     <Compile Include="StatisticCardDto.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

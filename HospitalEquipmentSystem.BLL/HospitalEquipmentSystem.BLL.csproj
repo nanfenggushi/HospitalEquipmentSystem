@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EquipmentBLL.cs" />
+    <Compile Include="LoginBLL.cs" />
     <Compile Include="MaintenanceBLL.cs" />
     <Compile Include="MonitorCenterBLL.cs" />
     <Compile Include="BLLResult.cs" />

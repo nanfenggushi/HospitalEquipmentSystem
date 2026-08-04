@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +10,7 @@ namespace HospitalEquipment.DAL
     public class EquipmentDAL
     {
         /// <summary>
-        /// 鑾峰彇棣栭〉浠〃鐩樼殑璁惧缁熻鍗＄墖姹囨€绘暟鎹?
+        /// 获取首页仪表盘的设备统计卡片汇总数据
         /// </summary>
         public StatisticCardDto GetStatisticCardData()
         {
@@ -27,7 +27,7 @@ namespace HospitalEquipment.DAL
             return DataReaderMapper.MapToList<StatisticCardDto>(DbHelper.ExecuteReader(sql))[0];
         }
 
-        /// <summary>鍙€熺敤鐨勮澶囷紙绌洪棽涓旀棤杩涜涓殑鍊熺敤璁板綍锛?/summary>
+        /// <summary>可借用的设备（空闲且无进行中的借用记录）</summary>
         public static List<Equipment> GetAvailable()
         {
             DataTable dt = DbHelper.GetDataTable(@"SELECT e.* FROM Equipment e
@@ -38,7 +38,7 @@ namespace HospitalEquipment.DAL
             return MapTableToList(dt);
         }
 
-        /// <summary>鍏ㄩ儴鍦ㄧ敤璁惧锛堢瓫閫変笅鎷夌敤锛?/summary>
+        /// <summary>全部在用设备（筛选下拉用）</summary>
         public static List<Equipment> GetAll()
         {
             DataTable dt = DbHelper.GetDataTable(@"SELECT * FROM Equipment
@@ -46,7 +46,7 @@ namespace HospitalEquipment.DAL
             return MapTableToList(dt);
         }
 
-        /// <summary>鎸?Id 鏌ヨ璁惧</summary>
+        /// <summary>按 Id 查询设备</summary>
         public static Equipment GetById(int equipmentId)
         {
             DataTable dt = DbHelper.GetDataTable("SELECT * FROM Equipment WHERE EquipmentId = @id",
@@ -55,13 +55,63 @@ namespace HospitalEquipment.DAL
             return MapTableToList(dt)[0];
         }
 
-        /// <summary>鏇存柊璁惧鐘舵€?/summary>
+        /// <summary>更新设备状态</summary>
         public static int SetStatus(int equipmentId, string status)
         {
             return DbHelper.ExecuteNonQuery(@"UPDATE Equipment SET Status = @status, UpdatedAt = GETDATE()
                 WHERE EquipmentId = @id",
                 new SqlParameter("@status", status),
                 new SqlParameter("@id", equipmentId));
+        }
+
+        /// <summary>获取激活状态的设备总数（IsActive = 1）</summary>
+        public int GetActiveCount()
+        {
+            object result = DbHelper.ExecuteScalar(
+                "SELECT COUNT(*) FROM Equipment WHERE IsActive = @Active",
+                new SqlParameter("@Active", 1));
+            return result != null ? (int)result : 0;
+        }
+
+        /// <summary>获取使用中的设备数（Status = 'InUse' 且激活）</summary>
+        public int GetInUseCount()
+        {
+            object result = DbHelper.ExecuteScalar(
+                "SELECT COUNT(*) FROM Equipment WHERE Status = @Status AND IsActive = @Active",
+                new SqlParameter("@Status", "InUse"),
+                new SqlParameter("@Active", 1));
+            return result != null ? (int)result : 0;
+        }
+
+        /// <summary>获取故障/维修中的设备数（Status = 'Maintenance' 且激活）</summary>
+        public int GetMaintenanceCount()
+        {
+            object result = DbHelper.ExecuteScalar(
+                "SELECT COUNT(*) FROM Equipment WHERE Status = @Status AND IsActive = @Active",
+                new SqlParameter("@Status", "Maintenance"),
+                new SqlParameter("@Active", 1));
+            return result != null ? (int)result : 0;
+        }
+
+        /// <summary>获取借用中的设备数（Status = 'Borrowed' 且激活）</summary>
+        public int GetBorrowedCount()
+        {
+            object result = DbHelper.ExecuteScalar(
+                "SELECT COUNT(*) FROM Equipment WHERE Status = @Status AND IsActive = @Active",
+                new SqlParameter("@Status", "Borrowed"),
+                new SqlParameter("@Active", 1));
+            return result != null ? (int)result : 0;
+        }
+
+        /// <summary>获取所有激活的设备列表（按 ID 排序）</summary>
+        public List<Equipment> GetAllActive()
+        {
+            string sql = @"SELECT * FROM Equipment WHERE IsActive = @Active ORDER BY EquipmentId";
+            using (var reader = DbHelper.ExecuteReader(sql,
+                new SqlParameter("@Active", 1)))
+            {
+                return reader != null ? DataReaderMapper.MapToList<Equipment>(reader) : new List<Equipment>();
+            }
         }
 
         private static List<Equipment> MapTableToList(DataTable dt)
@@ -97,66 +147,5 @@ namespace HospitalEquipment.DAL
             }
             return list;
         }
-
-        /// <summary>
-        /// 获取激活状态的设备总数（IsActive = 1）
-        /// </summary>
-        public int GetActiveCount()
-        {
-            object result = DbHelper.ExecuteScalar(
-                "SELECT COUNT(*) FROM Equipment WHERE IsActive = @Active",
-                new SqlParameter("@Active", 1));
-            return result != null ? (int)result : 0;
-        }
-
-        /// <summary>
-        /// 获取使用中的设备数（Status = 'InUse' 且激活）
-        /// </summary>
-        public int GetInUseCount()
-        {
-            object result = DbHelper.ExecuteScalar(
-                "SELECT COUNT(*) FROM Equipment WHERE Status = @Status AND IsActive = @Active",
-                new SqlParameter("@Status", "InUse"),
-                new SqlParameter("@Active", 1));
-            return result != null ? (int)result : 0;
-        }
-
-        /// <summary>
-        /// 获取故障/维修中的设备数（Status = 'Maintenance' 且激活）
-        /// </summary>
-        public int GetMaintenanceCount()
-        {
-            object result = DbHelper.ExecuteScalar(
-                "SELECT COUNT(*) FROM Equipment WHERE Status = @Status AND IsActive = @Active",
-                new SqlParameter("@Status", "Maintenance"),
-                new SqlParameter("@Active", 1));
-            return result != null ? (int)result : 0;
-        }
-
-        /// <summary>
-        /// 获取借用中的设备数（Status = 'Borrowed' 且激活）
-        /// </summary>
-        public int GetBorrowedCount()
-        {
-            object result = DbHelper.ExecuteScalar(
-                "SELECT COUNT(*) FROM Equipment WHERE Status = @Status AND IsActive = @Active",
-                new SqlParameter("@Status", "Borrowed"),
-                new SqlParameter("@Active", 1));
-            return result != null ? (int)result : 0;
-        }
-
-        /// <summary>
-        /// 获取所有激活的设备列表（按 ID 排序）
-        /// </summary>
-        public List<Equipment> GetAllActive()
-        {
-            string sql = @"SELECT * FROM Equipment WHERE IsActive = @Active ORDER BY EquipmentId";
-            using (var reader = DbHelper.ExecuteReader(sql,
-                new SqlParameter("@Active", 1)))
-            {
-                return reader != null ? DataReaderMapper.MapToList<Equipment>(reader) : new List<Equipment>();
-            }
-        }
     }
 }
-
