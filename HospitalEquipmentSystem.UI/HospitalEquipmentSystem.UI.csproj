@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <!-- ===== UI 界面文件 ===== -->
     <Compile Include="AlarmCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,12 +96,6 @@
     <Compile Include="Dashboard\UcDashboard.Designer.cs">
       <DependentUpon>UcDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditForm.Designer.cs">
-      <DependentUpon>EditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Equipment BorrowingUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,8 +127,41 @@
     <Compile Include="OrderEditForm.Designer.cs">
       <DependentUpon>OrderEditForm.cs</DependentUpon>
     </Compile>
+    <!-- ===== 管理模块文件（来自你的分支） ===== -->
+    <Compile Include="management\Classification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="management\Classification.Designer.cs">
+      <DependentUpon>Classification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="management\EquipmentManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="management\EquipmentManagement.Designer.cs">
+      <DependentUpon>EquipmentManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="management\List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="management\List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="management\Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="management\Supplier.Designer.cs">
+      <DependentUpon>Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="management\WarehousingManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="management\WarehousingManagement.Designer.cs">
+      <DependentUpon>WarehousingManagement.cs</DependentUpon>
+    </Compile>
+    <!-- ===== 核心文件 ===== -->
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redirect.cs" />
     <Compile Include="SelectEngineerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,14 +174,9 @@
     <Compile Include="SwitchPages.Designer.cs">
       <DependentUpon>SwitchPages.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <!-- ===== 资源文件 (.resx) ===== -->
     <EmbeddedResource Include="AlarmCard.resx">
       <DependentUpon>AlarmCard.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\UcDashboard.resx">
       <DependentUpon>UcDashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditForm.resx">
-      <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Equipment BorrowingUI.resx">
       <DependentUpon>Equipment BorrowingUI.cs</DependentUpon>
@@ -187,16 +207,32 @@
     <EmbeddedResource Include="OrderEditForm.resx">
       <DependentUpon>OrderEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="SelectEngineerForm.resx">
       <DependentUpon>SelectEngineerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SwitchPages.resx">
       <DependentUpon>SwitchPages.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- ===== 管理模块资源文件 ===== -->
+    <EmbeddedResource Include="management\Classification.resx">
+      <DependentUpon>Classification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="management\EquipmentManagement.resx">
+      <DependentUpon>EquipmentManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="management\List.resx">
+      <DependentUpon>List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="management\Supplier.resx">
+      <DependentUpon>Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="management\WarehousingManagement.resx">
+      <DependentUpon>WarehousingManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +275,15 @@
       <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>
       <Name>HospitalEquipmentSystem.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\搜索.png" />
+    <None Include="Resources\列表.png" />
+    <None Include="Resources\列表模式 %281%29.png" />
+    <None Include="Resources\分类.png" />
+    <None Include="Resources\供应商.png" />
+    <None Include="Resources\入库.png" />
+    <None Include="Resources\搜索 %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -51,7 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryManager.cs" />
     <Compile Include="EquipmentBLL.cs" />
+    <Compile Include="EquipmentManager.cs" />
     <Compile Include="LoginBLL.cs" />
     <Compile Include="MaintenanceBLL.cs" />
     <Compile Include="MonitorCenterBLL.cs" />

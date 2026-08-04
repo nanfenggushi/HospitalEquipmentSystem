@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryDAL.cs" />
     <Compile Include="EquipmentDAL.cs" />
     <Compile Include="EquipmentCategoryDAL.cs" />
     <Compile Include="LoginDAL.cs" />
@@ -74,4 +75,3 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
-
