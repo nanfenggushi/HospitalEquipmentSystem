@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.Model;
+using HospitalEquipment.Model;
 using HospitalEquipment.DAL;
 using HospitalEquipment.Util;
 using System;
@@ -22,8 +22,14 @@ namespace HospitalEquipment.BLL
             return DataTableToList(dt);
         }
 
-        // DataTable → List<Dto> 转换
+        // DataTable → List<Dto> 转换（管理员端用）
         private List<MaintenanceRecordDto> DataTableToList(DataTable dt)
+        {
+            return DataTableToList(dt, isRepairer: false);
+        }
+
+        // DataTable → List<Dto> 转换（维修员端用 StageToRepairerCn 映射阶段）
+        private List<MaintenanceRecordDto> DataTableToList(DataTable dt, bool isRepairer)
         {
             var list = new List<MaintenanceRecordDto>();
             foreach (DataRow row in dt.Rows)
@@ -36,12 +42,19 @@ namespace HospitalEquipment.BLL
                     FaultType = row["FaultType"].ToString(),
                     FaultDesc = row["FaultDesc"].ToString(),
                     UrgencyText = MaintenanceHelper.UrgencyToCn(row["Urgency"].ToString()),
-                    ProgressStageText = MaintenanceHelper.StageToCn(row["ProgressStage"].ToString()),
+                    ProgressStage = row["ProgressStage"].ToString(),
+                    ProgressStageText = isRepairer
+                        ? MaintenanceHelper.StageToRepairerCn(row["ProgressStage"].ToString())
+                        : MaintenanceHelper.StageToCn(row["ProgressStage"].ToString()),
                     DeptName = row["DeptName"].ToString(),
                     RepairerName = row["RepairerName"].ToString(),
                     ReportTime = Convert.ToDateTime(row["ReportTime"]),
                     DowntimeHours = row["DowntimeHours"] as decimal?,
                     StatusText = MaintenanceHelper.StatusToCn(row["Status"].ToString()),
+                    RepairResult = row.Table.Columns.Contains("RepairResult") ? row["RepairResult"]?.ToString() : "",
+                    RepairCost = row.Table.Columns.Contains("RepairCost") ? row["RepairCost"] as decimal? : null,
+                    CompleteTime = row.Table.Columns.Contains("CompleteTime") && row["CompleteTime"] != DBNull.Value 
+                        ? (DateTime?)row["CompleteTime"] : null,
                 });
             }
             return list;
@@ -200,11 +213,173 @@ namespace HospitalEquipment.BLL
         }
 
         /// <summary>
+        /// 医生端：删除自己的工单（只能删除 Pending 状态的）
+        /// </summary>
+        public bool DeleteDoctorOrder(int recordId, int reporterId)
+        {
+            return dal.DeleteOrderByIdAndReporter(recordId, reporterId) > 0;
+        }
+
+        /// <summary>
         /// 单条工单详情
         /// </summary>
         public DataTable GetOrderById(int recordId)
         {
             return dal.GetOrderById(recordId);
+        }
+
+        // ==================== 维修员端方法 ====================
+
+        /// <summary>
+        /// 维修员工作台：获取指定维修员的工单列表
+        /// </summary>
+        /// <param name="repairerId">维修员用户ID</param>
+        /// <param name="stage">阶段筛选：Assigned/InProgress/Done/null(全部)</param>
+        public List<MaintenanceRecordDto> GetRepairerOrders(int repairerId, string stage = null)
+        {
+            DataTable dt = dal.GetRepairerOrders(repairerId, stage);
+            return DataTableToList(dt, isRepairer: true);
+        }
+
+        /// <summary>
+        /// 维修员工作台：统计各阶段工单数量
+        /// </summary>
+        public Dictionary<string, int> GetRepairerStageCounts(int repairerId)
+        {
+            var dt = dal.GetRepairerStageCounts(repairerId);
+            var row = dt.Rows[0];
+            return new Dictionary<string, int>
+            {
+                ["PendingAccept"] = Convert.ToInt32(row["PendingAccept"]),
+                ["InProgress"] = Convert.ToInt32(row["InProgress"]),
+                ["Completed"] = Convert.ToInt32(row["Completed"]),
+            };
+        }
+
+        /// <summary>
+        /// 维修员接单（Assigned → InProgress）
+        /// </summary>
+        public bool AcceptOrder(int recordId, int repairerId)
+        {
+            return dal.AcceptOrder(recordId, repairerId) > 0;
+        }
+
+        /// <summary>
+        /// 维修员提交维修结果（InProgress → Done）
+        /// </summary>
+        public bool SubmitRepairResult(int recordId, string repairResult, 
+                                       decimal? repairCost, int? downtimeHours)
+        {
+            return dal.SubmitRepairResult(recordId, repairResult, repairCost, downtimeHours) > 0;
+        }
+
+        // ==================== 医生端方法 ====================
+
+        /// <summary>
+        /// 医生端：获取某医生报修的工单列表
+        /// </summary>
+        /// <param name="reporterId">报修人 UserId</param>
+        /// <param name="stage">阶段筛选：null=全部</param>
+        public List<MaintenanceRecordDto> GetDoctorOrders(int reporterId, string stage = null)
+        {
+            DataTable dt = dal.GetDoctorOrders(reporterId, stage);
+            return DataTableToList(dt, isRepairer: false);
+        }
+
+        /// <summary>
+        /// 医生端：统计某医生各阶段工单数量
+        /// </summary>
+        public Dictionary<string, int> GetDoctorStageCounts(int reporterId)
+        {
+            var dt = dal.GetDoctorStageCounts(reporterId);
+            var row = dt.Rows[0];
+            return new Dictionary<string, int>
+            {
+                ["Pending"] = Convert.ToInt32(row["Pending"]),
+                ["Assigned"] = Convert.ToInt32(row["Assigned"]),
+                ["InProgress"] = Convert.ToInt32(row["InProgress"]),
+                ["Done"] = Convert.ToInt32(row["Done"]),
+                ["Total"] = Convert.ToInt32(row["Total"]),
+            };
+        }
+
+        /// <summary>
+        /// 医生端：按科室获取设备列表
+        /// </summary>
+        public DataTable GetEquipmentByDept(int deptId)
+        {
+            return dal.GetEquipmentByDept(deptId);
+        }
+
+        /// <summary>
+        /// 医生端：搜索全部设备
+        /// </summary>
+        public DataTable SearchEquipment(string keyword)
+        {
+            return dal.SearchEquipment(keyword);
+        }
+
+        /// <summary>
+        /// 医生端：查询某医生借用中的设备（待审批/已审批/超期）
+        /// </summary>
+        public DataTable GetBorrowedEquipmentByApplicant(int applicantId)
+        {
+            return dal.GetBorrowedEquipmentByApplicant(applicantId);
+        }
+
+        /// <summary>
+        /// 故障类型下拉框选项：返回字符串列表，避免 UI 层 DataRowView 问题
+        /// </summary>
+        public List<string> GetFaultTypeOptionsList()
+        {
+            DataTable dt = dal.GetDistinctFaultTypes();
+            var list = new List<string>();
+            if (dt != null)
+            {
+                foreach (DataRow row in dt.Rows)
+                    list.Add(row["FaultType"].ToString());
+            }
+            if (list.Count == 0)
+            {
+                list.Add("硬件故障");
+                list.Add("软件故障");
+                list.Add("其他");
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 紧急程度下拉框选项：返回 英文值→中文显示 字典
+        /// </summary>
+        public Dictionary<string, string> GetUrgencyOptionsDict()
+        {
+            DataTable src = dal.GetDistinctUrgencies();
+            var dict = new Dictionary<string, string>();
+            if (src != null)
+            {
+                foreach (DataRow row in src.Rows)
+                {
+                    string en = row["Urgency"].ToString();
+                    dict[en] = MaintenanceHelper.UrgencyToCn(en);
+                }
+            }
+            if (dict.Count == 0)
+            {
+                dict["Normal"] = "普通";
+                dict["Urgent"] = "紧急";
+            }
+            return dict;
+        }
+
+        /// <summary>
+        /// 医生端：提交报修（复用已有的 CreateOrder）
+        /// </summary>
+        public bool SubmitRepair(int equipmentId, int deptId, int reporterId,
+                                  string faultType, string faultDesc, string urgency)
+        {
+            string repairNo = GenerateRepairNo();
+            return dal.InsertOrder(repairNo, equipmentId, deptId, reporterId,
+                                    faultType, faultDesc, urgency) > 0;
         }
     }
 }

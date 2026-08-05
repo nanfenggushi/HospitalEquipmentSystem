@@ -34,6 +34,17 @@ namespace HospitalEquipment.Util
             _ => en ?? ""
         };
 
+        /// <summary>
+        /// 维修员端进度阶段映射：同一个 ProgressStage 值，在维修员端显示不同文案
+        /// </summary>
+        public static string StageToRepairerCn(string en) => en switch
+        {
+            "Assigned" => "待接单",
+            "InProgress" => "处理中",
+            "Done" => "已完成",
+            _ => en ?? ""
+        };
+
         // ==================== 状态 ====================
 
         public static string StatusToCn(string en) => en switch

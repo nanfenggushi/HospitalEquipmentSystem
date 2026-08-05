@@ -63,5 +63,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalEquipmentSystem.Model\HospitalEquipmentSystem.Model.csproj">
+      <Project>{4a1bd7e0-7c9f-483d-a30b-26ae8a3eafaf}</Project>
+      <Name>HospitalEquipment.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
