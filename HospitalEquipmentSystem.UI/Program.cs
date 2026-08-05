@@ -22,8 +22,15 @@ namespace HospitalEquipmentSystem.UI
             // 设置控件文本渲染方式为兼容模式
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // 启动主窗体（设备监控中心），程序运行期间会一直停留在这里
-            Application.Run(new UcDashboard());
+            // 先显示登录窗口，登录成功后才进入主界面
+            using (var login = new LoginForm())
+            {
+                if (login.ShowDialog() != DialogResult.OK)
+                    return;
+            }
+
+            // 登录成功后启动主界面（页面切换窗体）
+            Application.Run(new SwitchPages());
         }
 
         private static void OnThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {

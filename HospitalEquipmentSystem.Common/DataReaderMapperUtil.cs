@@ -18,12 +18,15 @@ namespace HospitalEquipment.Util
         /// <param name="autoScale">是否自动缩放适配 Panel 大小</param>
         public static void ShowFormInPanel<T>(Panel panel, bool autoScale = false) where T : Form, new()
         {
-            panel.Controls.Clear();
+            // 先创建新页面并排好版，最后一次性显示，避免边排版边绘制造成的闪烁
+            panel.SuspendLayout();
 
             T form = new T();
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.StartPosition = FormStartPosition.Manual;
+            // 先不显示，等新页面完全排版好后再一次性显示
+            form.Visible = false;
 
             if (autoScale)
             {
@@ -41,6 +44,23 @@ namespace HospitalEquipment.Util
             }
 
             panel.Controls.Add(form);
+            form.BringToFront();
+
+            // 移除旧页面（不主动 Dispose，避免其后台定时器/异步任务在销毁后抛异常导致程序闪退）
+            var oldControls = new System.Collections.Generic.List<Control>();
+            foreach (Control c in panel.Controls)
+            {
+                if (c != form) oldControls.Add(c);
+            }
+            foreach (Control c in oldControls)
+            {
+                panel.Controls.Remove(c);
+            }
+
+            panel.ResumeLayout(false);
+            panel.PerformLayout();
+
+            // 布局完成后一次性显示新页面，减少闪烁
             form.Show();
         }
 

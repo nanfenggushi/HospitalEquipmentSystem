@@ -28,9 +28,10 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.topPanel = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
-            this.lblUserName = new System.Windows.Forms.Label();
+            this.btnUserName = new Sunny.UI.UIButton();
             this.btnNotify = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
@@ -43,22 +44,25 @@ namespace HospitalEquipmentSystem.UI
             this.btnDeviceManage = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemSwitchUser = new System.Windows.Forms.ToolStripMenuItem();
             this.topPanel.SuspendLayout();
             this.sidePanel.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.White;
             this.topPanel.Controls.Add(this.btnExit);
-            this.topPanel.Controls.Add(this.lblUserName);
+            this.topPanel.Controls.Add(this.btnUserName);
             this.topPanel.Controls.Add(this.btnNotify);
             this.topPanel.Controls.Add(this.lblTitle);
             this.topPanel.Controls.Add(this.btnMenu);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.topPanel.Location = new System.Drawing.Point(0, 0);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(1588, 50);
+            this.topPanel.Size = new System.Drawing.Size(1588, 60);
             this.topPanel.TabIndex = 0;
             // 
             // btnExit
@@ -67,24 +71,27 @@ namespace HospitalEquipmentSystem.UI
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnExit.Location = new System.Drawing.Point(1388, 0);
+            this.btnExit.Location = new System.Drawing.Point(1130, 0);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(50, 50);
+            this.btnExit.Size = new System.Drawing.Size(94, 60);
             this.btnExit.TabIndex = 4;
             this.btnExit.Text = "⏻";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // lblUserName
+            // btnUserName
             // 
-            this.lblUserName.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblUserName.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.lblUserName.Location = new System.Drawing.Point(1438, 0);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(100, 50);
-            this.lblUserName.TabIndex = 3;
-            this.lblUserName.Text = "管理员";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnUserName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUserName.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnUserName.Font = new System.Drawing.Font("微软雅黑", 14F);
+            this.btnUserName.Location = new System.Drawing.Point(1224, 0);
+            this.btnUserName.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnUserName.Name = "btnUserName";
+            this.btnUserName.Size = new System.Drawing.Size(314, 60);
+            this.btnUserName.TabIndex = 3;
+            this.btnUserName.Text = "管理员";
+            this.btnUserName.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUserName.Click += new System.EventHandler(this.btnUserName_Click);
             // 
             // btnNotify
             // 
@@ -94,7 +101,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnNotify.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnNotify.Location = new System.Drawing.Point(1538, 0);
             this.btnNotify.Name = "btnNotify";
-            this.btnNotify.Size = new System.Drawing.Size(50, 50);
+            this.btnNotify.Size = new System.Drawing.Size(50, 60);
             this.btnNotify.TabIndex = 2;
             this.btnNotify.Text = "🔔";
             this.btnNotify.UseVisualStyleBackColor = false;
@@ -120,7 +127,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnMenu.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.btnMenu.Location = new System.Drawing.Point(0, 0);
             this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(50, 50);
+            this.btnMenu.Size = new System.Drawing.Size(50, 60);
             this.btnMenu.TabIndex = 0;
             this.btnMenu.Text = "☰";
             this.btnMenu.UseVisualStyleBackColor = false;
@@ -137,9 +144,9 @@ namespace HospitalEquipmentSystem.UI
             this.sidePanel.Controls.Add(this.btnDeviceManage);
             this.sidePanel.Controls.Add(this.btnDashboard);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidePanel.Location = new System.Drawing.Point(0, 50);
+            this.sidePanel.Location = new System.Drawing.Point(0, 60);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(200, 1114);
+            this.sidePanel.Size = new System.Drawing.Size(200, 1104);
             this.sidePanel.TabIndex = 1;
             // 
             // btnSystemSetting
@@ -279,11 +286,26 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentPanel.Location = new System.Drawing.Point(200, 50);
+            this.contentPanel.Location = new System.Drawing.Point(200, 60);
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1388, 1114);
+            this.contentPanel.Size = new System.Drawing.Size(1388, 1104);
             this.contentPanel.TabIndex = 2;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSwitchUser});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 34);
+            // 
+            // toolStripMenuItemSwitchUser
+            // 
+            this.toolStripMenuItemSwitchUser.Name = "toolStripMenuItemSwitchUser";
+            this.toolStripMenuItemSwitchUser.Size = new System.Drawing.Size(152, 30);
+            this.toolStripMenuItemSwitchUser.Text = "切换用户";
+            this.toolStripMenuItemSwitchUser.Click += new System.EventHandler(this.toolStripMenuItemSwitchUser_Click);
             // 
             // SwitchPages
             // 
@@ -302,6 +324,7 @@ namespace HospitalEquipmentSystem.UI
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
             this.sidePanel.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -312,8 +335,10 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnNotify;
-        private System.Windows.Forms.Label lblUserName;
+        private Sunny.UI.UIButton btnUserName;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSwitchUser;
         private System.Windows.Forms.Panel sidePanel;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnDeviceManage;

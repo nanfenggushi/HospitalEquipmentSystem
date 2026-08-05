@@ -1,3 +1,5 @@
+using HospitalEquipment.BLL;
+using HospitalEquipment.Model;
 using HospitalEquipment.Util;
 using Sunny.UI;
 using System;
@@ -6,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,6 +39,17 @@ namespace HospitalEquipmentSystem.UI
         /// 当前选中的菜单按钮
         /// </summary>
         private Button currentSelectedButton;
+
+        /// <summary>
+        /// 最近一次缩放比例（避免比例没变时反复重建字体）
+        /// </summary>
+        private float _lastScale = 0f;
+
+        /// <summary>
+        /// 菜单字体缓存（避免每次点击菜单都新建字体导致 GDI 句柄累积）
+        /// </summary>
+        private static readonly Font MenuFontRegular = new Font("微软雅黑", 12F, FontStyle.Regular);
+        private static readonly Font MenuFontBold = new Font("微软雅黑", 12F, FontStyle.Bold);
 
         /// <summary>
         /// 初始窗体宽度（用于缩放计算）
@@ -83,6 +97,11 @@ namespace HospitalEquipmentSystem.UI
         public SwitchPages()
         {
             InitializeComponent();
+
+            // 开启内容区双缓冲，减少切换页面时的闪烁
+            typeof(Control).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(contentPanel, true, null);
+
             this.Resize += new EventHandler(SwitchPages_Resize);
         }
 
@@ -103,9 +122,66 @@ namespace HospitalEquipmentSystem.UI
             initialTitleFontSize = lblTitle.Font.Size;
 
             // 初始化默认选中设备管理
-            currentSelectedButton = btnDeviceManage;
-            UpdateMenuSelection(btnDeviceManage);
+            currentSelectedButton = btnDashboard;
+            UpdateMenuSelection(btnDashboard);
             ShowWelcomePage();
+
+            // 按当前登录角色控制侧边栏菜单显示
+            ApplyRolePermissions();
+        }
+
+        /// <summary>
+        /// 根据当前登录角色控制侧边栏菜单的可见性：
+        /// 管理员全部可见，医护隐藏数据统计/系统设置，维修员只保留维修与监控相关菜单
+        /// </summary>
+        private void ApplyRolePermissions()
+        {
+            // 先全部恢复显示，避免角色切换后残留隐藏状态
+            Button[] menus = {
+                btnDashboard, btnDeviceManage, btnRepairManage, btnBorrowManage,
+                btnMonitoringCenter, btnDataStatistics, btnSystemSetting
+            };
+            foreach (var b in menus)
+            {
+                b.Visible = true;
+            }
+
+            switch (LoginUser.Role)
+            {
+                case UserRoleText.Doctor:
+                    // 医护：可以查看设备、申报故障、申请借用，隐藏统计与系统设置
+                    btnDataStatistics.Visible = false;
+                    btnSystemSetting.Visible = false;
+                    break;
+
+                case UserRoleText.Repair:
+                    // 维修员：只保留首页、维修管理、监控中心
+                    btnDeviceManage.Visible = false;
+                    btnBorrowManage.Visible = false;
+                    btnDataStatistics.Visible = false;
+                    btnSystemSetting.Visible = false;
+                    break;
+
+                // 管理员（admin）默认全部显示，无需处理
+            }
+
+            // 顶部栏显示当前登录用户，例如：张三（设备科·管理员）
+            btnUserName.Text = string.IsNullOrEmpty(LoginUser.Role)
+                ? "未登录"
+                : LoginUser.DisplayName;
+
+            // 如果当前选中的菜单被隐藏，自动跳到第一个可见菜单
+            if (currentSelectedButton != null && !currentSelectedButton.Visible)
+            {
+                foreach (var b in menus)
+                {
+                    if (b.Visible)
+                    {
+                        b.PerformClick();
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -123,6 +199,10 @@ namespace HospitalEquipmentSystem.UI
             // 限制最小缩放比例，防止太小看不清
             if (scale < 0.5f) scale = 0.5f;
 
+            // 缩放比例没变化时直接跳过，避免每次布局触发都重建字体导致卡顿
+            if (Math.Abs(scale - _lastScale) < 0.0001f) return;
+            _lastScale = scale;
+
             // 缩放侧边栏宽度
             int newSideBarWidth = sideBarExpanded
                 ? (int)(initialSideBarWidth * scale)
@@ -139,7 +219,7 @@ namespace HospitalEquipmentSystem.UI
             // 缩放标题字体
             float newTitleFontSize = initialTitleFontSize * scale;
             lblTitle.Font = new Font(lblTitle.Font.FontFamily, newTitleFontSize, lblTitle.Font.Style);
-            lblUserName.Font = new Font(lblUserName.Font.FontFamily, newTitleFontSize * 0.8f, lblUserName.Font.Style);
+            btnUserName.Font = new Font(btnUserName.Font.FontFamily, newTitleFontSize * 1.0f, btnUserName.Font.Style);
 
             // 缩放菜单按钮高度和字体
             int newButtonHeight = (int)(initialMenuButtonHeight * scale);
@@ -248,7 +328,7 @@ namespace HospitalEquipmentSystem.UI
         private void ResetButtonStyle(Button button)
         {
             button.BackColor = Color.Transparent;
-            button.Font = new Font("微软雅黑", 12F, FontStyle.Regular);
+            button.Font = MenuFontRegular;
         }
 
         /// <summary>
@@ -256,8 +336,8 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void SetButtonSelectedStyle(Button button)
         {
-            button.BackColor = Color.FromArgb(30, 50, 90);
-            button.Font = new Font("微软雅黑", 12F, FontStyle.Bold);
+            button.BackColor = Color.FromArgb(210, 158, 64);
+            button.Font = MenuFontBold;
         }
 
         /// <summary>
@@ -366,7 +446,16 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowRepairManagePage()
         {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...\n\n待处理维修：3 条");
+            
+             try
+            {
+                DataReaderMapper.ShowFormInPanel<MainTainManagement>(contentPanel, autoScale: true);
+            }
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...\n\n待处理维修：3 条");
+            }
+           
         }
 
         /// <summary>
@@ -374,7 +463,15 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowBorrowManagePage()
         {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "借用管理 - 功能开发中...");
+            try
+            {
+                DataReaderMapper.ShowFormInPanel<Equipment_BorrowingUI>(contentPanel, autoScale: true);
+            }
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "借用管理 - 功能开发中...");
+            }
+          
         }
 
         /// <summary>
@@ -424,6 +521,46 @@ namespace HospitalEquipmentSystem.UI
             if (UIMessageBox.ShowAsk("确定要退出系统吗？", true))
             {
                 Application.Exit();
+            }
+        }
+
+        /// <summary>
+        /// 用户名按钮点击：在按钮下方弹出下拉菜单
+        /// </summary>
+        private void btnUserName_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(btnUserName, 0, btnUserName.Height);
+        }
+
+        /// <summary>
+        /// 切换用户菜单项点击：清除登录信息，回到登录页面
+        /// </summary>
+        private void toolStripMenuItemSwitchUser_Click(object sender, EventArgs e)
+        {
+            if (!UIMessageBox.ShowAsk("确定要切换用户吗？", true))
+                return;
+
+            // 清除当前登录信息
+            LoginUser.Reset();
+
+            // 隐藏当前主窗体
+            this.Hide();
+
+            // 打开登录窗体
+            using (var login = new LoginForm())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    // 登录成功，刷新页面并重新显示
+                    ApplyRolePermissions();
+                    ShowWelcomePage();
+                    this.Show();
+                }
+                else
+                {
+                    // 登录取消，退出应用
+                    Application.Exit();
+                }
             }
         }
 
