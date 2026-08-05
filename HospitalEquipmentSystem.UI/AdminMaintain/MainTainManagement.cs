@@ -1,8 +1,9 @@
-﻿﻿using Sunny.UI;
+﻿using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
@@ -14,6 +15,9 @@ namespace HospitalEquipmentSystem.UI
     public partial class MainTainManagement : UIForm
     {
         private MaintenanceBLL _bll;
+        private List<MaintenanceRecordDto> _allData;
+        private int _currentPage = 1;
+        private const int PageSize = 6;
 
         private MaintenanceBLL BLL => _bll ?? (_bll = new MaintenanceBLL());
 
@@ -67,7 +71,9 @@ namespace HospitalEquipmentSystem.UI
                     {
                         try
                         {
-                            dgvOrders.DataSource = list ?? new List<MaintenanceRecordDto>();
+                            _allData = list ?? new List<MaintenanceRecordDto>();
+                            _currentPage = 1;
+                            ApplyPaging();
                             RefreshKpiCards(kpi);
                             RefreshAlerts(alerts);
                             RefreshWorkloads(workloads);
@@ -89,7 +95,9 @@ namespace HospitalEquipmentSystem.UI
                     {
                         try
                         {
-                            dgvOrders.DataSource = null;
+                            _allData = new List<MaintenanceRecordDto>();
+                            _currentPage = 1;
+                            ApplyPaging();
                             RefreshKpiCards(null);
                             RefreshAlerts(null);
                             RefreshWorkloads(null);
@@ -125,6 +133,28 @@ namespace HospitalEquipmentSystem.UI
             {
                 // 窗体已关闭，忽略本次更新
             }
+        }
+
+        // ==================== 分页 ====================
+
+        private void ApplyPaging()
+        {
+            int totalCount = _allData?.Count ?? 0;
+            int totalPages = (int)Math.Ceiling((double)totalCount / PageSize);
+            if (totalPages < 1) totalPages = 1;
+            if (_currentPage > totalPages) _currentPage = totalPages;
+            if (_currentPage < 1) _currentPage = 1;
+
+            var pageData = _allData?
+                .Skip((_currentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList() ?? new List<MaintenanceRecordDto>();
+
+            dgvOrders.DataSource = pageData;
+
+            lblPageInfo.Text = $"第 {_currentPage}/{totalPages} 页 · 每页 {PageSize} 条 · 共 {totalCount} 条";
+            btnPrevPage.Enabled = _currentPage > 1;
+            btnNextPage.Enabled = _currentPage < totalPages;
         }
 
         // ==================== KPI 卡片 ====================
@@ -302,6 +332,23 @@ namespace HospitalEquipmentSystem.UI
             btnReset.Click += BtnReset_Click;
             btnNewOrder.Click += BtnNewOrder_Click;
             dgvOrders.CellContentClick += DgvOrders_CellContentClick;
+            btnPrevPage.Click += (s, e) =>
+            {
+                if (_currentPage > 1)
+                {
+                    _currentPage--;
+                    ApplyPaging();
+                }
+            };
+            btnNextPage.Click += (s, e) =>
+            {
+                int totalPages = (int)Math.Ceiling((double)(_allData?.Count ?? 0) / PageSize);
+                if (_currentPage < totalPages)
+                {
+                    _currentPage++;
+                    ApplyPaging();
+                }
+            };
         }
 
         private void BtnNewOrder_Click(object sender, EventArgs e)

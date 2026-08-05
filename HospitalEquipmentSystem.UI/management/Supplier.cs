@@ -9,13 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HospitalEquipmentSystem.UI
+namespace HospitalEquipmentSystem.UI.management
 {
-    public partial class EditForm : UIForm
+    public partial class Supplier : UIForm
     {
-        public EditForm()
+        public Supplier()
         {
             InitializeComponent();
+        }
+
+        private void uiTitlePanel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiLabel6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -19,8 +19,8 @@ namespace HospitalEquipmentSystem.UI
             // 开启 Windows 视觉样式，让控件外观和系统一致
             Application.EnableVisualStyles();
 
-            // 设置控件文本渲染方式为兼容模式
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += OnThreadException;
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             // 先显示登录窗口，登录成功后才进入主界面
             using (var login = new LoginForm())

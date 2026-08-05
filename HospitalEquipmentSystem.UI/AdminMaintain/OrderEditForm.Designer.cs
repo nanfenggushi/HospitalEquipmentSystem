@@ -73,6 +73,7 @@ namespace HospitalEquipmentSystem.UI
             // lblTitle
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.lblTitle.Location = new System.Drawing.Point(129, 12);
@@ -303,7 +304,6 @@ namespace HospitalEquipmentSystem.UI
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(125, 470);
             this.btnDelete.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnDelete.Name = "btnDelete";
@@ -316,8 +316,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             // OrderEditForm
             // 
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.bg_main_dark_tech;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(519, 553);
             this.Controls.Add(this.pnlHeader);
@@ -341,7 +340,7 @@ namespace HospitalEquipmentSystem.UI
             this.Name = "OrderEditForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.TitleColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.TitleColor = System.Drawing.SystemColors.Desktop;
             this.ZoomScaleRect = new System.Drawing.Rectangle(22, 22, 520, 480);
             this.pnlHeader.ResumeLayout(false);
             this.ResumeLayout(false);

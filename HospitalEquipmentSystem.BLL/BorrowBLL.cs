@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using HospitalEquipment.DAL;
 using HospitalEquipment.Model;
+using HospitalEquipment.Model.management;
 
 namespace HospitalEquipment.BLL
 {

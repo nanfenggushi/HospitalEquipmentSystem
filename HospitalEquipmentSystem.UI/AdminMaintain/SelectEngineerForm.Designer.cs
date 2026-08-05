@@ -85,10 +85,10 @@ namespace HospitalEquipmentSystem.UI
             // 
             // SelectEngineerForm
             // 
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.bg_main_dark_tech;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(380, 220);
+            this.ControlBoxFillHoverColor = System.Drawing.Color.Gray;
             this.Controls.Add(this.lblPrompt);
             this.Controls.Add(this.cmbEngineer);
             this.Controls.Add(this.btnOk);
@@ -98,6 +98,7 @@ namespace HospitalEquipmentSystem.UI
             this.Name = "SelectEngineerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选择维修工程师";
+            this.TitleColor = System.Drawing.SystemColors.Desktop;
             this.ZoomScaleRect = new System.Drawing.Rectangle(22, 22, 380, 220);
             this.ResumeLayout(false);
 

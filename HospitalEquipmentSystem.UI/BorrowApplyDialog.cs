@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
+using HospitalEquipment.Model.management;
 using Sunny.UI;
 
 namespace HospitalEquipmentSystem.UI
