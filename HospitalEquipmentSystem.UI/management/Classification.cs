@@ -1,6 +1,4 @@
-﻿using HospitalEquipment.BLL;
-using HospitalEquipment.BLL.management;
-using HospitalEquipment.Model;
+﻿using HospitalEquipment.BLL.management;
 using HospitalEquipment.Model.management;
 using Sunny.UI;
 using System;
@@ -12,66 +10,39 @@ namespace HospitalEquipmentSystem.UI.management
 {
     public partial class Classification : UIForm
     {
-        // 在字段区域声明 Manager
         private CategoryManager categoryManager = new CategoryManager();
+        private int? currentCategoryId = null;   // 当前选中的分类ID
 
         public Classification()
         {
             InitializeComponent();
-            // 绑定按钮事件（若 Designer 未设置，可在此手动绑定）
-            
         }
 
-        // 窗体加载时加载树
         private void Classification_Load(object sender, EventArgs e)
         {
+            // 绑定按钮事件（如果设计器未绑定，在此统一绑定）
+            this.uiButton1.Click += uiButton1_Click;        // 新增根分类
+            this.uiButton4.Click += uiButton4_Click;        // 保存
+            this.uiButton3.Click += uiButton3_Click;        // 删除
+            this.uiButton5.Click += uiButton5_Click;        // 取消
+
             LoadCategoryTree();
-            // 2. 加载上级分类下拉框（ComboBox）
             LoadParentComboBox();
-
-
-        }
-        /// <summary>
-        /// 加载上级分类下拉框
-        /// </summary>
-        private void LoadParentComboBox()
-        {
-            // 获取所有分类
-            List<Category> allCats = categoryManager.GetAll();
-
-            // 创建一个字典或列表作为下拉框数据源
-            // 注意：DropDownList 显示名称，存分类ID
-            var items = new List<KeyValuePair<int, string>>();
-
-            // 1. 添加一个“顶级分类”选项，用 -1 代表 null
-            items.Add(new KeyValuePair<int, string>(-1, "（顶级分类）"));
-
-            // 2. 按顺序添加所有分类（显示缩进效果便于识别层级）
-            foreach (var cat in allCats.OrderBy(c => c.SortOrder))
-            {
-                // 显示名称，加点前缀表示层级（简单处理）
-                string prefix = cat.ParentId == null ? "" : "  ├─ ";
-                items.Add(new KeyValuePair<int, string>(cat.CategoryId, prefix + cat.Name));
-            }
-
-            // 绑定到 ComboBox
-            uiComboBox1.DataSource = null;
-            uiComboBox1.DisplayMember = "Value";   // 显示文字
-            uiComboBox1.ValueMember = "Key";      // 存储的ID值
-            uiComboBox1.DataSource = items;
+            EnableEdit(false);      // 初始禁用编辑区
+            ClearEditFields();      // 清空所有输入
+            UpdateStatistics(null); // 清空统计信息
         }
 
+        #region 数据加载
+
         /// <summary>
-        /// 从数据库加载分类树
+        /// 加载分类树
         /// </summary>
         private void LoadCategoryTree()
         {
             uiTreeView1.Nodes.Clear();
 
-            // 从BLL获取全部分类(扁平数据)
             List<Category> allCategories = categoryManager.GetAll();
-
-            // 过滤出根节点(ParentId == 0),按SortOrder排序
             var roots = allCategories.Where(c => c.ParentId == null)
                                      .OrderBy(c => c.SortOrder)
                                      .ToList();
@@ -79,13 +50,16 @@ namespace HospitalEquipmentSystem.UI.management
             foreach (var root in roots)
             {
                 TreeNode node = new TreeNode(root.Name);
-                node.Tag = root.CategoryId;          // 存分类ID,方便后续获取
-                AddChildNodes(node, allCategories);  // 递归添加子节点
+                node.Tag = root.CategoryId;
+                AddChildNodes(node, allCategories);
                 uiTreeView1.Nodes.Add(node);
             }
 
-            // 展开所有节点
             uiTreeView1.ExpandAll();
+            currentCategoryId = null;
+            ClearEditFields();
+            EnableEdit(false);
+            UpdateStatistics(null);
         }
 
         /// <summary>
@@ -94,48 +68,160 @@ namespace HospitalEquipmentSystem.UI.management
         private void AddChildNodes(TreeNode parentNode, List<Category> allCategories)
         {
             int parentId = (int)parentNode.Tag;
-
             var children = allCategories.Where(c => c.ParentId == parentId)
-                                         .OrderBy(c => c.SortOrder)
+                                        .OrderBy(c => c.SortOrder)
                                         .ToList();
 
             foreach (var child in children)
             {
                 TreeNode node = new TreeNode(child.Name);
                 node.Tag = child.CategoryId;
-                AddChildNodes(node, allCategories);  // 继续递归
+                AddChildNodes(node, allCategories);
                 parentNode.Nodes.Add(node);
             }
         }
 
-        // 选中节点时触发(可选,用于加载右侧编辑面板)
+        /// <summary>
+        /// 加载上级分类下拉框
+        /// </summary>
+        private void LoadParentComboBox()
+        {
+            List<Category> allCats = categoryManager.GetAll();
+
+            var items = new List<KeyValuePair<int, string>>();
+            items.Add(new KeyValuePair<int, string>(-1, "（顶级分类）"));
+
+            foreach (var cat in allCats.OrderBy(c => c.SortOrder))
+            {
+                string prefix = cat.ParentId == null ? "" : "  ├─ ";
+                items.Add(new KeyValuePair<int, string>(cat.CategoryId, prefix + cat.Name));
+            }
+
+            uiComboBox1.DataSource = null;
+            uiComboBox1.DisplayMember = "Value";
+            uiComboBox1.ValueMember = "Key";
+            uiComboBox1.DataSource = items;
+        }
+
+        #endregion
+
+        #region 编辑区控制
+
+        /// <summary>
+        /// 启用/禁用编辑区控件
+        /// </summary>
+        private void EnableEdit(bool enable)
+        {
+            uiTextBox1.Enabled = enable;
+            uiComboBox1.Enabled = enable;
+            uiTextBox2.Enabled = enable;
+            uiTextBox3.Enabled = enable;
+            uiTextBox4.Enabled = enable;
+            uiButton4.Enabled = enable;   // 保存
+            uiButton5.Enabled = enable;   // 取消
+            uiButton3.Enabled = enable;   // 删除
+        }
+
+        /// <summary>
+        /// 清空编辑区
+        /// </summary>
+        private void ClearEditFields()
+        {
+            uiTextBox1.Clear();
+            uiComboBox1.SelectedIndex = -1;
+            uiTextBox2.Clear();
+            uiTextBox3.Clear();
+            uiTextBox4.Clear();
+        }
+
+        /// <summary>
+        /// 更新统计信息（设备数量、描述）
+        /// </summary>
+        private void UpdateStatistics(Category category)
+        {
+            if (category == null)
+            {
+                uiLabel7.Text = "设备数量: 0 台";
+                uiLabel8.Text = "含子分类设备: 0 台";
+                uiLabel9.Text = "描述: ";
+                return;
+            }
+
+            int directCount = categoryManager.GetEquipmentCount(category.CategoryId);
+            uiLabel7.Text = $"设备数量: {directCount} 台";
+
+            int totalWithChildren = GetEquipmentCountWithChildren(category.CategoryId);
+            uiLabel8.Text = $"含子分类设备: {totalWithChildren} 台";
+
+            uiLabel9.Text = $"描述: {category.Description ?? ""}";
+        }
+
+        /// <summary>
+        /// 递归计算分类及其所有子分类下的设备总数
+        /// </summary>
+        private int GetEquipmentCountWithChildren(int categoryId)
+        {
+            int count = categoryManager.GetEquipmentCount(categoryId);
+            var allCats = categoryManager.GetAll();
+            var children = allCats.Where(c => c.ParentId == categoryId).ToList();
+            foreach (var child in children)
+                count += GetEquipmentCountWithChildren(child.CategoryId);
+            return count;
+        }
+
+        #endregion
+
+        #region 树节点事件
+
         private void uiTreeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
         {
-            if (e.Node == null || e.Node.Tag == null) return;
+            if (e.Node == null || e.Node.Tag == null)
+            {
+                currentCategoryId = null;
+                ClearEditFields();
+                EnableEdit(false);
+                UpdateStatistics(null);
+                return;
+            }
 
             int categoryId = (int)e.Node.Tag;
             Category category = categoryManager.GetById(categoryId);
-            if (category == null) return;
+            if (category == null)
+            {
+                currentCategoryId = null;
+                ClearEditFields();
+                EnableEdit(false);
+                UpdateStatistics(null);
+                return;
+            }
 
-            // 回显基础信息
+            currentCategoryId = categoryId;
+
+            // 回显数据
             uiTextBox1.Text = category.Name;
             uiTextBox2.Text = category.Code ?? "";
             uiTextBox3.Text = category.SortOrder.ToString();
             uiTextBox4.Text = category.Description ?? "";
-
-            // 回显上级分类（下拉框）
-            // 如果 ParentId 为 null，选中值为 -1 的项；否则选中对应的 CategoryId
             int selectedValue = category.ParentId ?? -1;
             uiComboBox1.SelectedValue = selectedValue;
+
+            EnableEdit(true);
+            UpdateStatistics(category);
         }
 
+        #endregion
+
+        #region 按钮事件
+
+        /// <summary>
+        /// 新增根分类
+        /// </summary>
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            // 创建一个默认的新分类
             Category newCat = new Category
             {
                 Name = "新分类",
-                ParentId = null,       // 默认是根分类
+                ParentId = null,
                 SortOrder = 0,
                 Code = "",
                 Description = ""
@@ -145,128 +231,182 @@ namespace HospitalEquipmentSystem.UI.management
             {
                 if (categoryManager.Insert(newCat))
                 {
-                    UIMessageBox.Show("新增根分类成功！");
-                    LoadCategoryTree();  // 刷新树
+                    UIMessageBox.Show("新增根分类成功！", "提示", UIStyle.Green);
+                    LoadCategoryTree();
+                    LoadParentComboBox();
+                    // 自动选中新添加的分类（根据ID查找）
+                    SelectNodeById(newCat.CategoryId);
                 }
                 else
                 {
-                    UIMessageBox.Show("新增失败！");
+                    UIMessageBox.Show("新增失败！", "错误", UIStyle.Red);
                 }
             }
             catch (Exception ex)
             {
-                UIMessageBox.Show($"新增出错：{ex.Message}");
+                UIMessageBox.Show($"新增出错：{ex.Message}", "错误", UIStyle.Red);
             }
         }
 
+        /// <summary>
+        /// 保存分类
+        /// </summary>
         private void uiButton4_Click(object sender, EventArgs e)
         {
-            // 1. 确保选中的是树节点
-            if (uiTreeView1.SelectedNode == null || uiTreeView1.SelectedNode.Tag == null)
+            if (!currentCategoryId.HasValue)
             {
-                UIMessageBox.Show("请先在左侧树中选中一个分类！");
+                UIMessageBox.Show("请先在左侧树中选中一个分类！", "提示", UIStyle.Green);
                 return;
             }
 
-            int id = (int)uiTreeView1.SelectedNode.Tag;
-            Category category = categoryManager.GetById(id);
-            if (category == null) return;
+            Category category = categoryManager.GetById(currentCategoryId.Value);
+            if (category == null)
+            {
+                UIMessageBox.Show("分类不存在，请刷新后重试！", "错误", UIStyle.Red);
+                return;
+            }
 
-            // 2. 获取界面输入
             string name = uiTextBox1.Text.Trim();
             if (string.IsNullOrEmpty(name))
             {
-                UIMessageBox.Show("分类名称不能为空！");
+                UIMessageBox.Show("分类名称不能为空！", "提示", UIStyle.Green);
+                uiTextBox1.Focus();
                 return;
             }
 
             string code = uiTextBox2.Text.Trim();
             string description = uiTextBox4.Text.Trim();
 
-            // 3. 处理排序号（整数）
             if (!int.TryParse(uiTextBox3.Text.Trim(), out int sortOrder))
             {
-                UIMessageBox.Show("排序号请输入有效的数字！");
+                UIMessageBox.Show("排序号请输入有效的数字！", "提示", UIStyle.Green);
+                uiTextBox3.Focus();
                 return;
             }
 
-            // 4. 处理上级分类（重点）
             int? parentId = null;
             if (uiComboBox1.SelectedValue != null && uiComboBox1.SelectedValue is int)
             {
                 int val = (int)uiComboBox1.SelectedValue;
-                // 如果选中的是 -1，表示“顶级分类”，赋值为 null
-                if (val != -1)
-                {
-                    parentId = val;
-                }
+                if (val != -1) parentId = val;
             }
 
-            // 5. 赋值给实体
+            // 防止将分类设为自己的子分类（循环引用）
+            if (parentId.HasValue && parentId.Value == category.CategoryId)
+            {
+                UIMessageBox.Show("不能将分类设置为其自身的子分类！", "提示", UIStyle.Green);
+                return;
+            }
+
             category.Name = name;
             category.Code = code;
             category.SortOrder = sortOrder;
             category.Description = description;
             category.ParentId = parentId;
 
-            // 6. 调用 BLL 更新
             try
             {
                 if (categoryManager.Update(category))
                 {
-                    UIMessageBox.Show("保存成功！");
-                    LoadCategoryTree();          // 刷新左侧树
-                                                 // 刷新后重新选中当前节点（略，可自行扩展）
+                    UIMessageBox.Show("保存成功！", "提示", UIStyle.Green);
+                    LoadCategoryTree();
+                    LoadParentComboBox();
+                    SelectNodeById(category.CategoryId); // 重新选中当前分类
                 }
                 else
                 {
-                    UIMessageBox.Show("保存失败，请检查控制台错误信息。");
+                    UIMessageBox.Show("保存失败，请检查控制台错误信息。", "错误", UIStyle.Red);
                 }
             }
             catch (Exception ex)
             {
-                UIMessageBox.Show($"保存出错：{ex.Message}");
+                UIMessageBox.Show($"保存出错：{ex.Message}", "错误", UIStyle.Red);
             }
         }
 
-        private void UiButton3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 删除分类
+        /// </summary>
+        private void uiButton3_Click(object sender, EventArgs e)
         {
-            if (uiTreeView1.SelectedNode == null || uiTreeView1.SelectedNode.Tag == null) return;
+            if (!currentCategoryId.HasValue)
+            {
+                UIMessageBox.Show("请先在左侧树中选中一个分类！", "提示", UIStyle.Green);
+                return;
+            }
 
-            int id = (int)uiTreeView1.SelectedNode.Tag;
-            string name = uiTreeView1.SelectedNode.Text;
+            string name = uiTreeView1.SelectedNode?.Text ?? "当前分类";
 
-            // 注意：这里使用修正后的条件判断（直接判断 bool）
-            if (UIMessageBox.Show("确定要删除分类“" + name + "”及其所有子分类吗？", "删除确认", UIStyle.Red))
+            if (UIMessageBox.Show($"确定要删除分类“{name}”及其所有子分类吗？", "删除确认", UIStyle.Red))
             {
                 try
                 {
-                    if (categoryManager.Delete(id))
+                    if (categoryManager.Delete(currentCategoryId.Value))
                     {
-                        UIMessageBox.Show("删除成功！");
-                        LoadCategoryTree();
+                        UIMessageBox.Show("删除成功！", "提示", UIStyle.Green);
+                        currentCategoryId = null;
                         ClearEditFields();
+                        EnableEdit(false);
+                        UpdateStatistics(null);
+                        LoadCategoryTree();
+                        LoadParentComboBox();
                     }
                 }
                 catch (Exception ex)
                 {
-                    UIMessageBox.Show($"删除失败：{ex.Message}");
+                    UIMessageBox.Show($"删除失败：{ex.Message}", "错误", UIStyle.Red);
                 }
             }
         }
 
-        private void ClearEditFields()
-        {
-            uiTextBox1.Clear();
-            uiTextBox2.Clear();
-            uiTextBox3.Clear();
-            uiTextBox4.Clear();
-            uiComboBox1.SelectedIndex = -1; // 取消选中
-        }
-
+        /// <summary>
+        /// 取消编辑（清空并禁用编辑区）
+        /// </summary>
         private void uiButton5_Click(object sender, EventArgs e)
         {
-
+            ClearEditFields();
+            EnableEdit(false);
+            uiTreeView1.SelectedNode = null;
+            currentCategoryId = null;
+            UpdateStatistics(null);
         }
+        #endregion
+
+        #region 辅助方法
+
+        /// <summary>
+        /// 根据分类ID在树中查找并选中节点
+        /// </summary>
+        private void SelectNodeById(int categoryId)
+        {
+            foreach (TreeNode node in uiTreeView1.Nodes)
+            {
+                TreeNode found = FindNodeByTag(node, categoryId);
+                if (found != null)
+                {
+                    uiTreeView1.SelectedNode = found;
+                    found.EnsureVisible();
+                    break;
+                }
+            }
+        }
+
+        private TreeNode FindNodeByTag(TreeNode parent, int tagValue)
+        {
+            if (parent.Tag != null && (int)parent.Tag == tagValue)
+                return parent;
+
+            foreach (TreeNode child in parent.Nodes)
+            {
+                TreeNode result = FindNodeByTag(child, tagValue);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+
+        #endregion
+
+      
     }
 }

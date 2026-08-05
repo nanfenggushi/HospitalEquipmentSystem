@@ -59,5 +59,10 @@ namespace HospitalEquipment.BLL.management
                 throw new Exception("该分类下存在设备，请先移除或重新分类设备");
             return dal.Delete(id) > 0;
         }
+
+        public int GetEquipmentCount(int categoryId)
+        {
+            return dal.GetEquipmentCount(categoryId);
+        }
     }
 }

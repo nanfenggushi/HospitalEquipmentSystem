@@ -31,7 +31,6 @@
             this.uiLine2 = new Sunny.UI.UILine();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiButton1 = new Sunny.UI.UIButton();
-            this.uiButton2 = new Sunny.UI.UIButton();
             this.uiTreeView1 = new Sunny.UI.UITreeView();
             this.uiTextBox1 = new Sunny.UI.UITextBox();
             this.uiLabel2 = new Sunny.UI.UILabel();
@@ -79,7 +78,7 @@
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.FillColor = System.Drawing.Color.DarkGoldenrod;
             this.uiButton1.Font = new System.Drawing.Font("华文中宋", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Location = new System.Drawing.Point(914, 13);
+            this.uiButton1.Location = new System.Drawing.Point(1142, 13);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(156, 32);
@@ -87,20 +86,6 @@
             this.uiButton1.Text = "+新增根分类";
             this.uiButton1.TipsFont = new System.Drawing.Font("华文中宋", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
-            // 
-            // uiButton2
-            // 
-            this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton2.FillColor = System.Drawing.Color.ForestGreen;
-            this.uiButton2.Font = new System.Drawing.Font("华文中宋", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton2.Location = new System.Drawing.Point(1192, 12);
-            this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton2.Name = "uiButton2";
-            this.uiButton2.Radius = 20;
-            this.uiButton2.Size = new System.Drawing.Size(88, 40);
-            this.uiButton2.TabIndex = 6;
-            this.uiButton2.Text = "关闭";
-            this.uiButton2.TipsFont = new System.Drawing.Font("华文中宋", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // uiTreeView1
             // 
@@ -245,8 +230,9 @@
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox4.ShowText = false;
-            this.uiTextBox4.Size = new System.Drawing.Size(218, 120);
+            this.uiTextBox4.Size = new System.Drawing.Size(218, 33);
             this.uiTextBox4.TabIndex = 17;
+            this.uiTextBox4.Text = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
             this.uiTextBox4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox4.Watermark = "";
             // 
@@ -336,7 +322,7 @@
             // 
             this.uiLabel10.Font = new System.Drawing.Font("华文中宋", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiLabel10.ForeColor = System.Drawing.Color.White;
-            this.uiLabel10.Location = new System.Drawing.Point(766, 685);
+            this.uiLabel10.Location = new System.Drawing.Point(766, 648);
             this.uiLabel10.Name = "uiLabel10";
             this.uiLabel10.Size = new System.Drawing.Size(532, 32);
             this.uiLabel10.TabIndex = 35;
@@ -347,7 +333,7 @@
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(55)))), ((int)(((byte)(88)))));
-            this.ClientSize = new System.Drawing.Size(1310, 726);
+            this.ClientSize = new System.Drawing.Size(1310, 689);
             this.Controls.Add(this.uiLabel10);
             this.Controls.Add(this.uiButton5);
             this.Controls.Add(this.uiButton3);
@@ -367,7 +353,6 @@
             this.Controls.Add(this.uiLabel2);
             this.Controls.Add(this.uiTextBox1);
             this.Controls.Add(this.uiTreeView1);
-            this.Controls.Add(this.uiButton2);
             this.Controls.Add(this.uiButton1);
             this.Controls.Add(this.uiLabel1);
             this.Controls.Add(this.uiLine2);
@@ -386,7 +371,6 @@
         private Sunny.UI.UILine uiLine2;
         private Sunny.UI.UILabel uiLabel1;
         private Sunny.UI.UIButton uiButton1;
-        private Sunny.UI.UIButton uiButton2;
         private Sunny.UI.UITreeView uiTreeView1;
         private Sunny.UI.UITextBox uiTextBox1;
         private Sunny.UI.UILabel uiLabel2;
