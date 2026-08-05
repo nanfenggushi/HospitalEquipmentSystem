@@ -22,7 +22,15 @@ namespace HospitalEquipmentSystem.UI
             Application.ThreadException += OnThreadException;
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
-            Application.Run(new MainTainManagement());
+            // 先显示登录窗口，登录成功后才进入主界面
+            using (var login = new LoginForm())
+            {
+                if (login.ShowDialog() != DialogResult.OK)
+                    return;
+            }
+
+            // 登录成功后启动主界面（页面切换窗体）
+            Application.Run(new SwitchPages());
         }
 
         private static void OnThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {

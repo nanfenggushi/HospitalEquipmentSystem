@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
@@ -20,11 +21,17 @@ namespace HospitalEquipmentSystem.UI
 
         private MaintenanceBLL BLL => _bll ?? (_bll = new MaintenanceBLL());
 
+        // 数据加载锁：防止上一次查询没结束又开始下一次，避免请求堆积导致卡顿
+        private volatile bool _loadingData = false;
+
         public MainTainManagement()
         {
             InitializeComponent();
 
             if (DesignMode) return;
+
+            // 表格使用设计器定义好的列，禁止自动生成重复列，减少绑定和绘制开销
+            dgvOrders.AutoGenerateColumns = false;
 
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
                           ControlStyles.OptimizedDoubleBuffer |
@@ -40,18 +47,92 @@ namespace HospitalEquipmentSystem.UI
 
         private void LoadData()
         {
-            //默认下拉选项
+            // 上一次还没加载完就跳过，避免任务堆积
+            if (_loadingData) return;
+            _loadingData = true;
+
+            // 先在 UI 线程读取筛选条件，再放到后台线程查询数据库
             string urgency = GetFilterValue(cmbUrgency, "全部紧急度");
             string dept = GetFilterValue(cmbDept, "全部科室");
             string keyword = txtSearch.Text.Trim();
 
-            _allData = BLL.GetOrders(urgency, dept, keyword, null) ?? new List<MaintenanceRecordDto>();
-            _currentPage = 1;
-            ApplyPaging();
+            Task.Run(() =>
+            {
+                try
+                {
+                    // 后台线程执行全部数据库查询，避免阻塞 UI 线程
+                    var list = BLL.GetOrders(urgency, dept, keyword, null);
+                    var kpi = BLL.GetKpiData();
+                    var alerts = BLL.GetAlerts();
+                    var workloads = BLL.GetWorkloads();
 
-            RefreshKpiCards();
-            RefreshAlerts();
-            RefreshWorkloads();
+                    // 回到 UI 线程更新控件
+                    SafeInvoke(() =>
+                    {
+                        try
+                        {
+                            _allData = list ?? new List<MaintenanceRecordDto>();
+                            _currentPage = 1;
+                            ApplyPaging();
+                            RefreshKpiCards(kpi);
+                            RefreshAlerts(alerts);
+                            RefreshWorkloads(workloads);
+                        }
+                        catch
+                        {
+                            // 单个控件更新失败不影响整体，忽略即可
+                        }
+                        finally
+                        {
+                            _loadingData = false;
+                        }
+                    });
+                }
+                catch
+                {
+                    // 数据库查询失败：回到 UI 线程展示空数据，不崩溃
+                    SafeInvoke(() =>
+                    {
+                        try
+                        {
+                            _allData = new List<MaintenanceRecordDto>();
+                            _currentPage = 1;
+                            ApplyPaging();
+                            RefreshKpiCards(null);
+                            RefreshAlerts(null);
+                            RefreshWorkloads(null);
+                        }
+                        catch
+                        {
+                            // 忽略更新异常，保证界面不崩溃
+                        }
+                        finally
+                        {
+                            _loadingData = false;
+                        }
+                    });
+                }
+            });
+        }
+
+        /// <summary>
+        /// 在窗体未被销毁时，把操作安全地切回 UI 线程执行
+        /// </summary>
+        private void SafeInvoke(Action action)
+        {
+            if (IsDisposed) return;
+            try
+            {
+                BeginInvoke(action);
+            }
+            catch (ObjectDisposedException)
+            {
+                // 窗体已销毁，忽略本次更新
+            }
+            catch (InvalidOperationException)
+            {
+                // 窗体已关闭，忽略本次更新
+            }
         }
 
         // ==================== 分页 ====================
@@ -78,9 +159,22 @@ namespace HospitalEquipmentSystem.UI
 
         // ==================== KPI 卡片 ====================
 
-        private void RefreshKpiCards()
+        private void RefreshKpiCards(Dictionary<string, int> kpi)
         {
-            var kpi = BLL.GetKpiData();
+            // 查询失败时用 0 兜底，避免空引用
+            if (kpi == null)
+            {
+                kpi = new Dictionary<string, int>
+                {
+                    ["Pending"] = 0,
+                    ["InProgress"] = 0,
+                    ["Urgent"] = 0,
+                    ["Completed"] = 0,
+                    ["Assigned"] = 0,
+                    ["TotalDownHours"] = 0
+                };
+            }
+
             lblKpi1Val.Text = kpi["Pending"].ToString();    // 待分配
             lblKpi2Val.Text = kpi["InProgress"].ToString(); // 处理中
             lblKpi3Val.Text = kpi["Urgent"].ToString();     // 特急
@@ -91,10 +185,9 @@ namespace HospitalEquipmentSystem.UI
 
         // ==================== 实时告警 ====================
 
-        private void RefreshAlerts()
+        private void RefreshAlerts(DataTable dt)
         {
             pnlAlertsList.Controls.Clear();
-            var dt = BLL.GetAlerts();
             if (dt == null || dt.Rows.Count == 0)
             {
                 AddAlertItem("暂无告警", "", Color.FromArgb(159, 179, 200));
@@ -147,10 +240,9 @@ namespace HospitalEquipmentSystem.UI
 
         // ==================== 维修员负载 ====================
 
-        private void RefreshWorkloads()
+        private void RefreshWorkloads(DataTable dt)
         {
             pnlWorkloadList.Controls.Clear();
-            var dt = BLL.GetWorkloads();
             if (dt == null || dt.Rows.Count == 0)
             {
                 AddWorkloadItem("暂无负载数据", 0);
@@ -232,16 +324,6 @@ namespace HospitalEquipmentSystem.UI
             if (string.IsNullOrEmpty(val) || val == allText)
                 return null;
             return MaintenanceHelper.UrgencyToEn(val);
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
         }
 
         private void WireEvents()
