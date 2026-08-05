@@ -1,16 +1,10 @@
-using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using HospitalEquipment.Util;
+using HospitalEquipmentSystem.UI.Dashboard;
 using Sunny.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -162,7 +156,7 @@ namespace HospitalEquipmentSystem.UI
                     btnSystemSetting.Visible = false;
                     break;
 
-                // 管理员（admin）默认全部显示，无需处理
+                    // 管理员（admin）默认全部显示，无需处理
             }
 
             // 顶部栏显示当前登录用户，例如：张三（设备科·管理员）
@@ -280,8 +274,7 @@ namespace HospitalEquipmentSystem.UI
                 btnMonitoringCenter.TextAlign = ContentAlignment.MiddleCenter;
                 btnDataStatistics.TextAlign = ContentAlignment.MiddleCenter;
                 btnSystemSetting.TextAlign = ContentAlignment.MiddleCenter;
-            }
-            else
+            } else
             {
                 // 展开侧边栏
                 sidePanel.Width = (int)(initialSideBarWidth * scale);
@@ -446,16 +439,15 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowRepairManagePage()
         {
-            
-             try
+
+            try
             {
                 DataReaderMapper.ShowFormInPanel<MainTainManagement>(contentPanel, autoScale: true);
-            }
-            catch
+            } catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...\n\n待处理维修：3 条");
             }
-           
+
         }
 
         /// <summary>
@@ -466,12 +458,11 @@ namespace HospitalEquipmentSystem.UI
             try
             {
                 DataReaderMapper.ShowFormInPanel<Equipment_BorrowingUI>(contentPanel, autoScale: true);
-            }
-            catch
+            } catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "借用管理 - 功能开发中...");
             }
-          
+
         }
 
         /// <summary>
@@ -482,8 +473,7 @@ namespace HospitalEquipmentSystem.UI
             try
             {
                 DataReaderMapper.ShowFormInPanel<MonitoringCenter>(contentPanel, autoScale: true);
-            }
-            catch
+            } catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
             }
@@ -494,7 +484,13 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowDataStatisticsPage()
         {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "数据统计 - 功能开发中...");
+            try
+            {
+                DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: true);
+            } catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
+            }
         }
 
         /// <summary>
@@ -555,8 +551,7 @@ namespace HospitalEquipmentSystem.UI
                     ApplyRolePermissions();
                     ShowWelcomePage();
                     this.Show();
-                }
-                else
+                } else
                 {
                     // 登录取消，退出应用
                     Application.Exit();
@@ -566,7 +561,7 @@ namespace HospitalEquipmentSystem.UI
 
         private void uiNavMenu1_MenuItemClick(TreeNode node, NavMenuItem item, int pageIndex)
         {
-        
+
         }
     }
 }

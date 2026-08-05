@@ -1,4 +1,3 @@
-using HospitalEquipment.Model;
 using HospitalEquipment.Model.Dashboard;
 using HospitalEquipment.Model.management;
 using HospitalEquipmentSystem.Common;
@@ -113,8 +112,7 @@ namespace HospitalEquipment.DAL
             var list = new List<Equipment>();
             foreach (DataRow row in dt.Rows)
             {
-                var e = new Equipment
-                {
+                var e = new Equipment {
                     EquipmentId = Convert.ToInt32(row["EquipmentId"]),
                     EquipmentNo = Convert.ToString(row["EquipmentNo"]),
                     EquipmentName = Convert.ToString(row["EquipmentName"]),
@@ -403,5 +401,19 @@ namespace HospitalEquipment.DAL
                     return status;
             }
         }
+
+        /// <summary>获取最近6个月的月度维保工单趋势</summary>
+        public List<MaintenanceTrendDto> GetMaintenanceTrend()
+        {
+            string sql = @"SELECT 
+                         DATENAME(MONTH, ReportTime) + '月' AS Month,
+                         COUNT(*) AS Count
+                         FROM MaintenanceRecords
+                         WHERE ReportTime >= DATEADD(MONTH, -5, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))
+                         GROUP BY MONTH(ReportTime)
+                         ORDER BY MONTH(ReportTime);";
+            return DataReaderMapper.MapToList<MaintenanceTrendDto>(DbHelper.ExecuteReader(sql));
+        }
     }
 }
+

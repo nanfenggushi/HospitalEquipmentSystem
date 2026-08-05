@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using HospitalEquipment.Model;
+﻿using HospitalEquipment.Model;
+using HospitalEquipment.Model.Dashboard;
 using HospitalEquipmentSystem.Common;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace HospitalEquipment.DAL
 {
@@ -83,6 +85,33 @@ namespace HospitalEquipment.DAL
             {
                 return reader != null ? DataReaderMapper.MapToList<MaintenanceRecord>(reader) : new List<MaintenanceRecord>();
             }
+        }
+
+        public List<MonthlyMaintenanceDto> GetMaintenanceCounts(DateTime startDate)
+        {
+            string sql = @"SELECT 
+                        Y AS Year,                      
+                        M AS Month,                     
+                        SUM(FaultCount) AS FaultCount,  
+                        SUM(RepairedCount) AS RepairedCount 
+                    FROM (
+                        SELECT YEAR(ReportTime) AS Y, MONTH(ReportTime) AS M, 1 AS FaultCount, 0 AS RepairedCount
+                        FROM MaintenanceRecords 
+                        WHERE ReportTime >= @StartDate
+
+                        UNION ALL
+
+                        SELECT YEAR(CompleteTime) AS Y, MONTH(CompleteTime) AS M, 0 AS FaultCount, 1 AS RepairedCount
+                        FROM MaintenanceRecords 
+                        WHERE Status = 'Completed' 
+                          AND CompleteTime IS NOT NULL 
+                          AND CompleteTime >= @StartDate
+                    ) AS Combined
+                    GROUP BY Y, M
+                    ORDER BY Y, M;";
+
+            return DataReaderMapper.MapToList<MonthlyMaintenanceDto>
+                (DbHelper.ExecuteReader(sql, new SqlParameter("StartDate", startDate)));
         }
     }
 }

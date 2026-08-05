@@ -114,7 +114,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lblTitle.Location = new System.Drawing.Point(71, 13);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(129, 37);
+            this.lblTitle.Size = new System.Drawing.Size(110, 31);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "设备管理";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,7 +146,7 @@ namespace HospitalEquipmentSystem.UI
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 60);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(200, 1104);
+            this.sidePanel.Size = new System.Drawing.Size(200, 1042);
             this.sidePanel.TabIndex = 1;
             // 
             // btnSystemSetting
@@ -289,7 +289,7 @@ namespace HospitalEquipmentSystem.UI
             this.contentPanel.Location = new System.Drawing.Point(200, 60);
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1388, 1104);
+            this.contentPanel.Size = new System.Drawing.Size(1388, 1042);
             this.contentPanel.TabIndex = 2;
             // 
             // contextMenuStrip1
@@ -298,12 +298,12 @@ namespace HospitalEquipmentSystem.UI
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemSwitchUser});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 34);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 28);
             // 
             // toolStripMenuItemSwitchUser
             // 
             this.toolStripMenuItemSwitchUser.Name = "toolStripMenuItemSwitchUser";
-            this.toolStripMenuItemSwitchUser.Size = new System.Drawing.Size(152, 30);
+            this.toolStripMenuItemSwitchUser.Size = new System.Drawing.Size(138, 24);
             this.toolStripMenuItemSwitchUser.Text = "切换用户";
             this.toolStripMenuItemSwitchUser.Click += new System.EventHandler(this.toolStripMenuItemSwitchUser_Click);
             // 
@@ -311,7 +311,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1588, 1164);
+            this.ClientSize = new System.Drawing.Size(1588, 1102);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.sidePanel);
             this.Controls.Add(this.topPanel);

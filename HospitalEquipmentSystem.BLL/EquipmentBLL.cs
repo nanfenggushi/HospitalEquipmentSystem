@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.DAL;
+using HospitalEquipment.DAL;
 using HospitalEquipment.Model.Dashboard;
 using System.Collections.Generic;
 
@@ -24,6 +24,14 @@ namespace HospitalEquipment.BLL
         public StatisticCardDto GetStatisticCardData()
         {
             return _equipmentDAL.GetStatisticCardData();
+        }
+
+        /// <summary>
+        /// 获取月度维保趋势数据
+        /// </summary>
+        public List<MaintenanceTrendDto> GetMaintenanceTrend()
+        {
+            return _equipmentDAL.GetMaintenanceTrend();
         }
     }
 }
