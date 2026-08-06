@@ -38,6 +38,8 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             // 关闭DataGridView的自动创建列功能
             uiDataGridView1.AutoGenerateColumns = false;
 
+            // 加载更新时间
+            LoadLastUpdated();
             // 第一阶段：获取公共数据
             cardDto = await _equipmentBLL.GetStatisticCardDataAsync();
 
@@ -53,6 +55,14 @@ namespace HospitalEquipmentSystem.UI.Dashboard
                 LoadMaintenanceTrendChartAsync(),
                 LoadRealTimeAlarmListAsync()
             );
+        }
+
+        /// <summary>
+        /// 加载更新时间
+        /// </summary>
+        private void LoadLastUpdated()
+        {
+            uiLabel1.Text = "更新于" + DateTime.Now.ToString("t");
         }
 
         /// <summary>
@@ -262,7 +272,11 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             }
         }
 
-
+        /// <summary>
+        /// 间隔两秒刷新一次警报列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void timer1_Tick(object sender, EventArgs e)
         {
             if (isRefreshing)
