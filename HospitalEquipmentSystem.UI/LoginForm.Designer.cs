@@ -44,6 +44,7 @@
             // 
             // loginPanel
             // 
+            this.loginPanel.BackColor = System.Drawing.Color.Transparent;
             this.loginPanel.Controls.Add(this.lblrole);
             this.loginPanel.Controls.Add(this.rdbRepair);
             this.loginPanel.Controls.Add(this.rdbDoctor);
@@ -60,7 +61,7 @@
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Radius = 20;
             this.loginPanel.RectColor = System.Drawing.Color.DimGray;
-            this.loginPanel.Size = new System.Drawing.Size(559, 284);
+            this.loginPanel.Size = new System.Drawing.Size(534, 284);
             this.loginPanel.TabIndex = 0;
             this.loginPanel.Text = null;
             this.loginPanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,7 +84,7 @@
             this.rdbRepair.Location = new System.Drawing.Point(379, 177);
             this.rdbRepair.MinimumSize = new System.Drawing.Size(1, 1);
             this.rdbRepair.Name = "rdbRepair";
-            this.rdbRepair.Size = new System.Drawing.Size(126, 29);
+            this.rdbRepair.Size = new System.Drawing.Size(111, 29);
             this.rdbRepair.TabIndex = 7;
             this.rdbRepair.Text = "维修人员";
             this.rdbRepair.CheckedChanged += new System.EventHandler(this.rdbRepair_CheckedChanged);
@@ -185,6 +186,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("楷体", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lblTitle.Location = new System.Drawing.Point(141, 36);
@@ -199,7 +201,9 @@
             this.AcceptButton = this.btnLogin;
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(740, 474);
+            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.智能医院设备管理系统图片生成;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(712, 424);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.loginPanel);
             this.Name = "LoginForm";

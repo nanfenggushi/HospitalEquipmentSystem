@@ -14,7 +14,6 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         private readonly EquipmentBLL _equipmentBLL = new EquipmentBLL();
         private readonly MaintenanceRecordsBLL _maintenanceRecordsBLL = new MaintenanceRecordsBLL();
         private StatisticCardDto cardDto;
-        private bool _isLoading = false; // 查询状态，防止还没有查询完数据又再次查询
 
         // 存储用于 ScottPlot 渲染的数组 (最近6个月)
         private double[] monthsX;

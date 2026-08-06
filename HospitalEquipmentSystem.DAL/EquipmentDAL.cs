@@ -48,7 +48,6 @@ namespace HospitalEquipment.DAL
             return MapTableToList(dt);
         }
 
-
         /// <summary>更新设备状态</summary>
         public static int SetStatus(int equipmentId, string status)
         {
@@ -434,4 +433,3 @@ namespace HospitalEquipment.DAL
         }
     }
 }
-

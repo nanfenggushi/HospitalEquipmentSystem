@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,9 @@ namespace HospitalEquipment.Model.management
 {
     /// <summary>
     /// 设备实体类，对应数据库 Equipment 表
+    /// 设备实体类（对应数据库 Equipment 表）
+    /// 用于在 UI 层展示设备信息和统计
+    /// 设备（对应 Equipment 表）
     /// </summary>
     public class Equipment
     {
