@@ -147,6 +147,7 @@ namespace HospitalEquipmentSystem.UI
             this.sidePanel.Location = new System.Drawing.Point(0, 60);
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(200, 1042);
+            this.sidePanel.Size = new System.Drawing.Size(200, 1052);
             this.sidePanel.TabIndex = 1;
             // 
             // btnSystemSetting
@@ -290,6 +291,7 @@ namespace HospitalEquipmentSystem.UI
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(1388, 1042);
+            this.contentPanel.Size = new System.Drawing.Size(1388, 1052);
             this.contentPanel.TabIndex = 2;
             // 
             // contextMenuStrip1

@@ -19,17 +19,19 @@ namespace HospitalEquipmentSystem.UI
             // 开启 Windows 视觉样式，让控件外观和系统一致
             Application.EnableVisualStyles();
 
+            ApiService.Start();
+
+            // 全局异常捕获必须在进入消息循环前注册，否则不会生效
             Application.ThreadException += OnThreadException;
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-         
-            // 先显示登录窗口，登录成功后才进入主界面
+
+            // 先登录：取消则直接退出
             using (var login = new LoginForm())
             {
-                if (login.ShowDialog() != DialogResult.OK)
-                    return;
+                if (login.ShowDialog() != DialogResult.OK) return;
             }
 
-            // 登录成功后启动主界面（页面切换窗体）
+            // 登录成功后进入带侧边栏的页面切换外壳（SwitchPages）
             Application.Run(new SwitchPages());
         }
 
