@@ -1,5 +1,6 @@
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model.Dashboard;
+using MiniExcelLibs;
 using ScottPlot;
 using Sunny.UI;
 using System;
@@ -293,6 +294,80 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             } finally
             {
                 isRefreshing = false;
+            }
+        }
+
+        /// <summary>
+        /// 一键导出看板所有数据到 Excel（多 Sheet 形式）
+        /// </summary>
+        private async void uiSymbolButton1_Click(object sender, EventArgs e)
+        {
+            // 1. 弹出保存文件对话框
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel 文件|*.xlsx";
+            sfd.FileName = $"设备看板数据看板_{DateTime.Now:yyyyMMdd_HHmm}.xlsx";
+
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+            try
+            {
+                // 显示加载提示，防止导出过程中用户乱点
+                this.Cursor = Cursors.WaitCursor;
+
+                // ================== 2. 准备四个 Sheet 页的数据 ==================
+
+                // 【Sheet 1】：总体统计卡片数据 (转成纵向展示的列表，带有中文列名)
+                var summarySheet = new[]
+                {
+                    new { 统计指标 = "设备总数", 数量 = cardDto.TotalCount },
+                    new { 统计指标 = "正常运行 (使用中+闲置)", 数量 = cardDto.NormalCount }, // 或者是 InUseCount + IdleCount
+                    new { 统计指标 = "跨科借用", 数量 = cardDto.BorrowedCount },
+                    new { 统计指标 = "故障维修", 数量 = cardDto.MaintenanceCount },
+                    new { 统计指标 = "已报废",   数量 = cardDto.ScrappedCount }
+                };
+
+                // 【Sheet 2】：分类使用率数据
+                var usageList = await _equipmentBLL.GetCategoryUsageDataAsync();
+                // 重新投影一下，把导出的列名变成中文（而不是英文属性名）
+                var usageSheet = usageList.Select(x => new {
+                    设备类别 = x.CategoryName,
+                    使用率 = x.UsageRate + "%"
+                }).ToList();
+
+                // 【Sheet 3】：近6个月维保趋势数据
+                var trendList = await _maintenanceRecordsBLL.GetRecent6MonthsTrendAsync();
+                var trendSheet = trendList.Select(x => new {
+                    月份 = x.MonthLabel,
+                    新增故障数 = x.FaultCount,
+                    完成维修数 = x.RepairedCount
+                }).ToList();
+
+                // 【Sheet 4】：实时报警列表
+                // 直接从 DGV 的数据源取，或者重新查一遍都可以
+                var alarmSheet = await _maintenanceRecordsBLL.GetAlarmListAsync();
+
+                // ================== 3. 组合并导出 Excel ==================
+
+                // 使用 Dictionary 来指定 Sheet 页的名称和对应的数据
+                var sheets = new Dictionary<string, object>
+                {
+                    { "概览统计", summarySheet },
+                    { "分类使用率", usageSheet },
+                    { "维保趋势分析", trendSheet },
+                    { "实时报警记录", alarmSheet }
+                };
+
+                // 一行代码：将带有多 Sheet 的字典保存为 Excel
+                MiniExcel.SaveAs(sfd.FileName, sheets);
+
+                UIMessageBox.ShowSuccess("数据全部导出成功！");
+            } catch (Exception ex)
+            {
+                UIMessageBox.ShowError("导出失败: " + ex.Message);
+            } finally
+            {
+                // 恢复鼠标状态
+                this.Cursor = Cursors.Default;
             }
         }
     }
