@@ -34,7 +34,6 @@ namespace HospitalEquipmentSystem.UI
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiPanelHeader = new Sunny.UI.UIPanel();
             this.lblUser = new Sunny.UI.UILabel();
             this.lblTitle = new Sunny.UI.UILabel();
@@ -129,7 +128,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanelHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanelHeader.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanelHeader.Name = "uiPanelHeader";
-            this.uiPanelHeader.Size = new System.Drawing.Size(1530, 96);
+            this.uiPanelHeader.Size = new System.Drawing.Size(1739, 96);
             this.uiPanelHeader.TabIndex = 0;
             this.uiPanelHeader.Text = null;
             this.uiPanelHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -138,9 +137,9 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblUser.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblUser.Location = new System.Drawing.Point(811, 32);
+            this.lblUser.Location = new System.Drawing.Point(760, 14);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(268, 37);
+            this.lblUser.Size = new System.Drawing.Size(375, 55);
             this.lblUser.TabIndex = 3;
             this.lblUser.Text = "用户";
             this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -174,7 +173,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnApply.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
             this.btnApply.FillHoverColor = System.Drawing.Color.LightGreen;
             this.btnApply.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnApply.Location = new System.Drawing.Point(1380, 32);
+            this.btnApply.Location = new System.Drawing.Point(1589, 32);
             this.btnApply.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnApply.Name = "btnApply";
             this.btnApply.Radius = 6;
@@ -190,11 +189,11 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanelPager.Controls.Add(this.lblTotalLabel);
             this.uiPanelPager.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPanelPager.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanelPager.Location = new System.Drawing.Point(0, 1027);
+            this.uiPanelPager.Location = new System.Drawing.Point(0, 1428);
             this.uiPanelPager.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanelPager.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanelPager.Name = "uiPanelPager";
-            this.uiPanelPager.Size = new System.Drawing.Size(1530, 58);
+            this.uiPanelPager.Size = new System.Drawing.Size(1739, 58);
             this.uiPanelPager.TabIndex = 1;
             this.uiPanelPager.Text = null;
             this.uiPanelPager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -221,7 +220,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblTotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalLabel.Font = new System.Drawing.Font("宋体", 12F);
             this.lblTotalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblTotalLabel.Location = new System.Drawing.Point(1370, 16);
+            this.lblTotalLabel.Location = new System.Drawing.Point(1579, 16);
             this.lblTotalLabel.Name = "lblTotalLabel";
             this.lblTotalLabel.Size = new System.Drawing.Size(140, 28);
             this.lblTotalLabel.TabIndex = 1;
@@ -238,7 +237,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanelBody.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanelBody.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanelBody.Name = "uiPanelBody";
-            this.uiPanelBody.Size = new System.Drawing.Size(1530, 931);
+            this.uiPanelBody.Size = new System.Drawing.Size(1739, 1332);
             this.uiPanelBody.TabIndex = 2;
             this.uiPanelBody.Text = null;
             this.uiPanelBody.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -254,7 +253,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlViews.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlViews.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlViews.Name = "pnlViews";
-            this.pnlViews.Size = new System.Drawing.Size(1530, 733);
+            this.pnlViews.Size = new System.Drawing.Size(1739, 1134);
             this.pnlViews.TabIndex = 2;
             this.pnlViews.Text = null;
             this.pnlViews.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -266,11 +265,11 @@ namespace HospitalEquipmentSystem.UI
             this.pnlChart.BackColor = System.Drawing.Color.White;
             this.pnlChart.Controls.Add(this.chartLayout);
             this.pnlChart.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pnlChart.Location = new System.Drawing.Point(0, 0);
+            this.pnlChart.Location = new System.Drawing.Point(104, 0);
             this.pnlChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlChart.Name = "pnlChart";
-            this.pnlChart.Size = new System.Drawing.Size(1530, 733);
+            this.pnlChart.Size = new System.Drawing.Size(1530, 1134);
             this.pnlChart.TabIndex = 2;
             this.pnlChart.Visible = false;
             this.pnlChart.SizeChanged += new System.EventHandler(this.pnlChart_SizeChanged);
@@ -292,7 +291,7 @@ namespace HospitalEquipmentSystem.UI
             this.chartLayout.RowCount = 2;
             this.chartLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.chartLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.chartLayout.Size = new System.Drawing.Size(1530, 733);
+            this.chartLayout.Size = new System.Drawing.Size(1530, 1134);
             this.chartLayout.TabIndex = 0;
             this.chartLayout.TagString = null;
             // 
@@ -301,13 +300,13 @@ namespace HospitalEquipmentSystem.UI
             this.titlePanel4.Controls.Add(this.chartDoughnut);
             this.titlePanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.titlePanel4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.titlePanel4.Location = new System.Drawing.Point(773, 374);
+            this.titlePanel4.Location = new System.Drawing.Point(773, 575);
             this.titlePanel4.Margin = new System.Windows.Forms.Padding(8);
             this.titlePanel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.titlePanel4.Name = "titlePanel4";
             this.titlePanel4.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
             this.titlePanel4.ShowText = false;
-            this.titlePanel4.Size = new System.Drawing.Size(749, 351);
+            this.titlePanel4.Size = new System.Drawing.Size(749, 551);
             this.titlePanel4.TabIndex = 3;
             this.titlePanel4.Text = "设备状态分布";
             this.titlePanel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -323,7 +322,7 @@ namespace HospitalEquipmentSystem.UI
             this.chartDoughnut.Location = new System.Drawing.Point(1, 34);
             this.chartDoughnut.MinimumSize = new System.Drawing.Size(1, 1);
             this.chartDoughnut.Name = "chartDoughnut";
-            this.chartDoughnut.Size = new System.Drawing.Size(747, 316);
+            this.chartDoughnut.Size = new System.Drawing.Size(747, 516);
             this.chartDoughnut.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chartDoughnut.TabIndex = 0;
             // 
@@ -332,13 +331,13 @@ namespace HospitalEquipmentSystem.UI
             this.titlePanel3.Controls.Add(this.chartLine);
             this.titlePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.titlePanel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.titlePanel3.Location = new System.Drawing.Point(8, 374);
+            this.titlePanel3.Location = new System.Drawing.Point(8, 575);
             this.titlePanel3.Margin = new System.Windows.Forms.Padding(8);
             this.titlePanel3.MinimumSize = new System.Drawing.Size(1, 1);
             this.titlePanel3.Name = "titlePanel3";
             this.titlePanel3.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
             this.titlePanel3.ShowText = false;
-            this.titlePanel3.Size = new System.Drawing.Size(749, 351);
+            this.titlePanel3.Size = new System.Drawing.Size(749, 551);
             this.titlePanel3.TabIndex = 2;
             this.titlePanel3.Text = "近12个月借用/归还趋势";
             this.titlePanel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -355,7 +354,7 @@ namespace HospitalEquipmentSystem.UI
             this.chartLine.MinimumSize = new System.Drawing.Size(1, 1);
             this.chartLine.MouseDownType = Sunny.UI.UILineChartMouseDownType.Zoom;
             this.chartLine.Name = "chartLine";
-            this.chartLine.Size = new System.Drawing.Size(747, 316);
+            this.chartLine.Size = new System.Drawing.Size(747, 516);
             this.chartLine.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chartLine.TabIndex = 0;
             // 
@@ -372,7 +371,7 @@ namespace HospitalEquipmentSystem.UI
             this.titlePanel1.Name = "titlePanel1";
             this.titlePanel1.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
             this.titlePanel1.ShowText = false;
-            this.titlePanel1.Size = new System.Drawing.Size(749, 350);
+            this.titlePanel1.Size = new System.Drawing.Size(749, 551);
             this.titlePanel1.TabIndex = 0;
             this.titlePanel1.Text = "设备借用 TOP10";
             this.titlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -388,7 +387,7 @@ namespace HospitalEquipmentSystem.UI
             this.chartBar.Location = new System.Drawing.Point(1, 34);
             this.chartBar.MinimumSize = new System.Drawing.Size(1, 1);
             this.chartBar.Name = "chartBar";
-            this.chartBar.Size = new System.Drawing.Size(747, 315);
+            this.chartBar.Size = new System.Drawing.Size(747, 516);
             this.chartBar.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chartBar.TabIndex = 0;
             // 
@@ -403,7 +402,7 @@ namespace HospitalEquipmentSystem.UI
             this.titlePanel2.Name = "titlePanel2";
             this.titlePanel2.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
             this.titlePanel2.ShowText = false;
-            this.titlePanel2.Size = new System.Drawing.Size(749, 350);
+            this.titlePanel2.Size = new System.Drawing.Size(749, 551);
             this.titlePanel2.TabIndex = 1;
             this.titlePanel2.Text = "科室借用分布";
             this.titlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -419,7 +418,7 @@ namespace HospitalEquipmentSystem.UI
             this.chartPie.Location = new System.Drawing.Point(1, 34);
             this.chartPie.MinimumSize = new System.Drawing.Size(1, 1);
             this.chartPie.Name = "chartPie";
-            this.chartPie.Size = new System.Drawing.Size(747, 315);
+            this.chartPie.Size = new System.Drawing.Size(747, 516);
             this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chartPie.TabIndex = 0;
             // 
@@ -433,7 +432,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlCalendar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCalendar.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlCalendar.Name = "pnlCalendar";
-            this.pnlCalendar.Size = new System.Drawing.Size(1530, 733);
+            this.pnlCalendar.Size = new System.Drawing.Size(1739, 1134);
             this.pnlCalendar.TabIndex = 1;
             this.pnlCalendar.Text = null;
             this.pnlCalendar.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -449,7 +448,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlCalendarRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCalendarRight.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlCalendarRight.Name = "pnlCalendarRight";
-            this.pnlCalendarRight.Size = new System.Drawing.Size(1530, 526);
+            this.pnlCalendarRight.Size = new System.Drawing.Size(1739, 890);
             this.pnlCalendarRight.TabIndex = 1;
             this.pnlCalendarRight.Text = null;
             this.pnlCalendarRight.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -467,7 +466,7 @@ namespace HospitalEquipmentSystem.UI
             this.lstCalendar.Name = "lstCalendar";
             this.lstCalendar.Padding = new System.Windows.Forms.Padding(2);
             this.lstCalendar.ShowText = false;
-            this.lstCalendar.Size = new System.Drawing.Size(1530, 490);
+            this.lstCalendar.Size = new System.Drawing.Size(1739, 854);
             this.lstCalendar.TabIndex = 1;
             this.lstCalendar.Text = null;
             // 
@@ -478,7 +477,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblCalendarHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.lblCalendarHint.Location = new System.Drawing.Point(0, 0);
             this.lblCalendarHint.Name = "lblCalendarHint";
-            this.lblCalendarHint.Size = new System.Drawing.Size(1530, 36);
+            this.lblCalendarHint.Size = new System.Drawing.Size(1739, 36);
             this.lblCalendarHint.TabIndex = 0;
             this.lblCalendarHint.Text = "选择日期查看当日应还借用";
             this.lblCalendarHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -502,7 +501,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlList.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(1530, 733);
+            this.pnlList.Size = new System.Drawing.Size(1739, 1134);
             this.pnlList.TabIndex = 0;
             this.pnlList.Text = null;
             this.pnlList.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -537,20 +536,20 @@ namespace HospitalEquipmentSystem.UI
             this.dgvList.Location = new System.Drawing.Point(0, 0);
             this.dgvList.Name = "dgvList";
             this.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvList.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvList.SelectedIndex = -1;
-            this.dgvList.Size = new System.Drawing.Size(1530, 733);
+            this.dgvList.Size = new System.Drawing.Size(1739, 1134);
             this.dgvList.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.dgvList.TabIndex = 0;
             // 
@@ -579,7 +578,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlToolbar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlToolbar.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlToolbar.Name = "pnlToolbar";
-            this.pnlToolbar.Size = new System.Drawing.Size(1530, 88);
+            this.pnlToolbar.Size = new System.Drawing.Size(1739, 88);
             this.pnlToolbar.TabIndex = 1;
             this.pnlToolbar.Text = null;
             this.pnlToolbar.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -834,7 +833,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlStats.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlStats.Name = "pnlStats";
-            this.pnlStats.Size = new System.Drawing.Size(1530, 110);
+            this.pnlStats.Size = new System.Drawing.Size(1739, 110);
             this.pnlStats.TabIndex = 0;
             this.pnlStats.Text = null;
             this.pnlStats.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -856,7 +855,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiTableLayoutPanel1.Padding = new System.Windows.Forms.Padding(12, 8, 12, 8);
             this.uiTableLayoutPanel1.RowCount = 1;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1530, 110);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1739, 110);
             this.uiTableLayoutPanel1.TabIndex = 0;
             this.uiTableLayoutPanel1.TagString = null;
             // 
@@ -866,12 +865,12 @@ namespace HospitalEquipmentSystem.UI
             this.cardDueToday.Controls.Add(this.lblDueTodayValue);
             this.cardDueToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardDueToday.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cardDueToday.Location = new System.Drawing.Point(1144, 12);
+            this.cardDueToday.Location = new System.Drawing.Point(1300, 12);
             this.cardDueToday.Margin = new System.Windows.Forms.Padding(4);
             this.cardDueToday.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardDueToday.Name = "cardDueToday";
             this.cardDueToday.RectColor = System.Drawing.Color.DimGray;
-            this.cardDueToday.Size = new System.Drawing.Size(370, 86);
+            this.cardDueToday.Size = new System.Drawing.Size(423, 86);
             this.cardDueToday.TabIndex = 3;
             this.cardDueToday.Text = null;
             this.cardDueToday.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -905,12 +904,12 @@ namespace HospitalEquipmentSystem.UI
             this.cardOverdue.Controls.Add(this.lblOverdueValue);
             this.cardOverdue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardOverdue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cardOverdue.Location = new System.Drawing.Point(768, 12);
+            this.cardOverdue.Location = new System.Drawing.Point(872, 12);
             this.cardOverdue.Margin = new System.Windows.Forms.Padding(4);
             this.cardOverdue.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardOverdue.Name = "cardOverdue";
             this.cardOverdue.RectColor = System.Drawing.Color.DimGray;
-            this.cardOverdue.Size = new System.Drawing.Size(368, 86);
+            this.cardOverdue.Size = new System.Drawing.Size(420, 86);
             this.cardOverdue.TabIndex = 2;
             this.cardOverdue.Text = null;
             this.cardOverdue.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -945,12 +944,12 @@ namespace HospitalEquipmentSystem.UI
             this.cardBorrowing.Controls.Add(this.lblBorrowingValue);
             this.cardBorrowing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardBorrowing.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cardBorrowing.Location = new System.Drawing.Point(392, 12);
+            this.cardBorrowing.Location = new System.Drawing.Point(444, 12);
             this.cardBorrowing.Margin = new System.Windows.Forms.Padding(4);
             this.cardBorrowing.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardBorrowing.Name = "cardBorrowing";
             this.cardBorrowing.RectColor = System.Drawing.Color.DimGray;
-            this.cardBorrowing.Size = new System.Drawing.Size(368, 86);
+            this.cardBorrowing.Size = new System.Drawing.Size(420, 86);
             this.cardBorrowing.TabIndex = 1;
             this.cardBorrowing.Text = null;
             this.cardBorrowing.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -990,7 +989,7 @@ namespace HospitalEquipmentSystem.UI
             this.cardPending.Name = "cardPending";
             this.cardPending.RectColor = System.Drawing.Color.DimGray;
             this.cardPending.RectDisableColor = System.Drawing.Color.White;
-            this.cardPending.Size = new System.Drawing.Size(368, 86);
+            this.cardPending.Size = new System.Drawing.Size(420, 86);
             this.cardPending.TabIndex = 0;
             this.cardPending.Text = null;
             this.cardPending.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1022,7 +1021,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1530, 1085);
+            this.ClientSize = new System.Drawing.Size(1739, 1486);
             this.Controls.Add(this.uiPanelBody);
             this.Controls.Add(this.uiPanelPager);
             this.Controls.Add(this.uiPanelHeader);
