@@ -5,6 +5,7 @@ using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI.Dashboard
@@ -31,24 +32,34 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             formsPlot1.MouseMove += FormsPlot1_MouseMove;
         }
 
-        private void StatisticsForm_Load(object sender, EventArgs e)
+        private async void StatisticsForm_Load(object sender, EventArgs e)
         {
             // 关闭DataGridView的自动创建列功能
             uiDataGridView1.AutoGenerateColumns = false;
 
-            LoadStatisticCardsAsync();
-            LoadDeviceStatusChartAsync();
-            LoadDeviceUsageChartAsync();
-            LoadMaintenanceTrendChartAsync();
-            LoadRealTimeAlarmListAsync();
+            // 第一阶段：获取公共数据
+            cardDto = await _equipmentBLL.GetStatisticCardDataAsync();
+
+
+            // 第二阶段：立即显示依赖数据
+            LoadStatisticCards(cardDto);
+            LoadDeviceStatusChart(cardDto);
+
+
+            // 第三阶段：独立数据并行加载
+            await Task.WhenAll(
+                LoadDeviceUsageChartAsync(),
+                LoadMaintenanceTrendChartAsync(),
+                LoadRealTimeAlarmListAsync()
+            );
         }
 
         /// <summary>
         /// 加载实时报警列表
         /// </summary>
-        private async void LoadRealTimeAlarmListAsync()
+        private async Task LoadRealTimeAlarmListAsync()
         {
-            List<MaintenanceRecordsDto> alarmList = _maintenanceRecordsBLL.GetAlarmList();
+            List<MaintenanceRecordsDto> alarmList = await _maintenanceRecordsBLL.GetAlarmListAsync();
 
             uiDataGridView1.DataSource = alarmList;
         }
@@ -56,12 +67,10 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 加载统计卡片内容
         /// </summary>
-        private async void LoadStatisticCardsAsync()
+        private void LoadStatisticCards(StatisticCardDto cardDto)
         {
             try
             {
-                cardDto = _equipmentBLL.GetStatisticCardData();
-
                 lblTotalCount.Text = cardDto.TotalCount.ToString();
                 lblNormalCount.Text = cardDto.NormalCount.ToString();
                 lblMaintenanceCount.Text = cardDto.MaintenanceCount.ToString();
@@ -76,7 +85,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 加载设备状态占比饼状图数据
         /// </summary>
-        private async void LoadDeviceStatusChartAsync()
+        private void LoadDeviceStatusChart(StatisticCardDto cardDto)
         {
             // 1. 去掉控件内部的灰底和蓝框，和外层卡片融为一体
             uiDoughnutChart1.FillColor = System.Drawing.Color.White;
@@ -127,11 +136,11 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 从数据库动态加载使用率柱状图
         /// </summary>
-        private async void LoadDeviceUsageChartAsync()
+        private async Task LoadDeviceUsageChartAsync()
         {
             try
             {
-                List<CategoryUsageDto> dt = _equipmentBLL.GetCategoryUsageData();
+                List<CategoryUsageDto> dt = await _equipmentBLL.GetCategoryUsageDataAsync();
 
                 uiBarChart1.FillColor = System.Drawing.Color.White;
                 uiBarChart1.RectColor = System.Drawing.Color.Transparent;
@@ -164,10 +173,10 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 加载最近 6 个月的维保趋势图
         /// </summary>
-        private async void LoadMaintenanceTrendChartAsync()
+        private async Task LoadMaintenanceTrendChartAsync()
         {
             // 1. 通过 BLL 业务逻辑层获取实体数据列表
-            List<MonthlyMaintenanceDto> dtoList = _maintenanceRecordsBLL.GetRecent6MonthsTrend();
+            List<MonthlyMaintenanceDto> dtoList = await _maintenanceRecordsBLL.GetRecent6MonthsTrendAsync();
 
             // 2. 使用 LINQ 一秒提取 ScottPlot 需要的 4 个数组
             monthsX = Enumerable.Range(1, dtoList.Count).Select(i => (double)i).ToArray(); // { 1, 2, 3, 4, 5, 6 }

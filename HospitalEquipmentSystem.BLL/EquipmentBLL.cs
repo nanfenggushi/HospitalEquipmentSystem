@@ -1,6 +1,7 @@
 using HospitalEquipment.DAL;
 using HospitalEquipment.Model.Dashboard;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.BLL
 {
@@ -12,18 +13,18 @@ namespace HospitalEquipment.BLL
         /// 获取各个设备类型的使用率
         /// </summary>
         /// <returns></returns>
-        public List<CategoryUsageDto> GetCategoryUsageData()
+        public async Task<List<CategoryUsageDto>> GetCategoryUsageDataAsync()
         {
-            return _equipmentDAL.GetCategoryUsageData();
+            return await _equipmentDAL.GetCategoryUsageDataAsync();
         }
 
         /// <summary>
         /// 获取首页仪表盘的设备统计卡片汇总数据
         /// </summary>
         /// <returns></returns>
-        public StatisticCardDto GetStatisticCardData()
+        public async Task<StatisticCardDto> GetStatisticCardDataAsync()
         {
-            return _equipmentDAL.GetStatisticCardData();
+            return await _equipmentDAL.GetStatisticCardData();
         }
 
         /// <summary>

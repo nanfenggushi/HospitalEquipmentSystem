@@ -14,7 +14,7 @@ namespace HospitalEquipment.DAL
         /// <summary>
         /// 获取首页仪表盘的设备统计卡片汇总数据
         /// </summary>
-        public StatisticCardDto GetStatisticCardData()
+        public async Task<StatisticCardDto> GetStatisticCardData()
         {
             string sql = @"SELECT 
                          COUNT(*) AS TotalCount,
@@ -26,7 +26,7 @@ namespace HospitalEquipment.DAL
                          SUM(CASE WHEN Status = 'InUse' THEN 1 ELSE 0 END) AS InUseCount
                          FROM Equipment
                          WHERE IsActive = 1;";
-            return DataReaderMapper.MapToList<StatisticCardDto>(DbHelper.ExecuteReader(sql))[0];
+            return DataReaderMapper.MapToList<StatisticCardDto>(await DbHelper.ExecuteReaderAsync(sql))[0];
         }
 
         /// <summary>可借用的设备（空闲且无进行中的借用记录）</summary>
@@ -155,7 +155,7 @@ namespace HospitalEquipment.DAL
         }
 
 
-        public List<CategoryUsageDto> GetCategoryUsageData()
+        public async Task<List<CategoryUsageDto>> GetCategoryUsageDataAsync()
         {
             string sql = @"SELECT 
                          c.CategoryName,
@@ -170,7 +170,7 @@ namespace HospitalEquipment.DAL
                         GROUP BY c.CategoryId, c.CategoryName;
                          ";
 
-            return DataReaderMapper.MapToList<CategoryUsageDto>(DbHelper.ExecuteReader(sql));
+            return DataReaderMapper.MapToList<CategoryUsageDto>(await DbHelper.ExecuteReaderAsync(sql));
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using HospitalEquipmentSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.DAL
 {
@@ -87,7 +88,7 @@ namespace HospitalEquipment.DAL
             }
         }
 
-        public List<MonthlyMaintenanceDto> GetMaintenanceCounts(DateTime startDate)
+        public async Task<List<MonthlyMaintenanceDto>> GetMaintenanceCountsAsync(DateTime startDate)
         {
             string sql = @"SELECT 
                         Y AS Year,                      
@@ -111,11 +112,11 @@ namespace HospitalEquipment.DAL
                     ORDER BY Y, M;";
 
             return DataReaderMapper.MapToList<MonthlyMaintenanceDto>
-                (DbHelper.ExecuteReader(sql, new SqlParameter("StartDate", startDate)));
+                (await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("StartDate", startDate)));
         }
 
 
-        public List<MaintenanceRecordsDto> GetAlarmList()
+        public async Task<List<MaintenanceRecordsDto>> GetAlarmListAsync()
         {
             string sql = @"SELECT Equipment.EquipmentName, MaintenanceRecords.FaultDesc, 
                         MaintenanceRecords.Urgency, MaintenanceRecords.ReportTime
@@ -130,7 +131,7 @@ namespace HospitalEquipment.DAL
                         ReportTime DESC
                         ";
 
-            return DataReaderMapper.MapToList<MaintenanceRecordsDto>(DbHelper.ExecuteReader(sql));
+            return DataReaderMapper.MapToList<MaintenanceRecordsDto>(await DbHelper.ExecuteReaderAsync(sql));
         }
     }
 }

@@ -2,6 +2,7 @@
 using HospitalEquipment.Model.Dashboard;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.BLL
 {
@@ -13,19 +14,19 @@ namespace HospitalEquipment.BLL
         /// 获取实时报警列表
         /// </summary>
         /// <returns></returns>
-        public List<MaintenanceRecordsDto> GetAlarmList()
+        public async Task<List<MaintenanceRecordsDto>> GetAlarmListAsync()
         {
-            return _maintenanceRecordDAL.GetAlarmList();
+            return await _maintenanceRecordDAL.GetAlarmListAsync();
         }
 
-        public List<MonthlyMaintenanceDto> GetRecent6MonthsTrend()
+        public async Task<List<MonthlyMaintenanceDto>> GetRecent6MonthsTrendAsync()
         {
             DateTime baseDate = DateTime.Now;
             // 生成查询的开始时间
             DateTime startDate = new DateTime(baseDate.AddMonths(-5).Year, baseDate.AddMonths(-5).Month, 1);
 
             // 1. 一次性从数据库查出有数据的实体列表
-            List<MonthlyMaintenanceDto> dbList = _maintenanceRecordDAL.GetMaintenanceCounts(startDate);
+            List<MonthlyMaintenanceDto> dbList = await _maintenanceRecordDAL.GetMaintenanceCountsAsync(startDate);
 
             // 2. 补全连续 6 个月的列表 (如果某月数据库没数据，自动补 0)
             List<MonthlyMaintenanceDto> fullList = new List<MonthlyMaintenanceDto>();
