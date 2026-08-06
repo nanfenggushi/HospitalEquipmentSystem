@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace HospitalEquipmentSystem.Common
 {
@@ -38,6 +39,39 @@ namespace HospitalEquipmentSystem.Common
                         SqlParameter clonedParam = (SqlParameter)((ICloneable)p).Clone();
 
                         // 2. 自动将 C# 的 null 转换为数据库的 DBNull.Value，防止 ADO.NET 传参报错
+                        if (clonedParam.Value == null)
+                        {
+                            clonedParam.Value = DBNull.Value;
+                        }
+
+                        cmd.Parameters.Add(clonedParam);
+                    }
+                }
+            }
+
+            return cmd;
+        }
+
+        /// <summary>
+        /// 异步准备并配置 SqlCommand 对象
+        /// </summary>
+        private static async Task<SqlCommand> PrepareCommandAsync(SqlConnection conn, string sql, CommandType cmdType, SqlParameter[] parameters)
+        {
+            if (conn.State != ConnectionState.Open)
+            {
+                await conn.OpenAsync().ConfigureAwait(false);
+            }
+
+            SqlCommand cmd = new SqlCommand(sql, conn) { CommandType = cmdType };
+
+            if (parameters != null && parameters.Length > 0)
+            {
+                foreach (var p in parameters)
+                {
+                    if (p != null)
+                    {
+                        SqlParameter clonedParam = (SqlParameter)((ICloneable)p).Clone();
+
                         if (clonedParam.Value == null)
                         {
                             clonedParam.Value = DBNull.Value;
@@ -123,6 +157,49 @@ namespace HospitalEquipmentSystem.Common
         }
 
         /// <summary>
+        /// 异步执行 SQL 语句，返回受影响的行数
+        /// </summary>
+        public static async Task<int> ExecuteNonQueryAsync(string sql, params SqlParameter[] parameters)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnStr))
+            using (SqlCommand cmd = await PrepareCommandAsync(conn, sql, CommandType.Text, parameters).ConfigureAwait(false))
+            {
+                return await cmd.ExecuteNonQueryAsync().ConfigureAwait(false);
+            }
+        }
+
+        /// <summary>
+        /// 异步执行 SQL 查询，返回第一行第一列的值
+        /// </summary>
+        public static async Task<object> ExecuteScalarAsync(string sql, params SqlParameter[] parameters)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnStr))
+            using (SqlCommand cmd = await PrepareCommandAsync(conn, sql, CommandType.Text, parameters).ConfigureAwait(false))
+            {
+                object val = await cmd.ExecuteScalarAsync().ConfigureAwait(false);
+                return (val == DBNull.Value) ? null : val;
+            }
+        }
+
+        /// <summary>
+        /// 异步执行 SQL 查询，返回 SqlDataReader 用于逐行读取
+        /// </summary>
+        public static async Task<SqlDataReader> ExecuteReaderAsync(string sql, params SqlParameter[] parameters)
+        {
+            SqlConnection conn = new SqlConnection(ConnStr);
+            try
+            {
+                SqlCommand cmd = await PrepareCommandAsync(conn, sql, CommandType.Text, parameters).ConfigureAwait(false);
+                return await cmd.ExecuteReaderAsync(CommandBehavior.CloseConnection).ConfigureAwait(false);
+            }
+            catch
+            {
+                conn.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
         /// 执行 SQL 查询，返回 SqlDataReader 用于逐行读取（请注意：外部读取完毕后必须 Close/Dispose Reader）
         /// </summary>
         /// <param name="sql">SQL 语句</param>
@@ -182,5 +259,6 @@ namespace HospitalEquipmentSystem.Common
                 return affectedRows;
             }
         }
+
     }
 }

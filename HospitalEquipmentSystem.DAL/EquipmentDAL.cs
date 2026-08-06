@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.DAL
 {
@@ -165,7 +166,7 @@ namespace HospitalEquipment.DAL
         /// <summary>
         /// 分页查询设备列表（支持搜索、状态、科室过滤）
         /// </summary>
-        public (List<Equipment> list, int total) GetPaged(
+        public async Task<(List<Equipment> list, int total)> GetPaged(
             int pageIndex,
             int pageSize,
             string keyword = "",
@@ -198,7 +199,7 @@ namespace HospitalEquipment.DAL
 
             // 1. 查询总数（使用 conditionParams）
             string countSql = $"SELECT COUNT(*) FROM Equipment e {whereClause}";
-            object countResult = DbHelper.ExecuteScalar(countSql, conditionParams.ToArray());
+            object countResult = await DbHelper.ExecuteScalarAsync(countSql, conditionParams.ToArray()).ConfigureAwait(false);
             int total = countResult != null ? Convert.ToInt32(countResult) : 0;
 
             // 2. 查询分页数据（重新创建参数对象，不重用之前的）
@@ -239,10 +240,12 @@ namespace HospitalEquipment.DAL
         ORDER BY e.EquipmentId DESC
         OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
 
-            SqlDataReader reader = DbHelper.ExecuteReader(sql, pagedParams.ToArray());
-            if (reader == null) return (new List<Equipment>(), total);
-            var list = DataReaderMapper.MapToList<Equipment>(reader);
-            return (list, total);
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, pagedParams.ToArray()).ConfigureAwait(false))
+            {
+                if (reader == null) return (new List<Equipment>(), total);
+                var list = DataReaderMapper.MapToList<Equipment>(reader);
+                return (list, total);
+            }
         }
 
         /// <summary>
@@ -357,18 +360,19 @@ namespace HospitalEquipment.DAL
         /// <summary>
         /// 获取所有启用科室（用于筛选下拉）
         /// </summary>
-        public List<KeyValuePair<int, string>> GetDepartments()
+        public async Task<List<KeyValuePair<int, string>>> GetDepartments()
         {
             string sql = "SELECT DeptId, DeptName FROM Departments WHERE IsActive = 1 ORDER BY DeptName";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql);
             var list = new List<KeyValuePair<int, string>>();
-            if (reader == null)
-                return list;  // 连接失败返回空列表
-            while (reader.Read())
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
             {
-                list.Add(new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)));
+                if (reader == null)
+                    return list;  // 连接失败返回空列表
+                while (await reader.ReadAsync().ConfigureAwait(false))
+                {
+                    list.Add(new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)));
+                }
             }
-            reader.Close();
             return list;
         }
 

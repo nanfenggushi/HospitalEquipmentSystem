@@ -12,7 +12,7 @@ namespace HospitalEquipment.DAL
 {
     public class SupplierDAL
     {
-        public List<Supplier> GetAll()
+        public async Task<List<Supplier>> GetAll()
         {
             string sql= @"SELECT SupplierId, SupplierName, 
                                   ISNULL(SupplierCode, '') AS SupplierCode,
@@ -23,15 +23,17 @@ namespace HospitalEquipment.DAL
                                   ISNULL(Remark, '') AS Remark,
                                   IsActive, CreatedAt
                            FROM Suppliers ORDER BY SupplierName";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql);
-            if (reader==null)return  new List<Supplier>();
-            return DataReaderMapper.MapToList<Supplier>(reader);
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
+            {
+                if (reader == null) return new List<Supplier>();
+                return DataReaderMapper.MapToList<Supplier>(reader);
+            }
         }
         /// <summary>
         /// 获取所有启用的供应商（用于下拉框）
         /// </summary>
         /// <returns></returns>
-        public List<Supplier> GetActive()
+        public async Task<List<Supplier>> GetActive()
         {
             string sql = @"SELECT SupplierId, SupplierName, 
                                   ISNULL(SupplierCode, '') AS SupplierCode,
@@ -42,16 +44,18 @@ namespace HospitalEquipment.DAL
                                   ISNULL(Remark, '') AS Remark,
                                   IsActive, CreatedAt
                            FROM Suppliers WHERE IsActive=1 ORDER BY SupplierName";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql);
-            if (reader == null) return new List<Supplier>();
-            return DataReaderMapper.MapToList<Supplier>(reader);
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
+            {
+                if (reader == null) return new List<Supplier>();
+                return DataReaderMapper.MapToList<Supplier>(reader);
+            }
         }
         /// <summary>
         /// 根据ID获取供应商详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Supplier GetById(int id) 
+        public async Task<Supplier> GetById(int id)
         {
             string sql = @"SELECT SupplierId, SupplierName, 
                                   ISNULL(SupplierCode, '') AS SupplierCode,
@@ -62,14 +66,16 @@ namespace HospitalEquipment.DAL
                                   ISNULL(Remark, '') AS Remark,
                                   IsActive, CreatedAt
                            FROM Suppliers WHERE SupplierId = @Id";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql, new SqlParameter("@Id", id));
-            List<Supplier> list = DataReaderMapper.MapToList<Supplier>(reader);
-            return list.Count > 0 ? list[0] : null;
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("@Id", id)).ConfigureAwait(false))
+            {
+                List<Supplier> list = DataReaderMapper.MapToList<Supplier>(reader);
+                return list.Count > 0 ? list[0] : null;
+            }
         }
         /// <summary>
         /// 新增供应商（使用 ?? "" 将 NULL 转为空字符串）
         /// </summary>
-        public int Insert(Supplier supplier)
+        public async Task<int> Insert(Supplier supplier)
         {
             string sql = @"INSERT INTO Suppliers 
                            (SupplierName, SupplierCode, ContactPerson, Phone, Email, Address, Website, Remark, IsActive)
@@ -85,13 +91,13 @@ namespace HospitalEquipment.DAL
                 new SqlParameter("@Remark", supplier.Remark ?? ""),
                 new SqlParameter("@IsActive", supplier.IsActive)
             };
-            return DbHelper.ExecuteNonQuery(sql, parameters);
+            return await DbHelper.ExecuteNonQueryAsync(sql, parameters).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 更新供应商（使用 ?? "" 将 NULL 转为空字符串）
         /// </summary>
-        public int Update(Supplier supplier)
+        public async Task<int> Update(Supplier supplier)
         {
             string sql = @"UPDATE Suppliers SET 
                            SupplierName = @Name,
@@ -116,44 +122,44 @@ namespace HospitalEquipment.DAL
                 new SqlParameter("@Remark", supplier.Remark ?? ""),
                 new SqlParameter("@IsActive", supplier.IsActive)
             };
-            return DbHelper.ExecuteNonQuery(sql, parameters);
+            return await DbHelper.ExecuteNonQueryAsync(sql, parameters).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 删除供应商（软删除）
         /// </summary>
-        public int Delete(int id)
+        public async Task<int> Delete(int id)
         {
             string sql = "UPDATE Suppliers SET IsActive = 0 WHERE SupplierId = @Id";
-            return DbHelper.ExecuteNonQuery(sql, new SqlParameter("@Id", id));
+            return await DbHelper.ExecuteNonQueryAsync(sql, new SqlParameter("@Id", id)).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 检查供应商是否被设备引用
         /// </summary>
-        public int GetEquipmentCount(int supplierId)
+        public async Task<int> GetEquipmentCount(int supplierId)
         {
             string sql = "SELECT COUNT(*) FROM Equipment WHERE SupplierId = @SupplierId";
-            object result = DbHelper.ExecuteScalar(sql, new SqlParameter("@SupplierId", supplierId));
+            object result = await DbHelper.ExecuteScalarAsync(sql, new SqlParameter("@SupplierId", supplierId)).ConfigureAwait(false);
             return result != null ? Convert.ToInt32(result) : 0;
         }
 
         /// <summary>
         /// 检查供应商名称是否重复
         /// </summary>
-        public bool IsNameExists(string name, int excludeId = 0)
+        public async Task<bool> IsNameExists(string name, int excludeId = 0)
         {
             string sql = "SELECT COUNT(*) FROM Suppliers WHERE SupplierName = @Name AND SupplierId != @Id";
-            object result = DbHelper.ExecuteScalar(sql,
+            object result = await DbHelper.ExecuteScalarAsync(sql,
                 new SqlParameter("@Name", name),
-                new SqlParameter("@Id", excludeId));
+                new SqlParameter("@Id", excludeId)).ConfigureAwait(false);
             return result != null && Convert.ToInt32(result) > 0;
         }
 
         /// <summary>
         /// 搜索供应商
         /// </summary>
-        public List<Supplier> Search(string keyword)
+        public async Task<List<Supplier>> Search(string keyword)
         {
             string sql = @"SELECT SupplierId, SupplierName, 
                                   ISNULL(SupplierCode, '') AS SupplierCode,
@@ -166,9 +172,11 @@ namespace HospitalEquipment.DAL
                            FROM Suppliers 
                            WHERE SupplierName LIKE @Keyword OR SupplierCode LIKE @Keyword OR ContactPerson LIKE @Keyword
                            ORDER BY SupplierName";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql, new SqlParameter("@Keyword", $"%{keyword}%"));
-            if (reader == null) return new List<Supplier>();
-            return DataReaderMapper.MapToList<Supplier>(reader);
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("@Keyword", $"%{keyword}%")).ConfigureAwait(false))
+            {
+                if (reader == null) return new List<Supplier>();
+                return DataReaderMapper.MapToList<Supplier>(reader);
+            }
         }
     
 

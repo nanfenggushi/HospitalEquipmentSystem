@@ -39,5 +39,38 @@ namespace HospitalEquipment.Model
 
         /// <summary>记录创建时间</summary>
         public DateTime CreatedAt { get; set; }
+ //========== 以下为扩展字段（非数据库列，用于显示关联信息） ==========
+
+        /// <summary>
+        /// 设备名称（关联 Equipment 表查询得到）
+        /// </summary>
+        public string EquipmentName { get; set; }
+
+        /// <summary>
+        /// 设备编号（关联 Equipment 表查询得到）
+        /// </summary>
+        public string EquipmentNo { get; set; }
+
+        /// <summary>
+        /// 操作人姓名（关联 Users 表查询得到）
+        /// </summary>
+        public string OperatorName { get; set; }
+
+        /// <summary>
+        /// 审核状态中文显示
+        /// </summary>
+        public string AuditStatusText
+        {
+            get
+            {
+                switch (AuditStatus)
+                {
+                    case "Pending": return "待审核";
+                    case "Approved": return "已通过";
+                    case "Rejected": return "已驳回";
+                    default: return AuditStatus ?? "";
+                }
+            }
+        }
     }
 }

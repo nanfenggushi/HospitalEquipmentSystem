@@ -481,8 +481,9 @@
             this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
             this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(1, 70, 1, 1);
+            this.uiTitlePanel1.Radius = 1;
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(987, 80);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(987, 1);
             this.uiTitlePanel1.TabIndex = 14;
             this.uiTitlePanel1.Text = "实时报警流";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -505,7 +506,7 @@
             this.uiFlowLayoutPanel1.Radius = 1;
             this.uiFlowLayoutPanel1.RectColor = System.Drawing.Color.Transparent;
             this.uiFlowLayoutPanel1.ShowText = false;
-            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(985, 9);
+            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(985, 1);
             this.uiFlowLayoutPanel1.TabIndex = 0;
             this.uiFlowLayoutPanel1.Text = "uiFlowLayoutPanel1";
             this.uiFlowLayoutPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -734,7 +735,7 @@
             this.uiPanel9.Controls.Add(this.uiSymbolLabel1);
             this.uiPanel9.FillColor = System.Drawing.Color.White;
             this.uiPanel9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel9.Location = new System.Drawing.Point(932, 1174);
+            this.uiPanel9.Location = new System.Drawing.Point(932, 963);
             this.uiPanel9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel9.Name = "uiPanel9";
@@ -790,7 +791,7 @@
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(1533, 1313);
+            this.ClientSize = new System.Drawing.Size(1533, 1102);
             this.Controls.Add(this.uiPanel9);
             this.Controls.Add(this.uiTitlePanel2);
             this.Controls.Add(this.uiTitlePanel1);

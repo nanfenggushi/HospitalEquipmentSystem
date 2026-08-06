@@ -18,31 +18,35 @@ namespace HospitalEquipment.DAL.management
         /// <summary>
         /// 获取全部分类(扁平列表)
         /// </summary>
-        public List<Category> GetAll()
+        public async Task<List<Category>> GetAll()
         {
             string sql = @"SELECT CategoryId, CategoryName AS Name, ParentId, SortOrder, CategoryCode AS Code, Description 
                    FROM EquipmentCategories ORDER BY SortOrder";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql);
-            if (reader == null) return new List<Category>();
-            return HospitalEquipmentSystem.Common.DataReaderMapper.MapToList<Category>(reader);
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
+            {
+                if (reader == null) return new List<Category>();
+                return HospitalEquipmentSystem.Common.DataReaderMapper.MapToList<Category>(reader);
+            }
         }
 
         /// <summary>
         /// 根据ID获取分类
         /// </summary>
-        public Category GetById(int id)
+        public async Task<Category> GetById(int id)
         {
             string sql = @"SELECT CategoryId, CategoryName AS Name, ParentId, SortOrder, CategoryCode AS Code, Description 
                    FROM EquipmentCategories WHERE CategoryId = @Id";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql, new SqlParameter("@Id", id));
-            List<Category> list = HospitalEquipmentSystem.Common.DataReaderMapper.MapToList<Category>(reader);
-            return list.Count > 0 ? list[0] : null;
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("@Id", id)).ConfigureAwait(false))
+            {
+                List<Category> list = HospitalEquipmentSystem.Common.DataReaderMapper.MapToList<Category>(reader);
+                return list.Count > 0 ? list[0] : null;
+            }
         }
 
         /// <summary>
         /// 新增分类
         /// </summary>
-        public int Insert(Category category)
+        public async Task<int> Insert(Category category)
         {
             string sql = @"INSERT INTO EquipmentCategories (CategoryName, ParentId, SortOrder, CategoryCode, Description)
                            VALUES (@Name, @ParentId, @SortOrder, @Code, @Description)";
@@ -53,13 +57,13 @@ namespace HospitalEquipment.DAL.management
                 new SqlParameter("@Code", category.Code ?? ""),
                 new SqlParameter("@Description", category.Description ?? "")
             };
-            return DbHelper.ExecuteNonQuery(sql, parameters);
+            return await DbHelper.ExecuteNonQueryAsync(sql, parameters).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 更新分类
         /// </summary>
-        public int Update(Category category)
+        public async Task<int> Update(Category category)
         {
             string sql = @"UPDATE EquipmentCategories SET CategoryName = @Name, ParentId = @ParentId,
                           SortOrder = @SortOrder, CategoryCode = @Code, Description = @Description WHERE CategoryId = @Id";
@@ -71,34 +75,34 @@ namespace HospitalEquipment.DAL.management
                 new SqlParameter("@Code", category.Code ?? ""),
                 new SqlParameter("@Description", category.Description ?? "")
             };
-            return DbHelper.ExecuteNonQuery(sql, parameters);
+            return await DbHelper.ExecuteNonQueryAsync(sql, parameters).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 删除分类
         /// </summary>
-        public int Delete(int id)
+        public async Task<int> Delete(int id)
         {
             string sql = "DELETE FROM EquipmentCategories WHERE CategoryId = @Id";
-            return DbHelper.ExecuteNonQuery(sql, new SqlParameter("@Id", id));
+            return await DbHelper.ExecuteNonQueryAsync(sql, new SqlParameter("@Id", id)).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 获取某个分类下的子分类数量
         /// </summary>
-        public int GetChildCount(int parentId)
+        public async Task<int> GetChildCount(int parentId)
         {
             string sql = "SELECT COUNT(*) FROM EquipmentCategories WHERE ParentId = @ParentId";
-            object result = DbHelper.ExecuteScalar(sql, new SqlParameter("@ParentId", parentId));
+            object result = await DbHelper.ExecuteScalarAsync(sql, new SqlParameter("@ParentId", parentId)).ConfigureAwait(false);
             return result != null ? Convert.ToInt32(result) : 0;
         }
         /// <summary>
         /// 获取某个分类下的设备数量
         /// </summary>
-        public int GetEquipmentCount(int categoryId)
+        public async Task<int> GetEquipmentCount(int categoryId)
         {
             string sql = "SELECT COUNT(*) FROM Equipment WHERE CategoryId = @CategoryId";
-            object result = DbHelper.ExecuteScalar(sql, new SqlParameter("@CategoryId", categoryId));
+            object result = await DbHelper.ExecuteScalarAsync(sql, new SqlParameter("@CategoryId", categoryId)).ConfigureAwait(false);
             return result != null ? Convert.ToInt32(result) : 0;
         }
     }

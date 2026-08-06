@@ -4,6 +4,7 @@ using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI.management
@@ -18,7 +19,7 @@ namespace HospitalEquipmentSystem.UI.management
             InitializeComponent();
         }
 
-        private void Classification_Load(object sender, EventArgs e)
+        private async void Classification_Load(object sender, EventArgs e)
         {
             // 绑定按钮事件（如果设计器未绑定，在此统一绑定）
             this.uiButton1.Click += uiButton1_Click;        // 新增根分类
@@ -26,11 +27,18 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton3.Click += uiButton3_Click;        // 删除
             this.uiButton5.Click += uiButton5_Click;        // 取消
 
-            LoadCategoryTree();
-            LoadParentComboBox();
+            try
+            {
+                await LoadCategoryTree();
+                await LoadParentComboBox();
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.Show($"加载分类数据失败：{ex.Message}", "错误", UIStyle.Red);
+            }
             EnableEdit(false);      // 初始禁用编辑区
             ClearEditFields();      // 清空所有输入
-            UpdateStatistics(null); // 清空统计信息
+            await UpdateStatistics(null); // 清空统计信息
         }
 
         #region 数据加载
@@ -38,11 +46,11 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 加载分类树
         /// </summary>
-        private void LoadCategoryTree()
+        private async Task LoadCategoryTree()
         {
             uiTreeView1.Nodes.Clear();
 
-            List<Category> allCategories = categoryManager.GetAll();
+            List<Category> allCategories = await categoryManager.GetAll();
             var roots = allCategories.Where(c => c.ParentId == null)
                                      .OrderBy(c => c.SortOrder)
                                      .ToList();
@@ -59,7 +67,7 @@ namespace HospitalEquipmentSystem.UI.management
             currentCategoryId = null;
             ClearEditFields();
             EnableEdit(false);
-            UpdateStatistics(null);
+            await UpdateStatistics(null);
         }
 
         /// <summary>
@@ -84,9 +92,9 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 加载上级分类下拉框
         /// </summary>
-        private void LoadParentComboBox()
+        private async Task LoadParentComboBox()
         {
-            List<Category> allCats = categoryManager.GetAll();
+            List<Category> allCats = await categoryManager.GetAll();
 
             var items = new List<KeyValuePair<int, string>>();
             items.Add(new KeyValuePair<int, string>(-1, "（顶级分类）"));
@@ -137,7 +145,7 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 更新统计信息（设备数量、描述）
         /// </summary>
-        private void UpdateStatistics(Category category)
+        private async Task UpdateStatistics(Category category)
         {
             if (category == null)
             {
@@ -147,10 +155,10 @@ namespace HospitalEquipmentSystem.UI.management
                 return;
             }
 
-            int directCount = categoryManager.GetEquipmentCount(category.CategoryId);
+            int directCount = await categoryManager.GetEquipmentCount(category.CategoryId);
             uiLabel7.Text = $"设备数量: {directCount} 台";
 
-            int totalWithChildren = GetEquipmentCountWithChildren(category.CategoryId);
+            int totalWithChildren = await GetEquipmentCountWithChildren(category.CategoryId);
             uiLabel8.Text = $"含子分类设备: {totalWithChildren} 台";
 
             uiLabel9.Text = $"描述: {category.Description ?? ""}";
@@ -159,13 +167,13 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 递归计算分类及其所有子分类下的设备总数
         /// </summary>
-        private int GetEquipmentCountWithChildren(int categoryId)
+        private async Task<int> GetEquipmentCountWithChildren(int categoryId)
         {
-            int count = categoryManager.GetEquipmentCount(categoryId);
-            var allCats = categoryManager.GetAll();
+            int count = await categoryManager.GetEquipmentCount(categoryId);
+            var allCats = await categoryManager.GetAll();
             var children = allCats.Where(c => c.ParentId == categoryId).ToList();
             foreach (var child in children)
-                count += GetEquipmentCountWithChildren(child.CategoryId);
+                count += await GetEquipmentCountWithChildren(child.CategoryId);
             return count;
         }
 
@@ -173,40 +181,47 @@ namespace HospitalEquipmentSystem.UI.management
 
         #region 树节点事件
 
-        private void uiTreeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
+        private async void uiTreeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
         {
-            if (e.Node == null || e.Node.Tag == null)
+            try
             {
-                currentCategoryId = null;
-                ClearEditFields();
-                EnableEdit(false);
-                UpdateStatistics(null);
-                return;
-            }
+                if (e.Node == null || e.Node.Tag == null)
+                {
+                    currentCategoryId = null;
+                    ClearEditFields();
+                    EnableEdit(false);
+                    await UpdateStatistics(null);
+                    return;
+                }
 
-            int categoryId = (int)e.Node.Tag;
-            Category category = categoryManager.GetById(categoryId);
-            if (category == null)
+                int categoryId = (int)e.Node.Tag;
+                Category category = await categoryManager.GetById(categoryId);
+                if (category == null)
+                {
+                    currentCategoryId = null;
+                    ClearEditFields();
+                    EnableEdit(false);
+                    await UpdateStatistics(null);
+                    return;
+                }
+
+                currentCategoryId = categoryId;
+
+                // 回显数据
+                uiTextBox1.Text = category.Name;
+                uiTextBox2.Text = category.Code ?? "";
+                uiTextBox3.Text = category.SortOrder.ToString();
+                uiTextBox4.Text = category.Description ?? "";
+                int selectedValue = category.ParentId ?? -1;
+                uiComboBox1.SelectedValue = selectedValue;
+
+                EnableEdit(true);
+                await UpdateStatistics(category);
+            }
+            catch (Exception ex)
             {
-                currentCategoryId = null;
-                ClearEditFields();
-                EnableEdit(false);
-                UpdateStatistics(null);
-                return;
+                UIMessageBox.Show($"加载分类信息失败：{ex.Message}", "错误", UIStyle.Red);
             }
-
-            currentCategoryId = categoryId;
-
-            // 回显数据
-            uiTextBox1.Text = category.Name;
-            uiTextBox2.Text = category.Code ?? "";
-            uiTextBox3.Text = category.SortOrder.ToString();
-            uiTextBox4.Text = category.Description ?? "";
-            int selectedValue = category.ParentId ?? -1;
-            uiComboBox1.SelectedValue = selectedValue;
-
-            EnableEdit(true);
-            UpdateStatistics(category);
         }
 
         #endregion
@@ -216,7 +231,7 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 新增根分类
         /// </summary>
-        private void uiButton1_Click(object sender, EventArgs e)
+        private async void uiButton1_Click(object sender, EventArgs e)
         {
             Category newCat = new Category
             {
@@ -229,11 +244,11 @@ namespace HospitalEquipmentSystem.UI.management
 
             try
             {
-                if (categoryManager.Insert(newCat))
+                if (await categoryManager.Insert(newCat))
                 {
                     UIMessageBox.Show("新增根分类成功！", "提示", UIStyle.Green);
-                    LoadCategoryTree();
-                    LoadParentComboBox();
+                    await LoadCategoryTree();
+                    await LoadParentComboBox();
                     // 自动选中新添加的分类（根据ID查找）
                     SelectNodeById(newCat.CategoryId);
                 }
@@ -251,7 +266,7 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 保存分类
         /// </summary>
-        private void uiButton4_Click(object sender, EventArgs e)
+        private async void uiButton4_Click(object sender, EventArgs e)
         {
             if (!currentCategoryId.HasValue)
             {
@@ -259,58 +274,58 @@ namespace HospitalEquipmentSystem.UI.management
                 return;
             }
 
-            Category category = categoryManager.GetById(currentCategoryId.Value);
-            if (category == null)
-            {
-                UIMessageBox.Show("分类不存在，请刷新后重试！", "错误", UIStyle.Red);
-                return;
-            }
-
-            string name = uiTextBox1.Text.Trim();
-            if (string.IsNullOrEmpty(name))
-            {
-                UIMessageBox.Show("分类名称不能为空！", "提示", UIStyle.Green);
-                uiTextBox1.Focus();
-                return;
-            }
-
-            string code = uiTextBox2.Text.Trim();
-            string description = uiTextBox4.Text.Trim();
-
-            if (!int.TryParse(uiTextBox3.Text.Trim(), out int sortOrder))
-            {
-                UIMessageBox.Show("排序号请输入有效的数字！", "提示", UIStyle.Green);
-                uiTextBox3.Focus();
-                return;
-            }
-
-            int? parentId = null;
-            if (uiComboBox1.SelectedValue != null && uiComboBox1.SelectedValue is int)
-            {
-                int val = (int)uiComboBox1.SelectedValue;
-                if (val != -1) parentId = val;
-            }
-
-            // 防止将分类设为自己的子分类（循环引用）
-            if (parentId.HasValue && parentId.Value == category.CategoryId)
-            {
-                UIMessageBox.Show("不能将分类设置为其自身的子分类！", "提示", UIStyle.Green);
-                return;
-            }
-
-            category.Name = name;
-            category.Code = code;
-            category.SortOrder = sortOrder;
-            category.Description = description;
-            category.ParentId = parentId;
-
             try
             {
-                if (categoryManager.Update(category))
+                Category category = await categoryManager.GetById(currentCategoryId.Value);
+                if (category == null)
+                {
+                    UIMessageBox.Show("分类不存在，请刷新后重试！", "错误", UIStyle.Red);
+                    return;
+                }
+
+                string name = uiTextBox1.Text.Trim();
+                if (string.IsNullOrEmpty(name))
+                {
+                    UIMessageBox.Show("分类名称不能为空！", "提示", UIStyle.Green);
+                    uiTextBox1.Focus();
+                    return;
+                }
+
+                string code = uiTextBox2.Text.Trim();
+                string description = uiTextBox4.Text.Trim();
+
+                if (!int.TryParse(uiTextBox3.Text.Trim(), out int sortOrder))
+                {
+                    UIMessageBox.Show("排序号请输入有效的数字！", "提示", UIStyle.Green);
+                    uiTextBox3.Focus();
+                    return;
+                }
+
+                int? parentId = null;
+                if (uiComboBox1.SelectedValue != null && uiComboBox1.SelectedValue is int)
+                {
+                    int val = (int)uiComboBox1.SelectedValue;
+                    if (val != -1) parentId = val;
+                }
+
+                // 防止将分类设为自己的子分类（循环引用）
+                if (parentId.HasValue && parentId.Value == category.CategoryId)
+                {
+                    UIMessageBox.Show("不能将分类设置为其自身的子分类！", "提示", UIStyle.Green);
+                    return;
+                }
+
+                category.Name = name;
+                category.Code = code;
+                category.SortOrder = sortOrder;
+                category.Description = description;
+                category.ParentId = parentId;
+
+                if (await categoryManager.Update(category))
                 {
                     UIMessageBox.Show("保存成功！", "提示", UIStyle.Green);
-                    LoadCategoryTree();
-                    LoadParentComboBox();
+                    await LoadCategoryTree();
+                    await LoadParentComboBox();
                     SelectNodeById(category.CategoryId); // 重新选中当前分类
                 }
                 else
@@ -327,7 +342,7 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 删除分类
         /// </summary>
-        private void uiButton3_Click(object sender, EventArgs e)
+        private async void uiButton3_Click(object sender, EventArgs e)
         {
             if (!currentCategoryId.HasValue)
             {
@@ -341,15 +356,15 @@ namespace HospitalEquipmentSystem.UI.management
             {
                 try
                 {
-                    if (categoryManager.Delete(currentCategoryId.Value))
+                    if (await categoryManager.Delete(currentCategoryId.Value))
                     {
                         UIMessageBox.Show("删除成功！", "提示", UIStyle.Green);
                         currentCategoryId = null;
                         ClearEditFields();
                         EnableEdit(false);
-                        UpdateStatistics(null);
-                        LoadCategoryTree();
-                        LoadParentComboBox();
+                        await UpdateStatistics(null);
+                        await LoadCategoryTree();
+                        await LoadParentComboBox();
                     }
                 }
                 catch (Exception ex)
@@ -362,13 +377,13 @@ namespace HospitalEquipmentSystem.UI.management
         /// <summary>
         /// 取消编辑（清空并禁用编辑区）
         /// </summary>
-        private void uiButton5_Click(object sender, EventArgs e)
+        private async void uiButton5_Click(object sender, EventArgs e)
         {
             ClearEditFields();
             EnableEdit(false);
             uiTreeView1.SelectedNode = null;
             currentCategoryId = null;
-            UpdateStatistics(null);
+            await UpdateStatistics(null);
         }
         #endregion
 

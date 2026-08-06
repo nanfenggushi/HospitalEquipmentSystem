@@ -65,6 +65,7 @@
     <Compile Include="CategoryDAL.cs" />
     <Compile Include="EquipmentDAL.cs" />
     <Compile Include="EquipmentCategoryDAL.cs" />
+    <Compile Include="InboundRecordDAL.cs" />
     <Compile Include="LoginDAL.cs" />
     <Compile Include="MaintenanceDAL.cs" />
     <Compile Include="MaintenanceRecordDAL.cs" />

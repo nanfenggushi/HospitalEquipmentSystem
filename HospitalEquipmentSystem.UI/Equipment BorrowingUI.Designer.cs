@@ -30,10 +30,11 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiPanelHeader = new Sunny.UI.UIPanel();
             this.lblUser = new Sunny.UI.UILabel();
             this.lblTitle = new Sunny.UI.UILabel();
@@ -50,10 +51,10 @@ namespace HospitalEquipmentSystem.UI
             this.chartDoughnut = new Sunny.UI.UIDoughnutChart();
             this.titlePanel3 = new Sunny.UI.UITitlePanel();
             this.chartLine = new Sunny.UI.UILineChart();
-            this.titlePanel2 = new Sunny.UI.UITitlePanel();
-            this.chartPie = new Sunny.UI.UIPieChart();
             this.titlePanel1 = new Sunny.UI.UITitlePanel();
             this.chartBar = new Sunny.UI.UIBarChart();
+            this.titlePanel2 = new Sunny.UI.UITitlePanel();
+            this.chartPie = new Sunny.UI.UIPieChart();
             this.pnlCalendar = new Sunny.UI.UIPanel();
             this.pnlCalendarRight = new Sunny.UI.UIPanel();
             this.lstCalendar = new Sunny.UI.UIListBox();
@@ -101,8 +102,8 @@ namespace HospitalEquipmentSystem.UI
             this.chartLayout.SuspendLayout();
             this.titlePanel4.SuspendLayout();
             this.titlePanel3.SuspendLayout();
-            this.titlePanel2.SuspendLayout();
             this.titlePanel1.SuspendLayout();
+            this.titlePanel2.SuspendLayout();
             this.pnlCalendar.SuspendLayout();
             this.pnlCalendarRight.SuspendLayout();
             this.pnlList.SuspendLayout();
@@ -358,37 +359,6 @@ namespace HospitalEquipmentSystem.UI
             this.chartLine.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chartLine.TabIndex = 0;
             // 
-            // titlePanel2
-            // 
-            this.titlePanel2.Controls.Add(this.chartPie);
-            this.titlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.titlePanel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.titlePanel2.Location = new System.Drawing.Point(773, 8);
-            this.titlePanel2.Margin = new System.Windows.Forms.Padding(8);
-            this.titlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.titlePanel2.Name = "titlePanel2";
-            this.titlePanel2.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
-            this.titlePanel2.ShowText = false;
-            this.titlePanel2.Size = new System.Drawing.Size(749, 350);
-            this.titlePanel2.TabIndex = 1;
-            this.titlePanel2.Text = "科室借用分布";
-            this.titlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.titlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.titlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.titlePanel2.TitleHeight = 34;
-            // 
-            // chartPie
-            // 
-            this.chartPie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartPie.Font = new System.Drawing.Font("宋体", 12F);
-            this.chartPie.LegendFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chartPie.Location = new System.Drawing.Point(1, 34);
-            this.chartPie.MinimumSize = new System.Drawing.Size(1, 1);
-            this.chartPie.Name = "chartPie";
-            this.chartPie.Size = new System.Drawing.Size(747, 315);
-            this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chartPie.TabIndex = 0;
-            // 
             // titlePanel1
             // 
             this.titlePanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -422,6 +392,37 @@ namespace HospitalEquipmentSystem.UI
             this.chartBar.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chartBar.TabIndex = 0;
             // 
+            // titlePanel2
+            // 
+            this.titlePanel2.Controls.Add(this.chartPie);
+            this.titlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel2.Location = new System.Drawing.Point(773, 8);
+            this.titlePanel2.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel2.Name = "titlePanel2";
+            this.titlePanel2.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel2.ShowText = false;
+            this.titlePanel2.Size = new System.Drawing.Size(749, 350);
+            this.titlePanel2.TabIndex = 1;
+            this.titlePanel2.Text = "科室借用分布";
+            this.titlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel2.TitleHeight = 34;
+            // 
+            // chartPie
+            // 
+            this.chartPie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartPie.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartPie.LegendFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.Location = new System.Drawing.Point(1, 34);
+            this.chartPie.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartPie.Name = "chartPie";
+            this.chartPie.Size = new System.Drawing.Size(747, 315);
+            this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.TabIndex = 0;
+            // 
             // pnlCalendar
             // 
             this.pnlCalendar.Controls.Add(this.pnlCalendarRight);
@@ -444,11 +445,11 @@ namespace HospitalEquipmentSystem.UI
             this.pnlCalendarRight.Controls.Add(this.lblCalendarHint);
             this.pnlCalendarRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCalendarRight.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pnlCalendarRight.Location = new System.Drawing.Point(0, 244);
+            this.pnlCalendarRight.Location = new System.Drawing.Point(0, 207);
             this.pnlCalendarRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCalendarRight.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlCalendarRight.Name = "pnlCalendarRight";
-            this.pnlCalendarRight.Size = new System.Drawing.Size(1530, 489);
+            this.pnlCalendarRight.Size = new System.Drawing.Size(1530, 526);
             this.pnlCalendarRight.TabIndex = 1;
             this.pnlCalendarRight.Text = null;
             this.pnlCalendarRight.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -466,7 +467,7 @@ namespace HospitalEquipmentSystem.UI
             this.lstCalendar.Name = "lstCalendar";
             this.lstCalendar.Padding = new System.Windows.Forms.Padding(2);
             this.lstCalendar.ShowText = false;
-            this.lstCalendar.Size = new System.Drawing.Size(1530, 453);
+            this.lstCalendar.Size = new System.Drawing.Size(1530, 490);
             this.lstCalendar.TabIndex = 1;
             this.lstCalendar.Text = null;
             // 
@@ -508,19 +509,27 @@ namespace HospitalEquipmentSystem.UI
             // 
             // dgvList
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgvList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvList.BackgroundColor = System.Drawing.Color.White;
             this.dgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvList.ColumnHeadersHeight = 32;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvList.EnableHeadersVisualStyles = false;
             this.dgvList.Font = new System.Drawing.Font("宋体", 12F);
@@ -528,18 +537,18 @@ namespace HospitalEquipmentSystem.UI
             this.dgvList.Location = new System.Drawing.Point(0, 0);
             this.dgvList.Name = "dgvList";
             this.dgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvList.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvList.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvList.SelectedIndex = -1;
             this.dgvList.Size = new System.Drawing.Size(1530, 733);
             this.dgvList.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
@@ -1031,8 +1040,8 @@ namespace HospitalEquipmentSystem.UI
             this.chartLayout.ResumeLayout(false);
             this.titlePanel4.ResumeLayout(false);
             this.titlePanel3.ResumeLayout(false);
-            this.titlePanel2.ResumeLayout(false);
             this.titlePanel1.ResumeLayout(false);
+            this.titlePanel2.ResumeLayout(false);
             this.pnlCalendar.ResumeLayout(false);
             this.pnlCalendarRight.ResumeLayout(false);
             this.pnlList.ResumeLayout(false);

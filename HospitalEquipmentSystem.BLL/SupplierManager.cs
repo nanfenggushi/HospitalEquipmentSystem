@@ -2,6 +2,7 @@
 using HospitalEquipment.Model;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.BLL
 {
@@ -9,42 +10,42 @@ namespace HospitalEquipment.BLL
     {
         private SupplierDAL dal = new SupplierDAL();
 
-        public List<Supplier> GetAll() => dal.GetAll();
-        public List<Supplier> GetActive() => dal.GetActive();
-        public Supplier GetById(int id) => dal.GetById(id);
+        public async Task<List<Supplier>> GetAll() => await dal.GetAll().ConfigureAwait(false);
+        public async Task<List<Supplier>> GetActive() => await dal.GetActive().ConfigureAwait(false);
+        public async Task<Supplier> GetById(int id) => await dal.GetById(id).ConfigureAwait(false);
 
-        public bool Insert(Supplier supplier)
+        public async Task<bool> Insert(Supplier supplier)
         {
-            Validate(supplier);
-            return dal.Insert(supplier) > 0;
+            await Validate(supplier).ConfigureAwait(false);
+            return await dal.Insert(supplier).ConfigureAwait(false) > 0;
         }
 
-        public bool Update(Supplier supplier)
+        public async Task<bool> Update(Supplier supplier)
         {
-            Validate(supplier);
-            return dal.Update(supplier) > 0;
+            await Validate(supplier).ConfigureAwait(false);
+            return await dal.Update(supplier).ConfigureAwait(false) > 0;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            if (dal.GetEquipmentCount(id) > 0)
+            if (await dal.GetEquipmentCount(id).ConfigureAwait(false) > 0)
                 throw new Exception("该供应商已被设备引用，无法删除！");
-            return dal.Delete(id) > 0;
+            return await dal.Delete(id).ConfigureAwait(false) > 0;
         }
 
-        public List<Supplier> Search(string keyword)
+        public async Task<List<Supplier>> Search(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
-                return dal.GetAll();
-            return dal.Search(keyword);
+                return await dal.GetAll().ConfigureAwait(false);
+            return await dal.Search(keyword).ConfigureAwait(false);
         }
 
-        private void Validate(Supplier supplier)
+        private async Task Validate(Supplier supplier)
         {
             if (string.IsNullOrWhiteSpace(supplier.SupplierName))
                 throw new Exception("供应商名称不能为空");
 
-            if (dal.IsNameExists(supplier.SupplierName, supplier.SupplierId))
+            if (await dal.IsNameExists(supplier.SupplierName, supplier.SupplierId).ConfigureAwait(false))
                 throw new Exception($"供应商 '{supplier.SupplierName}' 已存在！");
         }
     }

@@ -2,6 +2,7 @@
 using HospitalEquipment.Model.management;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.BLL.management
 {
@@ -15,51 +16,51 @@ namespace HospitalEquipment.BLL.management
         /// <summary>
         /// 获取全部分类(扁平列表)
         /// </summary>
-        public List<Category> GetAll()
+        public async Task<List<Category>> GetAll()
         {
-            return dal.GetAll();
+            return await dal.GetAll().ConfigureAwait(false);
         }
 
         /// <summary>
         /// 根据ID获取分类
         /// </summary>
-        public Category GetById(int id)
+        public async Task<Category> GetById(int id)
         {
-            return dal.GetById(id);
+            return await dal.GetById(id).ConfigureAwait(false);
         }
 
         /// <summary>
         /// 新增分类
         /// </summary>
-        public bool Insert(Category category)
+        public async Task<bool> Insert(Category category)
         {
             if (string.IsNullOrWhiteSpace(category.Name))
                 throw new Exception("分类名称不能为空");
-            return dal.Insert(category) > 0;
+            return await dal.Insert(category).ConfigureAwait(false) > 0;
         }
 
         /// <summary>
         /// 更新分类
         /// </summary>
-        public bool Update(Category category)
+        public async Task<bool> Update(Category category)
         {
             if (string.IsNullOrWhiteSpace(category.Name))
                 throw new Exception("分类名称不能为空");
-            return dal.Update(category) > 0;
+            return await dal.Update(category).ConfigureAwait(false) > 0;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            if (dal.GetChildCount(id) > 0)
+            if (await dal.GetChildCount(id).ConfigureAwait(false) > 0)
                 throw new Exception("该分类下还有子分类，请先删除子分类");
-            if (dal.GetEquipmentCount(id) > 0)
+            if (await dal.GetEquipmentCount(id).ConfigureAwait(false) > 0)
                 throw new Exception("该分类下存在设备，请先移除或重新分类设备");
-            return dal.Delete(id) > 0;
+            return await dal.Delete(id).ConfigureAwait(false) > 0;
         }
 
-        public int GetEquipmentCount(int categoryId)
+        public async Task<int> GetEquipmentCount(int categoryId)
         {
-            return dal.GetEquipmentCount(categoryId);
+            return await dal.GetEquipmentCount(categoryId).ConfigureAwait(false);
         }
     }
 }

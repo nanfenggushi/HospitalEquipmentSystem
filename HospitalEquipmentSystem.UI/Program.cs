@@ -21,7 +21,7 @@ namespace HospitalEquipmentSystem.UI
 
             Application.ThreadException += OnThreadException;
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-
+         
             // 先显示登录窗口，登录成功后才进入主界面
             using (var login = new LoginForm())
             {
@@ -33,18 +33,22 @@ namespace HospitalEquipmentSystem.UI
             Application.Run(new SwitchPages());
         }
 
-        private static void OnThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
+        private static void OnThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
             LogCrash(e.Exception);
             MessageBox.Show("发生错误：" + e.Exception.Message + Environment.NewLine + "详情已写入 crash.log",
                 "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e) {
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
             LogCrash(e.ExceptionObject as Exception);
         }
 
-        private static void LogCrash(Exception ex) {
-            try {
+        private static void LogCrash(Exception ex)
+        {
+            try
+            {
                 string file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "crash.log");
                 string text = string.Format("[{0:yyyy-MM-dd HH:mm:ss}] {1}{2}{2}----------------------------------------{2}",
                     DateTime.Now,
@@ -52,8 +56,9 @@ namespace HospitalEquipmentSystem.UI
                     Environment.NewLine);
                 File.AppendAllText(file, text);
             }
-            catch {
+            catch
+            {
             }
         }
     }
-}
+    }

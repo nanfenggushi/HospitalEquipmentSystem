@@ -3,6 +3,7 @@ using HospitalEquipment.DAL.management;
 using HospitalEquipment.Model.management;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HospitalEquipment.BLL.management
 {
@@ -13,7 +14,7 @@ namespace HospitalEquipment.BLL.management
         /// <summary>
         /// 分页查询设备列表
         /// </summary>
-        public (List<Equipment> list, int total) GetPaged(
+        public async Task<(List<Equipment> list, int total)> GetPaged(
             int pageIndex,
             int pageSize,
             string keyword = "",
@@ -21,7 +22,7 @@ namespace HospitalEquipment.BLL.management
             int? deptId = null)
         {
             if (pageIndex < 1) pageIndex = 1;
-            return dal.GetPaged(pageIndex, pageSize, keyword, status, deptId);
+            return await dal.GetPaged(pageIndex, pageSize, keyword, status, deptId).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -58,9 +59,9 @@ namespace HospitalEquipment.BLL.management
         /// <summary>
         /// 获取所有启用科室
         /// </summary>
-        public List<KeyValuePair<int, string>> GetDepartments()
+        public async Task<List<KeyValuePair<int, string>>> GetDepartments()
         {
-            return dal.GetDepartments();
+            return await dal.GetDepartments().ConfigureAwait(false);
         }
 
         /// <summary>

@@ -431,7 +431,15 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowDeviceManagePage()
         {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "设备管理 - 功能开发中...");
+            try
+            {
+                DataReaderMapper.ShowFormInPanel<EquipmentManagement>(contentPanel, autoScale: true);
+            }
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "设备管理 - 功能开发中...");
+            }
+            
         }
 
         /// <summary>
