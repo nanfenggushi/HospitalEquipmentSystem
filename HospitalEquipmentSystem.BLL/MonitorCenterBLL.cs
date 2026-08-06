@@ -26,6 +26,7 @@ namespace HospitalEquipment.BLL
             stats.MaintenanceCount = _equipmentDal.GetMaintenanceCount();
             stats.PendingOrderCount = _maintenanceDal.GetPendingOrderCount();
             stats.BorrowedCount = _equipmentDal.GetBorrowedCount();
+            stats.PowerStability = _equipmentDal.GetPowerStability();
             return stats;
         }
 
@@ -67,5 +68,6 @@ namespace HospitalEquipment.BLL
         public int MaintenanceCount { get; set; }
         public int PendingOrderCount { get; set; }
         public int BorrowedCount { get; set; }
+        public int PowerStability { get; set; }
     }
 }

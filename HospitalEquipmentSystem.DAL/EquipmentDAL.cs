@@ -96,6 +96,20 @@ namespace HospitalEquipment.DAL
             return result != null ? (int)result : 0;
         }
 
+        /// <summary>
+        /// 获取供电稳定度指标：当前数据库没有供电监测表，
+        /// 暂按“可用设备占比”（非维修中、非报废）计算，供监控中心展示
+        /// </summary>
+        public int GetPowerStability()
+        {
+            object result = DbHelper.ExecuteScalar(
+                @"SELECT CASE WHEN COUNT(*) = 0 THEN 0
+                   ELSE CAST(ROUND(100.0 * SUM(CASE WHEN Status IN ('Idle','InUse','Borrowed') THEN 1 ELSE 0 END) / COUNT(*), 0) AS INT)
+                   END
+                   FROM Equipment WHERE IsActive = 1");
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+
         /// <summary>获取所有激活的设备列表（按 ID 排序）</summary>
         public List<Equipment> GetAllActive()
         {

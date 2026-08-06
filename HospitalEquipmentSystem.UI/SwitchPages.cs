@@ -12,7 +12,7 @@ namespace HospitalEquipmentSystem.UI
     /// <summary>
     /// 页面切换窗体：用于各功能页面的切换入口
     /// </summary>
-    public partial class SwitchPages : UIForm
+    public partial class SwitchPages : UIForm   
     {
         /// <summary>
         /// 侧边栏是否展开
@@ -85,6 +85,10 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private float initialTitleFontSize;
 
+
+        private Button[] menus;
+
+
         /// <summary>
         /// 构造函数：初始化窗体控件
         /// </summary>
@@ -98,6 +102,9 @@ namespace HospitalEquipmentSystem.UI
 
             this.Resize += new EventHandler(SwitchPages_Resize);
         }
+
+
+
 
         /// <summary>
         /// 窗体加载事件：窗体显示时执行
@@ -118,7 +125,7 @@ namespace HospitalEquipmentSystem.UI
             // 初始化默认选中设备管理
             currentSelectedButton = btnDashboard;
             UpdateMenuSelection(btnDashboard);
-            ShowWelcomePage();
+           
 
             // 按当前登录角色控制侧边栏菜单显示
             ApplyRolePermissions();
@@ -131,10 +138,11 @@ namespace HospitalEquipmentSystem.UI
         private void ApplyRolePermissions()
         {
             // 先全部恢复显示，避免角色切换后残留隐藏状态
-            Button[] menus = {
-                btnDashboard, btnDeviceManage, btnRepairManage, btnBorrowManage,
-                btnMonitoringCenter, btnDataStatistics, btnSystemSetting
-            };
+
+            menus = new Button[] {
+    btnDashboard, btnDeviceManage, btnRepairManage, btnBorrowManage,
+    btnMonitoringCenter, btnDataStatistics, btnSystemSetting
+};
             foreach (var b in menus)
             {
                 b.Visible = true;
@@ -146,6 +154,7 @@ namespace HospitalEquipmentSystem.UI
                     // 医护：可以查看设备、申报故障、申请借用，隐藏统计与系统设置
                     btnDataStatistics.Visible = false;
                     btnSystemSetting.Visible = false;
+                    btnDashboard.Visible = false;
                     break;
 
                 case UserRoleText.Repair:
@@ -154,6 +163,7 @@ namespace HospitalEquipmentSystem.UI
                     btnBorrowManage.Visible = false;
                     btnDataStatistics.Visible = false;
                     btnSystemSetting.Visible = false;
+                    btnDashboard.Visible = false;
                     break;
 
                     // 管理员（admin）默认全部显示，无需处理
@@ -178,6 +188,52 @@ namespace HospitalEquipmentSystem.UI
             }
         }
 
+
+
+
+
+        /// <summary>
+        /// 切换用户菜单项点击：清除登录信息，回到登录页面
+        /// </summary>
+        private void toolStripMenuItemSwitchUser_Click(object sender, EventArgs e)
+        {
+            if (!UIMessageBox.ShowAsk("确定要切换用户吗？", true))
+                return;
+
+            // 清除当前登录信息
+            LoginUser.Reset();
+
+            // 隐藏当前主窗体
+            this.Hide();
+
+            // 打开登录窗体
+            using (var login = new LoginForm())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    // 登录成功，刷新页面并重新显示
+                    ApplyRolePermissions();
+
+                    this.Show();
+                    if (currentSelectedButton != null && !currentSelectedButton.Visible)
+                    {
+                        foreach (var b in menus)
+                        {
+                            if (b.Visible)
+                            {
+                                b.PerformClick();
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    // 登录取消，退出应用
+                    Application.Exit();
+                }
+            }
+        }
         /// <summary>
         /// 窗体大小改变事件：自动缩放侧边栏和文字
         /// </summary>
@@ -403,20 +459,7 @@ namespace HospitalEquipmentSystem.UI
             ShowSystemSettingPage();
         }
 
-        /// <summary>
-        /// 显示欢迎页面
-        /// </summary>
-        private void ShowWelcomePage()
-        {
-            contentPanel.Controls.Clear();
-            Label lblWelcome = new Label();
-            lblWelcome.Text = "欢迎使用医院设备管理系统";
-            lblWelcome.Font = new Font("微软雅黑", 24F, FontStyle.Bold);
-            lblWelcome.ForeColor = Color.FromArgb(64, 64, 64);
-            lblWelcome.Dock = DockStyle.Fill;
-            lblWelcome.TextAlign = ContentAlignment.MiddleCenter;
-            contentPanel.Controls.Add(lblWelcome);
-        }
+     
 
         /// <summary>
         /// 显示首页仪表盘页面
@@ -536,36 +579,7 @@ namespace HospitalEquipmentSystem.UI
             contextMenuStrip1.Show(btnUserName, 0, btnUserName.Height);
         }
 
-        /// <summary>
-        /// 切换用户菜单项点击：清除登录信息，回到登录页面
-        /// </summary>
-        private void toolStripMenuItemSwitchUser_Click(object sender, EventArgs e)
-        {
-            if (!UIMessageBox.ShowAsk("确定要切换用户吗？", true))
-                return;
 
-            // 清除当前登录信息
-            LoginUser.Reset();
-
-            // 隐藏当前主窗体
-            this.Hide();
-
-            // 打开登录窗体
-            using (var login = new LoginForm())
-            {
-                if (login.ShowDialog() == DialogResult.OK)
-                {
-                    // 登录成功，刷新页面并重新显示
-                    ApplyRolePermissions();
-                    ShowWelcomePage();
-                    this.Show();
-                } else
-                {
-                    // 登录取消，退出应用
-                    Application.Exit();
-                }
-            }
-        }
 
         private void uiNavMenu1_MenuItemClick(TreeNode node, NavMenuItem item, int pageIndex)
         {

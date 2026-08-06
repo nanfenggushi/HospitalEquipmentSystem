@@ -33,7 +33,7 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
         private volatile bool _refreshing = false;                           // 仪表盘刷新锁（后台查询时置 true）
         private volatile bool _checkingAlarm = false;
 
-
+        private System.Threading.Timer clockTimer;
         /// <summary>
         /// 构造函数：创建主窗体时调用一次
         /// </summary>
@@ -59,7 +59,7 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
             //先检测一下报警数据
             CheckNewAlarmsAsync();
             // 3. 右上角实时时钟：后台线程定时器，UI 再忙也准点触发
-            System.Threading.Timer clockTimer = new System.Threading.Timer(_ =>
+            clockTimer = new System.Threading.Timer(_ =>
             {
                 // 跨线程更新标签，BeginInvoke 是异步非阻塞的
                 uiLabel3.BeginInvoke(new Action(() =>
@@ -465,11 +465,11 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
                         // 设置系统负载进度条
                         SetBar(uiProcessBar2, loadRate);
 
-                        // 面板3：供电稳定度（当前为固定模拟值 95%）
-                        SetLabel(uiLabel8, "95%");
+                        // 面板3：供电稳定度（从数据库统计，暂无供电监测表时按可用设备占比计算）
+                        SetLabel(uiLabel8, s.PowerStability + "%");
 
                         // 设置供电稳定度进度条
-                        SetBar(uiProcessBar3, 95);
+                        SetBar(uiProcessBar3, s.PowerStability);
 
                         // 面板5：显示设备总数
                         SetLabel(uiLabel13, s.TotalEquipment.ToString());
