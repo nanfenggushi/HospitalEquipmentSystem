@@ -762,7 +762,7 @@
             this.ShowTitle = false;
             this.Text = "UcDashboard";
             this.ZoomScaleRect = new System.Drawing.Rectangle(19, 19, 800, 450);
-            this.Load += new System.EventHandler(this.StatisticsForm_Load);
+            this.Load += new System.EventHandler(this.StatisticsForm_LoadAsync);
             this.uiTableLayoutPanel1.ResumeLayout(false);
             this.uiTableLayoutPanel4.ResumeLayout(false);
             this.uiPanel10.ResumeLayout(false);

@@ -61,10 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
-    <Compile Include="Dashboard\CategoryUsageDto.cs" />
-    <Compile Include="Dashboard\MaintenanceRecordsDto.cs" />
-    <Compile Include="Dashboard\MaintenanceTrendDto.cs" />
-    <Compile Include="Dashboard\MonthlyMaintenanceDto.cs" />
+    <Compile Include="Statistics\CategoryUsageDto.cs" />
+    <Compile Include="Statistics\MaintenanceRecordsDto.cs" />
+    <Compile Include="Statistics\MaintenanceTrendDto.cs" />
+    <Compile Include="Statistics\MonthlyMaintenanceDto.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="EquipmentCategory.cs" />
     <Compile Include="InboundRecord.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Equipment.cs" />
     <Compile Include="OperationLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dashboard\StatisticCardDto.cs" />
+    <Compile Include="Statistics\StatisticCardDto.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserDto.cs" />

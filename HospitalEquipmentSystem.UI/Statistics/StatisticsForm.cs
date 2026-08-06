@@ -15,6 +15,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         private readonly EquipmentBLL _equipmentBLL = new EquipmentBLL();
         private readonly MaintenanceRecordsBLL _maintenanceRecordsBLL = new MaintenanceRecordsBLL();
         private StatisticCardDto cardDto;
+        private bool isRefreshing = false; // 防止实时报警列表查询时间大于刷新间隔时重复查询数据
 
         // 存储用于 ScottPlot 渲染的数组 (最近6个月)
         private double[] monthsX;
@@ -32,7 +33,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             formsPlot1.MouseMove += FormsPlot1_MouseMove;
         }
 
-        private async void StatisticsForm_Load(object sender, EventArgs e)
+        private async void StatisticsForm_LoadAsync(object sender, EventArgs e)
         {
             // 关闭DataGridView的自动创建列功能
             uiDataGridView1.AutoGenerateColumns = false;
@@ -262,9 +263,23 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         }
 
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
-
+            if (isRefreshing)
+            {
+                return;
+            }
+            isRefreshing = true;
+            try
+            {
+                uiDataGridView1.DataSource = await _maintenanceRecordsBLL.GetAlarmListAsync();
+            } catch (Exception ex)
+            {
+                UIMessageBox.Show("报警列表刷新失败：" + ex.Message);
+            } finally
+            {
+                isRefreshing = false;
+            }
         }
     }
 }
