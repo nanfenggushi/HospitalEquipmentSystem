@@ -14,6 +14,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         private readonly EquipmentBLL _equipmentBLL = new EquipmentBLL();
         private readonly MaintenanceRecordsBLL _maintenanceRecordsBLL = new MaintenanceRecordsBLL();
         private StatisticCardDto cardDto;
+        private bool _isLoading = false; // 查询状态，防止还没有查询完数据又再次查询
 
         // 存储用于 ScottPlot 渲染的数组 (最近6个月)
         private double[] monthsX;
@@ -31,18 +32,32 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             formsPlot1.MouseMove += FormsPlot1_MouseMove;
         }
 
-        private void UcDashboard_Load(object sender, EventArgs e)
+        private void StatisticsForm_Load(object sender, EventArgs e)
         {
-            LoadStatisticCardsDb();
-            LoadDoughnutChartDb();
-            LoadUsageBarChartFromDb();
-            DrawMaintenanceTrendChart();
+            // 关闭DataGridView的自动创建列功能
+            uiDataGridView1.AutoGenerateColumns = false;
+
+            LoadStatisticCardsAsync();
+            LoadDeviceStatusChartAsync();
+            LoadDeviceUsageChartAsync();
+            LoadMaintenanceTrendChartAsync();
+            LoadRealTimeAlarmListAsync();
+        }
+
+        /// <summary>
+        /// 加载实时报警列表
+        /// </summary>
+        private async void LoadRealTimeAlarmListAsync()
+        {
+            List<MaintenanceRecordsDto> alarmList = _maintenanceRecordsBLL.GetAlarmList();
+
+            uiDataGridView1.DataSource = alarmList;
         }
 
         /// <summary>
         /// 加载统计卡片内容
         /// </summary>
-        private void LoadStatisticCardsDb()
+        private async void LoadStatisticCardsAsync()
         {
             try
             {
@@ -62,7 +77,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 加载设备状态占比饼状图数据
         /// </summary>
-        private void LoadDoughnutChartDb()
+        private async void LoadDeviceStatusChartAsync()
         {
             // 1. 去掉控件内部的灰底和蓝框，和外层卡片融为一体
             uiDoughnutChart1.FillColor = System.Drawing.Color.White;
@@ -113,7 +128,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 从数据库动态加载使用率柱状图
         /// </summary>
-        private void LoadUsageBarChartFromDb()
+        private async void LoadDeviceUsageChartAsync()
         {
             try
             {
@@ -150,7 +165,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// <summary>
         /// 加载最近 6 个月的维保趋势图
         /// </summary>
-        private void DrawMaintenanceTrendChart()
+        private async void LoadMaintenanceTrendChartAsync()
         {
             // 1. 通过 BLL 业务逻辑层获取实体数据列表
             List<MonthlyMaintenanceDto> dtoList = _maintenanceRecordsBLL.GetRecent6MonthsTrend();
@@ -236,6 +251,12 @@ namespace HospitalEquipmentSystem.UI.Dashboard
                 // 5. 刷新图表
                 formsPlot1.Refresh();
             }
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

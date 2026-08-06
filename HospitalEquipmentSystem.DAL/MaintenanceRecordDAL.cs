@@ -113,5 +113,24 @@ namespace HospitalEquipment.DAL
             return DataReaderMapper.MapToList<MonthlyMaintenanceDto>
                 (DbHelper.ExecuteReader(sql, new SqlParameter("StartDate", startDate)));
         }
+
+
+        public List<MaintenanceRecordsDto> GetAlarmList()
+        {
+            string sql = @"SELECT Equipment.EquipmentName, MaintenanceRecords.FaultDesc, 
+                        MaintenanceRecords.Urgency, MaintenanceRecords.ReportTime
+                        FROM MaintenanceRecords
+                        JOIN Equipment ON MaintenanceRecords.EquipmentId = Equipment.EquipmentId
+                        WHERE ProgressStage= 'Pending'
+                        ORDER BY CASE Urgency 
+                                     WHEN 'Urgent' THEN 1
+                                     WHEN 'Normal' THEN 2
+                                     WHEN 'Low' THEN 3
+                                 END, 
+                        ReportTime DESC
+                        ";
+
+            return DataReaderMapper.MapToList<MaintenanceRecordsDto>(DbHelper.ExecuteReader(sql));
+        }
     }
 }

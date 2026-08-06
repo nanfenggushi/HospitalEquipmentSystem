@@ -9,6 +9,14 @@ namespace HospitalEquipment.BLL
     {
         private readonly MaintenanceRecordDAL _maintenanceRecordDAL = new MaintenanceRecordDAL();
 
+        /// <summary>
+        /// 获取实时报警列表
+        /// </summary>
+        /// <returns></returns>
+        public List<MaintenanceRecordsDto> GetAlarmList()
+        {
+            return _maintenanceRecordDAL.GetAlarmList();
+        }
 
         public List<MonthlyMaintenanceDto> GetRecent6MonthsTrend()
         {
