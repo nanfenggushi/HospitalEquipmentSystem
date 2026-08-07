@@ -89,7 +89,6 @@
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
       <Private>True</Private>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
@@ -125,28 +124,28 @@
     <Compile Include="AlarmCard.Designer.cs">
       <DependentUpon>AlarmCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="BorrowApplyDialog.cs">
+    <Compile Include="Borrow\BorrowApplyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BorrowApplyDialog.Designer.cs">
+    <Compile Include="Borrow\BorrowApplyDialog.Designer.cs">
       <DependentUpon>BorrowApplyDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="BorrowApproveDialog.cs">
+    <Compile Include="Borrow\BorrowApproveDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BorrowApproveDialog.Designer.cs">
+    <Compile Include="Borrow\BorrowApproveDialog.Designer.cs">
       <DependentUpon>BorrowApproveDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="BorrowDetailForm.cs">
+    <Compile Include="Borrow\BorrowDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BorrowDetailForm.Designer.cs">
+    <Compile Include="Borrow\BorrowDetailForm.Designer.cs">
       <DependentUpon>BorrowDetailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BorrowReturnDialog.cs">
+    <Compile Include="Borrow\BorrowReturnDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BorrowReturnDialog.Designer.cs">
+    <Compile Include="Borrow\BorrowReturnDialog.Designer.cs">
       <DependentUpon>BorrowReturnDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Statistics\StatisticsForm.cs">
@@ -155,16 +154,16 @@
     <Compile Include="Statistics\StatisticsForm.Designer.cs">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Equipment BorrowingUI.cs">
+    <Compile Include="Borrow\Equipment BorrowingUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Equipment BorrowingUI.Designer.cs">
+    <Compile Include="Borrow\Equipment BorrowingUI.Designer.cs">
       <DependentUpon>Equipment BorrowingUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MonitoringCenter.cs">
@@ -199,7 +198,7 @@
       <DependentUpon>SelectEngineerForm.cs</DependentUpon>
     </Compile>
     <!-- ===== 维修管理 - 维修员端 ===== -->
-    <Compile Include="LoginUser.cs" />
+    <Compile Include="Login\LoginUser.cs" />
     <Compile Include="ColoredFlowLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -272,22 +271,22 @@
     <EmbeddedResource Include="AlarmCard.resx">
       <DependentUpon>AlarmCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BorrowApplyDialog.resx">
+    <EmbeddedResource Include="Borrow\BorrowApplyDialog.resx">
       <DependentUpon>BorrowApplyDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BorrowDetailForm.resx">
+    <EmbeddedResource Include="Borrow\BorrowDetailForm.resx">
       <DependentUpon>BorrowDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BorrowReturnDialog.resx">
+    <EmbeddedResource Include="Borrow\BorrowReturnDialog.resx">
       <DependentUpon>BorrowReturnDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Statistics\StatisticsForm.resx">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Equipment BorrowingUI.resx">
+    <EmbeddedResource Include="Borrow\Equipment BorrowingUI.resx">
       <DependentUpon>Equipment BorrowingUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonitoringCenter.resx">

@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using HospitalEquipment.Model;
+using HospitalEquipment.Util;
 using Sunny.UI;
 
 namespace HospitalEquipmentSystem.UI
@@ -14,6 +15,7 @@ namespace HospitalEquipmentSystem.UI
         public BorrowDetailForm(BorrowRecord record)
         {
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
             StartPosition = FormStartPosition.CenterParent;
             FillInfo(record);
             btnClose.Click += (s, e) => Close();

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
@@ -42,10 +43,21 @@ namespace HospitalEquipmentSystem.UI
         private void LoadData()
         {
             string stage = GetCurrentStage();
-            _allData = BLL.GetDoctorOrders(LoginDoctor.UserId, stage) ?? new List<MaintenanceRecordDto>();
-            _currentPage = 1;
-            ApplyPaging();
-            RefreshKpiCards();
+            int userId = LoginUser.UserId;
+
+            Task.Run(() =>
+            {
+                var data = BLL.GetDoctorOrders(userId, stage) ?? new List<MaintenanceRecordDto>();
+                var kpi = BLL.GetDoctorStageCounts(userId);
+
+                this.BeginInvoke(new Action(() =>
+                {
+                    _allData = data;
+                    _currentPage = 1;
+                    ApplyPaging();
+                    ApplyKpiCards(kpi);
+                }));
+            });
         }
 
         /// <summary>
@@ -84,9 +96,8 @@ namespace HospitalEquipmentSystem.UI
 
         // ==================== KPI 卡片 ====================
 
-        private void RefreshKpiCards()
+        private void ApplyKpiCards(Dictionary<string, int> kpi)
         {
-            var kpi = BLL.GetDoctorStageCounts(LoginDoctor.UserId);
             lblKpi1Val.Text = kpi["Pending"].ToString();      // 待分配
             lblKpi2Val.Text = kpi["InProgress"].ToString();    // 处理中
             lblKpi3Val.Text = kpi["Done"].ToString();          // 已完成
@@ -142,7 +153,7 @@ namespace HospitalEquipmentSystem.UI
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     if (BLL.SubmitRepair(form.SelectedEquipmentId, form.SelectedDeptId,
-                                          LoginDoctor.UserId, form.FaultType, form.FaultDesc, form.Urgency))
+                                          LoginUser.UserId, form.FaultType, form.FaultDesc, form.Urgency))
                     {
                         UIMessageBox.Show("报修提交成功，等待管理员分配维修员");
                         LoadData();
@@ -171,7 +182,7 @@ namespace HospitalEquipmentSystem.UI
             {
                 if (UIMessageBox.ShowAsk($"确认删除工单【{dto.RepairNo}】吗？\n此操作不可恢复。"))
                 {
-                    if (BLL.DeleteDoctorOrder(dto.RecordId, LoginDoctor.UserId))
+                    if (BLL.DeleteDoctorOrder(dto.RecordId, LoginUser.UserId))
                     {
                         UIMessageBox.Show("删除成功");
                         LoadData();

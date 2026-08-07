@@ -5,6 +5,7 @@ using Sunny.UI;
 using System;
 using System.Drawing;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -262,8 +263,7 @@ namespace HospitalEquipmentSystem.UI
             // 缩放顶部栏高度
             int newTopBarHeight = (int)(initialTopBarHeight * scale);
             topPanel.Height = newTopBarHeight;
-            btnMenu.Height = newTopBarHeight;
-            btnNotify.Height = newTopBarHeight;
+            //uiSymbolButton1.Height = newTopBarHeight;
             btnExit.Height = newTopBarHeight;
 
             // 缩放标题字体
@@ -291,14 +291,6 @@ namespace HospitalEquipmentSystem.UI
         {
             button.Height = height;
             button.Font = new Font(button.Font.FontFamily, fontSize, button.Font.Style);
-        }
-
-        /// <summary>
-        /// 菜单按钮点击事件：切换侧边栏展开/收起
-        /// </summary>
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            ToggleSideBar();
         }
 
         /// <summary>
@@ -369,6 +361,18 @@ namespace HospitalEquipmentSystem.UI
             // 设置选中按钮样式
             SetButtonSelectedStyle(selectedButton);
             currentSelectedButton = selectedButton;
+
+            // 将焦点移到 contentPanel，避免按钮残留聚焦状态
+            contentPanel.Focus();
+
+            // 强制立即重绘所有按钮
+            btnDashboard.Refresh();
+            btnDeviceManage.Refresh();
+            btnRepairManage.Refresh();
+            btnBorrowManage.Refresh();
+            btnMonitoringCenter.Refresh();
+            btnDataStatistics.Refresh();
+            btnSystemSetting.Refresh();
         }
 
         /// <summary>
@@ -392,70 +396,77 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>
         /// 首页仪表盘菜单点击
         /// </summary>
-        private void btnDashboard_Click(object sender, EventArgs e)
+        private async void btnDashboard_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnDashboard);
             lblTitle.Text = "首页仪表盘";
+            await Task.Yield();
             ShowDashboardPage();
         }
 
         /// <summary>
         /// 设备管理菜单点击
         /// </summary>
-        private void btnDeviceManage_Click(object sender, EventArgs e)
+        private async void btnDeviceManage_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnDeviceManage);
             lblTitle.Text = "设备管理";
+            await Task.Yield();
             ShowDeviceManagePage();
         }
 
         /// <summary>
         /// 维修管理菜单点击
         /// </summary>
-        private void btnRepairManage_Click(object sender, EventArgs e)
+        private async void btnRepairManage_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnRepairManage);
             lblTitle.Text = "维修管理";
+            await Task.Yield();
             ShowRepairManagePage();
         }
 
         /// <summary>
         /// 借用管理菜单点击
         /// </summary>
-        private void btnBorrowManage_Click(object sender, EventArgs e)
+        private async void btnBorrowManage_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnBorrowManage);
             lblTitle.Text = "借用管理";
+            await Task.Yield();
             ShowBorrowManagePage();
         }
 
         /// <summary>
         /// 监控中心菜单点击
         /// </summary>
-        private void btnMonitoringCenter_Click(object sender, EventArgs e)
+        private async void btnMonitoringCenter_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnMonitoringCenter);
             lblTitle.Text = "监控中心";
+            await Task.Yield();
             ShowMonitoringCenterPage();
         }
 
         /// <summary>
         /// 数据统计菜单点击
         /// </summary>
-        private void btnDataStatistics_Click(object sender, EventArgs e)
+        private async void btnDataStatistics_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnDataStatistics);
             lblTitle.Text = "数据统计";
+            await Task.Yield();
             ShowDataStatisticsPage();
         }
 
         /// <summary>
         /// 系统设置菜单点击
         /// </summary>
-        private void btnSystemSetting_Click(object sender, EventArgs e)
+        private async void btnSystemSetting_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnSystemSetting);
             lblTitle.Text = "系统设置";
+            await Task.Yield();
             ShowSystemSettingPage();
         }
 
@@ -466,7 +477,14 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowDashboardPage()
         {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "首页仪表盘 - 功能开发中...");
+            try
+            {
+                DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: false);
+            }
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "首页仪表盘 - 功能开发中...");
+            }
         }
 
         /// <summary>
@@ -486,19 +504,26 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
-        /// 显示维修管理页面
+        /// 显示维修管理页面（根据登录用户角色路由到对应工作台）
         /// </summary>
         private void ShowRepairManagePage()
         {
-
             try
             {
-                DataReaderMapper.ShowFormInPanel<MainTainManagement>(contentPanel, autoScale: true);
-            } catch
-            {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...\n\n待处理维修：3 条");
+                string role = LoginUser.Role;
+                if (role == UserRoleText.Admin)
+                    DataReaderMapper.ShowFormInPanel<MainTainManagement>(contentPanel, autoScale: false);
+                else if (role == UserRoleText.Repair)
+                    DataReaderMapper.ShowFormInPanel<RepairerWorkbench>(contentPanel, autoScale: false);
+                else if (role == UserRoleText.Doctor)
+                    DataReaderMapper.ShowFormInPanel<DoctorWorkbench>(contentPanel, autoScale: false);
+                else
+                    DataReaderMapper.ShowPlaceholder(contentPanel, "未知角色，无法加载维修管理");
             }
-
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...");
+            }
         }
 
         /// <summary>
@@ -555,10 +580,39 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>
         /// 通知按钮点击
         /// </summary>
-        private void btnNotify_Click(object sender, EventArgs e)
+        private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
             UIMessageBox.Show("暂无新通知", "通知");
         }
+
+        /// <summary>
+        /// 返回登录页面，重新登录
+        /// </summary>
+        private void uiSymbolButton2_Click(object sender, EventArgs e)
+        {
+            if (!UIMessageBox.ShowAsk("确定要返回登录页面吗？"))
+                return;
+
+            LoginUser.Reset();
+            this.Close();
+        }
+
+        ///// <summary>
+        ///// 最大化按钮点击
+        ///// </summary>
+        //private void btnMaximize_Click(object sender, EventArgs e)
+        //{
+        //    if (this.WindowState == FormWindowState.Maximized)
+        //    {
+        //        this.WindowState = FormWindowState.Normal;
+        //        btnMaximize.Text = "🗖";
+        //    }
+        //    else
+        //    {
+        //        this.WindowState = FormWindowState.Maximized;
+        //        btnMaximize.Text = "🗗";
+        //    }
+        //}
 
         /// <summary>
         /// 退出按钮点击

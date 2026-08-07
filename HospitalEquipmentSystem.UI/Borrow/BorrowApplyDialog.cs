@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using HospitalEquipment.Model.management;
+using HospitalEquipment.Util;
 using Sunny.UI;
 
 namespace HospitalEquipmentSystem.UI
@@ -19,6 +20,7 @@ namespace HospitalEquipmentSystem.UI
         public BorrowApplyDialog()
         {
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
             StartPosition = FormStartPosition.CenterParent;
             lblBorrowerValue.Text = LoginUser.DisplayName;
             dpReturn.MinDate = DateTime.Today;

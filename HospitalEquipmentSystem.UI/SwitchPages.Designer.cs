@@ -34,7 +34,6 @@ namespace HospitalEquipmentSystem.UI
             this.btnUserName = new Sunny.UI.UIButton();
             this.btnNotify = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnMenu = new System.Windows.Forms.Button();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.btnSystemSetting = new System.Windows.Forms.Button();
             this.btnDataStatistics = new System.Windows.Forms.Button();
@@ -58,7 +57,6 @@ namespace HospitalEquipmentSystem.UI
             this.topPanel.Controls.Add(this.btnUserName);
             this.topPanel.Controls.Add(this.btnNotify);
             this.topPanel.Controls.Add(this.lblTitle);
-            this.topPanel.Controls.Add(this.btnMenu);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.topPanel.Location = new System.Drawing.Point(0, 0);
             this.topPanel.Name = "topPanel";
@@ -105,33 +103,19 @@ namespace HospitalEquipmentSystem.UI
             this.btnNotify.TabIndex = 2;
             this.btnNotify.Text = "🔔";
             this.btnNotify.UseVisualStyleBackColor = false;
-            this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
+            //this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblTitle.Location = new System.Drawing.Point(71, 13);
+            this.lblTitle.Location = new System.Drawing.Point(71, 5);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(110, 31);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "设备管理";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnMenu.FlatAppearance.BorderSize = 0;
-            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.btnMenu.Location = new System.Drawing.Point(0, 0);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(50, 60);
-            this.btnMenu.TabIndex = 0;
-            this.btnMenu.Text = "☰";
-            this.btnMenu.UseVisualStyleBackColor = false;
-            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // sidePanel
             // 
@@ -147,7 +131,6 @@ namespace HospitalEquipmentSystem.UI
             this.sidePanel.Location = new System.Drawing.Point(0, 60);
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(200, 1042);
-            this.sidePanel.Size = new System.Drawing.Size(200, 1052);
             this.sidePanel.TabIndex = 1;
             // 
             // btnSystemSetting
@@ -291,7 +274,6 @@ namespace HospitalEquipmentSystem.UI
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(1388, 1042);
-            this.contentPanel.Size = new System.Drawing.Size(1388, 1052);
             this.contentPanel.TabIndex = 2;
             // 
             // contextMenuStrip1
@@ -334,7 +316,6 @@ namespace HospitalEquipmentSystem.UI
         #endregion
 
         private System.Windows.Forms.Panel topPanel;
-        private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnNotify;
         private Sunny.UI.UIButton btnUserName;

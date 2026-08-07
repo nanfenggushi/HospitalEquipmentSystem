@@ -45,8 +45,8 @@ namespace HospitalEquipmentSystem.UI
             // lblNoCaption
             // 
             this.lblNoCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblNoCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblNoCaption.Location = new System.Drawing.Point(38, 32);
+            this.lblNoCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblNoCaption.Location = new System.Drawing.Point(38, 67);
             this.lblNoCaption.Name = "lblNoCaption";
             this.lblNoCaption.Size = new System.Drawing.Size(126, 28);
             this.lblNoCaption.TabIndex = 0;
@@ -56,8 +56,8 @@ namespace HospitalEquipmentSystem.UI
             // lblNoValue
             // 
             this.lblNoValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
-            this.lblNoValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblNoValue.Location = new System.Drawing.Point(170, 32);
+            this.lblNoValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblNoValue.Location = new System.Drawing.Point(170, 67);
             this.lblNoValue.Name = "lblNoValue";
             this.lblNoValue.Size = new System.Drawing.Size(330, 28);
             this.lblNoValue.TabIndex = 1;
@@ -66,8 +66,8 @@ namespace HospitalEquipmentSystem.UI
             // lblStatusCaption
             // 
             this.lblStatusCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblStatusCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblStatusCaption.Location = new System.Drawing.Point(38, 70);
+            this.lblStatusCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblStatusCaption.Location = new System.Drawing.Point(38, 105);
             this.lblStatusCaption.Name = "lblStatusCaption";
             this.lblStatusCaption.Size = new System.Drawing.Size(126, 28);
             this.lblStatusCaption.TabIndex = 2;
@@ -77,8 +77,8 @@ namespace HospitalEquipmentSystem.UI
             // lblStatusValue
             // 
             this.lblStatusValue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
-            this.lblStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(204)))));
-            this.lblStatusValue.Location = new System.Drawing.Point(170, 70);
+            this.lblStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            this.lblStatusValue.Location = new System.Drawing.Point(170, 105);
             this.lblStatusValue.Name = "lblStatusValue";
             this.lblStatusValue.Size = new System.Drawing.Size(330, 28);
             this.lblStatusValue.TabIndex = 3;
@@ -87,8 +87,8 @@ namespace HospitalEquipmentSystem.UI
             // lblEquipmentCaption
             // 
             this.lblEquipmentCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblEquipmentCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblEquipmentCaption.Location = new System.Drawing.Point(38, 108);
+            this.lblEquipmentCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblEquipmentCaption.Location = new System.Drawing.Point(38, 143);
             this.lblEquipmentCaption.Name = "lblEquipmentCaption";
             this.lblEquipmentCaption.Size = new System.Drawing.Size(126, 28);
             this.lblEquipmentCaption.TabIndex = 4;
@@ -98,8 +98,8 @@ namespace HospitalEquipmentSystem.UI
             // lblEquipmentValue
             // 
             this.lblEquipmentValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblEquipmentValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblEquipmentValue.Location = new System.Drawing.Point(170, 108);
+            this.lblEquipmentValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblEquipmentValue.Location = new System.Drawing.Point(170, 143);
             this.lblEquipmentValue.Name = "lblEquipmentValue";
             this.lblEquipmentValue.Size = new System.Drawing.Size(330, 28);
             this.lblEquipmentValue.TabIndex = 5;
@@ -108,8 +108,8 @@ namespace HospitalEquipmentSystem.UI
             // lblApplicantCaption
             // 
             this.lblApplicantCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblApplicantCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblApplicantCaption.Location = new System.Drawing.Point(38, 146);
+            this.lblApplicantCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblApplicantCaption.Location = new System.Drawing.Point(38, 181);
             this.lblApplicantCaption.Name = "lblApplicantCaption";
             this.lblApplicantCaption.Size = new System.Drawing.Size(100, 28);
             this.lblApplicantCaption.TabIndex = 6;
@@ -119,8 +119,8 @@ namespace HospitalEquipmentSystem.UI
             // lblApplicantValue
             // 
             this.lblApplicantValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblApplicantValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblApplicantValue.Location = new System.Drawing.Point(170, 146);
+            this.lblApplicantValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblApplicantValue.Location = new System.Drawing.Point(170, 181);
             this.lblApplicantValue.Name = "lblApplicantValue";
             this.lblApplicantValue.Size = new System.Drawing.Size(330, 28);
             this.lblApplicantValue.TabIndex = 7;
@@ -129,8 +129,8 @@ namespace HospitalEquipmentSystem.UI
             // lblDeptCaption
             // 
             this.lblDeptCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblDeptCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblDeptCaption.Location = new System.Drawing.Point(38, 184);
+            this.lblDeptCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblDeptCaption.Location = new System.Drawing.Point(38, 219);
             this.lblDeptCaption.Name = "lblDeptCaption";
             this.lblDeptCaption.Size = new System.Drawing.Size(126, 28);
             this.lblDeptCaption.TabIndex = 8;
@@ -140,8 +140,8 @@ namespace HospitalEquipmentSystem.UI
             // lblDeptValue
             // 
             this.lblDeptValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblDeptValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblDeptValue.Location = new System.Drawing.Point(170, 184);
+            this.lblDeptValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblDeptValue.Location = new System.Drawing.Point(170, 219);
             this.lblDeptValue.Name = "lblDeptValue";
             this.lblDeptValue.Size = new System.Drawing.Size(330, 28);
             this.lblDeptValue.TabIndex = 9;
@@ -150,8 +150,8 @@ namespace HospitalEquipmentSystem.UI
             // lblPurposeCaption
             // 
             this.lblPurposeCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblPurposeCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblPurposeCaption.Location = new System.Drawing.Point(38, 222);
+            this.lblPurposeCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblPurposeCaption.Location = new System.Drawing.Point(38, 257);
             this.lblPurposeCaption.Name = "lblPurposeCaption";
             this.lblPurposeCaption.Size = new System.Drawing.Size(112, 28);
             this.lblPurposeCaption.TabIndex = 10;
@@ -161,8 +161,8 @@ namespace HospitalEquipmentSystem.UI
             // lblPurposeValue
             // 
             this.lblPurposeValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblPurposeValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblPurposeValue.Location = new System.Drawing.Point(170, 222);
+            this.lblPurposeValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblPurposeValue.Location = new System.Drawing.Point(170, 257);
             this.lblPurposeValue.Name = "lblPurposeValue";
             this.lblPurposeValue.Size = new System.Drawing.Size(330, 28);
             this.lblPurposeValue.TabIndex = 11;
@@ -171,8 +171,8 @@ namespace HospitalEquipmentSystem.UI
             // lblReturnCaption
             // 
             this.lblReturnCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblReturnCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblReturnCaption.Location = new System.Drawing.Point(38, 260);
+            this.lblReturnCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblReturnCaption.Location = new System.Drawing.Point(38, 295);
             this.lblReturnCaption.Name = "lblReturnCaption";
             this.lblReturnCaption.Size = new System.Drawing.Size(112, 28);
             this.lblReturnCaption.TabIndex = 12;
@@ -182,8 +182,8 @@ namespace HospitalEquipmentSystem.UI
             // lblReturnValue
             // 
             this.lblReturnValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblReturnValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblReturnValue.Location = new System.Drawing.Point(170, 260);
+            this.lblReturnValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblReturnValue.Location = new System.Drawing.Point(170, 295);
             this.lblReturnValue.Name = "lblReturnValue";
             this.lblReturnValue.Size = new System.Drawing.Size(330, 28);
             this.lblReturnValue.TabIndex = 13;
@@ -192,8 +192,8 @@ namespace HospitalEquipmentSystem.UI
             // lblApproveCaption
             // 
             this.lblApproveCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblApproveCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblApproveCaption.Location = new System.Drawing.Point(38, 298);
+            this.lblApproveCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblApproveCaption.Location = new System.Drawing.Point(38, 333);
             this.lblApproveCaption.Name = "lblApproveCaption";
             this.lblApproveCaption.Size = new System.Drawing.Size(112, 28);
             this.lblApproveCaption.TabIndex = 14;
@@ -203,8 +203,8 @@ namespace HospitalEquipmentSystem.UI
             // lblApproveValue
             // 
             this.lblApproveValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblApproveValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblApproveValue.Location = new System.Drawing.Point(170, 298);
+            this.lblApproveValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblApproveValue.Location = new System.Drawing.Point(170, 333);
             this.lblApproveValue.Name = "lblApproveValue";
             this.lblApproveValue.Size = new System.Drawing.Size(330, 28);
             this.lblApproveValue.TabIndex = 15;
@@ -213,8 +213,8 @@ namespace HospitalEquipmentSystem.UI
             // lblActualReturnCaption
             // 
             this.lblActualReturnCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblActualReturnCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblActualReturnCaption.Location = new System.Drawing.Point(38, 336);
+            this.lblActualReturnCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblActualReturnCaption.Location = new System.Drawing.Point(38, 371);
             this.lblActualReturnCaption.Name = "lblActualReturnCaption";
             this.lblActualReturnCaption.Size = new System.Drawing.Size(126, 28);
             this.lblActualReturnCaption.TabIndex = 16;
@@ -224,8 +224,8 @@ namespace HospitalEquipmentSystem.UI
             // lblActualReturnValue
             // 
             this.lblActualReturnValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblActualReturnValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblActualReturnValue.Location = new System.Drawing.Point(170, 336);
+            this.lblActualReturnValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblActualReturnValue.Location = new System.Drawing.Point(170, 371);
             this.lblActualReturnValue.Name = "lblActualReturnValue";
             this.lblActualReturnValue.Size = new System.Drawing.Size(330, 28);
             this.lblActualReturnValue.TabIndex = 17;
@@ -234,8 +234,8 @@ namespace HospitalEquipmentSystem.UI
             // lblCreatedCaption
             // 
             this.lblCreatedCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblCreatedCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblCreatedCaption.Location = new System.Drawing.Point(38, 374);
+            this.lblCreatedCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblCreatedCaption.Location = new System.Drawing.Point(38, 409);
             this.lblCreatedCaption.Name = "lblCreatedCaption";
             this.lblCreatedCaption.Size = new System.Drawing.Size(126, 28);
             this.lblCreatedCaption.TabIndex = 18;
@@ -245,8 +245,8 @@ namespace HospitalEquipmentSystem.UI
             // lblCreatedValue
             // 
             this.lblCreatedValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblCreatedValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblCreatedValue.Location = new System.Drawing.Point(170, 374);
+            this.lblCreatedValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblCreatedValue.Location = new System.Drawing.Point(170, 409);
             this.lblCreatedValue.Name = "lblCreatedValue";
             this.lblCreatedValue.Size = new System.Drawing.Size(330, 28);
             this.lblCreatedValue.TabIndex = 19;
@@ -255,8 +255,8 @@ namespace HospitalEquipmentSystem.UI
             // lblRemarksCaption
             // 
             this.lblRemarksCaption.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblRemarksCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lblRemarksCaption.Location = new System.Drawing.Point(38, 412);
+            this.lblRemarksCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblRemarksCaption.Location = new System.Drawing.Point(38, 447);
             this.lblRemarksCaption.Name = "lblRemarksCaption";
             this.lblRemarksCaption.Size = new System.Drawing.Size(100, 28);
             this.lblRemarksCaption.TabIndex = 20;
@@ -266,8 +266,8 @@ namespace HospitalEquipmentSystem.UI
             // lblRemarksValue
             // 
             this.lblRemarksValue.Font = new System.Drawing.Font("宋体", 12F);
-            this.lblRemarksValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblRemarksValue.Location = new System.Drawing.Point(170, 412);
+            this.lblRemarksValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblRemarksValue.Location = new System.Drawing.Point(170, 447);
             this.lblRemarksValue.Name = "lblRemarksValue";
             this.lblRemarksValue.Size = new System.Drawing.Size(330, 28);
             this.lblRemarksValue.TabIndex = 21;
@@ -276,20 +276,24 @@ namespace HospitalEquipmentSystem.UI
             // btnClose
             // 
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.btnClose.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnClose.Location = new System.Drawing.Point(210, 470);
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.btnClose.Location = new System.Drawing.Point(210, 505);
             this.btnClose.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 40);
+            this.btnClose.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.btnClose.TabIndex = 22;
             this.btnClose.Text = "关 闭";
             this.btnClose.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // BorrowDetailForm
             // 
-            this.AllowShowTitle = false;
+            this.AllowShowTitle = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(540, 540);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.ClientSize = new System.Drawing.Size(540, 575);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblRemarksValue);
             this.Controls.Add(this.lblRemarksCaption);
@@ -314,9 +318,12 @@ namespace HospitalEquipmentSystem.UI
             this.Controls.Add(this.lblNoValue);
             this.Controls.Add(this.lblNoCaption);
             this.Name = "BorrowDetailForm";
-            this.Padding = new System.Windows.Forms.Padding(0);
-            this.ShowTitle = false;
+            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.ShowTitle = true;
             this.Text = "借用详情";
+            this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.TitleFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.ZoomScaleRect = new System.Drawing.Rectangle(19, 19, 520, 520);
             this.ResumeLayout(false);
 

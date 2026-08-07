@@ -1,4 +1,5 @@
 using HospitalEquipment.BLL;
+using HospitalEquipment.Util;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace HospitalEquipmentSystem.UI
         public SelectEngineerForm()
         {
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
         }
 
         public SelectEngineerForm(MaintenanceBLL bll) : this()

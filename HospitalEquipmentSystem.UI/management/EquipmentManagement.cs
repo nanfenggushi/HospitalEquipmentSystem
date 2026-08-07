@@ -1,4 +1,5 @@
-﻿using HospitalEquipmentSystem.UI.management;
+using HospitalEquipment.Util;
+using HospitalEquipmentSystem.UI.management;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace HospitalEquipmentSystem.UI
         public EquipmentManagement()
         {
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
         }
 
         private void uiDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

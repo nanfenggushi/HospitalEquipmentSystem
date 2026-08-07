@@ -28,10 +28,10 @@ namespace HospitalEquipmentSystem.UI
             _mode = FormMode.Add;
             _recordId = 0;
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
 
             // 初始化标题和下拉项
-            this.Text = "新建工单";
-            lblTitle.Text = "新建维修工单";
+            this.Text = "新建维修工单";
             cmbFaultType.Items.AddRange(new object[] { "电气故障", "机械故障", "软件故障", "耗材更换", "其他" });
             cmbFaultType.SelectedIndex = 0;
             cmbUrgency.Items.AddRange(new object[] { "低", "普通", "紧急" });
@@ -56,8 +56,7 @@ namespace HospitalEquipmentSystem.UI
 
             _mode = FormMode.Edit;
             _recordId = recordId;
-            this.Text = "编辑工单";
-            lblTitle.Text = "编辑工单信息";
+            this.Text = "编辑维修工单";
             LoadOrderData();
 
             btnDelete.Visible = true;

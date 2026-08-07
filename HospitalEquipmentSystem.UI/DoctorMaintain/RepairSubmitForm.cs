@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
+using HospitalEquipment.Util;
 
 namespace HospitalEquipmentSystem.UI
 {
@@ -42,6 +43,7 @@ namespace HospitalEquipmentSystem.UI
         public RepairSubmitForm()
         {
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
             if (DesignMode) return;
 
             txtFaultDesc.Watermark = "详细描述设备故障情况...";
@@ -102,7 +104,7 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void LoadEquipmentByDept()
         {
-            DataTable dt = BLL.GetEquipmentByDept(LoginDoctor.DeptId);
+            DataTable dt = BLL.GetEquipmentByDept(LoginUser.DeptId);
             FillEquipmentComboBox(dt, "本科室暂无设备");
         }
 
@@ -111,7 +113,7 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void LoadBorrowedEquipment()
         {
-            DataTable dt = BLL.GetBorrowedEquipmentByApplicant(LoginDoctor.UserId);
+            DataTable dt = BLL.GetBorrowedEquipmentByApplicant(LoginUser.UserId);
             FillEquipmentComboBox(dt, "暂无借用中的设备");
         }
 

@@ -4,8 +4,6 @@ namespace HospitalEquipmentSystem.UI
     {
         private System.ComponentModel.IContainer components = null;
 
-        private Sunny.UI.UIPanel pnlHeader;
-        private Sunny.UI.UILabel lblTitle;
         private Sunny.UI.UILabel lblNo;
         private Sunny.UI.UITextBox txtRepairNo;
         private Sunny.UI.UILabel lblEq;
@@ -31,8 +29,6 @@ namespace HospitalEquipmentSystem.UI
 
         private void InitializeComponent()
         {
-            this.pnlHeader = new Sunny.UI.UIPanel();
-            this.lblTitle = new Sunny.UI.UILabel();
             this.lblNo = new Sunny.UI.UILabel();
             this.txtRepairNo = new Sunny.UI.UITextBox();
             this.lblEq = new Sunny.UI.UILabel();
@@ -48,45 +44,13 @@ namespace HospitalEquipmentSystem.UI
             this.btnSave = new Sunny.UI.UISymbolButton();
             this.btnCancel = new Sunny.UI.UISymbolButton();
             this.btnDelete = new Sunny.UI.UISymbolButton();
-            this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlHeader
-            // 
-            this.pnlHeader.Controls.Add(this.lblTitle);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            this.pnlHeader.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.pnlHeader.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.pnlHeader.Location = new System.Drawing.Point(0, 35);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlHeader.MinimumSize = new System.Drawing.Size(1, 1);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Padding = new System.Windows.Forms.Padding(20, 12, 20, 12);
-            this.pnlHeader.Radius = 0;
-            this.pnlHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlHeader.Size = new System.Drawing.Size(519, 60);
-            this.pnlHeader.TabIndex = 0;
-            this.pnlHeader.Text = null;
-            this.pnlHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.lblTitle.Location = new System.Drawing.Point(129, 12);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(270, 37);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNo
             // 
             this.lblNo.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblNo.Location = new System.Drawing.Point(35, 134);
+            this.lblNo.Location = new System.Drawing.Point(35, 99);
             this.lblNo.Name = "lblNo";
             this.lblNo.Size = new System.Drawing.Size(80, 24);
             this.lblNo.TabIndex = 1;
@@ -101,7 +65,7 @@ namespace HospitalEquipmentSystem.UI
             this.txtRepairNo.FillReadOnlyColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.txtRepairNo.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.txtRepairNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.txtRepairNo.Location = new System.Drawing.Point(125, 134);
+            this.txtRepairNo.Location = new System.Drawing.Point(125, 99);
             this.txtRepairNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRepairNo.MinimumSize = new System.Drawing.Size(1, 16);
             this.txtRepairNo.Name = "txtRepairNo";
@@ -119,7 +83,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblEq.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblEq.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblEq.Location = new System.Drawing.Point(35, 185);
+            this.lblEq.Location = new System.Drawing.Point(35, 150);
             this.lblEq.Name = "lblEq";
             this.lblEq.Size = new System.Drawing.Size(80, 24);
             this.lblEq.TabIndex = 3;
@@ -135,7 +99,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbEquipment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.cmbEquipment.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbEquipment.Location = new System.Drawing.Point(125, 185);
+            this.cmbEquipment.Location = new System.Drawing.Point(125, 150);
             this.cmbEquipment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbEquipment.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbEquipment.Name = "cmbEquipment";
@@ -150,7 +114,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblDept.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblDept.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblDept.Location = new System.Drawing.Point(35, 235);
+            this.lblDept.Location = new System.Drawing.Point(35, 200);
             this.lblDept.Name = "lblDept";
             this.lblDept.Size = new System.Drawing.Size(80, 24);
             this.lblDept.TabIndex = 5;
@@ -166,7 +130,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbDept.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.cmbDept.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cmbDept.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbDept.Location = new System.Drawing.Point(125, 235);
+            this.cmbDept.Location = new System.Drawing.Point(125, 200);
             this.cmbDept.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbDept.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbDept.Name = "cmbDept";
@@ -181,7 +145,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblFt.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblFt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblFt.Location = new System.Drawing.Point(35, 285);
+            this.lblFt.Location = new System.Drawing.Point(35, 250);
             this.lblFt.Name = "lblFt";
             this.lblFt.Size = new System.Drawing.Size(80, 24);
             this.lblFt.TabIndex = 7;
@@ -197,7 +161,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbFaultType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.cmbFaultType.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cmbFaultType.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbFaultType.Location = new System.Drawing.Point(125, 285);
+            this.cmbFaultType.Location = new System.Drawing.Point(125, 250);
             this.cmbFaultType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbFaultType.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbFaultType.Name = "cmbFaultType";
@@ -212,7 +176,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblDesc.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblDesc.Location = new System.Drawing.Point(20, 335);
+            this.lblDesc.Location = new System.Drawing.Point(20, 300);
             this.lblDesc.Name = "lblDesc";
             this.lblDesc.Size = new System.Drawing.Size(95, 32);
             this.lblDesc.TabIndex = 9;
@@ -225,7 +189,7 @@ namespace HospitalEquipmentSystem.UI
             this.txtFaultDesc.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.txtFaultDesc.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.txtFaultDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.txtFaultDesc.Location = new System.Drawing.Point(125, 335);
+            this.txtFaultDesc.Location = new System.Drawing.Point(125, 300);
             this.txtFaultDesc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFaultDesc.MinimumSize = new System.Drawing.Size(1, 16);
             this.txtFaultDesc.Multiline = true;
@@ -241,7 +205,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblUrg.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblUrg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblUrg.Location = new System.Drawing.Point(30, 415);
+            this.lblUrg.Location = new System.Drawing.Point(30, 380);
             this.lblUrg.Name = "lblUrg";
             this.lblUrg.Size = new System.Drawing.Size(80, 24);
             this.lblUrg.TabIndex = 11;
@@ -257,7 +221,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbUrgency.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.cmbUrgency.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cmbUrgency.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbUrgency.Location = new System.Drawing.Point(125, 415);
+            this.cmbUrgency.Location = new System.Drawing.Point(125, 380);
             this.cmbUrgency.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbUrgency.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbUrgency.Name = "cmbUrgency";
@@ -273,7 +237,8 @@ namespace HospitalEquipmentSystem.UI
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.btnSave.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnSave.Location = new System.Drawing.Point(300, 470);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(300, 435);
             this.btnSave.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnSave.Name = "btnSave";
             this.btnSave.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
@@ -289,7 +254,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnCancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.btnCancel.Location = new System.Drawing.Point(400, 470);
+            this.btnCancel.Location = new System.Drawing.Point(400, 435);
             this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
@@ -304,7 +269,8 @@ namespace HospitalEquipmentSystem.UI
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnDelete.Location = new System.Drawing.Point(125, 470);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(125, 435);
             this.btnDelete.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
@@ -316,10 +282,11 @@ namespace HospitalEquipmentSystem.UI
             // 
             // OrderEditForm
             // 
+            this.AllowShowTitle = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(519, 553);
-            this.Controls.Add(this.pnlHeader);
+            this.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this.Controls.Add(this.lblNo);
             this.Controls.Add(this.txtRepairNo);
             this.Controls.Add(this.lblEq);
@@ -340,9 +307,11 @@ namespace HospitalEquipmentSystem.UI
             this.Name = "OrderEditForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.TitleColor = System.Drawing.SystemColors.Desktop;
+            this.ShowTitle = true;
+            this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.TitleFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.ZoomScaleRect = new System.Drawing.Rectangle(22, 22, 520, 480);
-            this.pnlHeader.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

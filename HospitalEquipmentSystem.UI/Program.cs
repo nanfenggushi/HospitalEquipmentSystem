@@ -25,14 +25,27 @@ namespace HospitalEquipmentSystem.UI
             Application.ThreadException += OnThreadException;
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
-            // 先登录：取消则直接退出
-            using (var login = new LoginForm())
+            // 循环：登录 → 主面板 → 退出登录 → 重新登录
+            while (true)
             {
-                if (login.ShowDialog() != DialogResult.OK) return;
-            }
+                LoginForm loginForm = new LoginForm();
+                loginForm.StartPosition = FormStartPosition.CenterScreen;
+                if (loginForm.ShowDialog() != DialogResult.OK)
+                    return; // 用户关闭登录窗口，直接退出
 
-            // 登录成功后进入带侧边栏的页面切换外壳（SwitchPages）
-            Application.Run(new SwitchPages());
+                // 登录成功，进入主面板
+                using (var mainForm = new SwitchPages())
+                {
+                    Application.Run(mainForm);
+                }
+
+                // 主面板关闭后，如果登录状态已被清除（退出登录），继续循环重新登录；
+                // 如果登录状态仍存在（异常关闭），则退出程序
+                if (LoginUser.UserId == 0)
+                    continue; // 正常退出登录，回到登录界面
+                else
+                    return; // 异常关闭，直接退出
+            }
         }
 
         private static void OnThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
@@ -63,4 +76,4 @@ namespace HospitalEquipmentSystem.UI
             }
         }
     }
-    }
+}

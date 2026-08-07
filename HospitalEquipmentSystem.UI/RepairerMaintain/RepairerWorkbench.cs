@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
@@ -42,12 +43,22 @@ namespace HospitalEquipmentSystem.UI
         private void LoadData()
         {
             string stage = GetCurrentStage();
-            _allData = BLL.GetRepairerOrders(LoginRepairer.UserId, stage) ?? new List<MaintenanceRecordDto>();
-            _currentPage = 1;
-            ApplyPaging();
+            int userId = LoginUser.UserId;
 
-            RefreshKpiCards();
-            UpdateActionButtonText();
+            Task.Run(() =>
+            {
+                var data = BLL.GetRepairerOrders(userId, stage) ?? new List<MaintenanceRecordDto>();
+                var kpi = BLL.GetRepairerStageCounts(userId);
+
+                this.BeginInvoke(new Action(() =>
+                {
+                    _allData = data;
+                    _currentPage = 1;
+                    ApplyPaging();
+                    ApplyKpiCards(kpi);
+                    UpdateActionButtonText();
+                }));
+            });
         }
 
         /// <summary>
@@ -85,9 +96,8 @@ namespace HospitalEquipmentSystem.UI
 
         // ==================== KPI 卡片 ====================
 
-        private void RefreshKpiCards()
+        private void ApplyKpiCards(Dictionary<string, int> kpi)
         {
-            var kpi = BLL.GetRepairerStageCounts(LoginRepairer.UserId);
             lblKpi1Val.Text = kpi["PendingAccept"].ToString();  // 待接单
             lblKpi2Val.Text = kpi["InProgress"].ToString();       // 处理中
             lblKpi3Val.Text = kpi["Completed"].ToString();       // 已完成
@@ -178,7 +188,7 @@ namespace HospitalEquipmentSystem.UI
         {
             if (this.ShowAskDialog($"确认接单？\n工单号：{dto.RepairNo}\n设备：{dto.EquipmentName}"))
             {
-                if (BLL.AcceptOrder(dto.RecordId, LoginRepairer.UserId))
+                if (BLL.AcceptOrder(dto.RecordId, LoginUser.UserId))
                 {
                     UIMessageBox.Show($"工单 {dto.RepairNo} 已接单，请开始维修");
                     LoadData();

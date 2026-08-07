@@ -1,3 +1,4 @@
+using HospitalEquipment.Util;
 using Sunny.UI;
 using System;
 using System.Windows.Forms;
@@ -35,11 +36,11 @@ namespace HospitalEquipmentSystem.UI
         public RepairResultForm(string repairNo, string equipmentName)
         {
             InitializeComponent();
+            ThemeHelper.ApplyDarkTheme(this);
 
             if (DesignMode) return;
 
-            lblRepairNo.Text = $"工单号：{repairNo}";
-            lblEquipment.Text = $"设备：{equipmentName}";
+            this.Text = $"维修结果 - {repairNo}";
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)

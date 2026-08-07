@@ -1,14 +1,9 @@
-﻿using HospitalEquipment.BLL;
+using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -17,15 +12,16 @@ namespace HospitalEquipmentSystem.UI
     {
         private readonly LoginBLL bll = new LoginBLL();
         private List<UserDto> _allUsers = new List<UserDto>();
+        private UISymbolButton _selectedRoleBtn;
+
         public LoginForm()
         {
             InitializeComponent();
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (cmbUser.SelectedValue==null)
+            if (cmbUser.SelectedValue == null)
             {
                 UIMessageBox.ShowWarning("请选择人员");
                 return;
@@ -45,19 +41,36 @@ namespace HospitalEquipmentSystem.UI
             this.DialogResult = DialogResult.OK;
         }
 
-        private void rdbAdmin_CheckedChanged(object sender, EventArgs e)
+        private void btnAdmin_Click(object sender, EventArgs e)
         {
+            SelectRole(btnAdmin);
             ApplyRoleFilter();
         }
 
-        private void rdbDoctor_CheckedChanged(object sender, EventArgs e)
+        private void btnDoctor_Click(object sender, EventArgs e)
         {
+            SelectRole(btnDoctor);
             ApplyRoleFilter();
         }
 
-        private void rdbRepair_CheckedChanged(object sender, EventArgs e)
+        private void btnRepair_Click(object sender, EventArgs e)
         {
+            SelectRole(btnRepair);
             ApplyRoleFilter();
+        }
+
+        private void SelectRole(UISymbolButton btn)
+        {
+            if (_selectedRoleBtn != null)
+            {
+                _selectedRoleBtn.FillColor = Color.FromArgb(19, 35, 58);
+                _selectedRoleBtn.FillSelectedColor = Color.FromArgb(0, 255, 255);
+                _selectedRoleBtn.ForeColor = Color.FromArgb(230, 238, 247);
+            }
+            btn.FillColor = Color.FromArgb(0, 255, 255);
+            btn.FillSelectedColor = Color.FromArgb(0, 255, 255);
+            btn.ForeColor = Color.FromArgb(11, 22, 34);
+            _selectedRoleBtn = btn;
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -65,7 +78,7 @@ namespace HospitalEquipmentSystem.UI
             try
             {
                 _allUsers = bll.GetLoginUsers();
-                if (_allUsers.Count==0)
+                if (_allUsers.Count == 0)
                 {
                     UIMessageBox.ShowError("系统没有任何可用账号");
                     return;
@@ -73,9 +86,12 @@ namespace HospitalEquipmentSystem.UI
             }
             catch (Exception ex)
             {
-                UIMessageBox.ShowError("加载人员失败："+ex.Message);
+                UIMessageBox.ShowError("加载人员失败：" + ex.Message);
                 return;
             }
+
+            // 默认选中管理员
+            SelectRole(btnAdmin);
             ApplyRoleFilter();
             txtPassword.Focus();
         }
@@ -88,14 +104,14 @@ namespace HospitalEquipmentSystem.UI
                 : _allUsers.FindAll(u => u.Role == role);
             cmbUser.DisplayMember = "DisplayName";
             cmbUser.ValueMember = "UserId";
-            if(cmbUser.Items.Count>0) cmbUser.SelectedIndex = 0;
+            if (cmbUser.Items.Count > 0) cmbUser.SelectedIndex = 0;
         }
 
         private string GetSelectRole()
         {
-            if(rdbAdmin.Checked) return UserRoleText.Admin;
-            if(rdbDoctor.Checked) return UserRoleText.Doctor;
-            if(rdbRepair.Checked) return UserRoleText.Repair;
+            if (_selectedRoleBtn == btnAdmin) return UserRoleText.Admin;
+            if (_selectedRoleBtn == btnDoctor) return UserRoleText.Doctor;
+            if (_selectedRoleBtn == btnRepair) return UserRoleText.Repair;
             return null;
         }
     }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
+using HospitalEquipment.Util;
 using HospitalEquipment.Model.management;
 using Sunny.UI;
 
@@ -15,7 +16,9 @@ namespace HospitalEquipmentSystem.UI
 {
     public partial class Equipment_BorrowingUI : UIForm
     {
-        private const int PageSize = 10;
+        private const int PageSize = 6;
+        private int _currentPage = 1;
+        private int _totalCount;
 
         private static readonly Color[] ChartColors =
         {
@@ -45,8 +48,10 @@ namespace HospitalEquipmentSystem.UI
         public Equipment_BorrowingUI()
         {
             InitializeComponent();
+            if (DesignMode) return;
             // 使用 exe 自带的空白图标替换 SunnyUI 默认图标（不涉及图表逻辑）
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            ThemeHelper.ApplyDarkTheme(this);
             InitControls();
             this.Load += Equipment_BorrowingUI_Load;
         }
@@ -74,14 +79,14 @@ namespace HospitalEquipmentSystem.UI
             dpTo.Clear();
 
             InitGrid();
-            uiPagination1.PageSize = PageSize;
 
             btnApply.Click += btnApply_Click;
             btnSearch.Click += btnSearch_Click;
             btnReset.Click += btnReset_Click;
             btnRefresh.Click += btnRefresh_Click;
             txtKeyword.KeyDown += txtKeyword_KeyDown;
-            uiPagination1.PageChanged += uiPagination1_PageChanged;
+            btnPrevPage.Click += btnPrevPage_Click;
+            btnNextPage.Click += btnNextPage_Click;
             dgvList.CellClick += dgvList_CellClick;
             btnListView.Click += btnView_Click;
             btnCalendarView.Click += btnView_Click;
@@ -187,7 +192,7 @@ namespace HospitalEquipmentSystem.UI
                 to = t;
             }
 
-            int page = uiPagination1.ActivePage < 1 ? 1 : uiPagination1.ActivePage;
+            int page = _currentPage < 1 ? 1 : _currentPage;
             int generation = ++_loadGeneration;
 
             Task.Run(delegate
@@ -232,15 +237,14 @@ namespace HospitalEquipmentSystem.UI
                 StyleRow(i, r);
             }
 
-            // 仅在总条数变化时才重新绑定分页。
-            // UIPagination.DataBind() 会触发 PageChanged，若每次都绑定会形成
-            // ApplyData -> DataBind -> PageChanged -> LoadData -> ApplyData 的死循环
-            // （后台每 200ms 持续重查数据库，并使窗体不断重绘）。
-            if (uiPagination1.TotalCount != total)
-            {
-                uiPagination1.TotalCount = total;
-                uiPagination1.DataBind();
-            }
+            _totalCount = total;
+            int totalPages = (int)Math.Ceiling((double)total / PageSize);
+            if (totalPages < 1) totalPages = 1;
+            if (_currentPage > totalPages) _currentPage = totalPages;
+            if (_currentPage < 1) _currentPage = 1;
+            lblPageInfo.Text = $"第 {_currentPage}/{totalPages} 页 · 每页 {PageSize} 条 · 共 {total} 条";
+            btnPrevPage.Enabled = _currentPage > 1;
+            btnNextPage.Enabled = _currentPage < totalPages;
             lblTotalLabel.Text = "共 " + total + " 条记录";
 
             RefreshStats();
@@ -360,14 +364,14 @@ namespace HospitalEquipmentSystem.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                uiPagination1.ActivePage = 1;
+                _currentPage = 1;
                 LoadData();
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            uiPagination1.ActivePage = 1;
+            _currentPage = 1;
             LoadData();
         }
 
@@ -378,7 +382,7 @@ namespace HospitalEquipmentSystem.UI
             cmbEquipment.SelectedIndex = 0;
             dpFrom.Clear();
             dpTo.Clear();
-            uiPagination1.ActivePage = 1;
+            _currentPage = 1;
             LoadData();
         }
 
@@ -397,9 +401,23 @@ namespace HospitalEquipmentSystem.UI
             });
         }
 
-        private void uiPagination1_PageChanged(object sender, object pagingSource, int pageIndex, int count)
+        private void btnPrevPage_Click(object sender, EventArgs e)
         {
-            LoadData();
+            if (_currentPage > 1)
+            {
+                _currentPage--;
+                LoadData();
+            }
+        }
+
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            int totalPages = (int)Math.Ceiling((double)_totalCount / PageSize);
+            if (_currentPage < totalPages)
+            {
+                _currentPage++;
+                LoadData();
+            }
         }
 
         // ==================== 事件：列表操作 ====================
@@ -421,7 +439,7 @@ namespace HospitalEquipmentSystem.UI
             {
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
-                    uiPagination1.ActivePage = 1;
+                    _currentPage = 1;
                     LoadData();
                     if (pnlCalendar.Visible) LoadCalendarDates();
                     if (pnlChart.Visible) LoadCharts();
