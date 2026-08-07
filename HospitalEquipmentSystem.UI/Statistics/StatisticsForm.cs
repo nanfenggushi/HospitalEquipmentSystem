@@ -99,9 +99,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
         /// </summary>
         private void LoadDeviceStatusChart(StatisticCardDto cardDto)
         {
-            // 1. 去掉控件内部的灰底和蓝框，和外层卡片融为一体
-            uiDoughnutChart1.FillColor = System.Drawing.Color.White;
-            uiDoughnutChart1.RectColor = System.Drawing.Color.Transparent;
+
 
             // 2. 创建配置对象
             UIDoughnutOption option = new UIDoughnutOption();
@@ -154,8 +152,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             {
                 List<CategoryUsageDto> dt = await _equipmentBLL.GetCategoryUsageDataAsync();
 
-                uiBarChart1.FillColor = System.Drawing.Color.White;
-                uiBarChart1.RectColor = System.Drawing.Color.Transparent;
+
 
                 UIBarOption option = new UIBarOption();
                 option.Title = null; // 清空内置标题
@@ -200,11 +197,25 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             var plot = formsPlot1.Plot;
             plot.Clear();
 
+            // 设置深色主题
+            plot.FigureBackground.Color = ScottPlot.Color.FromHex("#223246");
+            plot.DataBackground.Color = ScottPlot.Color.FromHex("#223246");
+
+            // 设置坐标轴颜色
+            plot.Axes.Color(ScottPlot.Color.FromHex("#8FA3B8"));
+
+            // 设置网格线
+            plot.Grid.MajorLineColor = ScottPlot.Color.FromHex("#FFFFFF20");
+
             // 绘制普通折线
             var line1 = plot.Add.Scatter(monthsX, faultsY);
+            line1.Color = ScottPlot.Color.FromHex("#FF6B6B");
+            line1.LineWidth = 2;
             line1.LegendText = "新增故障";
 
             var line2 = plot.Add.Scatter(monthsX, repairedY);
+            line2.Color = ScottPlot.Color.FromHex("#36CFC9");
+            line2.LineWidth = 2;
             line2.LegendText = "完成维修";
 
             // 添加原生十字光标组件
@@ -221,6 +232,8 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             // 4. 防止中文变方块
             string fontName = "微软雅黑";
             plot.Axes.Bottom.TickLabelStyle.FontName = fontName;
+            plot.Axes.Bottom.TickLabelStyle.ForeColor = ScottPlot.Color.FromHex("#B8C7D9");
+            plot.Axes.Left.TickLabelStyle.ForeColor = ScottPlot.Color.FromHex("#B8C7D9");
             plot.Axes.Left.TickLabelStyle.FontName = fontName;
             plot.Legend.FontName = fontName;
 
