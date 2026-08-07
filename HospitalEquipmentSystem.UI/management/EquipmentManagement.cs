@@ -28,13 +28,7 @@ namespace HospitalEquipmentSystem.UI
 
         private void EquipmentManagement_Load(object sender, EventArgs e)
         {
-            foreach (Control item in uiTableLayoutPanel1.Controls)
-            {
-                if (item is UIButton)
-                {
-                    item.Click += new EventHandler(OnBtnClick);
-                }
-            }
+            // 事件已在 Designer.cs 中绑定，无需重复绑定
             Redirect.NavigateTo<List>(uiPanel1);
         }
 

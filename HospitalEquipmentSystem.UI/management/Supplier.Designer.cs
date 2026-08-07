@@ -28,15 +28,15 @@ namespace HospitalEquipmentSystem.UI.management
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.uiLine2 = new Sunny.UI.UILine();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiTextBox1 = new Sunny.UI.UITextBox();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            this.uiPanel1 = new Sunny.UI.UIPanel();
             this.uiTitlePanel1 = new Sunny.UI.UITitlePanel();
             this.uiButton5 = new Sunny.UI.UIButton();
             this.uiButton3 = new Sunny.UI.UIButton();
@@ -61,6 +61,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiTextBox2 = new Sunny.UI.UITextBox();
             this.uiLabel2 = new Sunny.UI.UILabel();
+            this.uiTitlePanel2 = new Sunny.UI.UITitlePanel();
             this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,28 +71,22 @@ namespace HospitalEquipmentSystem.UI.management
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiTitlePanel2 = new Sunny.UI.UITitlePanel();
+            this.pnlPager = new System.Windows.Forms.Panel();
+            this.btnPrevPage = new Sunny.UI.UISymbolButton();
+            this.lblPageInfo = new Sunny.UI.UILabel();
+            this.btnNextPage = new Sunny.UI.UISymbolButton();
+            this.uiPanel1.SuspendLayout();
             this.uiTitlePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).BeginInit();
             this.uiTitlePanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).BeginInit();
+            this.pnlPager.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // uiLine2
-            // 
-            this.uiLine2.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine2.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.uiLine2.Location = new System.Drawing.Point(6, 37);
-            this.uiLine2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(1313, 29);
-            this.uiLine2.TabIndex = 4;
             // 
             // uiLabel1
             // 
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiLabel1.ForeColor = System.Drawing.Color.White;
-            this.uiLabel1.Location = new System.Drawing.Point(1, 9);
+            this.uiLabel1.Location = new System.Drawing.Point(19, 19);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(213, 40);
             this.uiLabel1.TabIndex = 5;
@@ -102,13 +97,15 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox1.Location = new System.Drawing.Point(1067, 9);
+            this.uiTextBox1.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox1.Location = new System.Drawing.Point(1010, 26);
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox1.Name = "uiTextBox1";
             this.uiTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox1.ShowText = false;
             this.uiTextBox1.Size = new System.Drawing.Size(179, 33);
+            this.uiTextBox1.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox1.TabIndex = 9;
             this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox1.Watermark = "";
@@ -119,12 +116,30 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiSymbolButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiSymbolButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolButton1.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.搜索__1_;
-            this.uiSymbolButton1.Location = new System.Drawing.Point(1244, 9);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(1187, 26);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Size = new System.Drawing.Size(39, 33);
             this.uiSymbolButton1.TabIndex = 10;
+            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
+            // 
+            // uiPanel1
+            // 
+            this.uiPanel1.Controls.Add(this.uiLabel1);
+            this.uiPanel1.Controls.Add(this.uiTextBox1);
+            this.uiPanel1.Controls.Add(this.uiSymbolButton1);
+            this.uiPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiPanel1.FillColor = System.Drawing.Color.Transparent;
+            this.uiPanel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiPanel1.Location = new System.Drawing.Point(0, 0);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiPanel1.Name = "uiPanel1";
+            this.uiPanel1.Size = new System.Drawing.Size(1268, 76);
+            this.uiPanel1.TabIndex = 13;
+            this.uiPanel1.Text = null;
+            this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiTitlePanel1
             // 
@@ -151,9 +166,10 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTitlePanel1.Controls.Add(this.uiLabel3);
             this.uiTitlePanel1.Controls.Add(this.uiTextBox2);
             this.uiTitlePanel1.Controls.Add(this.uiLabel2);
+            this.uiTitlePanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.uiTitlePanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiTitlePanel1.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiTitlePanel1.Location = new System.Drawing.Point(6, 63);
+            this.uiTitlePanel1.Location = new System.Drawing.Point(0, 76);
             this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
@@ -161,13 +177,12 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTitlePanel1.Radius = 10;
             this.uiTitlePanel1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(475, 591);
-            this.uiTitlePanel1.TabIndex = 11;
+            this.uiTitlePanel1.Size = new System.Drawing.Size(475, 768);
+            this.uiTitlePanel1.TabIndex = 14;
             this.uiTitlePanel1.Text = "📋 供应商信息 ";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTitlePanel1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.uiTitlePanel1.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiTitlePanel1.Click += new System.EventHandler(this.uiTitlePanel1_Click);
             // 
             // uiButton5
             // 
@@ -175,7 +190,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.uiButton5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiButton5.Location = new System.Drawing.Point(280, 531);
+            this.uiButton5.Location = new System.Drawing.Point(279, 660);
             this.uiButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton5.Name = "uiButton5";
             this.uiButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
@@ -183,21 +198,19 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton5.TabIndex = 37;
             this.uiButton5.Text = "🔄刷新";
             this.uiButton5.TipsFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton5.Click += new System.EventHandler(this.uiButton5_Click);
             // 
             // uiButton3
             // 
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.uiButton3.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton3.Location = new System.Drawing.Point(107, 531);
+            this.uiButton3.Location = new System.Drawing.Point(106, 660);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
             this.uiButton3.Size = new System.Drawing.Size(76, 35);
             this.uiButton3.TabIndex = 36;
             this.uiButton3.Text = "🗑删除";
             this.uiButton3.TipsFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton3.Click += new System.EventHandler(this.uiButton3_Click);
             // 
             // uiButton2
             // 
@@ -205,7 +218,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiButton2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiButton2.Location = new System.Drawing.Point(280, 470);
+            this.uiButton2.Location = new System.Drawing.Point(279, 599);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
@@ -213,42 +226,40 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton2.TabIndex = 35;
             this.uiButton2.Text = "✖取消";
             this.uiButton2.TipsFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
             // 
             // uiButton1
             // 
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiButton1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Location = new System.Drawing.Point(307, 409);
+            this.uiButton1.Location = new System.Drawing.Point(316, 516);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(76, 35);
             this.uiButton1.TabIndex = 34;
             this.uiButton1.Text = "+新增";
             this.uiButton1.TipsFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
             // 
             // uiButton4
             // 
             this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiButton4.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton4.Location = new System.Drawing.Point(107, 470);
+            this.uiButton4.Location = new System.Drawing.Point(106, 599);
             this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton4.Name = "uiButton4";
             this.uiButton4.Size = new System.Drawing.Size(76, 35);
             this.uiButton4.TabIndex = 33;
             this.uiButton4.Text = "💾保存";
             this.uiButton4.TipsFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton4.Click += new System.EventHandler(this.uiButton4_Click);
             // 
             // uiCheckBox1
             // 
+            this.uiCheckBox1.BackColor = System.Drawing.Color.Transparent;
             this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBox1.ForeColor = System.Drawing.Color.White;
-            this.uiCheckBox1.Location = new System.Drawing.Point(174, 403);
+            this.uiCheckBox1.Location = new System.Drawing.Point(185, 516);
             this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox1.Name = "uiCheckBox1";
             this.uiCheckBox1.Size = new System.Drawing.Size(125, 35);
@@ -257,9 +268,10 @@ namespace HospitalEquipmentSystem.UI.management
             // 
             // uiLabel10
             // 
-            this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel10.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel10.ForeColor = System.Drawing.Color.White;
-            this.uiLabel10.Location = new System.Drawing.Point(62, 409);
+            this.uiLabel10.Location = new System.Drawing.Point(71, 516);
             this.uiLabel10.Name = "uiLabel10";
             this.uiLabel10.Size = new System.Drawing.Size(83, 29);
             this.uiLabel10.TabIndex = 25;
@@ -270,22 +282,25 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox9.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox9.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox9.Location = new System.Drawing.Point(174, 229);
+            this.uiTextBox9.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox9.Location = new System.Drawing.Point(185, 285);
             this.uiTextBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox9.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox9.Name = "uiTextBox9";
             this.uiTextBox9.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox9.ShowText = false;
-            this.uiTextBox9.Size = new System.Drawing.Size(182, 33);
+            this.uiTextBox9.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox9.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox9.TabIndex = 24;
             this.uiTextBox9.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox9.Watermark = "";
             // 
             // uiLabel9
             // 
-            this.uiLabel9.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel9.ForeColor = System.Drawing.Color.White;
-            this.uiLabel9.Location = new System.Drawing.Point(62, 233);
+            this.uiLabel9.Location = new System.Drawing.Point(73, 285);
             this.uiLabel9.Name = "uiLabel9";
             this.uiLabel9.Size = new System.Drawing.Size(105, 29);
             this.uiLabel9.TabIndex = 23;
@@ -296,22 +311,25 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox8.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox8.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox8.Location = new System.Drawing.Point(174, 186);
+            this.uiTextBox8.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox8.Location = new System.Drawing.Point(185, 230);
             this.uiTextBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox8.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox8.Name = "uiTextBox8";
             this.uiTextBox8.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox8.ShowText = false;
-            this.uiTextBox8.Size = new System.Drawing.Size(182, 33);
+            this.uiTextBox8.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox8.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox8.TabIndex = 22;
             this.uiTextBox8.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox8.Watermark = "";
             // 
             // uiLabel8
             // 
-            this.uiLabel8.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel8.ForeColor = System.Drawing.Color.White;
-            this.uiLabel8.Location = new System.Drawing.Point(62, 190);
+            this.uiLabel8.Location = new System.Drawing.Point(71, 230);
             this.uiLabel8.Name = "uiLabel8";
             this.uiLabel8.Size = new System.Drawing.Size(105, 29);
             this.uiLabel8.TabIndex = 21;
@@ -322,22 +340,25 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox7.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox7.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox7.Location = new System.Drawing.Point(174, 143);
+            this.uiTextBox7.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox7.Location = new System.Drawing.Point(185, 176);
             this.uiTextBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox7.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox7.Name = "uiTextBox7";
             this.uiTextBox7.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox7.ShowText = false;
-            this.uiTextBox7.Size = new System.Drawing.Size(182, 33);
+            this.uiTextBox7.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox7.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox7.TabIndex = 20;
             this.uiTextBox7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox7.Watermark = "";
             // 
             // uiLabel7
             // 
-            this.uiLabel7.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel7.ForeColor = System.Drawing.Color.White;
-            this.uiLabel7.Location = new System.Drawing.Point(62, 147);
+            this.uiLabel7.Location = new System.Drawing.Point(73, 176);
             this.uiLabel7.Name = "uiLabel7";
             this.uiLabel7.Size = new System.Drawing.Size(105, 29);
             this.uiLabel7.TabIndex = 19;
@@ -348,49 +369,54 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox6.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox6.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox6.Location = new System.Drawing.Point(174, 100);
+            this.uiTextBox6.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox6.Location = new System.Drawing.Point(185, 122);
             this.uiTextBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox6.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox6.Name = "uiTextBox6";
             this.uiTextBox6.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox6.ShowText = false;
-            this.uiTextBox6.Size = new System.Drawing.Size(182, 33);
+            this.uiTextBox6.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox6.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox6.TabIndex = 18;
             this.uiTextBox6.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox6.Watermark = "";
             // 
             // uiLabel6
             // 
-            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel6.ForeColor = System.Drawing.Color.White;
-            this.uiLabel6.Location = new System.Drawing.Point(62, 104);
+            this.uiLabel6.Location = new System.Drawing.Point(71, 122);
             this.uiLabel6.Name = "uiLabel6";
             this.uiLabel6.Size = new System.Drawing.Size(105, 29);
             this.uiLabel6.TabIndex = 17;
             this.uiLabel6.Text = "编码:";
-            this.uiLabel6.Click += new System.EventHandler(this.uiLabel6_Click);
             // 
             // uiTextBox5
             // 
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox5.Location = new System.Drawing.Point(174, 358);
+            this.uiTextBox5.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox5.Location = new System.Drawing.Point(185, 448);
             this.uiTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox5.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox5.Name = "uiTextBox5";
             this.uiTextBox5.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox5.ShowText = false;
             this.uiTextBox5.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox5.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox5.TabIndex = 15;
             this.uiTextBox5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox5.Watermark = "";
             // 
             // uiLabel5
             // 
-            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel5.ForeColor = System.Drawing.Color.White;
-            this.uiLabel5.Location = new System.Drawing.Point(62, 363);
+            this.uiLabel5.Location = new System.Drawing.Point(73, 448);
             this.uiLabel5.Name = "uiLabel5";
             this.uiLabel5.Size = new System.Drawing.Size(83, 29);
             this.uiLabel5.TabIndex = 16;
@@ -401,22 +427,25 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox4.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox4.Location = new System.Drawing.Point(174, 315);
+            this.uiTextBox4.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox4.Location = new System.Drawing.Point(185, 392);
             this.uiTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox4.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox4.Name = "uiTextBox4";
             this.uiTextBox4.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox4.ShowText = false;
             this.uiTextBox4.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox4.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox4.TabIndex = 13;
             this.uiTextBox4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox4.Watermark = "";
             // 
             // uiLabel4
             // 
-            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel4.ForeColor = System.Drawing.Color.White;
-            this.uiLabel4.Location = new System.Drawing.Point(62, 320);
+            this.uiLabel4.Location = new System.Drawing.Point(73, 392);
             this.uiLabel4.Name = "uiLabel4";
             this.uiLabel4.Size = new System.Drawing.Size(83, 29);
             this.uiLabel4.TabIndex = 14;
@@ -427,24 +456,27 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox3.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox3.Location = new System.Drawing.Point(174, 272);
+            this.uiTextBox3.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox3.Location = new System.Drawing.Point(185, 338);
             this.uiTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox3.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox3.Name = "uiTextBox3";
             this.uiTextBox3.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox3.ShowText = false;
-            this.uiTextBox3.Size = new System.Drawing.Size(182, 33);
+            this.uiTextBox3.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox3.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox3.TabIndex = 12;
             this.uiTextBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox3.Watermark = "";
             // 
             // uiLabel3
             // 
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel3.ForeColor = System.Drawing.Color.White;
-            this.uiLabel3.Location = new System.Drawing.Point(62, 277);
+            this.uiLabel3.Location = new System.Drawing.Point(71, 342);
             this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(83, 29);
+            this.uiLabel3.Size = new System.Drawing.Size(97, 29);
             this.uiLabel3.TabIndex = 12;
             this.uiLabel3.Text = "联系人:";
             // 
@@ -453,46 +485,72 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox2.Location = new System.Drawing.Point(174, 57);
+            this.uiTextBox2.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox2.Location = new System.Drawing.Point(185, 61);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox2.Name = "uiTextBox2";
             this.uiTextBox2.Padding = new System.Windows.Forms.Padding(5);
             this.uiTextBox2.ShowText = false;
-            this.uiTextBox2.Size = new System.Drawing.Size(182, 33);
+            this.uiTextBox2.Size = new System.Drawing.Size(198, 33);
+            this.uiTextBox2.SymbolColor = System.Drawing.Color.White;
             this.uiTextBox2.TabIndex = 11;
             this.uiTextBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox2.Watermark = "";
             // 
             // uiLabel2
             // 
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel2.ForeColor = System.Drawing.Color.White;
-            this.uiLabel2.Location = new System.Drawing.Point(62, 61);
+            this.uiLabel2.Location = new System.Drawing.Point(71, 61);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(105, 29);
             this.uiLabel2.TabIndex = 10;
             this.uiLabel2.Text = "名称:";
             // 
+            // uiTitlePanel2
+            // 
+            this.uiTitlePanel2.Controls.Add(this.uiDataGridView1);
+            this.uiTitlePanel2.Controls.Add(this.pnlPager);
+            this.uiTitlePanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.uiTitlePanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.uiTitlePanel2.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiTitlePanel2.Location = new System.Drawing.Point(474, 76);
+            this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiTitlePanel2.Name = "uiTitlePanel2";
+            this.uiTitlePanel2.Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
+            this.uiTitlePanel2.Radius = 10;
+            this.uiTitlePanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.uiTitlePanel2.ShowText = false;
+            this.uiTitlePanel2.Size = new System.Drawing.Size(794, 768);
+            this.uiTitlePanel2.TabIndex = 15;
+            this.uiTitlePanel2.Text = "供应商列表";
+            this.uiTitlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiTitlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.uiTitlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            // 
             // uiDataGridView1
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.uiDataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.uiDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.uiDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.uiDataGridView1.ColumnHeadersHeight = 32;
             this.uiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.uiDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -504,39 +562,39 @@ namespace HospitalEquipmentSystem.UI.management
             this.Column5,
             this.Column6,
             this.Column7});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.uiDataGridView1.EnableHeadersVisualStyles = false;
             this.uiDataGridView1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.uiDataGridView1.Location = new System.Drawing.Point(8, 38);
+            this.uiDataGridView1.Location = new System.Drawing.Point(4, 38);
             this.uiDataGridView1.Name = "uiDataGridView1";
             this.uiDataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.uiDataGridView1.RowHeadersVisible = false;
             this.uiDataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.uiDataGridView1.RowTemplate.Height = 38;
             this.uiDataGridView1.SelectedIndex = -1;
-            this.uiDataGridView1.Size = new System.Drawing.Size(786, 549);
+            this.uiDataGridView1.Size = new System.Drawing.Size(786, 678);
             this.uiDataGridView1.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiDataGridView1.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.uiDataGridView1.TabIndex = 12;
@@ -598,38 +656,63 @@ namespace HospitalEquipmentSystem.UI.management
             this.Column7.Name = "Column7";
             this.Column7.Width = 125;
             // 
-            // uiTitlePanel2
+            // pnlPager
             // 
-            this.uiTitlePanel2.Controls.Add(this.uiDataGridView1);
-            this.uiTitlePanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            this.uiTitlePanel2.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiTitlePanel2.Location = new System.Drawing.Point(489, 63);
-            this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTitlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiTitlePanel2.Name = "uiTitlePanel2";
-            this.uiTitlePanel2.Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
-            this.uiTitlePanel2.Radius = 10;
-            this.uiTitlePanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.uiTitlePanel2.ShowText = false;
-            this.uiTitlePanel2.Size = new System.Drawing.Size(794, 591);
-            this.uiTitlePanel2.TabIndex = 13;
-            this.uiTitlePanel2.Text = "供应商列表";
-            this.uiTitlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiTitlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.uiTitlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.pnlPager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.pnlPager.Controls.Add(this.btnPrevPage);
+            this.pnlPager.Controls.Add(this.lblPageInfo);
+            this.pnlPager.Controls.Add(this.btnNextPage);
+            this.pnlPager.Location = new System.Drawing.Point(4, 716);
+            this.pnlPager.Name = "pnlPager";
+            this.pnlPager.Size = new System.Drawing.Size(786, 40);
+            this.pnlPager.TabIndex = 13;
+            // 
+            // btnPrevPage
+            // 
+            this.btnPrevPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrevPage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevPage.Location = new System.Drawing.Point(230, 6);
+            this.btnPrevPage.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnPrevPage.Name = "btnPrevPage";
+            this.btnPrevPage.Size = new System.Drawing.Size(80, 28);
+            this.btnPrevPage.Symbol = 61696;
+            this.btnPrevPage.TabIndex = 0;
+            this.btnPrevPage.Text = "上一页";
+            this.btnPrevPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // lblPageInfo
+            // 
+            this.lblPageInfo.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblPageInfo.Location = new System.Drawing.Point(316, 6);
+            this.lblPageInfo.Name = "lblPageInfo";
+            this.lblPageInfo.Size = new System.Drawing.Size(200, 28);
+            this.lblPageInfo.TabIndex = 1;
+            this.lblPageInfo.Text = "第 1/1 页";
+            this.lblPageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNextPage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNextPage.Location = new System.Drawing.Point(522, 6);
+            this.btnNextPage.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(80, 28);
+            this.btnNextPage.Symbol = 61697;
+            this.btnNextPage.TabIndex = 2;
+            this.btnNextPage.Text = "下一页";
+            this.btnNextPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // Supplier
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1304, 668);
+            this.ClientSize = new System.Drawing.Size(1268, 844);
             this.Controls.Add(this.uiTitlePanel2);
             this.Controls.Add(this.uiTitlePanel1);
-            this.Controls.Add(this.uiSymbolButton1);
-            this.Controls.Add(this.uiTextBox1);
-            this.Controls.Add(this.uiLabel1);
-            this.Controls.Add(this.uiLine2);
+            this.Controls.Add(this.uiPanel1);
             this.Name = "Supplier";
             this.Padding = new System.Windows.Forms.Padding(0);
             this.ShowTitle = false;
@@ -637,21 +720,36 @@ namespace HospitalEquipmentSystem.UI.management
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 450);
             this.Load += new System.EventHandler(this.Supplier_Load);
             this.LocationChanged += new System.EventHandler(this.Supplier_LocationChanged);
+            this.uiPanel1.ResumeLayout(false);
             this.uiTitlePanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).EndInit();
             this.uiTitlePanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).EndInit();
+            this.pnlPager.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Sunny.UI.UILine uiLine2;
         private Sunny.UI.UILabel uiLabel1;
         private Sunny.UI.UITextBox uiTextBox1;
         private Sunny.UI.UISymbolButton uiSymbolButton1;
+        private Sunny.UI.UIPanel uiPanel1;
         private Sunny.UI.UITitlePanel uiTitlePanel1;
-        private Sunny.UI.UILabel uiLabel2;
+        private Sunny.UI.UIButton uiButton5;
+        private Sunny.UI.UIButton uiButton3;
+        private Sunny.UI.UIButton uiButton2;
+        private Sunny.UI.UIButton uiButton1;
+        private Sunny.UI.UIButton uiButton4;
+        private Sunny.UI.UICheckBox uiCheckBox1;
+        private Sunny.UI.UILabel uiLabel10;
+        private Sunny.UI.UITextBox uiTextBox9;
+        private Sunny.UI.UILabel uiLabel9;
+        private Sunny.UI.UITextBox uiTextBox8;
+        private Sunny.UI.UILabel uiLabel8;
+        private Sunny.UI.UITextBox uiTextBox7;
+        private Sunny.UI.UILabel uiLabel7;
+        private Sunny.UI.UITextBox uiTextBox6;
+        private Sunny.UI.UILabel uiLabel6;
         private Sunny.UI.UITextBox uiTextBox5;
         private Sunny.UI.UILabel uiLabel5;
         private Sunny.UI.UITextBox uiTextBox4;
@@ -659,21 +757,8 @@ namespace HospitalEquipmentSystem.UI.management
         private Sunny.UI.UITextBox uiTextBox3;
         private Sunny.UI.UILabel uiLabel3;
         private Sunny.UI.UITextBox uiTextBox2;
-        private Sunny.UI.UITextBox uiTextBox7;
-        private Sunny.UI.UILabel uiLabel7;
-        private Sunny.UI.UITextBox uiTextBox6;
-        private Sunny.UI.UILabel uiLabel6;
-        private Sunny.UI.UICheckBox uiCheckBox1;
-        private Sunny.UI.UILabel uiLabel10;
-        private Sunny.UI.UITextBox uiTextBox9;
-        private Sunny.UI.UILabel uiLabel9;
-        private Sunny.UI.UITextBox uiTextBox8;
-        private Sunny.UI.UILabel uiLabel8;
-        private Sunny.UI.UIButton uiButton5;
-        private Sunny.UI.UIButton uiButton3;
-        private Sunny.UI.UIButton uiButton2;
-        private Sunny.UI.UIButton uiButton1;
-        private Sunny.UI.UIButton uiButton4;
+        private Sunny.UI.UILabel uiLabel2;
+        private Sunny.UI.UITitlePanel uiTitlePanel2;
         private Sunny.UI.UIDataGridView uiDataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -683,6 +768,9 @@ namespace HospitalEquipmentSystem.UI.management
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private Sunny.UI.UITitlePanel uiTitlePanel2;
+        private System.Windows.Forms.Panel pnlPager;
+        private Sunny.UI.UISymbolButton btnPrevPage;
+        private Sunny.UI.UILabel lblPageInfo;
+        private Sunny.UI.UISymbolButton btnNextPage;
     }
 }

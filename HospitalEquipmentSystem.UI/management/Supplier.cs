@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.BLL;
+using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using Sunny.UI;
 using System;
@@ -16,15 +16,41 @@ namespace HospitalEquipmentSystem.UI.management
 {
     public partial class Supplier : UIForm
     {
-        private SupplierManager  manager = new SupplierManager();
+        private SupplierManager manager = new SupplierManager();
         private int? currentSupplierId = null;
+        private int currentPage = 1;
+        private int pageSize = 6;
+        private int totalCount = 0;
         private int loadVersion = 0;
         public Supplier()
         {
             InitializeComponent();
+            // 分页按钮事件
+            this.btnPrevPage.Click += (s, e) => { if (currentPage > 1) { currentPage--; _ = LoadData(); } };
+            this.btnNextPage.Click += (s, e) => { int totalPages = (int)Math.Ceiling((double)totalCount / pageSize); if (currentPage < totalPages) { currentPage++; _ = LoadData(); } };
         }
         private async void Supplier_Load(object sender, EventArgs e)
         {
+            // 绑定按钮事件（设计器未绑定，在此统一绑定）
+            this.uiButton1.Click += uiButton1_Click;        // 新增
+            this.uiButton2.Click += uiButton2_Click;        // 取消
+            this.uiButton3.Click += uiButton3_Click;        // 删除
+            this.uiButton4.Click += uiButton4_Click;        // 保存
+            this.uiButton5.Click += uiButton5_Click;        // 刷新
+
+            // 状态列显示中文（一次性绑定，避免重复添加）
+            uiDataGridView1.CellFormatting += (s, ev) =>
+            {
+                if (ev.ColumnIndex >= 0 && uiDataGridView1.Columns[ev.ColumnIndex].Name == "Column7" && ev.Value != null)
+                {
+                    if (ev.Value is bool b)
+                    {
+                        ev.Value = b ? "启用" : "禁用";
+                        ev.FormattingApplied = true;
+                    }
+                }
+            };
+
             await LoadData();
             EnableEdit(false);
             ClearFields();
@@ -32,7 +58,7 @@ namespace HospitalEquipmentSystem.UI.management
 
         }
 
-        
+
 
         #region 数据加载
         private async Task LoadData()
@@ -63,58 +89,33 @@ namespace HospitalEquipmentSystem.UI.management
                     uiDataGridView1.Columns["Column8"].DataPropertyName = "SupplierId";
                     uiDataGridView1.Columns["Column8"].Visible = false; // 隐藏ID列
                 }
-                var list = await manager.GetAll();
+                string keyword = uiTextBox1.Text.Trim();
+                var result = await manager.GetPaged(currentPage, pageSize, keyword);
                 if (version != loadVersion) return;
 
-                int displayedRow = uiDataGridView1.FirstDisplayedScrollingRowIndex;
-                int displayedColumn = uiDataGridView1.FirstDisplayedScrollingColumnIndex;
-                int currentRow = uiDataGridView1.CurrentCell != null ? uiDataGridView1.CurrentCell.RowIndex : -1;
-                int currentColumn = uiDataGridView1.CurrentCell != null ? uiDataGridView1.CurrentCell.ColumnIndex : -1;
-
+                totalCount = result.total;
                 uiDataGridView1.DataSource = null;
-                uiDataGridView1.DataSource = list;
+                uiDataGridView1.DataSource = result.list;
 
-                //状态列显示中文
-                uiDataGridView1.CellFormatting += (s, ev) =>
-                {
-                    if (ev.ColumnIndex >= 0 && uiDataGridView1.Columns[ev.ColumnIndex].Name == "Column7" && ev.Value != null)
-                    {
-                        ev.Value = (bool)ev.Value ? "启用" : "禁用";
-                        ev.FormattingApplied = true;
-                    }
-                };
-
-                try
-                {
-                    if (list.Count > 0 && currentRow >= 0)
-                    {
-                        if (currentRow < uiDataGridView1.Rows.Count)
-                        {
-                            int restoreColumn = currentColumn >= 0 && currentColumn < uiDataGridView1.Columns.Count
-                                ? currentColumn
-                                : 0;
-                            uiDataGridView1.CurrentCell = uiDataGridView1.Rows[currentRow].Cells[restoreColumn];
-                            uiDataGridView1.Rows[currentRow].Selected = true;
-                        }
-                        if (displayedRow >= 0 && displayedRow < uiDataGridView1.Rows.Count)
-                            uiDataGridView1.FirstDisplayedScrollingRowIndex = displayedRow;
-                        if (displayedColumn >= 0 && displayedColumn < uiDataGridView1.Columns.Count)
-                            uiDataGridView1.FirstDisplayedScrollingColumnIndex = displayedColumn;
-                    }
-                    else
-                    {
-                        uiDataGridView1.ClearSelection();
-                    }
-                }
-                catch
-                {
-                    uiDataGridView1.ClearSelection();
-                }
+                // 更新分页信息
+                UpdatePager();
             }
             catch (Exception ex)
             {
                 UIMessageBox.Show($"加载供应商失败：{ex.Message}", "错误", UIStyle.Red);
             }
+        }
+
+        /// <summary>
+        /// 更新分页控件状态
+        /// </summary>
+        private void UpdatePager()
+        {
+            int totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+            if (totalPages < 1) totalPages = 1;
+            lblPageInfo.Text = $"第 {currentPage}/{totalPages} 页 · 每页 {pageSize} 条 · 共 {totalCount} 条";
+            btnPrevPage.Enabled = currentPage > 1;
+            btnNextPage.Enabled = currentPage < totalPages;
         }
         #endregion
         #region 编辑区控制
@@ -171,7 +172,7 @@ namespace HospitalEquipmentSystem.UI.management
         /// 加载完成后会自动调用 EnableEdit(true) 启用编辑区
         /// 对于可能为 null 的字符串字段，使用 ?? "" 防止显示"null"
         /// </remarks>
-        
+
         private void LoadToEdit(SupplierEntity supplier)
         {
             currentSupplierId = supplier.SupplierId;
@@ -188,7 +189,7 @@ namespace HospitalEquipmentSystem.UI.management
         }
         #endregion
         #region 表格事件
-        
+
         /// <summary>
         /// 表格行单击事件：点击行时将供应商数据加载到编辑区
         /// </summary>
@@ -269,6 +270,7 @@ namespace HospitalEquipmentSystem.UI.management
                 if (result)
                 {
                     UIMessageBox.Show("保存成功！", "提示", UIStyle.Green);
+                    currentPage = 1;
                     await LoadData();
                     EnableEdit(false);
                     ClearFields();
@@ -317,6 +319,7 @@ namespace HospitalEquipmentSystem.UI.management
                     if (await manager.Delete(currentSupplierId.Value))
                     {
                         UIMessageBox.Show("删除成功！", "提示", UIStyle.Green);
+                        currentPage = 1;
                         await LoadData();
                         ClearFields();
                         EnableEdit(false);
@@ -337,6 +340,8 @@ namespace HospitalEquipmentSystem.UI.management
         /// <param name="e"></param>
         private async void uiButton5_Click(object sender, EventArgs e)
         {
+            uiTextBox1.Clear();
+            currentPage = 1;
             await LoadData();
             ClearFields();
             EnableEdit(false);
@@ -350,62 +355,8 @@ namespace HospitalEquipmentSystem.UI.management
         /// <param name="e"></param>
         private async void uiSymbolButton1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int version = ++loadVersion;
-                string keyword = uiTextBox1.Text.Trim();
-                if (string.IsNullOrWhiteSpace(keyword))
-                {
-                    await LoadData();
-                    return;
-                }
-
-                var result = await manager.Search(keyword);
-                if (version != loadVersion) return;
-
-                int displayedRow = uiDataGridView1.FirstDisplayedScrollingRowIndex;
-                int displayedColumn = uiDataGridView1.FirstDisplayedScrollingColumnIndex;
-                int currentRow = uiDataGridView1.CurrentCell != null ? uiDataGridView1.CurrentCell.RowIndex : -1;
-                int currentColumn = uiDataGridView1.CurrentCell != null ? uiDataGridView1.CurrentCell.ColumnIndex : -1;
-
-                uiDataGridView1.DataSource = null;
-                uiDataGridView1.DataSource = result;
-
-                // 重置列头（因为 DataSource 重新赋值后列头设置可能丢失）
-                if (uiDataGridView1.Columns.Contains("Column8"))
-                    uiDataGridView1.Columns["Column8"].Visible = false;
-                if (uiDataGridView1.Columns.Contains("Column1"))
-                    uiDataGridView1.Columns["Column1"].HeaderText = "供应商名称";
-                if (uiDataGridView1.Columns.Contains("Column7"))
-                    uiDataGridView1.Columns["Column7"].HeaderText = "状态";
-
-                try
-                {
-                    if (result.Count > 0 && currentRow >= 0)
-                    {
-                        if (currentRow < uiDataGridView1.Rows.Count)
-                        {
-                            int restoreColumn = currentColumn >= 0 && currentColumn < uiDataGridView1.Columns.Count
-                                ? currentColumn
-                                : 0;
-                            uiDataGridView1.CurrentCell = uiDataGridView1.Rows[currentRow].Cells[restoreColumn];
-                            uiDataGridView1.Rows[currentRow].Selected = true;
-                        }
-                        if (displayedRow >= 0 && displayedRow < uiDataGridView1.Rows.Count)
-                            uiDataGridView1.FirstDisplayedScrollingRowIndex = displayedRow;
-                        if (displayedColumn >= 0 && displayedColumn < uiDataGridView1.Columns.Count)
-                            uiDataGridView1.FirstDisplayedScrollingColumnIndex = displayedColumn;
-                    }
-                }
-                catch
-                {
-                    // 恢复失败时保留默认位置
-                }
-            }
-            catch (Exception ex)
-            {
-                UIMessageBox.Show($"查询失败：{ex.Message}", "错误", UIStyle.Red);
-            }
+            currentPage = 1;
+            await LoadData();
         }
         #endregion
         private void uiTitlePanel1_Click(object sender, EventArgs e)
@@ -417,16 +368,16 @@ namespace HospitalEquipmentSystem.UI.management
         {
 
         }
-       
 
 
-        
-        
-       
+
+
+
+
         private void Supplier_LocationChanged(object sender, EventArgs e)
         {
 
         }
-        
+
     }
 }

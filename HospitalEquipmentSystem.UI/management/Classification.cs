@@ -26,6 +26,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton4.Click += uiButton4_Click;        // 保存
             this.uiButton3.Click += uiButton3_Click;        // 删除
             this.uiButton5.Click += uiButton5_Click;        // 取消
+            this.uiTreeView1.AfterSelect += uiTreeView1_AfterSelect_1;  // 树节点选中
 
             try
             {
@@ -422,6 +423,6 @@ namespace HospitalEquipmentSystem.UI.management
 
         #endregion
 
-      
+
     }
 }

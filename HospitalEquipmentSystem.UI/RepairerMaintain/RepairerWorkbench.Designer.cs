@@ -38,6 +38,10 @@ namespace HospitalEquipmentSystem.UI
             this.lblKpi3Sub = new Sunny.UI.UILabel();
             this.tabControl = new Sunny.UI.UITabControl();
             this.tpPending = new System.Windows.Forms.TabPage();
+            this.pnlPager = new System.Windows.Forms.Panel();
+            this.btnPrevPage = new Sunny.UI.UISymbolButton();
+            this.lblPageInfo = new Sunny.UI.UILabel();
+            this.btnNextPage = new Sunny.UI.UISymbolButton();
             this.dgvOrders = new Sunny.UI.UIDataGridView();
             this.colRepairNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipment = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,10 +55,6 @@ namespace HospitalEquipmentSystem.UI
             this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tpInProgress = new System.Windows.Forms.TabPage();
             this.tpDone = new System.Windows.Forms.TabPage();
-            this.pnlPager = new System.Windows.Forms.Panel();
-            this.btnPrevPage = new Sunny.UI.UISymbolButton();
-            this.lblPageInfo = new Sunny.UI.UILabel();
-            this.btnNextPage = new Sunny.UI.UISymbolButton();
             this.pnlHeader.SuspendLayout();
             this.pnlKpiContainer.SuspendLayout();
             this.pnlKpi1.SuspendLayout();
@@ -80,7 +80,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Padding = new System.Windows.Forms.Padding(20, 12, 20, 12);
             this.pnlHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlHeader.Size = new System.Drawing.Size(1278, 80);
+            this.pnlHeader.Size = new System.Drawing.Size(1292, 80);
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Text = null;
             this.pnlHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -133,7 +133,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlKpiContainer.Location = new System.Drawing.Point(0, 115);
             this.pnlKpiContainer.Name = "pnlKpiContainer";
             this.pnlKpiContainer.Padding = new System.Windows.Forms.Padding(15, 10, 15, 5);
-            this.pnlKpiContainer.Size = new System.Drawing.Size(1278, 100);
+            this.pnlKpiContainer.Size = new System.Drawing.Size(1292, 100);
             this.pnlKpiContainer.TabIndex = 1;
             // 
             // pnlKpi1
@@ -272,21 +272,71 @@ namespace HospitalEquipmentSystem.UI
             this.tabControl.MainPage = "";
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1278, 604);
+            this.tabControl.Size = new System.Drawing.Size(1292, 617);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 2;
             this.tabControl.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            //
+            // 
             // tpPending
-            //
+            // 
             this.tpPending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.tpPending.Controls.Add(this.pnlPager);
             this.tpPending.Controls.Add(this.dgvOrders);
             this.tpPending.Location = new System.Drawing.Point(0, 40);
             this.tpPending.Name = "tpPending";
-            this.tpPending.Size = new System.Drawing.Size(1278, 564);
+            this.tpPending.Size = new System.Drawing.Size(1292, 577);
             this.tpPending.TabIndex = 0;
             this.tpPending.Text = "待接单";
+            // 
+            // pnlPager
+            // 
+            this.pnlPager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.pnlPager.Controls.Add(this.btnPrevPage);
+            this.pnlPager.Controls.Add(this.lblPageInfo);
+            this.pnlPager.Controls.Add(this.btnNextPage);
+            this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlPager.Location = new System.Drawing.Point(0, 537);
+            this.pnlPager.Name = "pnlPager";
+            this.pnlPager.Size = new System.Drawing.Size(1292, 40);
+            this.pnlPager.TabIndex = 1;
+            // 
+            // btnPrevPage
+            // 
+            this.btnPrevPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrevPage.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnPrevPage.Location = new System.Drawing.Point(480, 6);
+            this.btnPrevPage.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnPrevPage.Name = "btnPrevPage";
+            this.btnPrevPage.Size = new System.Drawing.Size(80, 28);
+            this.btnPrevPage.Style = Sunny.UI.UIStyle.Custom;
+            this.btnPrevPage.Symbol = 61696;
+            this.btnPrevPage.TabIndex = 0;
+            this.btnPrevPage.Text = "上一页";
+            // 
+            // lblPageInfo
+            // 
+            this.lblPageInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblPageInfo.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblPageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblPageInfo.Location = new System.Drawing.Point(580, 10);
+            this.lblPageInfo.Name = "lblPageInfo";
+            this.lblPageInfo.Size = new System.Drawing.Size(200, 20);
+            this.lblPageInfo.TabIndex = 1;
+            this.lblPageInfo.Text = "第 1/1 页 · 每页 6 条";
+            this.lblPageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNextPage.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnNextPage.Location = new System.Drawing.Point(800, 6);
+            this.btnNextPage.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(80, 28);
+            this.btnNextPage.Style = Sunny.UI.UIStyle.Custom;
+            this.btnNextPage.Symbol = 61697;
+            this.btnNextPage.TabIndex = 2;
+            this.btnNextPage.Text = "下一页";
             // 
             // dgvOrders
             // 
@@ -352,7 +402,7 @@ namespace HospitalEquipmentSystem.UI
             this.dgvOrders.RowTemplate.Height = 38;
             this.dgvOrders.SelectedIndex = -1;
             this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrders.Size = new System.Drawing.Size(1278, 564);
+            this.dgvOrders.Size = new System.Drawing.Size(1292, 577);
             this.dgvOrders.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.dgvOrders.TabIndex = 0;
             // 
@@ -445,65 +495,14 @@ namespace HospitalEquipmentSystem.UI
             this.colAction.ReadOnly = true;
             this.colAction.Text = "操作";
             this.colAction.UseColumnTextForButtonValue = true;
-            //
-            // pnlPager
-            //
-            this.pnlPager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            this.pnlPager.Controls.Add(this.btnPrevPage);
-            this.pnlPager.Controls.Add(this.lblPageInfo);
-            this.pnlPager.Controls.Add(this.btnNextPage);
-            this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlPager.Location = new System.Drawing.Point(0, 524);
-            this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(1278, 40);
-            this.pnlPager.TabIndex = 1;
-            //
-            // btnPrevPage
-            //
-            this.btnPrevPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrevPage.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btnPrevPage.Location = new System.Drawing.Point(480, 6);
-            this.btnPrevPage.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnPrevPage.Name = "btnPrevPage";
-            this.btnPrevPage.Size = new System.Drawing.Size(80, 28);
-            this.btnPrevPage.Style = Sunny.UI.UIStyle.Custom;
-            this.btnPrevPage.Symbol = 61696;
-            this.btnPrevPage.TabIndex = 0;
-            this.btnPrevPage.Text = "上一页";
-            this.btnPrevPage.TipsFont = new System.Drawing.Font("宋体", 9F);
-            //
-            // lblPageInfo
-            //
-            this.lblPageInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lblPageInfo.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lblPageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblPageInfo.Location = new System.Drawing.Point(580, 10);
-            this.lblPageInfo.Name = "lblPageInfo";
-            this.lblPageInfo.Size = new System.Drawing.Size(200, 20);
-            this.lblPageInfo.TabIndex = 1;
-            this.lblPageInfo.Text = "第 1/1 页 · 每页 6 条";
-            this.lblPageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
-            // btnNextPage
-            //
-            this.btnNextPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNextPage.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btnNextPage.Location = new System.Drawing.Point(800, 6);
-            this.btnNextPage.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(80, 28);
-            this.btnNextPage.Style = Sunny.UI.UIStyle.Custom;
-            this.btnNextPage.Symbol = 61697;
-            this.btnNextPage.TabIndex = 2;
-            this.btnNextPage.Text = "下一页";
-            this.btnNextPage.TipsFont = new System.Drawing.Font("宋体", 9F);
-            //
+            this.colAction.Width = 150;
+            // 
             // tpInProgress
             // 
             this.tpInProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.tpInProgress.Location = new System.Drawing.Point(0, 40);
             this.tpInProgress.Name = "tpInProgress";
-            this.tpInProgress.Size = new System.Drawing.Size(1294, 693);
+            this.tpInProgress.Size = new System.Drawing.Size(200, 60);
             this.tpInProgress.TabIndex = 1;
             this.tpInProgress.Text = "处理中";
             // 
@@ -512,7 +511,7 @@ namespace HospitalEquipmentSystem.UI
             this.tpDone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.tpDone.Location = new System.Drawing.Point(0, 40);
             this.tpDone.Name = "tpDone";
-            this.tpDone.Size = new System.Drawing.Size(1294, 693);
+            this.tpDone.Size = new System.Drawing.Size(200, 60);
             this.tpDone.TabIndex = 2;
             this.tpDone.Text = "已完成";
             // 
@@ -520,7 +519,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1278, 819);
+            this.ClientSize = new System.Drawing.Size(1292, 832);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.pnlKpiContainer);
             this.Controls.Add(this.pnlHeader);

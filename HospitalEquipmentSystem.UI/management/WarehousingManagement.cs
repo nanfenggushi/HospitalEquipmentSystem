@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.BLL;
+using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using Sunny.UI;
 using System;
@@ -36,6 +36,23 @@ namespace HospitalEquipmentSystem.UI.management
 
         private async void WarehousingManagement_Load(object sender, EventArgs e)
         {
+            // 审核状态显示中文（一次性绑定，避免重复添加）
+            uiDataGridView1.CellFormatting += (s, ev) =>
+            {
+                if (ev.ColumnIndex >= 0 && uiDataGridView1.Columns[ev.ColumnIndex].Name == "Column6" && ev.Value != null)
+                {
+                    string status = ev.Value.ToString();
+                    ev.Value = status switch
+                    {
+                        "Pending" => "待审核",
+                        "Approved" => "已审核",
+                        "Rejected" => "已驳回",
+                        _ => status
+                    };
+                    ev.FormattingApplied = true;
+                }
+            };
+
             // 初始化下拉框
             try
             {
@@ -107,11 +124,7 @@ namespace HospitalEquipmentSystem.UI.management
             {
                 int version = ++loadVersion;
                 string keyword = uiTextBox1.Text.Trim();
-                string auditStatus = "";
-                if (uiComboBox1.SelectedValue!=null)
-                {
-                }
-                var result = await manager.GetPaged(currentPage, pageSize, keyword, auditStatus);
+                var result = await manager.GetPaged(currentPage, pageSize, keyword);
                 if (version != loadVersion) return;
                 totalcount = result.total;
 
@@ -139,23 +152,6 @@ namespace HospitalEquipmentSystem.UI.management
                 {
                     isBindingPagination = false;
                 }
-
-                //审核状态显示中文
-                uiDataGridView1.CellFormatting += (s, ev) =>
-                {
-                    if (ev.ColumnIndex >= 0 && uiDataGridView1.Columns[ev.ColumnIndex].Name == "Column6" && ev.Value != null)
-                    {
-                        string status = ev.Value.ToString();
-                        ev.Value = status switch
-                        {
-                            "Pending" => "待审核",
-                            "Approved" => "已审核",
-                            "Rejected" => "已驳回",
-                            _ => status
-                        };
-                        ev.FormattingApplied = true;
-                    }
-                };
 
                 try
                 {
@@ -274,12 +270,12 @@ namespace HospitalEquipmentSystem.UI.management
         /// <param name="record"></param>
         private void LoadToEdit(InboundRecord record)
         {
-            currentEditId= record.InboundId;
+            currentEditId = record.InboundId;
             uiTextBox2.Text = record.InboundNo;
             uiDatePicker1.Value = record.InboundDate;
             uiComboBox1.SelectedValue = record.EquipmentId;
-            uiTextBox3.Text= record.EquipmentNo ?? "";
-            uiTextBox4.Text=record.EquipmentName ?? "";
+            uiTextBox3.Text = record.EquipmentNo ?? "";
+            uiTextBox4.Text = record.EquipmentName ?? "";
             uiComboBox2.SelectedItem = record.Supplier;
             uiTextBox5.Text = record.PurchasePrice?.ToString() ?? "";
             uiTextBox6.Text = record.Quantity.ToString();
@@ -287,7 +283,7 @@ namespace HospitalEquipmentSystem.UI.management
             uiTextBox7.Text = record.Remarks ?? "";
 
             // 如果是已审核的记录，禁用编辑区
-            if(record.AuditStatus == "Pending")
+            if (record.AuditStatus == "Pending")
             {
                 EnableEdit(false);
                 UIMessageBox.Show($"该记录已「{record.AuditStatusText}」，不可编辑！", "提示", UIStyle.Green);

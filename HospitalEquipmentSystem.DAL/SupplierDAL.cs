@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.Model;
+using HospitalEquipment.Model;
 using HospitalEquipmentSystem.Common;
 using System;
 using System.Collections.Generic;
@@ -180,5 +180,53 @@ namespace HospitalEquipment.DAL
         }
     
 
+        /// <summary>
+        /// 分页查询供应商
+        /// </summary>
+        public async Task<(List<Supplier> list, int total)> GetPaged(int pageIndex, int pageSize, string keyword = "")
+        {
+            var conditions = new List<string>();
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                conditions.Add("(SupplierName LIKE @Keyword OR SupplierCode LIKE @Keyword OR ContactPerson LIKE @Keyword)");
+                parameters.Add(new SqlParameter("@Keyword", $"%{keyword}%"));
+            }
+
+            string whereClause = conditions.Count > 0 ? "WHERE " + string.Join(" AND ", conditions) : "";
+
+            // 查询总数
+            string countSql = $"SELECT COUNT(*) FROM Suppliers {whereClause}";
+            object countResult = await DbHelper.ExecuteScalarAsync(countSql, parameters.ToArray()).ConfigureAwait(false);
+            int total = countResult != null ? Convert.ToInt32(countResult) : 0;
+
+            // 分页数据
+            int offset = (pageIndex - 1) * pageSize;
+            var pagedParams = new List<SqlParameter>(parameters);
+            pagedParams.Add(new SqlParameter("@Offset", offset));
+            pagedParams.Add(new SqlParameter("@PageSize", pageSize));
+
+            string sql = $@"
+                SELECT SupplierId, SupplierName, 
+                       ISNULL(SupplierCode, '') AS SupplierCode,
+                       ContactPerson, Phone, 
+                       ISNULL(Email, '') AS Email,
+                       ISNULL(Address, '') AS Address,
+                       ISNULL(Website, '') AS Website,
+                       ISNULL(Remark, '') AS Remark,
+                       IsActive, CreatedAt
+                FROM Suppliers 
+                {whereClause}
+                ORDER BY SupplierId DESC
+                OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, pagedParams.ToArray()).ConfigureAwait(false))
+            {
+                if (reader == null) return (new List<Supplier>(), total);
+                var list = DataReaderMapper.MapToList<Supplier>(reader);
+                return (list, total);
+            }
+        }
     }
 }

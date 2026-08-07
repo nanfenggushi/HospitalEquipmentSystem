@@ -84,7 +84,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlHeader.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlHeader.Size = new System.Drawing.Size(1280, 56);
+            this.pnlHeader.Size = new System.Drawing.Size(1292, 56);
             this.pnlHeader.Style = Sunny.UI.UIStyle.Custom;
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Text = null;
@@ -153,7 +153,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlKpiContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlKpiContainer.Location = new System.Drawing.Point(0, 56);
             this.pnlKpiContainer.Name = "pnlKpiContainer";
-            this.pnlKpiContainer.Size = new System.Drawing.Size(1280, 97);
+            this.pnlKpiContainer.Size = new System.Drawing.Size(1292, 97);
             this.pnlKpiContainer.TabIndex = 1;
             // 
             // pnlKpi1
@@ -338,7 +338,7 @@ namespace HospitalEquipmentSystem.UI
             this.tabControl.MainPage = "";
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1280, 517);
+            this.tabControl.Size = new System.Drawing.Size(1292, 679);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.Style = Sunny.UI.UIStyle.Custom;
             this.tabControl.TabIndex = 2;
@@ -351,7 +351,7 @@ namespace HospitalEquipmentSystem.UI
             this.tpAll.Controls.Add(this.dgvOrders);
             this.tpAll.Location = new System.Drawing.Point(0, 40);
             this.tpAll.Name = "tpAll";
-            this.tpAll.Size = new System.Drawing.Size(1280, 477);
+            this.tpAll.Size = new System.Drawing.Size(1292, 639);
             this.tpAll.TabIndex = 0;
             this.tpAll.Text = "全部";
             // 
@@ -362,9 +362,9 @@ namespace HospitalEquipmentSystem.UI
             this.pnlPager.Controls.Add(this.lblPageInfo);
             this.pnlPager.Controls.Add(this.btnNextPage);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlPager.Location = new System.Drawing.Point(0, 437);
+            this.pnlPager.Location = new System.Drawing.Point(0, 599);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(1280, 40);
+            this.pnlPager.Size = new System.Drawing.Size(1292, 40);
             this.pnlPager.TabIndex = 1;
             // 
             // btnPrevPage
@@ -463,7 +463,7 @@ namespace HospitalEquipmentSystem.UI
             this.dgvOrders.ScrollBarStyleInherited = false;
             this.dgvOrders.SelectedIndex = -1;
             this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrders.Size = new System.Drawing.Size(1280, 477);
+            this.dgvOrders.Size = new System.Drawing.Size(1292, 639);
             this.dgvOrders.StripeEvenColor = System.Drawing.Color.Azure;
             this.dgvOrders.StripeOddColor = System.Drawing.Color.LightCyan;
             this.dgvOrders.Style = Sunny.UI.UIStyle.Custom;
@@ -574,7 +574,7 @@ namespace HospitalEquipmentSystem.UI
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.ClientSize = new System.Drawing.Size(1280, 670);
+            this.ClientSize = new System.Drawing.Size(1292, 832);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.pnlKpiContainer);
             this.Controls.Add(this.pnlHeader);

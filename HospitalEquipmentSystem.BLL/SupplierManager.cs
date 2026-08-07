@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.DAL;
+using HospitalEquipment.DAL;
 using HospitalEquipment.Model;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,11 @@ namespace HospitalEquipment.BLL
         private SupplierDAL dal = new SupplierDAL();
 
         public async Task<List<Supplier>> GetAll() => await dal.GetAll().ConfigureAwait(false);
+        public async Task<(List<Supplier> list, int total)> GetPaged(int pageIndex, int pageSize, string keyword = "")
+        {
+            if (pageIndex < 1) pageIndex = 1;
+            return await dal.GetPaged(pageIndex, pageSize, keyword).ConfigureAwait(false);
+        }
         public async Task<List<Supplier>> GetActive() => await dal.GetActive().ConfigureAwait(false);
         public async Task<Supplier> GetById(int id) => await dal.GetById(id).ConfigureAwait(false);
 
