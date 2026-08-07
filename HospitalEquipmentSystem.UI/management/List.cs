@@ -1,4 +1,4 @@
-﻿using HospitalEquipment.BLL.management;
+using HospitalEquipment.BLL.management;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -14,12 +14,12 @@ namespace HospitalEquipmentSystem.UI.management
         private int pageSize = 10;
         private int totalCount = 0;
         private int loadVersion = 0;
-        private bool isBindingPagination = false;
 
         public List()
         {
             InitializeComponent();
-            this.uiPagination1.PageChanged += UiPagination1_PageChanged;
+            this.btnPrevPage.Click += (s, e) => { if (currentPage > 1) { currentPage--; _ = LoadData(); } };
+            this.btnNextPage.Click += (s, e) => { int totalPages = (int)Math.Ceiling((double)totalCount / pageSize); if (currentPage < totalPages) { currentPage++; _ = LoadData(); } };
 
             this.uiButton4.Click += BtnSearch_Click;//查询
             this.uiButton5.Click += BtnReset_Click; //重置
@@ -30,7 +30,7 @@ namespace HospitalEquipmentSystem.UI.management
         /// </summary>
         private async void BtnReset_Click(object sender, EventArgs e)
         {
-          
+
             uiTextBox1.Clear();//清空搜索框
             uiComboBox1.SelectedIndex = 0; //状态下拉框重置为“全部”
             uiComboBox2.SelectedIndex = 0; //科室下拉框重置为“全部科室”
@@ -43,14 +43,6 @@ namespace HospitalEquipmentSystem.UI.management
         private async void BtnSearch_Click(object sender, EventArgs e)
         {
             currentPage = 1;
-            await LoadData();
-        }
-
-        private async void UiPagination1_PageChanged(object sender, object pagingSource, int pageIndex, int count)
-        {
-            if (isBindingPagination) return;
-
-            currentPage = pageIndex;
             await LoadData();
         }
 
@@ -80,7 +72,7 @@ namespace HospitalEquipmentSystem.UI.management
         {
             // 关闭自动生成列（必须）
             uiDataGridView1.AutoGenerateColumns = false;
-           
+
             // 注意：列名需要与设计器中的 Name 一致
             if (uiDataGridView1.Columns.Contains("Column1"))
             {
@@ -189,17 +181,11 @@ namespace HospitalEquipmentSystem.UI.management
                 uiLabel2.Text = $"共 {totalCount} 台设备";
 
                 // 更新分页控件
-                isBindingPagination = true;
-                try
-                {
-                    uiPagination1.TotalCount = totalCount;
-                    uiPagination1.PageSize = pageSize;
-                    //uiPagination1.ActivePage = currentPage;
-                }
-                finally
-                {
-                    isBindingPagination = false;
-                }
+                int totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+                if (totalPages < 1) totalPages = 1;
+                lblPageInfo.Text = $"第 {currentPage}/{totalPages} 页 · 每页 {pageSize} 条 · 共 {totalCount} 条";
+                btnPrevPage.Enabled = currentPage > 1;
+                btnNextPage.Enabled = currentPage < totalPages;
 
                 try
                 {

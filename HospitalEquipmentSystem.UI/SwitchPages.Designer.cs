@@ -30,9 +30,10 @@ namespace HospitalEquipmentSystem.UI
         {
             this.components = new System.ComponentModel.Container();
             this.topPanel = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnUserName = new Sunny.UI.UIButton();
-            this.btnNotify = new System.Windows.Forms.Button();
+            this.uiLabel1 = new Sunny.UI.UILabel();
+            this.btnExit = new Sunny.UI.UISymbolButton();
+            this.btnNotify = new Sunny.UI.UISymbolButton();
+            this.btnBack = new Sunny.UI.UISymbolButton();
             this.lblTitle = new System.Windows.Forms.Label();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.btnSystemSetting = new System.Windows.Forms.Button();
@@ -53,66 +54,102 @@ namespace HospitalEquipmentSystem.UI
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.White;
+            this.topPanel.Controls.Add(this.uiLabel1);
             this.topPanel.Controls.Add(this.btnExit);
-            this.topPanel.Controls.Add(this.btnUserName);
             this.topPanel.Controls.Add(this.btnNotify);
+            this.topPanel.Controls.Add(this.btnBack);
             this.topPanel.Controls.Add(this.lblTitle);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.topPanel.Location = new System.Drawing.Point(0, 0);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(1588, 60);
+            this.topPanel.Size = new System.Drawing.Size(1492, 60);
             this.topPanel.TabIndex = 0;
+            // 
+            // uiLabel1
+            // 
+            this.uiLabel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.uiLabel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiLabel1.Location = new System.Drawing.Point(1165, 0);
+            this.uiLabel1.Name = "uiLabel1";
+            this.uiLabel1.Size = new System.Drawing.Size(243, 60);
+            this.uiLabel1.TabIndex = 0;
+            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnExit
             // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnExit.Location = new System.Drawing.Point(1130, 0);
+            this.btnExit.FillColor = System.Drawing.Color.Transparent;
+            this.btnExit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnExit.Location = new System.Drawing.Point(1408, 0);
+            this.btnExit.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(94, 60);
-            this.btnExit.TabIndex = 4;
-            this.btnExit.Text = "⏻";
-            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.RectColor = System.Drawing.Color.Transparent;
+            this.btnExit.RectHoverColor = System.Drawing.Color.White;
+            this.btnExit.RectPressColor = System.Drawing.Color.White;
+            this.btnExit.RectSelectedColor = System.Drawing.Color.White;
+            this.btnExit.Size = new System.Drawing.Size(84, 60);
+            this.btnExit.Symbol = 61453;
+            this.btnExit.SymbolColor = System.Drawing.Color.Black;
+            this.btnExit.SymbolHoverColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnExit.SymbolPressColor = System.Drawing.SystemColors.Desktop;
+            this.btnExit.SymbolSize = 30;
+            this.btnExit.TabIndex = 9;
+            this.btnExit.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnUserName
-            // 
-            this.btnUserName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUserName.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnUserName.Font = new System.Drawing.Font("微软雅黑", 14F);
-            this.btnUserName.Location = new System.Drawing.Point(1224, 0);
-            this.btnUserName.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnUserName.Name = "btnUserName";
-            this.btnUserName.Size = new System.Drawing.Size(314, 60);
-            this.btnUserName.TabIndex = 3;
-            this.btnUserName.Text = "管理员";
-            this.btnUserName.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUserName.Click += new System.EventHandler(this.btnUserName_Click);
+          
             // 
             // btnNotify
             // 
-            this.btnNotify.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnNotify.FlatAppearance.BorderSize = 0;
-            this.btnNotify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNotify.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnNotify.Location = new System.Drawing.Point(1538, 0);
+            this.btnNotify.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNotify.FillColor = System.Drawing.Color.Transparent;
+            this.btnNotify.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnNotify.Location = new System.Drawing.Point(1061, 0);
+            this.btnNotify.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnNotify.Name = "btnNotify";
-            this.btnNotify.Size = new System.Drawing.Size(50, 60);
-            this.btnNotify.TabIndex = 2;
-            this.btnNotify.Text = "🔔";
-            this.btnNotify.UseVisualStyleBackColor = false;
-            //this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
+            this.btnNotify.RectColor = System.Drawing.Color.Transparent;
+            this.btnNotify.RectHoverColor = System.Drawing.Color.White;
+            this.btnNotify.RectPressColor = System.Drawing.Color.White;
+            this.btnNotify.RectSelectedColor = System.Drawing.Color.White;
+            this.btnNotify.Size = new System.Drawing.Size(84, 60);
+            this.btnNotify.Symbol = 261683;
+            this.btnNotify.SymbolColor = System.Drawing.Color.Black;
+            this.btnNotify.SymbolHoverColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnNotify.SymbolPressColor = System.Drawing.SystemColors.Desktop;
+            this.btnNotify.SymbolSize = 30;
+            this.btnNotify.TabIndex = 8;
+            this.btnNotify.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBack.FillColor = System.Drawing.Color.Transparent;
+            this.btnBack.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnBack.Location = new System.Drawing.Point(0, 0);
+            this.btnBack.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.RectColor = System.Drawing.Color.Transparent;
+            this.btnBack.Size = new System.Drawing.Size(84, 60);
+            this.btnBack.Symbol = 61714;
+            this.btnBack.SymbolColor = System.Drawing.Color.Black;
+            this.btnBack.SymbolHoverColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnBack.SymbolPressColor = System.Drawing.SystemColors.Desktop;
+            this.btnBack.SymbolSize = 30;
+            this.btnBack.TabIndex = 0;
+            this.btnBack.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblTitle.Location = new System.Drawing.Point(71, 5);
+            this.lblTitle.Location = new System.Drawing.Point(110, 10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(110, 31);
+            this.lblTitle.Size = new System.Drawing.Size(129, 37);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "设备管理";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,7 +167,7 @@ namespace HospitalEquipmentSystem.UI
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 60);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(200, 1042);
+            this.sidePanel.Size = new System.Drawing.Size(200, 832);
             this.sidePanel.TabIndex = 1;
             // 
             // btnSystemSetting
@@ -273,7 +310,7 @@ namespace HospitalEquipmentSystem.UI
             this.contentPanel.Location = new System.Drawing.Point(200, 60);
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1388, 1042);
+            this.contentPanel.Size = new System.Drawing.Size(1292, 832);
             this.contentPanel.TabIndex = 2;
             // 
             // contextMenuStrip1
@@ -282,12 +319,12 @@ namespace HospitalEquipmentSystem.UI
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemSwitchUser});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 34);
             // 
             // toolStripMenuItemSwitchUser
             // 
             this.toolStripMenuItemSwitchUser.Name = "toolStripMenuItemSwitchUser";
-            this.toolStripMenuItemSwitchUser.Size = new System.Drawing.Size(138, 24);
+            this.toolStripMenuItemSwitchUser.Size = new System.Drawing.Size(152, 30);
             this.toolStripMenuItemSwitchUser.Text = "切换用户";
             this.toolStripMenuItemSwitchUser.Click += new System.EventHandler(this.toolStripMenuItemSwitchUser_Click);
             // 
@@ -295,7 +332,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1588, 1102);
+            this.ClientSize = new System.Drawing.Size(1492, 892);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.sidePanel);
             this.Controls.Add(this.topPanel);
@@ -317,9 +354,6 @@ namespace HospitalEquipmentSystem.UI
 
         private System.Windows.Forms.Panel topPanel;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnNotify;
-        private Sunny.UI.UIButton btnUserName;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSwitchUser;
         private System.Windows.Forms.Panel sidePanel;
@@ -331,5 +365,9 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.Button btnDataStatistics;
         private System.Windows.Forms.Button btnSystemSetting;
         private System.Windows.Forms.Panel contentPanel;
+        private Sunny.UI.UISymbolButton btnBack;
+        private Sunny.UI.UISymbolButton btnExit;
+        private Sunny.UI.UISymbolButton btnNotify;
+        private Sunny.UI.UILabel uiLabel1;
     }
 }

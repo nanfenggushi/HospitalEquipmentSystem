@@ -13,7 +13,7 @@ namespace HospitalEquipmentSystem.UI
     /// <summary>
     /// 页面切换窗体：用于各功能页面的切换入口
     /// </summary>
-    public partial class SwitchPages : UIForm   
+    public partial class SwitchPages : UIForm
     {
         /// <summary>
         /// 侧边栏是否展开
@@ -126,7 +126,7 @@ namespace HospitalEquipmentSystem.UI
             // 初始化默认选中设备管理
             currentSelectedButton = btnDashboard;
             UpdateMenuSelection(btnDashboard);
-           
+
 
             // 按当前登录角色控制侧边栏菜单显示
             ApplyRolePermissions();
@@ -171,7 +171,7 @@ namespace HospitalEquipmentSystem.UI
             }
 
             // 顶部栏显示当前登录用户，例如：张三（设备科·管理员）
-            btnUserName.Text = string.IsNullOrEmpty(LoginUser.Role)
+            uiLabel1.Text = string.IsNullOrEmpty(LoginUser.Role)
                 ? "未登录"
                 : LoginUser.DisplayName;
 
@@ -208,31 +208,29 @@ namespace HospitalEquipmentSystem.UI
             this.Hide();
 
             // 打开登录窗体
-            using (var login = new LoginForm())
+            using var login = new LoginForm();
+            if (login.ShowDialog() == DialogResult.OK)
             {
-                if (login.ShowDialog() == DialogResult.OK)
-                {
-                    // 登录成功，刷新页面并重新显示
-                    ApplyRolePermissions();
+                // 登录成功，刷新页面并重新显示
+                ApplyRolePermissions();
 
-                    this.Show();
-                    if (currentSelectedButton != null && !currentSelectedButton.Visible)
+                this.Show();
+                if (currentSelectedButton != null && !currentSelectedButton.Visible)
+                {
+                    foreach (var b in menus)
                     {
-                        foreach (var b in menus)
+                        if (b.Visible)
                         {
-                            if (b.Visible)
-                            {
-                                b.PerformClick();
-                                break;
-                            }
+                            b.PerformClick();
+                            break;
                         }
                     }
                 }
-                else
-                {
-                    // 登录取消，退出应用
-                    Application.Exit();
-                }
+            }
+            else
+            {
+                // 登录取消，退出应用
+                Application.Exit();
             }
         }
         /// <summary>
@@ -269,7 +267,6 @@ namespace HospitalEquipmentSystem.UI
             // 缩放标题字体
             float newTitleFontSize = initialTitleFontSize * scale;
             lblTitle.Font = new Font(lblTitle.Font.FontFamily, newTitleFontSize, lblTitle.Font.Style);
-            btnUserName.Font = new Font(btnUserName.Font.FontFamily, newTitleFontSize * 1.0f, btnUserName.Font.Style);
 
             // 缩放菜单按钮高度和字体
             int newButtonHeight = (int)(initialMenuButtonHeight * scale);
@@ -322,7 +319,8 @@ namespace HospitalEquipmentSystem.UI
                 btnMonitoringCenter.TextAlign = ContentAlignment.MiddleCenter;
                 btnDataStatistics.TextAlign = ContentAlignment.MiddleCenter;
                 btnSystemSetting.TextAlign = ContentAlignment.MiddleCenter;
-            } else
+            }
+            else
             {
                 // 展开侧边栏
                 sidePanel.Width = (int)(initialSideBarWidth * scale);
@@ -470,21 +468,21 @@ namespace HospitalEquipmentSystem.UI
             ShowSystemSettingPage();
         }
 
-     
+
 
         /// <summary>
         /// 显示首页仪表盘页面
         /// </summary>
         private void ShowDashboardPage()
         {
-            try
-            {
-                DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: false);
-            }
-            catch
-            {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "首页仪表盘 - 功能开发中...");
-            }
+            // try
+            // {
+            //     DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: false);
+            // }
+            // catch
+            // {
+            DataReaderMapper.ShowPlaceholder(contentPanel, "首页仪表盘 - 功能开发中...");
+            // }
         }
 
         /// <summary>
@@ -494,13 +492,13 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<EquipmentManagement>(contentPanel, autoScale: true);
+                DataReaderMapper.ShowFormInPanel<EquipmentManagement>(contentPanel, autoScale: false);
             }
             catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "设备管理 - 功能开发中...");
             }
-            
+
         }
 
         /// <summary>
@@ -533,8 +531,9 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<Equipment_BorrowingUI>(contentPanel, autoScale: true);
-            } catch
+                DataReaderMapper.ShowFormInPanel<Equipment_BorrowingUI>(contentPanel, autoScale: false);
+            }
+            catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "借用管理 - 功能开发中...");
             }
@@ -548,8 +547,9 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<MonitoringCenter>(contentPanel, autoScale: true);
-            } catch
+                DataReaderMapper.ShowFormInPanel<MonitoringCenter>(contentPanel, autoScale: false);
+            }
+            catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
             }
@@ -562,8 +562,9 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: true);
-            } catch
+                DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: false);
+            }
+            catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
             }
@@ -578,23 +579,26 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
-        /// 通知按钮点击
+        /// 返回登录按钮点击
         /// </summary>
-        private void uiSymbolButton1_Click(object sender, EventArgs e)
-        {
-            UIMessageBox.Show("暂无新通知", "通知");
-        }
-
-        /// <summary>
-        /// 返回登录页面，重新登录
-        /// </summary>
-        private void uiSymbolButton2_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             if (!UIMessageBox.ShowAsk("确定要返回登录页面吗？"))
                 return;
 
+            // 先清空内容区子控件，避免逐个 Dispose 造成卡顿
+            contentPanel.Controls.Clear();
+
             LoginUser.Reset();
             this.Close();
+        }
+
+        /// <summary>
+        /// 通知按钮点击
+        /// </summary>
+        private void btnNotify_Click(object sender, EventArgs e)
+        {
+            UIMessageBox.Show("暂无新通知", "通知");
         }
 
         ///// <summary>
@@ -625,19 +629,10 @@ namespace HospitalEquipmentSystem.UI
             }
         }
 
-        /// <summary>
-        /// 用户名按钮点击：在按钮下方弹出下拉菜单
-        /// </summary>
-        private void btnUserName_Click(object sender, EventArgs e)
+        private void uiNavMenu1_MenuItemClick(NavMenuItem item)
         {
-            contextMenuStrip1.Show(btnUserName, 0, btnUserName.Height);
         }
 
 
-
-        private void uiNavMenu1_MenuItemClick(TreeNode node, NavMenuItem item, int pageIndex)
-        {
-
-        }
     }
 }
