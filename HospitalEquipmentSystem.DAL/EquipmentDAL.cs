@@ -26,7 +26,11 @@ namespace HospitalEquipment.DAL
                          SUM(CASE WHEN Status = 'InUse' THEN 1 ELSE 0 END) AS InUseCount
                          FROM Equipment
                          WHERE IsActive = 1;";
-            return DataReaderMapper.MapToList<StatisticCardDto>(await DbHelper.ExecuteReaderAsync(sql))[0];
+
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql))
+            {
+                return DataReaderMapper.MapToList<StatisticCardDto>(reader)[0];
+            }
         }
 
         /// <summary>可借用的设备（空闲且无进行中的借用记录）</summary>
@@ -121,6 +125,11 @@ namespace HospitalEquipment.DAL
             }
         }
 
+        /// <summary>
+        /// 将DataTable转换成List<Equipment>
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         private static List<Equipment> MapTableToList(DataTable dt)
         {
             var list = new List<Equipment>();
@@ -154,7 +163,10 @@ namespace HospitalEquipment.DAL
             return list;
         }
 
-
+        /// <summary>
+        /// 获取各个设备类型的使用率
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<CategoryUsageDto>> GetCategoryUsageDataAsync()
         {
             string sql = @"SELECT 
@@ -169,8 +181,10 @@ namespace HospitalEquipment.DAL
              LEFT JOIN Equipment e ON c.CategoryId = e.CategoryId AND e.IsActive = 1 AND e.Status != 'Scrapped'
                         GROUP BY c.CategoryId, c.CategoryName;
                          ";
-
-            return DataReaderMapper.MapToList<CategoryUsageDto>(await DbHelper.ExecuteReaderAsync(sql));
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql))
+            {
+                return DataReaderMapper.MapToList<CategoryUsageDto>(reader);
+            }
         }
 
         /// <summary>
@@ -267,21 +281,23 @@ namespace HospitalEquipment.DAL
         public static Equipment GetById(int id)
         {
             string sql = @"
-        SELECT 
-            e.*,
-            d.DeptName,
-            c.CategoryName,
-            s.SupplierName,
-            u.RealName AS ResponsibleUserRealName
-        FROM Equipment e
-        LEFT JOIN Departments d ON e.DeptId = d.DeptId
-        LEFT JOIN EquipmentCategories c ON e.CategoryId = c.CategoryId
-        LEFT JOIN Suppliers s ON e.SupplierId = s.SupplierId
-        LEFT JOIN Users u ON e.ResponsibleUserId = u.UserId
-        WHERE e.EquipmentId = @Id AND e.IsActive = 1";
-            SqlDataReader reader = DbHelper.ExecuteReader(sql, new SqlParameter("@Id", id));
-            var list = DataReaderMapper.MapToList<Equipment>(reader);
-            return list.Count > 0 ? list[0] : null;
+                        SELECT 
+                            e.*,
+                            d.DeptName,
+                            c.CategoryName,
+                            s.SupplierName,
+                            u.RealName AS ResponsibleUserRealName
+                        FROM Equipment e
+                        LEFT JOIN Departments d ON e.DeptId = d.DeptId
+                        LEFT JOIN EquipmentCategories c ON e.CategoryId = c.CategoryId
+                        LEFT JOIN Suppliers s ON e.SupplierId = s.SupplierId
+                        LEFT JOIN Users u ON e.ResponsibleUserId = u.UserId
+                        WHERE e.EquipmentId = @Id AND e.IsActive = 1";
+            using (SqlDataReader reader = DbHelper.ExecuteReader(sql, new SqlParameter("@Id", id)))
+            {
+                var list = DataReaderMapper.MapToList<Equipment>(reader);
+                return list.Count > 0 ? list[0] : null;
+            }
         }
 
         /// <summary>
@@ -429,7 +445,11 @@ namespace HospitalEquipment.DAL
                          WHERE ReportTime >= DATEADD(MONTH, -5, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))
                          GROUP BY MONTH(ReportTime)
                          ORDER BY MONTH(ReportTime);";
-            return DataReaderMapper.MapToList<MaintenanceTrendDto>(DbHelper.ExecuteReader(sql));
+
+            using (SqlDataReader reader = DbHelper.ExecuteReader(sql))
+            {
+                return DataReaderMapper.MapToList<MaintenanceTrendDto>(reader);
+            }
         }
     }
 }

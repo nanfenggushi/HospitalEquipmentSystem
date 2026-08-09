@@ -88,6 +88,11 @@ namespace HospitalEquipment.DAL
             }
         }
 
+        /// <summary>
+        /// 获取最近六个月每个月的故障数以及完成维修数
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <returns></returns>
         public async Task<List<MonthlyMaintenanceDto>> GetMaintenanceCountsAsync(DateTime startDate)
         {
             string sql = @"SELECT 
@@ -111,11 +116,16 @@ namespace HospitalEquipment.DAL
                     GROUP BY Y, M
                     ORDER BY Y, M;";
 
-            return DataReaderMapper.MapToList<MonthlyMaintenanceDto>
-                (await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("StartDate", startDate)));
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("StartDate", startDate)))
+            {
+                return DataReaderMapper.MapToList<MonthlyMaintenanceDto>(reader);
+            }
         }
 
-
+        /// <summary>
+        /// 获取报警列表数据
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<MaintenanceRecordsDto>> GetAlarmListAsync()
         {
             string sql = @"SELECT Equipment.EquipmentName, MaintenanceRecords.FaultDesc, 
@@ -131,7 +141,10 @@ namespace HospitalEquipment.DAL
                         ReportTime DESC
                         ";
 
-            return DataReaderMapper.MapToList<MaintenanceRecordsDto>(await DbHelper.ExecuteReaderAsync(sql));
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql))
+            {
+                return DataReaderMapper.MapToList<MaintenanceRecordsDto>(reader);
+            }
         }
     }
 }
