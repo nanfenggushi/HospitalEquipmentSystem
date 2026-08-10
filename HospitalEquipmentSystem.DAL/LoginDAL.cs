@@ -17,6 +17,7 @@ namespace HospitalEquipment.DAL
         /// <summary>在用人员列表（供登录下拉选择）</summary>
         public DataTable GetActiveUsers()
         {
+            //
             string sql = @"
                 SELECT u.UserId, u.Username, u.RealName, u.Role, u.DeptId,
                        ISNULL(d.DeptName, '') AS DeptName
