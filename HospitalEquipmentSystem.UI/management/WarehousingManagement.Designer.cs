@@ -384,7 +384,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel10.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel10.ForeColor = System.Drawing.Color.White;
-            this.uiLabel10.Location = new System.Drawing.Point(1009, 107);
+            this.uiLabel10.Location = new System.Drawing.Point(987, 107);
             this.uiLabel10.Name = "uiLabel10";
             this.uiLabel10.Size = new System.Drawing.Size(55, 29);
             this.uiLabel10.TabIndex = 56;

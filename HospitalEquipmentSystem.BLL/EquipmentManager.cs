@@ -65,6 +65,38 @@ namespace HospitalEquipment.BLL.management
         }
 
         /// <summary>
+        /// 获取所有启用用户（用于责任人下拉）
+        /// </summary>
+        public async Task<List<KeyValuePair<int, string>>> GetUsers()
+        {
+            return await dal.GetUsers().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 生成设备编号
+        /// </summary>
+        public async Task<string> GenerateEquipmentNo()
+        {
+            return await dal.GenerateEquipmentNo().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 检查设备编号是否已存在
+        /// </summary>
+        public async Task<bool> IsEquipmentNoExists(string equipmentNo, int excludeId = 0)
+        {
+            return await dal.IsEquipmentNoExists(equipmentNo, excludeId).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 按筛选条件导出全部设备
+        /// </summary>
+        public async Task<List<Equipment>> GetExportData(string keyword = "", string status = "", int? deptId = null)
+        {
+            return await dal.GetExportData(keyword, status, deptId).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// 获取状态列表（包含"全部"）
         /// </summary>
         public List<string> GetStatusList()

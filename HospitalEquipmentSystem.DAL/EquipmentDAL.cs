@@ -276,6 +276,62 @@ namespace HospitalEquipment.DAL
         }
 
         /// <summary>
+        /// 按当前筛选条件导出全部设备（不分页，含关联名称）
+        /// </summary>
+        public async Task<List<Equipment>> GetExportData(
+            string keyword = "",
+            string status = "",
+            int? deptId = null)
+        {
+            var conditions = new List<string> { "e.IsActive = 1" };
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                conditions.Add("(e.EquipmentNo LIKE @Keyword OR e.EquipmentName LIKE @Keyword OR e.Model LIKE @Keyword)");
+                parameters.Add(new SqlParameter("@Keyword", $"%{keyword}%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(status) && status != "全部")
+            {
+                conditions.Add("e.Status = @Status");
+                parameters.Add(new SqlParameter("@Status", status));
+            }
+
+            if (deptId.HasValue && deptId.Value > 0)
+            {
+                conditions.Add("e.DeptId = @DeptId");
+                parameters.Add(new SqlParameter("@DeptId", deptId.Value));
+            }
+
+            string whereClause = conditions.Count > 0 ? "WHERE " + string.Join(" AND ", conditions) : "";
+            string sql = $@"
+        SELECT 
+            e.EquipmentId, e.EquipmentNo, e.EquipmentName, e.Model, e.Manufacturer,
+            e.SupplierId, e.CategoryId, e.DeptId, e.Location, e.ResponsibleUserId,
+            e.Price, e.PurchaseDate, e.WarrantyMonths, e.ServiceLife,
+            e.LastMaintainDate, e.NextMaintainDate, e.Status, e.Remarks,
+            e.IsActive, e.CreatedAt, e.UpdatedAt,
+            d.DeptName,
+            c.CategoryName,
+            s.SupplierName,
+            u.RealName AS ResponsibleUserRealName
+        FROM Equipment e
+        LEFT JOIN Departments d ON e.DeptId = d.DeptId
+        LEFT JOIN EquipmentCategories c ON e.CategoryId = c.CategoryId
+        LEFT JOIN Suppliers s ON e.SupplierId = s.SupplierId
+        LEFT JOIN Users u ON e.ResponsibleUserId = u.UserId
+        {whereClause}
+        ORDER BY e.EquipmentId DESC";
+
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, parameters.ToArray()).ConfigureAwait(false))
+            {
+                if (reader == null) return new List<Equipment>();
+                return DataReaderMapper.MapToList<Equipment>(reader);
+            }
+        }
+
+        /// <summary>
         /// 根据ID获取设备详情（含关联名称）
         /// </summary>
         public static Equipment GetById(int id)
@@ -403,6 +459,50 @@ namespace HospitalEquipment.DAL
                 }
             }
             return list;
+        }
+
+        /// <summary>
+        /// 获取所有启用用户（用于责任人下拉）
+        /// </summary>
+        public async Task<List<KeyValuePair<int, string>>> GetUsers()
+        {
+            string sql = "SELECT UserId, RealName FROM Users WHERE IsActive = 1 ORDER BY RealName";
+            var list = new List<KeyValuePair<int, string>>();
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
+            {
+                if (reader == null)
+                    return list;
+                while (await reader.ReadAsync().ConfigureAwait(false))
+                {
+                    list.Add(new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)));
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 生成设备编号：EQ-20260810-001
+        /// </summary>
+        public async Task<string> GenerateEquipmentNo()
+        {
+            string prefix = $"EQ-{DateTime.Now:yyyyMMdd}-";
+            object result = await DbHelper.ExecuteScalarAsync(
+                "SELECT COUNT(*) FROM Equipment WHERE EquipmentNo LIKE @Prefix + '%'",
+                new SqlParameter("@Prefix", prefix)).ConfigureAwait(false);
+            int count = result != null ? Convert.ToInt32(result) : 0;
+            return $"{prefix}{(count + 1):D3}";
+        }
+
+        /// <summary>
+        /// 检查设备编号是否已存在
+        /// </summary>
+        public async Task<bool> IsEquipmentNoExists(string equipmentNo, int excludeId = 0)
+        {
+            object result = await DbHelper.ExecuteScalarAsync(
+                "SELECT COUNT(*) FROM Equipment WHERE EquipmentNo = @No AND EquipmentId != @Id",
+                new SqlParameter("@No", equipmentNo),
+                new SqlParameter("@Id", excludeId)).ConfigureAwait(false);
+            return result != null && Convert.ToInt32(result) > 0;
         }
 
         /// <summary>
