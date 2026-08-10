@@ -118,6 +118,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <!-- ===== HEAD 独有的 sysmset 窗体 ===== -->
+    <Compile Include="sysmset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sysmset.Designer.cs">
+      <DependentUpon>sysmset.cs</DependentUpon>
+    </Compile>
+    <!-- ===== master 原有编译文件 ===== -->
     <Compile Include="AlarmCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -267,7 +275,11 @@
     <Compile Include="Redirect.cs" />
   </ItemGroup>
   <ItemGroup>
-    <!-- ===== 资源文件 (.resx) ===== -->
+    <!-- ===== HEAD 独有的资源文件 ===== -->
+    <EmbeddedResource Include="sysmset.resx">
+      <DependentUpon>sysmset.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- ===== master 原有资源文件 ===== -->
     <EmbeddedResource Include="AlarmCard.resx">
       <DependentUpon>AlarmCard.cs</DependentUpon>
     </EmbeddedResource>

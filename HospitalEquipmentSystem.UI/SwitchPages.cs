@@ -597,7 +597,14 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private void ShowSystemSettingPage()
         {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "系统设置 - 功能开发中...");
+            try
+            {
+                DataReaderMapper.ShowFormInPanel<sysmset>(contentPanel, autoScale: false);
+            }
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
+            }
         }
 
         /// <summary>
