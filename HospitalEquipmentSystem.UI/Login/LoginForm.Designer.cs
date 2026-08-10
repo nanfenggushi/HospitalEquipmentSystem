@@ -29,12 +29,14 @@ namespace HospitalEquipmentSystem.UI
         private void InitializeComponent()
         {
             this.loginPanel = new Sunny.UI.UIPanel();
+            this.chkRememberPwd = new Sunny.UI.UICheckBox();
             this.lblRole = new Sunny.UI.UILabel();
             this.btnRepair = new Sunny.UI.UISymbolButton();
             this.btnDoctor = new Sunny.UI.UISymbolButton();
             this.btnAdmin = new Sunny.UI.UISymbolButton();
             this.btnLogin = new Sunny.UI.UISymbolButton();
             this.txtPassword = new Sunny.UI.UITextBox();
+            this.btnTogglePwd = new Sunny.UI.UISymbolButton();
             this.lblPwd = new Sunny.UI.UILabel();
             this.cmbUser = new Sunny.UI.UIComboBox();
             this.lblUser = new Sunny.UI.UILabel();
@@ -45,12 +47,14 @@ namespace HospitalEquipmentSystem.UI
             // loginPanel
             // 
             this.loginPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.loginPanel.Controls.Add(this.chkRememberPwd);
             this.loginPanel.Controls.Add(this.lblRole);
             this.loginPanel.Controls.Add(this.btnRepair);
             this.loginPanel.Controls.Add(this.btnDoctor);
             this.loginPanel.Controls.Add(this.btnAdmin);
             this.loginPanel.Controls.Add(this.btnLogin);
             this.loginPanel.Controls.Add(this.txtPassword);
+            this.loginPanel.Controls.Add(this.btnTogglePwd);
             this.loginPanel.Controls.Add(this.lblPwd);
             this.loginPanel.Controls.Add(this.cmbUser);
             this.loginPanel.Controls.Add(this.lblUser);
@@ -68,6 +72,19 @@ namespace HospitalEquipmentSystem.UI
             this.loginPanel.TabIndex = 0;
             this.loginPanel.Text = null;
             this.loginPanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // chkRememberPwd
+            // 
+            this.chkRememberPwd.BackColor = System.Drawing.Color.Transparent;
+            this.chkRememberPwd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkRememberPwd.Font = new System.Drawing.Font("宋体", 10F);
+            this.chkRememberPwd.ForeColor = System.Drawing.Color.White;
+            this.chkRememberPwd.Location = new System.Drawing.Point(396, 313);
+            this.chkRememberPwd.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chkRememberPwd.Name = "chkRememberPwd";
+            this.chkRememberPwd.Size = new System.Drawing.Size(114, 22);
+            this.chkRememberPwd.TabIndex = 10;
+            this.chkRememberPwd.Text = "记住密码";
             // 
             // lblRole
             // 
@@ -101,6 +118,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnRepair.TabIndex = 8;
             this.btnRepair.Text = "维修人员";
             this.btnRepair.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnRepair.Click += new System.EventHandler(this.btnRepair_Click);
             // 
             // btnDoctor
             // 
@@ -122,6 +140,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnDoctor.TabIndex = 7;
             this.btnDoctor.Text = "医护人员";
             this.btnDoctor.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnDoctor.Click += new System.EventHandler(this.btnDoctor_Click);
             // 
             // btnAdmin
             // 
@@ -143,6 +162,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnAdmin.TabIndex = 6;
             this.btnAdmin.Text = "管理员";
             this.btnAdmin.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
             // btnLogin
             // 
@@ -165,6 +185,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnLogin.TabIndex = 9;
             this.btnLogin.Text = "登 录";
             this.btnLogin.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtPassword
             // 
@@ -186,6 +207,25 @@ namespace HospitalEquipmentSystem.UI
             this.txtPassword.TabIndex = 4;
             this.txtPassword.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtPassword.Watermark = "请输入密码";
+            // 
+            // btnTogglePwd
+            // 
+            this.btnTogglePwd.BackColor = System.Drawing.Color.Transparent;
+            this.btnTogglePwd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTogglePwd.FillColor = System.Drawing.Color.Transparent;
+            this.btnTogglePwd.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.btnTogglePwd.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnTogglePwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.btnTogglePwd.Location = new System.Drawing.Point(478, 270);
+            this.btnTogglePwd.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnTogglePwd.Name = "btnTogglePwd";
+            this.btnTogglePwd.RectColor = System.Drawing.Color.Transparent;
+            this.btnTogglePwd.Size = new System.Drawing.Size(36, 28);
+            this.btnTogglePwd.Symbol = 61550;
+            this.btnTogglePwd.SymbolSize = 22;
+            this.btnTogglePwd.TabIndex = 1;
+            this.btnTogglePwd.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnTogglePwd.Click += new System.EventHandler(this.btnTogglePwd_Click);
             // 
             // lblPwd
             // 
@@ -220,6 +260,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbUser.TabIndex = 2;
             this.cmbUser.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbUser.Watermark = "请选择用户";
+            this.cmbUser.SelectedIndexChanged += new System.EventHandler(this.CmbUser_SelectedIndexChanged);
             // 
             // lblUser
             // 
@@ -261,10 +302,6 @@ namespace HospitalEquipmentSystem.UI
             this.ShowTitle = false;
             this.Text = "医院设备借用管理系统";
             this.ZoomScaleRect = new System.Drawing.Rectangle(19, 19, 800, 640);
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
-            this.btnDoctor.Click += new System.EventHandler(this.btnDoctor_Click);
-            this.btnRepair.Click += new System.EventHandler(this.btnRepair_Click);
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.loginPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -284,5 +321,7 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UISymbolButton btnDoctor;
         private Sunny.UI.UISymbolButton btnRepair;
         private Sunny.UI.UISymbolButton btnLogin;
+        private Sunny.UI.UISymbolButton btnTogglePwd;
+        private Sunny.UI.UICheckBox chkRememberPwd;
     }
 }
