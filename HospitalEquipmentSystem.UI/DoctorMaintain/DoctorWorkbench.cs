@@ -22,7 +22,14 @@ namespace HospitalEquipmentSystem.UI
 
         private MaintenanceBLL BLL => _bll ?? (_bll = new MaintenanceBLL());
 
-        public DoctorWorkbench()
+        // 从监控中心告警卡片跳转过来时，需要高亮定位的工单ID
+        private int? _highlightRecordId;
+
+        public DoctorWorkbench() : this(null)
+        {
+        }
+
+        public DoctorWorkbench(MaintenanceRecord alarmRecord)
         {
             InitializeComponent();
 
@@ -33,6 +40,28 @@ namespace HospitalEquipmentSystem.UI
                           ControlStyles.UserPaint |
                           ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
+
+            if (alarmRecord != null)
+            {
+                _highlightRecordId = alarmRecord.RecordId;
+
+                // 按工单当前阶段切到对应 Tab
+                if (alarmRecord.ProgressStage == "Pending")
+                    tabControl.SelectedTab = tpPending;
+                else if (alarmRecord.ProgressStage == "InProgress")
+                    tabControl.SelectedTab = tpInProgress;
+                else if (alarmRecord.ProgressStage == "Done")
+                    tabControl.SelectedTab = tpDone;
+                else
+                    tabControl.SelectedTab = tpAll;
+
+                // 设计器默认把表格放在第一个 Tab，先手动挪到目标 Tab
+                var currentTab = tabControl.SelectedTab;
+                currentTab.Controls.Add(pnlPager);
+                pnlPager.Dock = DockStyle.Bottom;
+                currentTab.Controls.Add(dgvOrders);
+                dgvOrders.Dock = DockStyle.Fill;
+            }
 
             WireEvents();
             LoadData();
@@ -54,7 +83,9 @@ namespace HospitalEquipmentSystem.UI
                 {
                     _allData = data;
                     _currentPage = 1;
+                    PrepareHighlightPage();
                     ApplyPaging();
+                    HighlightTargetRow();
                     ApplyKpiCards(kpi);
                 }));
             });
@@ -92,6 +123,41 @@ namespace HospitalEquipmentSystem.UI
             lblPageInfo.Text = $"第 {_currentPage}/{totalPages} 页 · 每页 {PageSize} 条 · 共 {totalCount} 条";
             btnPrevPage.Enabled = _currentPage > 1;
             btnNextPage.Enabled = _currentPage < totalPages;
+        }
+
+        /// <summary>
+        /// 如果当前需要定位某条工单，先翻到它所在的分页
+        /// </summary>
+        private void PrepareHighlightPage()
+        {
+            if (!_highlightRecordId.HasValue || _allData == null) return;
+
+            int index = _allData.FindIndex(dto => dto.RecordId == _highlightRecordId.Value);
+            if (index >= 0)
+            {
+                _currentPage = index / PageSize + 1;
+            }
+        }
+
+        /// <summary>
+        /// 在当前分页数据里选中并滚动到目标工单行
+        /// </summary>
+        private void HighlightTargetRow()
+        {
+            if (!_highlightRecordId.HasValue) return;
+
+            for (int i = 0; i < dgvOrders.Rows.Count; i++)
+            {
+                if (dgvOrders.Rows[i].DataBoundItem is MaintenanceRecordDto dto &&
+                    dto.RecordId == _highlightRecordId.Value)
+                {
+                    dgvOrders.ClearSelection();
+                    dgvOrders.Rows[i].Selected = true;
+                    dgvOrders.CurrentCell = dgvOrders.Rows[i].Cells[0];
+                    dgvOrders.FirstDisplayedScrollingRowIndex = i;
+                    return;
+                }
+            }
         }
 
         // ==================== KPI 卡片 ====================

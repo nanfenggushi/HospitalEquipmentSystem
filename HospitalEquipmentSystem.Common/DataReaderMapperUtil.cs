@@ -18,10 +18,23 @@ namespace HospitalEquipment.Util
         /// <param name="autoScale">是否自动缩放适配 Panel 大小</param>
         public static void ShowFormInPanel<T>(Panel panel, bool autoScale = false) where T : Form, new()
         {
+            ShowFormInPanel(panel, new T(), autoScale);
+        }
+
+        /// <summary>
+        /// 在指定 Panel 中显示已经创建好的窗体实例（用于需要传初始参数的页面）
+        /// </summary>
+        /// <typeparam name="T">窗体类型，必须继承 Form</typeparam>
+        /// <param name="panel">要承载窗体的 Panel 容器</param>
+        /// <param name="form">要显示的窗体实例</param>
+        /// <param name="autoScale">是否自动缩放适配 Panel 大小</param>
+        public static void ShowFormInPanel<T>(Panel panel, T form, bool autoScale = false) where T : Form
+        {
+            if (form == null) return;
+
             // 先创建新页面并排好版，最后一次性显示，避免边排版边绘制造成的闪烁
             panel.SuspendLayout();
 
-            T form = new T();
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.StartPosition = FormStartPosition.Manual;
