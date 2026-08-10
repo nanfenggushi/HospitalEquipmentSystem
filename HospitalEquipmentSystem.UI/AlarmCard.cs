@@ -1,7 +1,9 @@
 ﻿using System;                          // 引用基础命名空间，这里主要是 System 类型相关（当前文件未直接用，保留引用）
 using System.ComponentModel;           // 引用组件模型，组件相关类型在这里
 using System.Drawing;                  // 引用绘图命名空间，Color、Size 在这里
+using System.Windows.Forms;            // 引用 WinForms 控件，Cursor、Control 在这里
 using Sunny.UI;                        // 引用 SunnyUI 控件库，UIUserControl 在这里
+using HospitalEquipment.Model;         // 引用实体层，MaintenanceRecord 在这里
 
 namespace HospitalEquipmentSystem.UI    // 声明当前代码所属的命名空间（界面层）
 {
@@ -11,6 +13,16 @@ namespace HospitalEquipmentSystem.UI    // 声明当前代码所属的命名空�
     /// </summary>
     public partial class AlarmCard : UIUserControl    // 继承 SunnyUI 的 UIUserControl
     {
+        /// <summary>
+        /// 卡片点击事件：携带这张卡片对应的维修记录
+        /// </summary>
+        public event Action<MaintenanceRecord> Clicked;
+
+        /// <summary>
+        /// 这张卡片对应的维修记录（用于跳转明细列表）
+        /// </summary>
+        public MaintenanceRecord AlarmRecord { get; private set; }
+
         /// <summary>
         /// 构造函数：创建卡片时自动执行
         /// </summary>
@@ -27,6 +39,18 @@ namespace HospitalEquipmentSystem.UI    // 声明当前代码所属的命名空�
 
             // 设置卡片默认尺寸
             this.Size = new Size(400, 84);
+
+            // 整张卡片都做成可点击，并给鼠标手型提示
+            this.Cursor = Cursors.Hand;
+            lblLevel.Cursor = Cursors.Hand;
+            lblInfo.Cursor = Cursors.Hand;
+            lblTime.Cursor = Cursors.Hand;
+
+            // 卡片本身和内部标签都响应点击，点击任意位置都能跳转
+            WireClick(this);
+            WireClick(lblLevel);
+            WireClick(lblInfo);
+            WireClick(lblTime);
         }
 
         /// <summary>
@@ -35,7 +59,8 @@ namespace HospitalEquipmentSystem.UI    // 声明当前代码所属的命名空�
         /// <param name="level">报警级别（特急/紧急/普通）</param>
         /// <param name="info">报警内容（设备名+故障描述）</param>
         /// <param name="time">报警时间</param>
-        public void SetAlarmInfo(string level, string info, string time)
+        /// <param name="record">对应的维修记录，用于点击卡片后跳转明细</param>
+        public void SetAlarmInfo(string level, string info, string time, MaintenanceRecord record = null)
         {
             // 把级别填入左上的级别标签
             lblLevel.Text = level;
@@ -45,6 +70,23 @@ namespace HospitalEquipmentSystem.UI    // 声明当前代码所属的命名空�
 
             // 把时间填入右下的时间标签
             lblTime.Text = time;
+
+            // 保存对应的维修记录
+            AlarmRecord = record;
+        }
+
+        /// <summary>
+        /// 把控件点击统一转发为卡片的 Clicked 事件
+        /// </summary>
+        private void WireClick(Control c)
+        {
+            c.Click += (s, e) =>
+            {
+                if (AlarmRecord != null)
+                {
+                    Clicked?.Invoke(AlarmRecord);
+                }
+            };
         }
     }
 }

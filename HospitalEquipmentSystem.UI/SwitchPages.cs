@@ -36,6 +36,11 @@ namespace HospitalEquipmentSystem.UI
         private Button currentSelectedButton;
 
         /// <summary>
+        /// 从监控中心告警卡片带过来的维修记录，用于跳到对应明细列表
+        /// </summary>
+        private MaintenanceRecord _alarmDetailRecord;
+
+        /// <summary>
         /// 最近一次缩放比例（避免比例没变时反复重建字体）
         /// </summary>
         private float _lastScale = 0f;
@@ -468,6 +473,20 @@ namespace HospitalEquipmentSystem.UI
             ShowSystemSettingPage();
         }
 
+        /// <summary>
+        /// 监控中心告警卡片点击入口：切到维修管理，并让对应列表定位到该工单
+        /// </summary>
+        /// <param name="record">被点击告警对应的维修记录</param>
+        public void OpenAlarmDetail(MaintenanceRecord record)
+        {
+            if (record == null) return;
+
+            _alarmDetailRecord = record;
+            UpdateMenuSelection(btnRepairManage);
+            lblTitle.Text = "维修管理";
+            ShowRepairManagePage();
+        }
+
 
 
         /// <summary>
@@ -508,13 +527,16 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
+                MaintenanceRecord alarm = _alarmDetailRecord;
+                _alarmDetailRecord = null;
+
                 string role = LoginUser.Role;
                 if (role == UserRoleText.Admin)
-                    DataReaderMapper.ShowFormInPanel<MainTainManagement>(contentPanel, autoScale: false);
+                    DataReaderMapper.ShowFormInPanel(contentPanel, new MainTainManagement(alarm), autoScale: false);
                 else if (role == UserRoleText.Repair)
-                    DataReaderMapper.ShowFormInPanel<RepairerWorkbench>(contentPanel, autoScale: false);
+                    DataReaderMapper.ShowFormInPanel(contentPanel, new RepairerWorkbench(alarm), autoScale: false);
                 else if (role == UserRoleText.Doctor)
-                    DataReaderMapper.ShowFormInPanel<DoctorWorkbench>(contentPanel, autoScale: false);
+                    DataReaderMapper.ShowFormInPanel(contentPanel, new DoctorWorkbench(alarm), autoScale: false);
                 else
                     DataReaderMapper.ShowPlaceholder(contentPanel, "未知角色，无法加载维修管理");
             }

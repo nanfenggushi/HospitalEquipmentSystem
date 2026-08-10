@@ -24,7 +24,14 @@ namespace HospitalEquipmentSystem.UI
         // 数据加载锁：防止上一次查询没结束又开始下一次，避免请求堆积导致卡顿
         private volatile bool _loadingData = false;
 
-        public MainTainManagement()
+        // 从监控中心告警卡片跳转过来时，需要高亮定位的工单ID
+        private int? _highlightRecordId;
+
+        public MainTainManagement() : this(null)
+        {
+        }
+
+        public MainTainManagement(MaintenanceRecord alarmRecord)
         {
             InitializeComponent();
 
@@ -38,6 +45,13 @@ namespace HospitalEquipmentSystem.UI
                           ControlStyles.UserPaint |
                           ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
+
+            // 带告警记录进入时，用工单号搜索，并在加载后高亮对应行
+            if (alarmRecord != null)
+            {
+                txtSearch.Text = alarmRecord.RepairNo ?? alarmRecord.EquipmentName ?? "";
+                _highlightRecordId = alarmRecord.RecordId;
+            }
 
             WireEvents();
             LoadData();
@@ -73,7 +87,9 @@ namespace HospitalEquipmentSystem.UI
                         {
                             _allData = list ?? new List<MaintenanceRecordDto>();
                             _currentPage = 1;
+                            PrepareHighlightPage();
                             ApplyPaging();
+                            HighlightTargetRow();
                             RefreshKpiCards(kpi);
                             RefreshAlerts(alerts);
                             RefreshWorkloads(workloads);
@@ -113,6 +129,41 @@ namespace HospitalEquipmentSystem.UI
                     });
                 }
             });
+        }
+
+        /// <summary>
+        /// 如果当前需要定位某条工单，先翻到它所在的分页
+        /// </summary>
+        private void PrepareHighlightPage()
+        {
+            if (!_highlightRecordId.HasValue || _allData == null) return;
+
+            int index = _allData.FindIndex(dto => dto.RecordId == _highlightRecordId.Value);
+            if (index >= 0)
+            {
+                _currentPage = index / PageSize + 1;
+            }
+        }
+
+        /// <summary>
+        /// 在当前分页数据里选中并滚动到目标工单行
+        /// </summary>
+        private void HighlightTargetRow()
+        {
+            if (!_highlightRecordId.HasValue) return;
+
+            for (int i = 0; i < dgvOrders.Rows.Count; i++)
+            {
+                if (dgvOrders.Rows[i].DataBoundItem is MaintenanceRecordDto dto &&
+                    dto.RecordId == _highlightRecordId.Value)
+                {
+                    dgvOrders.ClearSelection();
+                    dgvOrders.Rows[i].Selected = true;
+                    dgvOrders.CurrentCell = dgvOrders.Rows[i].Cells[0];
+                    dgvOrders.FirstDisplayedScrollingRowIndex = i;
+                    return;
+                }
+            }
         }
 
         /// <summary>

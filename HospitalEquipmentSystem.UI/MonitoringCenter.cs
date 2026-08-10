@@ -386,7 +386,7 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
                 string detail = r.FaultDesc + " · " + GetLevel(r.Urgency) + "级 · " + r.ReportTime.ToString("HH:mm:ss");
 
                 // 往左侧报警流添加一张卡片（级别、设备名+故障、时间），逐条显示
-                AddAlarmCard(GetLevel(r.Urgency), r.EquipmentName + "·" + r.FaultDesc, r.ReportTime.ToString("HH:mm:ss"));
+                AddAlarmCard(GetLevel(r.Urgency), r.EquipmentName + "·" + r.FaultDesc, r.ReportTime.ToString("HH:mm:ss"), r);
 
                 // 左侧符号标签显示"新报警：设备名"
                 uiSymbolLabel1.Text = "新报警：" + r.EquipmentName;
@@ -596,13 +596,16 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
         /// <param name="level">报警级别（特急/紧急/普通）</param>
         /// <param name="info">报警内容（设备名+故障描述）</param>
         /// <param name="time">报警时间</param>
-        private void AddAlarmCard(string level, string info, string time)
+        private void AddAlarmCard(string level, string info, string time, MaintenanceRecord record = null)
         {
             // 创建一张新的报警卡片
             var card = new AlarmCard();
 
-            // 把级别、内容、时间填入卡片
-            card.SetAlarmInfo(level, info, time);
+            // 把级别、内容、时间填入卡片，并保存对应的维修记录
+            card.SetAlarmInfo(level, info, time, record);
+
+            // 点击卡片后由主窗体跳到对应明细列表
+            card.Clicked += OnAlarmCardClicked;
 
             // 卡片宽度跟随报警流面板宽度（留 20 像素边距）
             card.Width = uiFlowLayoutPanel1.ClientSize.Width - 20;
@@ -625,6 +628,17 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
 
             // 卡片数量变化后，动态调整面板高度（延伸到 uiPanel9 上方停止）
             UpdateFlowPanelHeight();
+        }
+
+        /// <summary>
+        /// 告警卡片点击：把对应维修记录交给主窗体，切到维修管理明细列表
+        /// </summary>
+        private void OnAlarmCardClicked(MaintenanceRecord record)
+        {
+            if (record == null) return;
+
+            var host = ParentForm as SwitchPages;
+            host?.OpenAlarmDetail(record);
         }
 
         /// <summary>

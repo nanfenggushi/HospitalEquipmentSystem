@@ -9,7 +9,7 @@ namespace HospitalEquipmentSystem.UI
     /// 程序入口类：整个应用程序从这里开始运行
     /// </summary>
     internal static class Program
-    {
+        {
         /// <summary>
         /// 应用程序的主入口点
         /// </summary>
