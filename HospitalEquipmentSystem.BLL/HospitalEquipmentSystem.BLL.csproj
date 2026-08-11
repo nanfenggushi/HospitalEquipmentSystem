@@ -57,6 +57,7 @@
     <Compile Include="MonitorCenterBLL.cs" />
     <Compile Include="BLLResult.cs" />
     <Compile Include="BorrowBLL.cs" />
+    <Compile Include="UserBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SupplierManager.cs" />
   </ItemGroup>
