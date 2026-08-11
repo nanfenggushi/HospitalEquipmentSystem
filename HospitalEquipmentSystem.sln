@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.8.12023.21
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37314.3 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalEquipmentSystem.UI", "HospitalEquipmentSystem.UI\HospitalEquipmentSystem.UI.csproj", "{582D46CC-F9B4-498B-8C7D-2650B4A9BC90}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalEquipmentSystem.Model", "HospitalEquipmentSystem.Model\HospitalEquipmentSystem.Model.csproj", "{4A1BD7E0-7C9F-483D-A30B-26AE8A3EAFAF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalEquipmentSystem.Common", "HospitalEquipmentSystem.Common\HospitalEquipmentSystem.Common.csproj", "{45124520-4EEF-43A0-88B8-91DA7B2191F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcFaceSDK", "ArcFaceSDK\ArcFaceSDK.csproj", "{1A4BA5F4-BA56-4E34-8CB8-9DA8BF354CF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{45124520-4EEF-43A0-88B8-91DA7B2191F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45124520-4EEF-43A0-88B8-91DA7B2191F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45124520-4EEF-43A0-88B8-91DA7B2191F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A4BA5F4-BA56-4E34-8CB8-9DA8BF354CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4BA5F4-BA56-4E34-8CB8-9DA8BF354CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A4BA5F4-BA56-4E34-8CB8-9DA8BF354CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A4BA5F4-BA56-4E34-8CB8-9DA8BF354CF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
