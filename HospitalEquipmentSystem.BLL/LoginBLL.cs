@@ -24,6 +24,23 @@ namespace HospitalEquipment.BLL
             return list;
         }
 
+        /// <summary>人脸识别登录：按用户 ID 完成启用状态校验并回写最后登录时间</summary>
+        public BLLResult LoginByFace(int userId, out UserDto user)
+        {
+            user = null;
+            foreach (UserDto item in GetLoginUsers())
+            {
+                if (item.UserId == userId)
+                {
+                    user = item;
+                    dal.UpdateLastLogin(userId);
+                    return BLLResult.Ok();
+                }
+            }
+
+            return BLLResult.Fail("该人员不存在或已被停用");
+        }
+
         /// <summary>校验登录，成功返回用户信息</summary>
         public BLLResult login(int userId,string password,out UserDto user)
         {

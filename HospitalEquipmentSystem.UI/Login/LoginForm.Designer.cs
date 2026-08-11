@@ -41,12 +41,14 @@ namespace HospitalEquipmentSystem.UI
             this.cmbUser = new Sunny.UI.UIComboBox();
             this.lblUser = new Sunny.UI.UILabel();
             this.lblTitle = new Sunny.UI.UILabel();
+            this.uiSymbolButton5 = new Sunny.UI.UISymbolButton();
             this.loginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginPanel
             // 
             this.loginPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.loginPanel.Controls.Add(this.uiSymbolButton5);
             this.loginPanel.Controls.Add(this.chkRememberPwd);
             this.loginPanel.Controls.Add(this.lblRole);
             this.loginPanel.Controls.Add(this.btnRepair);
@@ -62,7 +64,7 @@ namespace HospitalEquipmentSystem.UI
             this.loginPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.loginPanel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.loginPanel.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.loginPanel.Location = new System.Drawing.Point(120, 60);
+            this.loginPanel.Location = new System.Drawing.Point(123, 54);
             this.loginPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.loginPanel.MinimumSize = new System.Drawing.Size(1, 1);
             this.loginPanel.Name = "loginPanel";
@@ -174,7 +176,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnLogin.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.btnLogin.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Bold);
-            this.btnLogin.Location = new System.Drawing.Point(50, 450);
+            this.btnLogin.Location = new System.Drawing.Point(22, 443);
             this.btnLogin.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Radius = 38;
@@ -286,6 +288,19 @@ namespace HospitalEquipmentSystem.UI
             this.lblTitle.Text = "医院设备借用管理系统";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // uiSymbolButton5
+            // 
+            this.uiSymbolButton5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton5.FillColor = System.Drawing.Color.Silver;
+            this.uiSymbolButton5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiSymbolButton5.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.人脸识别;
+            this.uiSymbolButton5.Location = new System.Drawing.Point(488, 443);
+            this.uiSymbolButton5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton5.Name = "uiSymbolButton5";
+            this.uiSymbolButton5.Radius = 38;
+            this.uiSymbolButton5.Size = new System.Drawing.Size(51, 55);
+            this.uiSymbolButton5.TabIndex = 11;
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -323,5 +338,6 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UISymbolButton btnLogin;
         private Sunny.UI.UISymbolButton btnTogglePwd;
         private Sunny.UI.UICheckBox chkRememberPwd;
+        private Sunny.UI.UISymbolButton uiSymbolButton5;
     }
 }

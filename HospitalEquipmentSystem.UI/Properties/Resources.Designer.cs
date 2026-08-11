@@ -19,7 +19,7 @@ namespace HospitalEquipmentSystem.UI.Properties {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -79,13 +79,93 @@ namespace HospitalEquipmentSystem.UI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 智能医院设备管理系统图片生成 {
+            get {
+                object obj = ResourceManager.GetObject("智能医院设备管理系统图片生成", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap bg_sidebar_navy {
+        internal static System.Drawing.Bitmap 人脸识别 {
             get {
-                object obj = ResourceManager.GetObject("bg_sidebar_navy", resourceCulture);
+                object obj = ResourceManager.GetObject("人脸识别", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别_o {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别_o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别_o1 {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别_o1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别1 {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别12 {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别2 {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别21 {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 人脸识别3 {
+            get {
+                object obj = ResourceManager.GetObject("人脸识别3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -159,6 +239,5 @@ namespace HospitalEquipmentSystem.UI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
     }
 }

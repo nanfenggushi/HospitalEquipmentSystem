@@ -1,5 +1,6 @@
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
+using HospitalEquipmentSystem.UI.Login;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace HospitalEquipmentSystem.UI
         public LoginForm()
         {
             InitializeComponent();
+            // 按需求不改 Designer 布局，人脸按钮事件在代码里挂载。
+            this.uiSymbolButton5.Click += new EventHandler(BtnFaceRecognition_Click);
             cmbUser.SelectedIndexChanged += CmbUser_SelectedIndexChanged;
             this.Shown += (s, e) =>
             {
@@ -30,6 +33,26 @@ namespace HospitalEquipmentSystem.UI
                 btnTogglePwd.SymbolColor = Color.FromArgb(230, 238, 247);
                 btnTogglePwd.BringToFront();
             };
+        }
+
+        /// <summary>打开人脸识别窗体；识别成功后直接沿用登录成功流程。</summary>
+        private void BtnFaceRecognition_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (faceRecognition faceForm = new faceRecognition())
+                {
+                    faceForm.StartPosition = FormStartPosition.CenterScreen;
+                    if (faceForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.ShowError("打开人脸识别失败：" + ex.Message);
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

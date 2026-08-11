@@ -1,5 +1,3 @@
-using HospitalEquipmentSystem.UI.Dashboard;
-using HospitalEquipmentSystem.UI.register;
 using System;                          // 引用基础命名空间，STAThread 特性在这里
 using System.IO;
 using System.Windows.Forms;            // 引用 WinForms，Application 在这里
@@ -34,8 +32,8 @@ namespace HospitalEquipmentSystem.UI
                 if (loginForm.ShowDialog() != DialogResult.OK)
                     return; // 用户关闭登录窗口，直接退出
 
-                // 登录成功，进入主面板
-                using (var mainForm = new RegisterForm())
+                // 登录成功，进入系统主页面
+                using (var mainForm = new SwitchPages())
                 {
                     Application.Run(mainForm);
                 }
