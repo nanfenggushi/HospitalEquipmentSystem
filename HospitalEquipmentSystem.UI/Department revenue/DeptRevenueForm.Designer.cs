@@ -79,9 +79,9 @@ namespace HospitalEquipmentSystem.UI
             this.pnlEdit.Controls.Add(this.uiTextBoxPeriod);
             this.pnlEdit.Controls.Add(this.uiLabelPeriod);
             this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlEdit.Location = new System.Drawing.Point(0, 656);
+            this.pnlEdit.Location = new System.Drawing.Point(0, 608);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(1241, 110);
+            this.pnlEdit.Size = new System.Drawing.Size(1260, 110);
             this.pnlEdit.TabIndex = 40;
             // 
             // btnCancel
@@ -104,7 +104,6 @@ namespace HospitalEquipmentSystem.UI
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.btnDelete.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(985, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnDelete.Name = "btnDelete";
@@ -293,7 +292,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.uiDataGridView1.RowTemplate.Height = 38;
             this.uiDataGridView1.SelectedIndex = -1;
-            this.uiDataGridView1.Size = new System.Drawing.Size(1241, 478);
+            this.uiDataGridView1.Size = new System.Drawing.Size(1260, 430);
             this.uiDataGridView1.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiDataGridView1.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.uiDataGridView1.TabIndex = 38;
@@ -352,7 +351,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanelFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanelFilter.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanelFilter.Name = "uiPanelFilter";
-            this.uiPanelFilter.Size = new System.Drawing.Size(1241, 61);
+            this.uiPanelFilter.Size = new System.Drawing.Size(1260, 61);
             this.uiPanelFilter.TabIndex = 37;
             this.uiPanelFilter.Text = null;
             this.uiPanelFilter.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -416,7 +415,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel1.Radius = 10;
             this.uiTitlePanel1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(1241, 117);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(1260, 117);
             this.uiTitlePanel1.TabIndex = 36;
             this.uiTitlePanel1.Text = "科室收入对比";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -429,7 +428,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.btnAdd.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(1125, 40);
+            this.btnAdd.Location = new System.Drawing.Point(1144, 40);
             this.btnAdd.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
@@ -465,7 +464,7 @@ namespace HospitalEquipmentSystem.UI
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1241, 766);
+            this.ClientSize = new System.Drawing.Size(1260, 718);
             this.Controls.Add(this.uiDataGridView1);
             this.Controls.Add(this.uiPanelFilter);
             this.Controls.Add(this.uiTitlePanel1);

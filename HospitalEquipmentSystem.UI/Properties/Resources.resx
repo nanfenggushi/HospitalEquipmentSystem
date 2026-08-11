@@ -136,11 +136,11 @@
   <data name="入库" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\入库.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="分类" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\分类.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="人脸识别" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\人脸识别.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="分类" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\分类.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="列表" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\列表.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,8 +169,19 @@
   <data name="人脸识别21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\人脸识别2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-</root>
-  <data name="智能医院设备管理系统图片生成" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\智能医院设备管理系统图片生成.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="屏幕截图 2026-08-11 100623" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\屏幕截图 2026-08-11 100623.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="顶部栏" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\顶部栏.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="菜单栏背景图" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\菜单栏背景图.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChatGPT Image 2026年8月11日 10_03_53" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChatGPT Image 2026年8月11日 10_03_53.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主页面" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主页面.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

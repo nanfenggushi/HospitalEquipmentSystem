@@ -79,7 +79,27 @@ namespace HospitalEquipmentSystem.UI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ChatGPT_Image_2026年8月11日_10_03_53 {
+            get {
+                object obj = ResourceManager.GetObject("ChatGPT Image 2026年8月11日 10_03_53", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 主页面 {
+            get {
+                object obj = ResourceManager.GetObject("主页面", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
@@ -213,6 +233,16 @@ namespace HospitalEquipmentSystem.UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 屏幕截图_2026_08_11_100623 {
+            get {
+                object obj = ResourceManager.GetObject("屏幕截图 2026-08-11 100623", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 搜索 {
             get {
                 object obj = ResourceManager.GetObject("搜索", resourceCulture);
@@ -233,12 +263,21 @@ namespace HospitalEquipmentSystem.UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 智能医院设备管理系统图片生成 {
+        internal static System.Drawing.Bitmap 菜单栏背景图 {
             get {
-                object obj = ResourceManager.GetObject("智能医院设备管理系统图片生成", resourceCulture);
+                object obj = ResourceManager.GetObject("菜单栏背景图", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 顶部栏 {
+            get {
+                object obj = ResourceManager.GetObject("顶部栏", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

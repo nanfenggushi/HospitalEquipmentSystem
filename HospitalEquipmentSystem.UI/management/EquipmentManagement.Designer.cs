@@ -47,14 +47,14 @@ namespace HospitalEquipmentSystem.UI
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.uiTableLayoutPanel1.Controls.Add(this.uiSymbolButton4, 3, 0);
-            this.uiTableLayoutPanel1.Controls.Add(this.uiSymbolButton3, 2, 0);
-            this.uiTableLayoutPanel1.Controls.Add(this.uiSymbolButton2, 1, 0);
             this.uiTableLayoutPanel1.Controls.Add(this.uiSymbolButton1, 0, 0);
-            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(28, 785);
+            this.uiTableLayoutPanel1.Controls.Add(this.uiSymbolButton2, 2, 0);
+            this.uiTableLayoutPanel1.Controls.Add(this.uiSymbolButton3, 1, 0);
+            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 663);
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 1;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1212, 55);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1260, 55);
             this.uiTableLayoutPanel1.TabIndex = 8;
             this.uiTableLayoutPanel1.TagString = null;
             // 
@@ -68,7 +68,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolButton4.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiSymbolButton4.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiSymbolButton4.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.入库;
-            this.uiSymbolButton4.Location = new System.Drawing.Point(912, 5);
+            this.uiSymbolButton4.Location = new System.Drawing.Point(954, 5);
             this.uiSymbolButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton4.Name = "uiSymbolButton4";
             this.uiSymbolButton4.Radius = 10;
@@ -91,7 +91,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolButton3.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiSymbolButton3.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiSymbolButton3.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.供应商;
-            this.uiSymbolButton3.Location = new System.Drawing.Point(609, 5);
+            this.uiSymbolButton3.Location = new System.Drawing.Point(324, 5);
             this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton3.Name = "uiSymbolButton3";
             this.uiSymbolButton3.Radius = 10;
@@ -114,7 +114,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolButton2.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiSymbolButton2.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiSymbolButton2.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.分类;
-            this.uiSymbolButton2.Location = new System.Drawing.Point(306, 5);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(639, 5);
             this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton2.Name = "uiSymbolButton2";
             this.uiSymbolButton2.Radius = 10;
@@ -137,7 +137,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolButton1.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiSymbolButton1.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiSymbolButton1.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.列表模式__1_;
-            this.uiSymbolButton1.Location = new System.Drawing.Point(3, 5);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(9, 5);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Radius = 10;
@@ -154,13 +154,13 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.uiPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiPanel1.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiPanel1.Location = new System.Drawing.Point(14, 14);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel1.Location = new System.Drawing.Point(0, 2);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
             this.uiPanel1.Radius = 10;
             this.uiPanel1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.uiPanel1.Size = new System.Drawing.Size(1241, 766);
+            this.uiPanel1.Size = new System.Drawing.Size(1260, 663);
             this.uiPanel1.TabIndex = 9;
             this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -170,9 +170,9 @@ namespace HospitalEquipmentSystem.UI
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1268, 844);
-            this.Controls.Add(this.uiPanel1);
+            this.ClientSize = new System.Drawing.Size(1260, 718);
             this.Controls.Add(this.uiTableLayoutPanel1);
+            this.Controls.Add(this.uiPanel1);
             this.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.Name = "EquipmentManagement";
             this.Padding = new System.Windows.Forms.Padding(0);

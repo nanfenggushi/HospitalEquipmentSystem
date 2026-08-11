@@ -77,7 +77,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton1.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(155)))), ((int)(((byte)(235)))));
             this.uiButton1.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(81)))), ((int)(((byte)(184)))));
             this.uiButton1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Location = new System.Drawing.Point(1073, 13);
+            this.uiButton1.Location = new System.Drawing.Point(1092, 13);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
@@ -99,8 +99,9 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(1241, 68);
+            this.uiPanel1.Size = new System.Drawing.Size(1260, 68);
             this.uiPanel1.TabIndex = 36;
+            this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiTreeView1
@@ -116,7 +117,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTreeView1.Name = "uiTreeView1";
             this.uiTreeView1.ScrollBarStyleInherited = false;
             this.uiTreeView1.ShowText = false;
-            this.uiTreeView1.Size = new System.Drawing.Size(419, 698);
+            this.uiTreeView1.Size = new System.Drawing.Size(419, 595);
             this.uiTreeView1.TabIndex = 38;
             this.uiTreeView1.Text = "uiTreeView1";
             this.uiTreeView1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,8 +146,9 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel2.Name = "uiPanel2";
-            this.uiPanel2.Size = new System.Drawing.Size(822, 698);
+            this.uiPanel2.Size = new System.Drawing.Size(841, 595);
             this.uiPanel2.TabIndex = 39;
+            this.uiPanel2.Text = null;
             this.uiPanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiTextBox1
@@ -341,12 +343,13 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPanel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiPanel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel3.Location = new System.Drawing.Point(419, 586);
+            this.uiPanel3.Location = new System.Drawing.Point(419, 435);
             this.uiPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel3.Name = "uiPanel3";
-            this.uiPanel3.Size = new System.Drawing.Size(822, 180);
+            this.uiPanel3.Size = new System.Drawing.Size(841, 228);
             this.uiPanel3.TabIndex = 40;
+            this.uiPanel3.Text = null;
             this.uiPanel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiLabel7
@@ -373,9 +376,9 @@ namespace HospitalEquipmentSystem.UI.management
             // 
             this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiLabel10.ForeColor = System.Drawing.Color.White;
-            this.uiLabel10.Location = new System.Drawing.Point(354, 139);
+            this.uiLabel10.Location = new System.Drawing.Point(453, 142);
             this.uiLabel10.Name = "uiLabel10";
-            this.uiLabel10.Size = new System.Drawing.Size(465, 32);
+            this.uiLabel10.Size = new System.Drawing.Size(385, 32);
             this.uiLabel10.TabIndex = 35;
             this.uiLabel10.Text = "💡 右键点击分类节点可: 新增子分类/重命名/删除";
             // 
@@ -394,7 +397,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1241, 766);
+            this.ClientSize = new System.Drawing.Size(1260, 663);
             this.Controls.Add(this.uiPanel3);
             this.Controls.Add(this.uiPanel2);
             this.Controls.Add(this.uiTreeView1);

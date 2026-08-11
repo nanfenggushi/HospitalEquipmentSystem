@@ -84,11 +84,11 @@ namespace HospitalEquipmentSystem.UI.management
             // 
             // uiLabel1
             // 
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 14F);
             this.uiLabel1.ForeColor = System.Drawing.Color.White;
-            this.uiLabel1.Location = new System.Drawing.Point(19, 19);
+            this.uiLabel1.Location = new System.Drawing.Point(3, 5);
             this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(213, 40);
+            this.uiLabel1.Size = new System.Drawing.Size(213, 33);
             this.uiLabel1.TabIndex = 5;
             this.uiLabel1.Text = "供应商管理";
             // 
@@ -98,7 +98,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox1.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox1.Location = new System.Drawing.Point(1010, 26);
+            this.uiTextBox1.Location = new System.Drawing.Point(1039, 3);
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox1.Name = "uiTextBox1";
@@ -116,7 +116,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiSymbolButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiSymbolButton1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiSymbolButton1.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.搜索__1_;
-            this.uiSymbolButton1.Location = new System.Drawing.Point(1187, 26);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(1218, 3);
             this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton1.Name = "uiSymbolButton1";
             this.uiSymbolButton1.Size = new System.Drawing.Size(39, 33);
@@ -136,7 +136,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(1268, 76);
+            this.uiPanel1.Size = new System.Drawing.Size(1260, 46);
             this.uiPanel1.TabIndex = 13;
             this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,10 +166,9 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTitlePanel1.Controls.Add(this.uiLabel3);
             this.uiTitlePanel1.Controls.Add(this.uiTextBox2);
             this.uiTitlePanel1.Controls.Add(this.uiLabel2);
-            this.uiTitlePanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.uiTitlePanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiTitlePanel1.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiTitlePanel1.Location = new System.Drawing.Point(0, 76);
+            this.uiTitlePanel1.Location = new System.Drawing.Point(0, 46);
             this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
@@ -177,7 +176,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTitlePanel1.Radius = 10;
             this.uiTitlePanel1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(475, 768);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(401, 615);
             this.uiTitlePanel1.TabIndex = 14;
             this.uiTitlePanel1.Text = "📋 供应商信息 ";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -190,7 +189,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.uiButton5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiButton5.Location = new System.Drawing.Point(279, 660);
+            this.uiButton5.Location = new System.Drawing.Point(246, 545);
             this.uiButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton5.Name = "uiButton5";
             this.uiButton5.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
@@ -204,7 +203,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.uiButton3.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton3.Location = new System.Drawing.Point(106, 660);
+            this.uiButton3.Location = new System.Drawing.Point(73, 545);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
             this.uiButton3.Size = new System.Drawing.Size(76, 35);
@@ -218,7 +217,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiButton2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiButton2.Location = new System.Drawing.Point(279, 599);
+            this.uiButton2.Location = new System.Drawing.Point(246, 484);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
@@ -232,7 +231,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiButton1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Location = new System.Drawing.Point(316, 516);
+            this.uiButton1.Location = new System.Drawing.Point(283, 429);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(76, 35);
@@ -245,7 +244,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.uiButton4.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton4.Location = new System.Drawing.Point(106, 599);
+            this.uiButton4.Location = new System.Drawing.Point(73, 484);
             this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton4.Name = "uiButton4";
             this.uiButton4.Size = new System.Drawing.Size(76, 35);
@@ -259,7 +258,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiCheckBox1.Font = new System.Drawing.Font("宋体", 12F);
             this.uiCheckBox1.ForeColor = System.Drawing.Color.White;
-            this.uiCheckBox1.Location = new System.Drawing.Point(185, 516);
+            this.uiCheckBox1.Location = new System.Drawing.Point(152, 429);
             this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiCheckBox1.Name = "uiCheckBox1";
             this.uiCheckBox1.Size = new System.Drawing.Size(125, 35);
@@ -271,7 +270,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel10.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel10.ForeColor = System.Drawing.Color.White;
-            this.uiLabel10.Location = new System.Drawing.Point(71, 516);
+            this.uiLabel10.Location = new System.Drawing.Point(38, 429);
             this.uiLabel10.Name = "uiLabel10";
             this.uiLabel10.Size = new System.Drawing.Size(83, 29);
             this.uiLabel10.TabIndex = 25;
@@ -283,7 +282,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox9.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox9.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox9.Location = new System.Drawing.Point(185, 285);
+            this.uiTextBox9.Location = new System.Drawing.Point(152, 230);
             this.uiTextBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox9.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox9.Name = "uiTextBox9";
@@ -300,7 +299,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel9.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel9.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel9.ForeColor = System.Drawing.Color.White;
-            this.uiLabel9.Location = new System.Drawing.Point(73, 285);
+            this.uiLabel9.Location = new System.Drawing.Point(40, 230);
             this.uiLabel9.Name = "uiLabel9";
             this.uiLabel9.Size = new System.Drawing.Size(105, 29);
             this.uiLabel9.TabIndex = 23;
@@ -312,7 +311,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox8.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox8.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox8.Location = new System.Drawing.Point(185, 230);
+            this.uiTextBox8.Location = new System.Drawing.Point(152, 182);
             this.uiTextBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox8.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox8.Name = "uiTextBox8";
@@ -329,7 +328,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel8.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel8.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel8.ForeColor = System.Drawing.Color.White;
-            this.uiLabel8.Location = new System.Drawing.Point(71, 230);
+            this.uiLabel8.Location = new System.Drawing.Point(38, 182);
             this.uiLabel8.Name = "uiLabel8";
             this.uiLabel8.Size = new System.Drawing.Size(105, 29);
             this.uiLabel8.TabIndex = 21;
@@ -341,7 +340,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox7.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox7.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox7.Location = new System.Drawing.Point(185, 176);
+            this.uiTextBox7.Location = new System.Drawing.Point(152, 135);
             this.uiTextBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox7.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox7.Name = "uiTextBox7";
@@ -358,7 +357,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel7.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel7.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel7.ForeColor = System.Drawing.Color.White;
-            this.uiLabel7.Location = new System.Drawing.Point(73, 176);
+            this.uiLabel7.Location = new System.Drawing.Point(40, 135);
             this.uiLabel7.Name = "uiLabel7";
             this.uiLabel7.Size = new System.Drawing.Size(105, 29);
             this.uiLabel7.TabIndex = 19;
@@ -370,7 +369,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox6.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox6.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox6.Location = new System.Drawing.Point(185, 122);
+            this.uiTextBox6.Location = new System.Drawing.Point(152, 87);
             this.uiTextBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox6.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox6.Name = "uiTextBox6";
@@ -387,7 +386,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel6.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel6.ForeColor = System.Drawing.Color.White;
-            this.uiLabel6.Location = new System.Drawing.Point(71, 122);
+            this.uiLabel6.Location = new System.Drawing.Point(38, 87);
             this.uiLabel6.Name = "uiLabel6";
             this.uiLabel6.Size = new System.Drawing.Size(105, 29);
             this.uiLabel6.TabIndex = 17;
@@ -399,7 +398,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox5.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox5.Location = new System.Drawing.Point(185, 448);
+            this.uiTextBox5.Location = new System.Drawing.Point(152, 376);
             this.uiTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox5.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox5.Name = "uiTextBox5";
@@ -416,7 +415,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel5.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel5.ForeColor = System.Drawing.Color.White;
-            this.uiLabel5.Location = new System.Drawing.Point(73, 448);
+            this.uiLabel5.Location = new System.Drawing.Point(40, 376);
             this.uiLabel5.Name = "uiLabel5";
             this.uiLabel5.Size = new System.Drawing.Size(83, 29);
             this.uiLabel5.TabIndex = 16;
@@ -428,7 +427,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox4.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox4.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox4.Location = new System.Drawing.Point(185, 392);
+            this.uiTextBox4.Location = new System.Drawing.Point(152, 325);
             this.uiTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox4.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox4.Name = "uiTextBox4";
@@ -445,7 +444,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel4.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel4.ForeColor = System.Drawing.Color.White;
-            this.uiLabel4.Location = new System.Drawing.Point(73, 392);
+            this.uiLabel4.Location = new System.Drawing.Point(40, 325);
             this.uiLabel4.Name = "uiLabel4";
             this.uiLabel4.Size = new System.Drawing.Size(83, 29);
             this.uiLabel4.TabIndex = 14;
@@ -457,7 +456,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox3.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox3.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox3.Location = new System.Drawing.Point(185, 338);
+            this.uiTextBox3.Location = new System.Drawing.Point(152, 277);
             this.uiTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox3.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox3.Name = "uiTextBox3";
@@ -474,7 +473,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel3.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel3.ForeColor = System.Drawing.Color.White;
-            this.uiLabel3.Location = new System.Drawing.Point(71, 342);
+            this.uiLabel3.Location = new System.Drawing.Point(38, 281);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(97, 29);
             this.uiLabel3.TabIndex = 12;
@@ -486,7 +485,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTextBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox2.ForeColor = System.Drawing.Color.White;
-            this.uiTextBox2.Location = new System.Drawing.Point(185, 61);
+            this.uiTextBox2.Location = new System.Drawing.Point(152, 42);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox2.Name = "uiTextBox2";
@@ -503,7 +502,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLabel2.ForeColor = System.Drawing.Color.White;
-            this.uiLabel2.Location = new System.Drawing.Point(71, 61);
+            this.uiLabel2.Location = new System.Drawing.Point(38, 42);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(105, 29);
             this.uiLabel2.TabIndex = 10;
@@ -513,10 +512,9 @@ namespace HospitalEquipmentSystem.UI.management
             // 
             this.uiTitlePanel2.Controls.Add(this.uiDataGridView1);
             this.uiTitlePanel2.Controls.Add(this.pnlPager);
-            this.uiTitlePanel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.uiTitlePanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiTitlePanel2.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiTitlePanel2.Location = new System.Drawing.Point(474, 76);
+            this.uiTitlePanel2.Location = new System.Drawing.Point(402, 47);
             this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTitlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel2.Name = "uiTitlePanel2";
@@ -524,7 +522,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiTitlePanel2.Radius = 10;
             this.uiTitlePanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel2.ShowText = false;
-            this.uiTitlePanel2.Size = new System.Drawing.Size(794, 768);
+            this.uiTitlePanel2.Size = new System.Drawing.Size(858, 614);
             this.uiTitlePanel2.TabIndex = 15;
             this.uiTitlePanel2.Text = "供应商列表";
             this.uiTitlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -594,7 +592,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.uiDataGridView1.RowTemplate.Height = 38;
             this.uiDataGridView1.SelectedIndex = -1;
-            this.uiDataGridView1.Size = new System.Drawing.Size(786, 678);
+            this.uiDataGridView1.Size = new System.Drawing.Size(854, 532);
             this.uiDataGridView1.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiDataGridView1.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.uiDataGridView1.TabIndex = 12;
@@ -662,9 +660,9 @@ namespace HospitalEquipmentSystem.UI.management
             this.pnlPager.Controls.Add(this.btnPrevPage);
             this.pnlPager.Controls.Add(this.lblPageInfo);
             this.pnlPager.Controls.Add(this.btnNextPage);
-            this.pnlPager.Location = new System.Drawing.Point(4, 716);
+            this.pnlPager.Location = new System.Drawing.Point(0, 570);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(786, 40);
+            this.pnlPager.Size = new System.Drawing.Size(855, 40);
             this.pnlPager.TabIndex = 13;
             // 
             // btnPrevPage
@@ -709,7 +707,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1268, 844);
+            this.ClientSize = new System.Drawing.Size(1260, 663);
             this.Controls.Add(this.uiTitlePanel2);
             this.Controls.Add(this.uiTitlePanel1);
             this.Controls.Add(this.uiPanel1);

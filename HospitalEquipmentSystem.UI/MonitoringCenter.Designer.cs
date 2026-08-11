@@ -63,21 +63,21 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel1 = new Sunny.UI.UITitlePanel();
             this.uiFlowLayoutPanel1 = new Sunny.UI.UIFlowLayoutPanel();
             this.uiTitlePanel2 = new Sunny.UI.UITitlePanel();
-            this.uiLabel21 = new Sunny.UI.UILabel();
-            this.uiProcessBar4 = new Sunny.UI.UIProcessBar();
-            this.uiLabel22 = new Sunny.UI.UILabel();
-            this.uiLabel24 = new Sunny.UI.UILabel();
-            this.uiProcessBar5 = new Sunny.UI.UIProcessBar();
-            this.uiLabel23 = new Sunny.UI.UILabel();
-            this.uiLabel26 = new Sunny.UI.UILabel();
-            this.uiProcessBar6 = new Sunny.UI.UIProcessBar();
-            this.uiLabel25 = new Sunny.UI.UILabel();
-            this.uiLabel28 = new Sunny.UI.UILabel();
-            this.uiProcessBar7 = new Sunny.UI.UIProcessBar();
-            this.uiLabel27 = new Sunny.UI.UILabel();
-            this.uiLabel30 = new Sunny.UI.UILabel();
-            this.uiProcessBar8 = new Sunny.UI.UIProcessBar();
             this.uiLabel29 = new Sunny.UI.UILabel();
+            this.uiProcessBar8 = new Sunny.UI.UIProcessBar();
+            this.uiLabel30 = new Sunny.UI.UILabel();
+            this.uiLabel27 = new Sunny.UI.UILabel();
+            this.uiProcessBar7 = new Sunny.UI.UIProcessBar();
+            this.uiLabel28 = new Sunny.UI.UILabel();
+            this.uiLabel25 = new Sunny.UI.UILabel();
+            this.uiProcessBar6 = new Sunny.UI.UIProcessBar();
+            this.uiLabel26 = new Sunny.UI.UILabel();
+            this.uiLabel23 = new Sunny.UI.UILabel();
+            this.uiProcessBar5 = new Sunny.UI.UIProcessBar();
+            this.uiLabel24 = new Sunny.UI.UILabel();
+            this.uiLabel22 = new Sunny.UI.UILabel();
+            this.uiProcessBar4 = new Sunny.UI.UIProcessBar();
+            this.uiLabel21 = new Sunny.UI.UILabel();
             this.uiPanel9 = new Sunny.UI.UIPanel();
             this.uiPanel10 = new Sunny.UI.UIPanel();
             this.uiLabel31 = new Sunny.UI.UILabel();
@@ -109,9 +109,9 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.uiLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel1.Location = new System.Drawing.Point(54, 20);
+            this.uiLabel1.Location = new System.Drawing.Point(54, 19);
             this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(200, 16);
+            this.uiLabel1.Size = new System.Drawing.Size(200, 19);
             this.uiLabel1.TabIndex = 1;
             this.uiLabel1.Text = "设备运行实时监控中心";
             // 
@@ -130,7 +130,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(66)))));
-            this.uiLabel3.Location = new System.Drawing.Point(950, 16);
+            this.uiLabel3.Location = new System.Drawing.Point(970, 16);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(270, 24);
             this.uiLabel3.TabIndex = 3;
@@ -500,7 +500,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel1.Radius = 10;
             this.uiTitlePanel1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(885, 480);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(885, 359);
             this.uiTitlePanel1.TabIndex = 14;
             this.uiTitlePanel1.Text = "实时报警流";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -522,7 +522,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiFlowLayoutPanel1.Radius = 1;
             this.uiFlowLayoutPanel1.RectColor = System.Drawing.Color.Transparent;
             this.uiFlowLayoutPanel1.ShowText = false;
-            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(883, 437);
+            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(883, 316);
             this.uiFlowLayoutPanel1.TabIndex = 0;
             this.uiFlowLayoutPanel1.Text = "uiFlowLayoutPanel1";
             this.uiFlowLayoutPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -530,6 +530,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             // uiTitlePanel2
             // 
+            this.uiTitlePanel2.Controls.Add(this.uiPanel9);
             this.uiTitlePanel2.Controls.Add(this.uiLabel29);
             this.uiTitlePanel2.Controls.Add(this.uiProcessBar8);
             this.uiTitlePanel2.Controls.Add(this.uiLabel30);
@@ -555,7 +556,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel2.Radius = 10;
             this.uiTitlePanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel2.ShowText = false;
-            this.uiTitlePanel2.Size = new System.Drawing.Size(300, 410);
+            this.uiTitlePanel2.Size = new System.Drawing.Size(331, 359);
             this.uiTitlePanel2.TabIndex = 15;
             this.uiTitlePanel2.Text = "各科室设备分布";
             this.uiTitlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -563,155 +564,14 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.uiTitlePanel2.TitleHeight = 42;
             // 
-            // uiLabel21
+            // uiLabel29
             // 
-            this.uiLabel21.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiLabel21.Location = new System.Drawing.Point(12, 48);
-            this.uiLabel21.Name = "uiLabel21";
-            this.uiLabel21.Size = new System.Drawing.Size(80, 24);
-            this.uiLabel21.TabIndex = 5;
-            this.uiLabel21.Text = "超声设备";
-            // 
-            // uiProcessBar4
-            // 
-            this.uiProcessBar4.FillColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar4.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiProcessBar4.ForeColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar4.Location = new System.Drawing.Point(96, 48);
-            this.uiProcessBar4.MinimumSize = new System.Drawing.Size(3, 3);
-            this.uiProcessBar4.Name = "uiProcessBar4";
-            this.uiProcessBar4.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.uiProcessBar4.Radius = 10;
-            this.uiProcessBar4.ShowValue = false;
-            this.uiProcessBar4.Size = new System.Drawing.Size(160, 16);
-            this.uiProcessBar4.TabIndex = 7;
-            this.uiProcessBar4.Text = "uiProcessBar4";
-            this.uiProcessBar4.Value = 10;
-            // 
-            // uiLabel22
-            // 
-            this.uiLabel22.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.uiLabel22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel22.Location = new System.Drawing.Point(262, 48);
-            this.uiLabel22.Name = "uiLabel22";
-            this.uiLabel22.Size = new System.Drawing.Size(30, 24);
-            this.uiLabel22.TabIndex = 8;
-            // 
-            // uiLabel24
-            // 
-            this.uiLabel24.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiLabel24.Location = new System.Drawing.Point(12, 90);
-            this.uiLabel24.Name = "uiLabel24";
-            this.uiLabel24.Size = new System.Drawing.Size(80, 24);
-            this.uiLabel24.TabIndex = 9;
-            this.uiLabel24.Text = "监护设备";
-            // 
-            // uiProcessBar5
-            // 
-            this.uiProcessBar5.FillColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar5.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiProcessBar5.ForeColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar5.Location = new System.Drawing.Point(96, 90);
-            this.uiProcessBar5.MinimumSize = new System.Drawing.Size(3, 3);
-            this.uiProcessBar5.Name = "uiProcessBar5";
-            this.uiProcessBar5.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.uiProcessBar5.Radius = 10;
-            this.uiProcessBar5.ShowValue = false;
-            this.uiProcessBar5.Size = new System.Drawing.Size(160, 16);
-            this.uiProcessBar5.TabIndex = 10;
-            this.uiProcessBar5.Text = "uiProcessBar5";
-            this.uiProcessBar5.Value = 10;
-            // 
-            // uiLabel23
-            // 
-            this.uiLabel23.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.uiLabel23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel23.Location = new System.Drawing.Point(262, 90);
-            this.uiLabel23.Name = "uiLabel23";
-            this.uiLabel23.Size = new System.Drawing.Size(30, 24);
-            this.uiLabel23.TabIndex = 11;
-            // 
-            // uiLabel26
-            // 
-            this.uiLabel26.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiLabel26.Location = new System.Drawing.Point(12, 132);
-            this.uiLabel26.Name = "uiLabel26";
-            this.uiLabel26.Size = new System.Drawing.Size(80, 24);
-            this.uiLabel26.TabIndex = 12;
-            this.uiLabel26.Text = "影像";
-            // 
-            // uiProcessBar6
-            // 
-            this.uiProcessBar6.FillColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar6.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiProcessBar6.ForeColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar6.Location = new System.Drawing.Point(96, 132);
-            this.uiProcessBar6.MinimumSize = new System.Drawing.Size(3, 3);
-            this.uiProcessBar6.Name = "uiProcessBar6";
-            this.uiProcessBar6.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.uiProcessBar6.Radius = 10;
-            this.uiProcessBar6.ShowValue = false;
-            this.uiProcessBar6.Size = new System.Drawing.Size(160, 16);
-            this.uiProcessBar6.TabIndex = 13;
-            this.uiProcessBar6.Text = "uiProcessBar6";
-            this.uiProcessBar6.Value = 10;
-            // 
-            // uiLabel25
-            // 
-            this.uiLabel25.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.uiLabel25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel25.Location = new System.Drawing.Point(262, 132);
-            this.uiLabel25.Name = "uiLabel25";
-            this.uiLabel25.Size = new System.Drawing.Size(30, 24);
-            this.uiLabel25.TabIndex = 14;
-            // 
-            // uiLabel28
-            // 
-            this.uiLabel28.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiLabel28.Location = new System.Drawing.Point(12, 174);
-            this.uiLabel28.Name = "uiLabel28";
-            this.uiLabel28.Size = new System.Drawing.Size(80, 24);
-            this.uiLabel28.TabIndex = 15;
-            this.uiLabel28.Text = "生命支持";
-            // 
-            // uiProcessBar7
-            // 
-            this.uiProcessBar7.FillColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar7.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiProcessBar7.ForeColor = System.Drawing.Color.Transparent;
-            this.uiProcessBar7.Location = new System.Drawing.Point(96, 174);
-            this.uiProcessBar7.MinimumSize = new System.Drawing.Size(3, 3);
-            this.uiProcessBar7.Name = "uiProcessBar7";
-            this.uiProcessBar7.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.uiProcessBar7.Radius = 10;
-            this.uiProcessBar7.ShowValue = false;
-            this.uiProcessBar7.Size = new System.Drawing.Size(160, 16);
-            this.uiProcessBar7.TabIndex = 16;
-            this.uiProcessBar7.Text = "uiProcessBar7";
-            this.uiProcessBar7.Value = 10;
-            // 
-            // uiLabel27
-            // 
-            this.uiLabel27.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.uiLabel27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel27.Location = new System.Drawing.Point(262, 174);
-            this.uiLabel27.Name = "uiLabel27";
-            this.uiLabel27.Size = new System.Drawing.Size(30, 24);
-            this.uiLabel27.TabIndex = 17;
-            // 
-            // uiLabel30
-            // 
-            this.uiLabel30.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.uiLabel30.Location = new System.Drawing.Point(12, 216);
-            this.uiLabel30.Name = "uiLabel30";
-            this.uiLabel30.Size = new System.Drawing.Size(80, 24);
-            this.uiLabel30.TabIndex = 18;
-            this.uiLabel30.Text = "检验设备";
+            this.uiLabel29.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.uiLabel29.Location = new System.Drawing.Point(262, 216);
+            this.uiLabel29.Name = "uiLabel29";
+            this.uiLabel29.Size = new System.Drawing.Size(30, 24);
+            this.uiLabel29.TabIndex = 20;
             // 
             // uiProcessBar8
             // 
@@ -729,14 +589,155 @@ namespace HospitalEquipmentSystem.UI
             this.uiProcessBar8.Text = "uiProcessBar8";
             this.uiProcessBar8.Value = 10;
             // 
-            // uiLabel29
+            // uiLabel30
             // 
-            this.uiLabel29.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.uiLabel29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel29.Location = new System.Drawing.Point(262, 216);
-            this.uiLabel29.Name = "uiLabel29";
-            this.uiLabel29.Size = new System.Drawing.Size(30, 24);
-            this.uiLabel29.TabIndex = 20;
+            this.uiLabel30.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiLabel30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.uiLabel30.Location = new System.Drawing.Point(12, 216);
+            this.uiLabel30.Name = "uiLabel30";
+            this.uiLabel30.Size = new System.Drawing.Size(80, 24);
+            this.uiLabel30.TabIndex = 18;
+            this.uiLabel30.Text = "检验设备";
+            // 
+            // uiLabel27
+            // 
+            this.uiLabel27.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.uiLabel27.Location = new System.Drawing.Point(262, 174);
+            this.uiLabel27.Name = "uiLabel27";
+            this.uiLabel27.Size = new System.Drawing.Size(30, 24);
+            this.uiLabel27.TabIndex = 17;
+            // 
+            // uiProcessBar7
+            // 
+            this.uiProcessBar7.FillColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar7.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiProcessBar7.ForeColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar7.Location = new System.Drawing.Point(96, 174);
+            this.uiProcessBar7.MinimumSize = new System.Drawing.Size(3, 3);
+            this.uiProcessBar7.Name = "uiProcessBar7";
+            this.uiProcessBar7.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.uiProcessBar7.Radius = 10;
+            this.uiProcessBar7.ShowValue = false;
+            this.uiProcessBar7.Size = new System.Drawing.Size(160, 16);
+            this.uiProcessBar7.TabIndex = 16;
+            this.uiProcessBar7.Text = "uiProcessBar7";
+            this.uiProcessBar7.Value = 10;
+            // 
+            // uiLabel28
+            // 
+            this.uiLabel28.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiLabel28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.uiLabel28.Location = new System.Drawing.Point(12, 174);
+            this.uiLabel28.Name = "uiLabel28";
+            this.uiLabel28.Size = new System.Drawing.Size(80, 24);
+            this.uiLabel28.TabIndex = 15;
+            this.uiLabel28.Text = "生命支持";
+            // 
+            // uiLabel25
+            // 
+            this.uiLabel25.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.uiLabel25.Location = new System.Drawing.Point(262, 132);
+            this.uiLabel25.Name = "uiLabel25";
+            this.uiLabel25.Size = new System.Drawing.Size(30, 24);
+            this.uiLabel25.TabIndex = 14;
+            // 
+            // uiProcessBar6
+            // 
+            this.uiProcessBar6.FillColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar6.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiProcessBar6.ForeColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar6.Location = new System.Drawing.Point(96, 132);
+            this.uiProcessBar6.MinimumSize = new System.Drawing.Size(3, 3);
+            this.uiProcessBar6.Name = "uiProcessBar6";
+            this.uiProcessBar6.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.uiProcessBar6.Radius = 10;
+            this.uiProcessBar6.ShowValue = false;
+            this.uiProcessBar6.Size = new System.Drawing.Size(160, 16);
+            this.uiProcessBar6.TabIndex = 13;
+            this.uiProcessBar6.Text = "uiProcessBar6";
+            this.uiProcessBar6.Value = 10;
+            // 
+            // uiLabel26
+            // 
+            this.uiLabel26.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiLabel26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.uiLabel26.Location = new System.Drawing.Point(12, 132);
+            this.uiLabel26.Name = "uiLabel26";
+            this.uiLabel26.Size = new System.Drawing.Size(80, 24);
+            this.uiLabel26.TabIndex = 12;
+            this.uiLabel26.Text = "影像";
+            // 
+            // uiLabel23
+            // 
+            this.uiLabel23.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.uiLabel23.Location = new System.Drawing.Point(262, 90);
+            this.uiLabel23.Name = "uiLabel23";
+            this.uiLabel23.Size = new System.Drawing.Size(30, 24);
+            this.uiLabel23.TabIndex = 11;
+            // 
+            // uiProcessBar5
+            // 
+            this.uiProcessBar5.FillColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiProcessBar5.ForeColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar5.Location = new System.Drawing.Point(96, 90);
+            this.uiProcessBar5.MinimumSize = new System.Drawing.Size(3, 3);
+            this.uiProcessBar5.Name = "uiProcessBar5";
+            this.uiProcessBar5.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.uiProcessBar5.Radius = 10;
+            this.uiProcessBar5.ShowValue = false;
+            this.uiProcessBar5.Size = new System.Drawing.Size(160, 16);
+            this.uiProcessBar5.TabIndex = 10;
+            this.uiProcessBar5.Text = "uiProcessBar5";
+            this.uiProcessBar5.Value = 10;
+            // 
+            // uiLabel24
+            // 
+            this.uiLabel24.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiLabel24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.uiLabel24.Location = new System.Drawing.Point(12, 90);
+            this.uiLabel24.Name = "uiLabel24";
+            this.uiLabel24.Size = new System.Drawing.Size(80, 24);
+            this.uiLabel24.TabIndex = 9;
+            this.uiLabel24.Text = "监护设备";
+            // 
+            // uiLabel22
+            // 
+            this.uiLabel22.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.uiLabel22.Location = new System.Drawing.Point(262, 48);
+            this.uiLabel22.Name = "uiLabel22";
+            this.uiLabel22.Size = new System.Drawing.Size(30, 24);
+            this.uiLabel22.TabIndex = 8;
+            // 
+            // uiProcessBar4
+            // 
+            this.uiProcessBar4.FillColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar4.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiProcessBar4.ForeColor = System.Drawing.Color.Transparent;
+            this.uiProcessBar4.Location = new System.Drawing.Point(96, 48);
+            this.uiProcessBar4.MinimumSize = new System.Drawing.Size(3, 3);
+            this.uiProcessBar4.Name = "uiProcessBar4";
+            this.uiProcessBar4.ProcessColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.uiProcessBar4.Radius = 10;
+            this.uiProcessBar4.ShowValue = false;
+            this.uiProcessBar4.Size = new System.Drawing.Size(160, 16);
+            this.uiProcessBar4.TabIndex = 7;
+            this.uiProcessBar4.Text = "uiProcessBar4";
+            this.uiProcessBar4.Value = 10;
+            // 
+            // uiLabel21
+            // 
+            this.uiLabel21.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.uiLabel21.Location = new System.Drawing.Point(12, 48);
+            this.uiLabel21.Name = "uiLabel21";
+            this.uiLabel21.Size = new System.Drawing.Size(80, 24);
+            this.uiLabel21.TabIndex = 5;
+            this.uiLabel21.Text = "超声设备";
             // 
             // uiPanel9
             // 
@@ -746,7 +747,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanel9.Controls.Add(this.uiSymbolLabel1);
             this.uiPanel9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiPanel9.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiPanel9.Location = new System.Drawing.Point(920, 778);
+            this.uiPanel9.Location = new System.Drawing.Point(16, 276);
             this.uiPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.uiPanel9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel9.Name = "uiPanel9";
@@ -788,7 +789,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolLabel1.BackColor = System.Drawing.Color.Transparent;
             this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.uiSymbolLabel1.ForeColor = System.Drawing.Color.Red;
-            this.uiSymbolLabel1.Location = new System.Drawing.Point(10, 4);
+            this.uiSymbolLabel1.Location = new System.Drawing.Point(14, 12);
             this.uiSymbolLabel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel1.Name = "uiSymbolLabel1";
             this.uiSymbolLabel1.Size = new System.Drawing.Size(200, 24);
@@ -803,8 +804,7 @@ namespace HospitalEquipmentSystem.UI
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1240, 850);
-            this.Controls.Add(this.uiPanel9);
+            this.ClientSize = new System.Drawing.Size(1260, 718);
             this.Controls.Add(this.uiTitlePanel2);
             this.Controls.Add(this.uiTitlePanel1);
             this.Controls.Add(this.uiPanel8);

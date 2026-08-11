@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataReaderMapper.cs" />
-    <Compile Include="DataReaderMapperUtil.cs" />
+    <Compile Include="PanelPageManager.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="MaintenanceHelper.cs" />
     <Compile Include="ThemeHelper.cs" />

@@ -1,40 +1,33 @@
 using HospitalEquipment.Model;
-using HospitalEquipment.Util;
+using HospitalEquipmentSystem.Common;
 using HospitalEquipmentSystem.UI.Dashboard;
-using HospitalEquipmentSystem.UI.management;
 using Sunny.UI;
 using System;
 using System.Drawing;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
 {
     /// <summary>
-    /// 页面切换窗体：用于各功能页面的切换入口
+    /// 页面切换窗体：方案二（自定义 Panel + UISymbolButton 动态路由与自适应布局）
     /// </summary>
     public partial class SwitchPages : UIForm
     {
         /// <summary>
-        /// 侧边栏是否展开
+        /// 侧边栏是否展开（单一状态源）
         /// </summary>
         private bool sideBarExpanded = true;
 
         /// <summary>
-        /// 侧边栏展开时的宽度
+        /// 侧边栏展开时的初始宽度
         /// </summary>
-        private const int SideBarWidth = 200;
-
-        /// <summary>
-        /// 侧边栏收起时的宽度
-        /// </summary>
-        private const int SideBarCollapsedWidth = 60;
+        private const int SideBarWidth = 158;
 
         /// <summary>
         /// 当前选中的菜单按钮
         /// </summary>
-        private Button currentSelectedButton;
+        private UISymbolButton currentSelectedButton;
 
         /// <summary>
         /// 从监控中心告警卡片带过来的维修记录，用于跳到对应明细列表
@@ -46,110 +39,105 @@ namespace HospitalEquipmentSystem.UI
         /// </summary>
         private float _lastScale = 0f;
 
+        // [修复] 移除原来的 static 静态字体，改为动态缓存字体实例，防止自适应缩放时点击按钮导致字体大小被重置
         /// <summary>
-        /// 菜单字体缓存（避免每次点击菜单都新建字体导致 GDI 句柄累积）
+        /// 菜单字体缓存（动态响应缩放，避免每次点击菜单都新建字体导致 GDI 句柄累积）
         /// </summary>
-        private static readonly Font MenuFontRegular = new Font("微软雅黑", 12F, FontStyle.Regular);
-        private static readonly Font MenuFontBold = new Font("微软雅黑", 12F, FontStyle.Bold);
+        private Font _currentMenuFontRegular;
+        private Font _currentMenuFontBold;
 
-        /// <summary>
-        /// 初始窗体宽度（用于缩放计算）
-        /// </summary>
+        #region 初始布局尺寸缓存（用于响应式缩放计算）
         private float initialWidth;
-
-        /// <summary>
-        /// 初始窗体高度（用于缩放计算）
-        /// </summary>
         private float initialHeight;
-
-        /// <summary>
-        /// 初始侧边栏展开宽度
-        /// </summary>
         private int initialSideBarWidth;
-
-        /// <summary>
-        /// 初始侧边栏收起宽度
-        /// </summary>
-        private int initialSideBarCollapsedWidth;
-
-        /// <summary>
-        /// 初始菜单按钮高度
-        /// </summary>
         private int initialMenuButtonHeight;
-
-        /// <summary>
-        /// 初始菜单字体大小
-        /// </summary>
         private float initialMenuFontSize;
-
-        /// <summary>
-        /// 初始顶部栏高度
-        /// </summary>
         private int initialTopBarHeight;
-
-        /// <summary>
-        /// 初始标题字体大小
-        /// </summary>
         private float initialTitleFontSize;
-
-
-        private Button[] menus;
-
+        #endregion
 
         /// <summary>
-        /// 构造函数：初始化窗体控件
+        /// 所有侧边栏菜单按钮数组
+        /// </summary>
+        private UISymbolButton[] menus;
+
+        // [修复] 将菜单标题提取为类级别，与上面的 menus 数组严格一一对应
+        private readonly string[] menuTitles = {
+            "首页仪表盘", "设备管理", "维修管理", "借用管理", "监控中心", "科室收入", "数据统计", "系统设置"
+        };
+
+        /// <summary>
+        /// 构造函数：初始化窗体控件及事件绑定
         /// </summary>
         public SwitchPages()
         {
             InitializeComponent();
 
-            // 开启内容区双缓冲，减少切换页面时的闪烁
+            // [修复] 初始化动态字体缓存
+            _currentMenuFontRegular = new Font("微软雅黑", 12F, FontStyle.Regular);
+            _currentMenuFontBold = new Font("微软雅黑", 12F, FontStyle.Bold);
+
+            // [修复] 初始化菜单按钮数组，调整"科室收入(btnRevenue)"到中间位置（不在首位也不在末位）
+            menus = new UISymbolButton[]
+            {
+                btnDashboard, btnDeviceManage, btnRepairManage, btnBorrowManage,
+                btnMonitoringCenter, btnRevenue, btnDataStatistics, btnSystemSetting
+            };
+
+            // 开启内容区 DoubleBuffered 减少页面切换闪烁
             typeof(Control).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
-                .SetValue(contentPanel, true, null);
+                ?.SetValue(contentPanel, true, null);
 
             this.Resize += new EventHandler(SwitchPages_Resize);
         }
 
-
-
-
         /// <summary>
-        /// 窗体加载事件：窗体显示时执行
-        /// 当前为空实现，后续可在这里做页面初始化
+        /// 窗体加载事件：记录初始比例参数并初始化状态
         /// </summary>
         private void SwitchPages_Load(object sender, EventArgs e)
         {
-            // 记录初始大小，用于缩放计算
+            // 记录初始大小
             initialWidth = this.ClientSize.Width;
             initialHeight = this.ClientSize.Height;
-            initialSideBarWidth = SideBarWidth;
-            initialSideBarCollapsedWidth = SideBarCollapsedWidth;
+            initialSideBarWidth = sidePanel.Width; // 使用 Designer 实际宽度 158
             initialMenuButtonHeight = btnDashboard.Height;
             initialMenuFontSize = btnDashboard.Font.Size;
             initialTopBarHeight = topPanel.Height;
-            initialTitleFontSize = lblTitle.Font.Size;
+            initialTitleFontSize = label1.Font.Size;
 
-            // 初始化默认选中设备管理
+            // [修复] 强制修正侧边栏菜单在 UI 上的视觉排列顺序，使其严格与 menus 数组逻辑顺序一致
+            // 解决 "科室收入" 因为设计器层级问题跑到最前面的 Bug
+            if (menus.Length > 0 && menus[0].Parent != null)
+            {
+                var parent = menus[0].Parent;
+                int minIndex = parent.Controls.Count;
+                // 找出所有菜单按钮中当前的最小层级索引（WinForms 中 Top 停靠时，Index 越小越靠上）
+                foreach (var m in menus)
+                {
+                    int idx = parent.Controls.GetChildIndex(m);
+                    if (idx < minIndex) minIndex = idx;
+                }
+                // 按我们定义的正确顺序，依次覆盖控件层级
+                for (int i = 0; i < menus.Length; i++)
+                {
+                    parent.Controls.SetChildIndex(menus[i], minIndex + i);
+                }
+            }
+
+            // 默认选中首页仪表盘
             currentSelectedButton = btnDashboard;
             UpdateMenuSelection(btnDashboard);
 
-
-            // 按当前登录角色控制侧边栏菜单显示
+            // 按角色应用权限并加载默认页面
             ApplyRolePermissions();
         }
 
         /// <summary>
-        /// 根据当前登录角色控制侧边栏菜单的可见性：
-        /// 管理员全部可见，医护隐藏数据统计/系统设置，维修员只保留维修与监控相关菜单
+        /// 根据当前登录角色控制侧边栏菜单可见性
         /// </summary>
         private void ApplyRolePermissions()
         {
-            // 先全部恢复显示，避免角色切换后残留隐藏状态
-
-            menus = new Button[] {
-    btnDashboard, btnDeviceManage, btnRepairManage, btnBorrowManage,
-    btnMonitoringCenter, btnDataStatistics, btnRevenue, btnSystemSetting
-};
+            // 恢复所有菜单可见性
             foreach (var b in menus)
             {
                 b.Visible = true;
@@ -158,7 +146,6 @@ namespace HospitalEquipmentSystem.UI
             switch (LoginUser.Role)
             {
                 case UserRoleText.Doctor:
-                    // 医护：可以查看设备、申报故障、申请借用，隐藏统计与系统设置
                     btnDataStatistics.Visible = false;
                     btnRevenue.Visible = false;
                     btnSystemSetting.Visible = false;
@@ -166,7 +153,6 @@ namespace HospitalEquipmentSystem.UI
                     break;
 
                 case UserRoleText.Repair:
-                    // 维修员：只保留首页、维修管理、监控中心
                     btnDeviceManage.Visible = false;
                     btnBorrowManage.Visible = false;
                     btnDataStatistics.Visible = false;
@@ -175,15 +161,15 @@ namespace HospitalEquipmentSystem.UI
                     btnDashboard.Visible = false;
                     break;
 
-                    // 管理员（admin）默认全部显示，无需处理
+                    // 管理员（Admin）全部可见
             }
 
-            // 顶部栏显示当前登录用户，例如：张三（设备科·管理员）
-            uiLabel1.Text = string.IsNullOrEmpty(LoginUser.Role)
+            // 更新顶部栏用户角色显示
+            uiLabel2.Text = string.IsNullOrEmpty(LoginUser.Role)
                 ? "未登录"
                 : LoginUser.DisplayName;
 
-            // 如果当前选中的菜单被隐藏，自动跳到第一个可见菜单
+            // 若当前选中的菜单被隐藏，自动触发第一个可见菜单的点击
             if (currentSelectedButton != null && !currentSelectedButton.Visible)
             {
                 foreach (var b in menus)
@@ -197,333 +183,276 @@ namespace HospitalEquipmentSystem.UI
             }
         }
 
-
-
-
-
         /// <summary>
-        /// 切换用户菜单项点击：清除登录信息，回到登录页面
+        /// 切换用户点击事件
         /// </summary>
         private void toolStripMenuItemSwitchUser_Click(object sender, EventArgs e)
         {
             if (!UIMessageBox.ShowAsk("确定要切换用户吗？", true))
                 return;
 
-            // 清除当前登录信息
             LoginUser.Reset();
+            PageManager.ClearCache(); // 清理页面缓存（使用通用 PageManager）
 
-            // 隐藏当前主窗体
             this.Hide();
 
-            // 打开登录窗体
-            using var login = new LoginForm();
-            if (login.ShowDialog() == DialogResult.OK)
+            using (var login = new LoginForm())
             {
-                // 登录成功，刷新页面并重新显示
-                ApplyRolePermissions();
-
-                this.Show();
-                if (currentSelectedButton != null && !currentSelectedButton.Visible)
+                if (login.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (var b in menus)
+                    ApplyRolePermissions();
+                    this.Show();
+
+                    if (currentSelectedButton != null && !currentSelectedButton.Visible)
                     {
-                        if (b.Visible)
+                        foreach (var b in menus)
                         {
-                            b.PerformClick();
-                            break;
+                            if (b.Visible)
+                            {
+                                b.PerformClick();
+                                break;
+                            }
                         }
                     }
+                } else
+                {
+                    Application.Exit();
                 }
             }
-            else
-            {
-                // 登录取消，退出应用
-                Application.Exit();
-            }
         }
+
         /// <summary>
-        /// 窗体大小改变事件：自动缩放侧边栏和文字
+        /// 窗体 Resize：自适应动态缩放侧边栏与文字
         /// </summary>
         private void SwitchPages_Resize(object sender, EventArgs e)
         {
             if (initialWidth == 0 || initialHeight == 0) return;
 
-            // 计算缩放比例（取宽高比例中较小的，保持整体协调）
             float scaleX = (float)this.ClientSize.Width / initialWidth;
             float scaleY = (float)this.ClientSize.Height / initialHeight;
             float scale = Math.Min(scaleX, scaleY);
 
-            // 限制最小缩放比例，防止太小看不清
             if (scale < 0.5f) scale = 0.5f;
 
-            // 缩放比例没变化时直接跳过，避免每次布局触发都重建字体导致卡顿
             if (Math.Abs(scale - _lastScale) < 0.0001f) return;
             _lastScale = scale;
 
-            // 缩放侧边栏宽度
-            int newSideBarWidth = sideBarExpanded
-                ? (int)(initialSideBarWidth * scale)
-                : (int)(initialSideBarCollapsedWidth * scale);
-            sidePanel.Width = newSideBarWidth;
+            // 缩放侧边栏及顶部栏
+            if (sidePanel.Visible)
+            {
+                sidePanel.Width = (int)(initialSideBarWidth * scale);
+            }
 
-            // 缩放顶部栏高度
             int newTopBarHeight = (int)(initialTopBarHeight * scale);
             topPanel.Height = newTopBarHeight;
-            //uiSymbolButton1.Height = newTopBarHeight;
-            btnExit.Height = newTopBarHeight;
 
             // 缩放标题字体
             float newTitleFontSize = initialTitleFontSize * scale;
-            lblTitle.Font = new Font(lblTitle.Font.FontFamily, newTitleFontSize, lblTitle.Font.Style);
+            if (Math.Abs(label1.Font.Size - newTitleFontSize) > 0.01f)
+            {
+                Font oldTitleFont = label1.Font;
+                label1.Font = new Font(oldTitleFont.FontFamily, newTitleFontSize, oldTitleFont.Style);
+                oldTitleFont.Dispose();
+            }
 
-            // 缩放菜单按钮高度和字体
+            // [修复] 缩放菜单按钮，统一管理全局动态字体
             int newButtonHeight = (int)(initialMenuButtonHeight * scale);
             float newFontSize = initialMenuFontSize * scale;
 
-            UpdateMenuButtonSize(btnDashboard, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnDeviceManage, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnRepairManage, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnBorrowManage, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnMonitoringCenter, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnDataStatistics, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnRevenue, newButtonHeight, newFontSize);
-            UpdateMenuButtonSize(btnSystemSetting, newButtonHeight, newFontSize);
+            // 如果字体大小发生实质变化，则重构全局缓存字体
+            if (Math.Abs(_currentMenuFontRegular.Size - newFontSize) > 0.01f)
+            {
+                Font oldReg = _currentMenuFontRegular;
+                Font oldBold = _currentMenuFontBold;
+
+                _currentMenuFontRegular = new Font(oldReg.FontFamily, newFontSize, FontStyle.Regular);
+                _currentMenuFontBold = new Font(oldBold.FontFamily, newFontSize, FontStyle.Bold);
+
+                oldReg.Dispose();
+                oldBold.Dispose();
+            }
+
+            // 应用新的高度与字体给所有按钮
+            foreach (var b in menus)
+            {
+                b.Height = newButtonHeight;
+                // 根据是否选中赋予不同的字体
+                b.Font = (b == currentSelectedButton) ? _currentMenuFontBold : _currentMenuFontRegular;
+            }
         }
 
         /// <summary>
-        /// 更新菜单按钮大小和字体
+        /// 顶部栏侧边栏折叠/展开按钮响应事件
         /// </summary>
-        private void UpdateMenuButtonSize(Button button, int height, float fontSize)
+        private void uiSymbolButton3_Click(object sender, EventArgs e)
         {
-            button.Height = height;
-            button.Font = new Font(button.Font.FontFamily, fontSize, button.Font.Style);
+            ToggleSideBar();
         }
 
         /// <summary>
-        /// 切换侧边栏展开/收起状态
+        /// 切换侧边栏展开与折叠状态
         /// </summary>
         private void ToggleSideBar()
         {
-            // 计算当前缩放比例
-            float scaleX = (float)this.ClientSize.Width / initialWidth;
-            float scaleY = (float)this.ClientSize.Height / initialHeight;
-            float scale = Math.Min(scaleX, scaleY);
-            if (scale < 0.5f) scale = 0.5f;
-
             if (sideBarExpanded)
             {
-                // 收起侧边栏
-                sidePanel.Width = (int)(initialSideBarCollapsedWidth * scale);
-                btnDashboard.Text = "🏠";
-                btnDeviceManage.Text = "📦";
-                btnRepairManage.Text = "🔧";
-                btnBorrowManage.Text = "↕";
-                btnMonitoringCenter.Text = "📈";
-                btnDataStatistics.Text = "📊";
-                btnRevenue.Text = "💰";
-                btnSystemSetting.Text = "⚙";
-                btnDashboard.TextAlign = ContentAlignment.MiddleCenter;
-                btnDeviceManage.TextAlign = ContentAlignment.MiddleCenter;
-                btnRepairManage.TextAlign = ContentAlignment.MiddleCenter;
-                btnBorrowManage.TextAlign = ContentAlignment.MiddleCenter;
-                btnMonitoringCenter.TextAlign = ContentAlignment.MiddleCenter;
-                btnDataStatistics.TextAlign = ContentAlignment.MiddleCenter;
-                btnRevenue.TextAlign = ContentAlignment.MiddleCenter;
-                btnSystemSetting.TextAlign = ContentAlignment.MiddleCenter;
-            }
-            else
+                // 隐藏侧边栏 → contentPanel 自动占满
+                sidePanel.Visible = false;
+                uiSymbolButton3.Symbol = 97; // ▶ 展开
+            } else
             {
-                // 展开侧边栏
-                sidePanel.Width = (int)(initialSideBarWidth * scale);
-                btnDashboard.Text = "  🏠  首页仪表盘";
-                btnDeviceManage.Text = "  📦  设备管理";
-                btnRepairManage.Text = "  🔧  维修管理";
-                btnBorrowManage.Text = "  ↕  借用管理";
-                btnMonitoringCenter.Text = "  📈  监控中心";
-                btnDataStatistics.Text = "  📊  数据统计";
-                btnRevenue.Text = "  💰  科室收入";
-                btnSystemSetting.Text = "  ⚙  系统设置";
-                btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-                btnDeviceManage.TextAlign = ContentAlignment.MiddleLeft;
-                btnRepairManage.TextAlign = ContentAlignment.MiddleLeft;
-                btnBorrowManage.TextAlign = ContentAlignment.MiddleLeft;
-                btnMonitoringCenter.TextAlign = ContentAlignment.MiddleLeft;
-                btnDataStatistics.TextAlign = ContentAlignment.MiddleLeft;
-                btnRevenue.TextAlign = ContentAlignment.MiddleLeft;
-                btnSystemSetting.TextAlign = ContentAlignment.MiddleLeft;
+                // 显示侧边栏 → contentPanel 自动让出空间
+                sidePanel.Width = 158;
+                sidePanel.Visible = true;
+                uiSymbolButton3.Symbol = 77; // ◀ 收起
             }
+
             sideBarExpanded = !sideBarExpanded;
         }
 
         /// <summary>
-        /// 更新菜单选中状态
+        /// 更新菜单高亮高赞选中状态
         /// </summary>
-        private void UpdateMenuSelection(Button selectedButton)
+        private void UpdateMenuSelection(UISymbolButton selectedButton)
         {
-            // 重置所有按钮样式
-            ResetButtonStyle(btnDashboard);
-            ResetButtonStyle(btnDeviceManage);
-            ResetButtonStyle(btnRepairManage);
-            ResetButtonStyle(btnBorrowManage);
-            ResetButtonStyle(btnMonitoringCenter);
-            ResetButtonStyle(btnDataStatistics);
-            ResetButtonStyle(btnRevenue);
-            ResetButtonStyle(btnSystemSetting);
+            // 先取消所有按钮的高亮状态
+            foreach (var b in menus)
+            {
+                ResetButtonStyle(b);
+                b.Refresh();
+            }
 
-            // 设置选中按钮样式
+            // 高亮选中的按钮
             SetButtonSelectedStyle(selectedButton);
+            selectedButton.Refresh();
+
             currentSelectedButton = selectedButton;
 
-            // 将焦点移到 contentPanel，避免按钮残留聚焦状态
+            // [修复] 更新顶部标题文字 (不再每次都新建数组，直接匹配同步好的全局数组)
+            for (int i = 0; i < menus.Length; i++)
+            {
+                if (menus[i] == selectedButton)
+                {
+                    label1.Text = menuTitles[i];
+                    break;
+                }
+            }
+
             contentPanel.Focus();
-
-            // 强制立即重绘所有按钮
-            btnDashboard.Refresh();
-            btnDeviceManage.Refresh();
-            btnRepairManage.Refresh();
-            btnBorrowManage.Refresh();
-            btnMonitoringCenter.Refresh();
-            btnDataStatistics.Refresh();
-            btnRevenue.Refresh();
-            btnSystemSetting.Refresh();
         }
 
-        /// <summary>
-        /// 重置按钮为未选中样式
-        /// </summary>
-        private void ResetButtonStyle(Button button)
+        private void ResetButtonStyle(UISymbolButton button)
         {
-            button.BackColor = Color.Transparent;
-            button.Font = MenuFontRegular;
+            button.FillColor = Color.Transparent;
+            // [修复] 使用动态缓存的常规字体，而不是写死的 12pt 静态字体，防止缩放后点击变小
+            button.Font = _currentMenuFontRegular;
         }
 
-        /// <summary>
-        /// 设置按钮为选中样式
-        /// </summary>
-        private void SetButtonSelectedStyle(Button button)
+        private void SetButtonSelectedStyle(UISymbolButton button)
         {
-            button.BackColor = Color.FromArgb(210, 158, 64);
-            button.Font = MenuFontBold;
+            button.FillColor = Color.FromArgb(210, 158, 64);
+            // [修复] 使用动态缓存的加粗字体
+            button.Font = _currentMenuFontBold;
         }
 
         /// <summary>
         /// 首页仪表盘菜单点击
         /// </summary>
-        private async void btnDashboard_Click(object sender, EventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnDashboard);
-            lblTitle.Text = "首页仪表盘";
-            await Task.Yield();
             ShowDashboardPage();
         }
 
         /// <summary>
         /// 设备管理菜单点击
         /// </summary>
-        private async void btnDeviceManage_Click(object sender, EventArgs e)
+        private void btnDeviceManage_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnDeviceManage);
-            lblTitle.Text = "设备管理";
-            await Task.Yield();
             ShowDeviceManagePage();
         }
 
         /// <summary>
         /// 维修管理菜单点击
         /// </summary>
-        private async void btnRepairManage_Click(object sender, EventArgs e)
+        private void btnRepairManage_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnRepairManage);
-            lblTitle.Text = "维修管理";
-            await Task.Yield();
             ShowRepairManagePage();
         }
 
         /// <summary>
         /// 借用管理菜单点击
         /// </summary>
-        private async void btnBorrowManage_Click(object sender, EventArgs e)
+        private void btnBorrowManage_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnBorrowManage);
-            lblTitle.Text = "借用管理";
-            await Task.Yield();
             ShowBorrowManagePage();
         }
 
         /// <summary>
         /// 监控中心菜单点击
         /// </summary>
-        private async void btnMonitoringCenter_Click(object sender, EventArgs e)
+        private void btnMonitoringCenter_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnMonitoringCenter);
-            lblTitle.Text = "监控中心";
-            await Task.Yield();
             ShowMonitoringCenterPage();
         }
 
         /// <summary>
         /// 数据统计菜单点击
         /// </summary>
-        private async void btnDataStatistics_Click(object sender, EventArgs e)
+        private void btnDataStatistics_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnDataStatistics);
-            lblTitle.Text = "数据统计";
-            await Task.Yield();
             ShowDataStatisticsPage();
         }
 
         /// <summary>
         /// 系统设置菜单点击
         /// </summary>
-        private async void btnSystemSetting_Click(object sender, EventArgs e)
+        private void btnSystemSetting_Click(object sender, EventArgs e)
         {
             UpdateMenuSelection(btnSystemSetting);
-            lblTitle.Text = "系统设置";
-            await Task.Yield();
             ShowSystemSettingPage();
         }
 
         /// <summary>
-        /// 监控中心告警卡片点击入口：切到维修管理，并让对应列表定位到该工单
+        /// 科室收入菜单点击
         /// </summary>
-        /// <param name="record">被点击告警对应的维修记录</param>
+        private void btnRevenue_Click(object sender, EventArgs e)
+        {
+            UpdateMenuSelection(btnRevenue);
+            ShowDeptRevenuePage();
+        }
+
+        /// <summary>
+        /// 从监控卡片穿透跳转至维修明细
+        /// </summary>
         public void OpenAlarmDetail(MaintenanceRecord record)
         {
             if (record == null) return;
 
             _alarmDetailRecord = record;
             UpdateMenuSelection(btnRepairManage);
-            lblTitle.Text = "维修管理";
             ShowRepairManagePage();
         }
-
-        /// <summary>
-        /// 科室收入菜单点击
-        /// </summary>
-        private async void btnRevenue_Click(object sender, EventArgs e)
-        {
-            UpdateMenuSelection(btnRevenue);
-            lblTitle.Text = "科室收入";
-            await Task.Yield();
-            ShowDeptRevenuePage();
-        }
-
-
 
         /// <summary>
         /// 显示首页仪表盘页面
         /// </summary>
         private void ShowDashboardPage()
         {
-            // try
-            // {
-            //     DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: false);
-            // }
-            // catch
-            // {
-            // 内嵌山海鲸大屏（DashboardForm 内含 WebView2）
-            DataReaderMapper.ShowFormInPanel<DashboardForm>(contentPanel, autoScale: false);
-            // }
+            try
+            {
+                // 内嵌山海鲸大屏（DashboardForm 内含 WebView2）
+                PageManager.ShowPage<DashboardForm>(contentPanel, autoScale: false);
+            } catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[首页仪表盘加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "首页仪表盘 - 功能开发中...");
+            }
         }
 
         /// <summary>
@@ -533,17 +462,16 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<EquipmentManagement>(contentPanel, autoScale: false);
-            }
-            catch
+                PageManager.ShowPage<EquipmentManagement>(contentPanel, autoScale: false);
+            } catch (Exception ex)
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "设备管理 - 功能开发中...");
+                System.Diagnostics.Debug.WriteLine($"[设备管理加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "设备管理 - 功能开发中...");
             }
-
         }
 
         /// <summary>
-        /// 显示维修管理页面（根据登录用户角色路由到对应工作台）
+        /// 显示维修管理页面（基于角色路由）
         /// </summary>
         private void ShowRepairManagePage()
         {
@@ -554,17 +482,17 @@ namespace HospitalEquipmentSystem.UI
 
                 string role = LoginUser.Role;
                 if (role == UserRoleText.Admin)
-                    DataReaderMapper.ShowFormInPanel(contentPanel, new MainTainManagement(alarm), autoScale: false);
+                    PageManager.ShowPage(contentPanel, new MainTainManagement(alarm), autoScale: false);
                 else if (role == UserRoleText.Repair)
-                    DataReaderMapper.ShowFormInPanel(contentPanel, new RepairerWorkbench(alarm), autoScale: false);
+                    PageManager.ShowPage(contentPanel, new RepairerWorkbench(alarm), autoScale: false);
                 else if (role == UserRoleText.Doctor)
-                    DataReaderMapper.ShowFormInPanel(contentPanel, new DoctorWorkbench(alarm), autoScale: false);
+                    PageManager.ShowPage(contentPanel, new DoctorWorkbench(alarm), autoScale: false);
                 else
-                    DataReaderMapper.ShowPlaceholder(contentPanel, "未知角色，无法加载维修管理");
-            }
-            catch
+                    PageManager.ShowPlaceholder(contentPanel, "未知角色，无法加载维修管理");
+            } catch (Exception ex)
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...");
+                System.Diagnostics.Debug.WriteLine($"[维修管理加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "维修管理 - 功能开发中...");
             }
         }
 
@@ -575,27 +503,26 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<Equipment_BorrowingUI>(contentPanel, autoScale: false);
-            }
-            catch
+                PageManager.ShowPage<Equipment_BorrowingUI>(contentPanel, autoScale: false);
+            } catch (Exception ex)
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "借用管理 - 功能开发中...");
+                System.Diagnostics.Debug.WriteLine($"[借用管理加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "借用管理 - 功能开发中...");
             }
-
         }
 
         /// <summary>
-        /// 显示监控中心页面（用泛型方法 + 自动缩放）
+        /// 显示监控中心页面
         /// </summary>
         private void ShowMonitoringCenterPage()
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<MonitoringCenter>(contentPanel, autoScale: false);
-            }
-            catch
+                PageManager.ShowPage<MonitoringCenter>(contentPanel, autoScale: false);
+            } catch (Exception ex)
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
+                System.Diagnostics.Debug.WriteLine($"[监控中心加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
             }
         }
 
@@ -606,11 +533,11 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<StatisticsForm>(contentPanel, autoScale: false);
-            }
-            catch
+                PageManager.ShowPage<StatisticsForm>(contentPanel, autoScale: false);
+            } catch (Exception ex)
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
+                System.Diagnostics.Debug.WriteLine($"[数据统计加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "数据统计 - 功能开发中...");
             }
         }
 
@@ -621,11 +548,11 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<sysmset>(contentPanel, autoScale: false);
-            }
-            catch
+                PageManager.ShowPage<sysmset>(contentPanel, autoScale: false);
+            } catch (Exception ex)
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
+                System.Diagnostics.Debug.WriteLine($"[系统设置加载失败] {ex}");
+                PageManager.ShowPlaceholder(contentPanel, "系统设置 - 功能开发中...");
             }
         }
 
@@ -636,69 +563,35 @@ namespace HospitalEquipmentSystem.UI
         {
             try
             {
-                DataReaderMapper.ShowFormInPanel<DeptRevenueForm>(contentPanel, autoScale: false);
-            }
-            catch
+                PageManager.ShowPage<DeptRevenueForm>(contentPanel, autoScale: false);
+            } catch
             {
-                DataReaderMapper.ShowPlaceholder(contentPanel, "科室收入 - 功能开发中...");
+                PageManager.ShowPlaceholder(contentPanel, "科室收入 - 功能开发中...");
             }
         }
 
-        /// <summary>
-        /// 返回登录按钮点击
-        /// </summary>
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (!UIMessageBox.ShowAsk("确定要返回登录页面吗？"))
-                return;
-
-            // 先清空内容区子控件，避免逐个 Dispose 造成卡顿
-            contentPanel.Controls.Clear();
-
-            LoginUser.Reset();
-            this.Close();
-        }
-
-        /// <summary>
-        /// 通知按钮点击
-        /// </summary>
         private void btnNotify_Click(object sender, EventArgs e)
         {
             UIMessageBox.Show("暂无新通知", "通知");
         }
 
-        ///// <summary>
-        ///// 最大化按钮点击
-        ///// </summary>
-        //private void btnMaximize_Click(object sender, EventArgs e)
-        //{
-        //    if (this.WindowState == FormWindowState.Maximized)
-        //    {
-        //        this.WindowState = FormWindowState.Normal;
-        //        btnMaximize.Text = "🗖";
-        //    }
-        //    else
-        //    {
-        //        this.WindowState = FormWindowState.Maximized;
-        //        btnMaximize.Text = "🗗";
-        //    }
-        //}
+        /// <summary>
+        /// 最小化
+        /// </summary>
+        private void uiSymbolButton2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
 
         /// <summary>
-        /// 退出按钮点击
+        /// 退出
         /// </summary>
-        private void btnExit_Click(object sender, EventArgs e)
+        private void uiSymbolButton1_Click(object sender, EventArgs e)
         {
             if (UIMessageBox.ShowAsk("确定要退出系统吗？", true))
             {
                 Application.Exit();
             }
         }
-
-        private void uiNavMenu1_MenuItemClick(NavMenuItem item)
-        {
-        }
-
-
     }
 }
