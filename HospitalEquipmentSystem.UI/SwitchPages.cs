@@ -1,6 +1,7 @@
 using HospitalEquipment.Model;
 using HospitalEquipment.Util;
 using HospitalEquipmentSystem.UI.Dashboard;
+using HospitalEquipmentSystem.UI.management;
 using Sunny.UI;
 using System;
 using System.Drawing;
@@ -147,7 +148,7 @@ namespace HospitalEquipmentSystem.UI
 
             menus = new Button[] {
     btnDashboard, btnDeviceManage, btnRepairManage, btnBorrowManage,
-    btnMonitoringCenter, btnDataStatistics, btnSystemSetting
+    btnMonitoringCenter, btnDataStatistics, btnRevenue, btnSystemSetting
 };
             foreach (var b in menus)
             {
@@ -159,6 +160,7 @@ namespace HospitalEquipmentSystem.UI
                 case UserRoleText.Doctor:
                     // 医护：可以查看设备、申报故障、申请借用，隐藏统计与系统设置
                     btnDataStatistics.Visible = false;
+                    btnRevenue.Visible = false;
                     btnSystemSetting.Visible = false;
                     btnDashboard.Visible = false;
                     break;
@@ -168,6 +170,7 @@ namespace HospitalEquipmentSystem.UI
                     btnDeviceManage.Visible = false;
                     btnBorrowManage.Visible = false;
                     btnDataStatistics.Visible = false;
+                    btnRevenue.Visible = false;
                     btnSystemSetting.Visible = false;
                     btnDashboard.Visible = false;
                     break;
@@ -283,6 +286,7 @@ namespace HospitalEquipmentSystem.UI
             UpdateMenuButtonSize(btnBorrowManage, newButtonHeight, newFontSize);
             UpdateMenuButtonSize(btnMonitoringCenter, newButtonHeight, newFontSize);
             UpdateMenuButtonSize(btnDataStatistics, newButtonHeight, newFontSize);
+            UpdateMenuButtonSize(btnRevenue, newButtonHeight, newFontSize);
             UpdateMenuButtonSize(btnSystemSetting, newButtonHeight, newFontSize);
         }
 
@@ -316,6 +320,7 @@ namespace HospitalEquipmentSystem.UI
                 btnBorrowManage.Text = "↕";
                 btnMonitoringCenter.Text = "📈";
                 btnDataStatistics.Text = "📊";
+                btnRevenue.Text = "💰";
                 btnSystemSetting.Text = "⚙";
                 btnDashboard.TextAlign = ContentAlignment.MiddleCenter;
                 btnDeviceManage.TextAlign = ContentAlignment.MiddleCenter;
@@ -323,6 +328,7 @@ namespace HospitalEquipmentSystem.UI
                 btnBorrowManage.TextAlign = ContentAlignment.MiddleCenter;
                 btnMonitoringCenter.TextAlign = ContentAlignment.MiddleCenter;
                 btnDataStatistics.TextAlign = ContentAlignment.MiddleCenter;
+                btnRevenue.TextAlign = ContentAlignment.MiddleCenter;
                 btnSystemSetting.TextAlign = ContentAlignment.MiddleCenter;
             }
             else
@@ -335,6 +341,7 @@ namespace HospitalEquipmentSystem.UI
                 btnBorrowManage.Text = "  ↕  借用管理";
                 btnMonitoringCenter.Text = "  📈  监控中心";
                 btnDataStatistics.Text = "  📊  数据统计";
+                btnRevenue.Text = "  💰  科室收入";
                 btnSystemSetting.Text = "  ⚙  系统设置";
                 btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
                 btnDeviceManage.TextAlign = ContentAlignment.MiddleLeft;
@@ -342,6 +349,7 @@ namespace HospitalEquipmentSystem.UI
                 btnBorrowManage.TextAlign = ContentAlignment.MiddleLeft;
                 btnMonitoringCenter.TextAlign = ContentAlignment.MiddleLeft;
                 btnDataStatistics.TextAlign = ContentAlignment.MiddleLeft;
+                btnRevenue.TextAlign = ContentAlignment.MiddleLeft;
                 btnSystemSetting.TextAlign = ContentAlignment.MiddleLeft;
             }
             sideBarExpanded = !sideBarExpanded;
@@ -359,6 +367,7 @@ namespace HospitalEquipmentSystem.UI
             ResetButtonStyle(btnBorrowManage);
             ResetButtonStyle(btnMonitoringCenter);
             ResetButtonStyle(btnDataStatistics);
+            ResetButtonStyle(btnRevenue);
             ResetButtonStyle(btnSystemSetting);
 
             // 设置选中按钮样式
@@ -375,6 +384,7 @@ namespace HospitalEquipmentSystem.UI
             btnBorrowManage.Refresh();
             btnMonitoringCenter.Refresh();
             btnDataStatistics.Refresh();
+            btnRevenue.Refresh();
             btnSystemSetting.Refresh();
         }
 
@@ -485,6 +495,17 @@ namespace HospitalEquipmentSystem.UI
             UpdateMenuSelection(btnRepairManage);
             lblTitle.Text = "维修管理";
             ShowRepairManagePage();
+        }
+
+        /// <summary>
+        /// 科室收入菜单点击
+        /// </summary>
+        private async void btnRevenue_Click(object sender, EventArgs e)
+        {
+            UpdateMenuSelection(btnRevenue);
+            lblTitle.Text = "科室收入";
+            await Task.Yield();
+            ShowDeptRevenuePage();
         }
 
 
@@ -604,6 +625,21 @@ namespace HospitalEquipmentSystem.UI
             catch
             {
                 DataReaderMapper.ShowPlaceholder(contentPanel, "监控中心 - 功能开发中...");
+            }
+        }
+
+        /// <summary>
+        /// 显示科室收入页面
+        /// </summary>
+        private void ShowDeptRevenuePage()
+        {
+            try
+            {
+                DataReaderMapper.ShowFormInPanel<DeptRevenueForm>(contentPanel, autoScale: false);
+            }
+            catch
+            {
+                DataReaderMapper.ShowPlaceholder(contentPanel, "科室收入 - 功能开发中...");
             }
         }
 

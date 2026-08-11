@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryManager.cs" />
+    <Compile Include="DeptRevenueManager.cs" />
     <Compile Include="EquipmentBLL.cs" />
     <Compile Include="EquipmentManager.cs" />
     <Compile Include="InboundRecordManager.cs" />

@@ -37,6 +37,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblTitle = new System.Windows.Forms.Label();
             this.sidePanel = new System.Windows.Forms.Panel();
             this.btnSystemSetting = new System.Windows.Forms.Button();
+            this.btnRevenue = new System.Windows.Forms.Button();
             this.btnDataStatistics = new System.Windows.Forms.Button();
             this.btnMonitoringCenter = new System.Windows.Forms.Button();
             this.btnBorrowManage = new System.Windows.Forms.Button();
@@ -158,6 +159,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.sidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
             this.sidePanel.Controls.Add(this.btnSystemSetting);
+            this.sidePanel.Controls.Add(this.btnRevenue);
             this.sidePanel.Controls.Add(this.btnDataStatistics);
             this.sidePanel.Controls.Add(this.btnMonitoringCenter);
             this.sidePanel.Controls.Add(this.btnBorrowManage);
@@ -183,11 +185,30 @@ namespace HospitalEquipmentSystem.UI
             this.btnSystemSetting.Location = new System.Drawing.Point(0, 300);
             this.btnSystemSetting.Name = "btnSystemSetting";
             this.btnSystemSetting.Size = new System.Drawing.Size(200, 50);
-            this.btnSystemSetting.TabIndex = 6;
+            this.btnSystemSetting.TabIndex = 7;
             this.btnSystemSetting.Text = "  ⚙  系统设置";
             this.btnSystemSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSystemSetting.UseVisualStyleBackColor = false;
             this.btnSystemSetting.Click += new System.EventHandler(this.btnSystemSetting_Click);
+            // 
+            // btnRevenue
+            // 
+            this.btnRevenue.BackColor = System.Drawing.Color.Transparent;
+            this.btnRevenue.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRevenue.FlatAppearance.BorderSize = 0;
+            this.btnRevenue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(50)))), ((int)(((byte)(90)))));
+            this.btnRevenue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRevenue.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnRevenue.ForeColor = System.Drawing.Color.White;
+            this.btnRevenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRevenue.Location = new System.Drawing.Point(0, 300);
+            this.btnRevenue.Name = "btnRevenue";
+            this.btnRevenue.Size = new System.Drawing.Size(200, 50);
+            this.btnRevenue.TabIndex = 6;
+            this.btnRevenue.Text = "  💰  科室收入";
+            this.btnRevenue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRevenue.UseVisualStyleBackColor = false;
+            this.btnRevenue.Click += new System.EventHandler(this.btnRevenue_Click);
             // 
             // btnDataStatistics
             // 
@@ -363,6 +384,7 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.Button btnBorrowManage;
         private System.Windows.Forms.Button btnMonitoringCenter;
         private System.Windows.Forms.Button btnDataStatistics;
+        private System.Windows.Forms.Button btnRevenue;
         private System.Windows.Forms.Button btnSystemSetting;
         private System.Windows.Forms.Panel contentPanel;
         private Sunny.UI.UISymbolButton btnBack;

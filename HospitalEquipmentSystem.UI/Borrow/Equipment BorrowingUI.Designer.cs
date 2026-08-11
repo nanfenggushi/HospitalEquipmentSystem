@@ -318,8 +318,6 @@ namespace HospitalEquipmentSystem.UI
             this.chartLayout.Controls.Add(this.titlePanel4, 1, 1);
             this.chartLayout.Controls.Add(this.titlePanel3, 0, 1);
             this.chartLayout.Controls.Add(this.titlePanel1, 0, 0);
-            this.chartLayout.Controls.Add(this.titlePanel2, 1, 0);
-            this.chartLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartLayout.Location = new System.Drawing.Point(0, 0);
             this.chartLayout.Margin = new System.Windows.Forms.Padding(4);
             this.chartLayout.MinimumSize = new System.Drawing.Size(0, 500);
@@ -393,6 +391,40 @@ namespace HospitalEquipmentSystem.UI
             this.chartLine.Size = new System.Drawing.Size(628, 214);
             this.chartLine.SubFont = new System.Drawing.Font("宋体", 10.5F);
             this.chartLine.TabIndex = 0;
+            // 
+            // titlePanel2
+            // 
+            this.titlePanel2.Controls.Add(this.chartPie);
+            this.titlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel2.Location = new System.Drawing.Point(773, 8);
+            this.titlePanel2.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel2.Name = "titlePanel2";
+            this.titlePanel2.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel2.ShowText = false;
+            this.titlePanel2.Size = new System.Drawing.Size(749, 350);
+            this.titlePanel2.Size = new System.Drawing.Size(634, 294);
+            this.titlePanel2.TabIndex = 1;
+            this.titlePanel2.Text = "科室借用分布";
+            this.titlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel2.TitleHeight = 34;
+            // 
+            // chartPie
+            // 
+            this.chartPie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartPie.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartPie.LegendFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.Location = new System.Drawing.Point(1, 34);
+            this.chartPie.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartPie.Name = "chartPie";
+            this.chartPie.Size = new System.Drawing.Size(747, 315);
+            this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.Size = new System.Drawing.Size(632, 259);
+            this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.TabIndex = 0;
             // 
             // titlePanel1
             // 

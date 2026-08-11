@@ -53,14 +53,15 @@ namespace HospitalEquipmentSystem.UI
             try
             {
                 var path = ctx.Request.Url.AbsolutePath.TrimEnd('/');
-                var sql = ResolveSql(path);
+                var period = ctx.Request.QueryString["period"] ?? "";
+                var sql = ResolveSql(path, period);
                 if (sql == null)
                 {
                     WriteJson(ctx, "{\"message\":\"not found\"}", HttpStatusCode.NotFound);
                     return;
                 }
 
-                var data = LoadTable(sql);
+                var data = LoadTable(sql, new[] { new SqlParameter("@Period", (object)period ?? "") });
                 if (path == "/api/MaintenanceDisplay") AddMaintenanceDisplay(data);
                 else if (path == "/api/Equipment") AddEquipmentStatusText(data);
                 else if (path == "/api/BorrowRecords") AddBorrowStatusText(data);
@@ -74,7 +75,7 @@ namespace HospitalEquipmentSystem.UI
             }
         }
 
-        private static string ResolveSql(string path)
+        private static string ResolveSql(string path, string period)
         {
             switch (path)
             {
@@ -154,6 +155,36 @@ FROM BorrowRecords
 GROUP BY Status
 ORDER BY Value DESC";
 
+                case "/api/stats/revenueByDept":
+                    return @"
+SELECT d.DeptName AS Name, SUM(r.Amount) AS Value
+FROM DeptRevenue r
+LEFT JOIN Departments d ON r.DeptId = d.DeptId
+WHERE r.Period = ISNULL(NULLIF(@Period, ''), (SELECT MAX(Period) FROM DeptRevenue))
+GROUP BY d.DeptName
+ORDER BY Value DESC";
+
+                case "/api/stats/equipmentShortage":
+                    return @"
+SELECT c.CategoryName AS Name,
+       ISNULL(SUM(CASE WHEN e.Status = 'Idle' THEN 1 ELSE 0 END), 0) AS Value,
+       c.MinAvailableCount AS MinAvailable
+FROM EquipmentCategories c
+LEFT JOIN Equipment e ON e.CategoryId = c.CategoryId AND e.IsActive = 1
+WHERE c.MinAvailableCount > 0
+GROUP BY c.CategoryName, c.MinAvailableCount
+HAVING ISNULL(SUM(CASE WHEN e.Status = 'Idle' THEN 1 ELSE 0 END), 0) < c.MinAvailableCount
+ORDER BY Value ASC";
+
+                case "/api/stats/borrowTotal":
+                    return "SELECT COUNT(*) AS Value FROM BorrowRecords";
+
+                case "/api/stats/maintenanceTotal":
+                    return "SELECT COUNT(*) AS Value FROM MaintenanceRecords";
+
+                case "/api/stats/borrowingDevices":
+                    return "SELECT COUNT(*) AS Value FROM Equipment WHERE Status = 'Borrowed' AND IsActive = 1";
+
                 default:
                     return null;
             }
@@ -161,24 +192,42 @@ ORDER BY Value DESC";
 
         private static List<Dictionary<string, object>> LoadTable(string sql)
         {
+            return LoadTable(sql, null);
+        }
+
+        private static List<Dictionary<string, object>> LoadTable(string sql, SqlParameter[] parameters)
+        {
             var rows = new List<Dictionary<string, object>>();
             using (var cn = new SqlConnection(ConnectionString))
             {
                 cn.Open();
                 using (var cmd = new SqlCommand(sql, cn))
-                using (var r = cmd.ExecuteReader())
                 {
-                    while (r.Read())
+                    if (parameters != null)
                     {
-                        var row = new Dictionary<string, object>();
-                        for (var i = 0; i < r.FieldCount; i++)
+                        foreach (var p in parameters)
                         {
-                            var v = r.GetValue(i);
-                            if (v == DBNull.Value) v = null;
-                            else if (v is DateTime) v = ((DateTime)v).ToString("yyyy-MM-dd HH:mm:ss");
-                            row[r.GetName(i)] = v;
+                            if (p != null)
+                            {
+                                if (p.Value == null) p.Value = DBNull.Value;
+                                cmd.Parameters.Add(p);
+                            }
                         }
-                        rows.Add(row);
+                    }
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            var row = new Dictionary<string, object>();
+                            for (var i = 0; i < r.FieldCount; i++)
+                            {
+                                var v = r.GetValue(i);
+                                if (v == DBNull.Value) v = null;
+                                else if (v is DateTime) v = ((DateTime)v).ToString("yyyy-MM-dd HH:mm:ss");
+                                row[r.GetName(i)] = v;
+                            }
+                            rows.Add(row);
+                        }
                     }
                 }
             }
