@@ -1,3 +1,5 @@
+using HospitalEquipment.BLL;
+using HospitalEquipment.Model.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +16,7 @@ namespace HospitalEquipmentSystem.UI
     {
         private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
         private static readonly string Prefix = "http://localhost:8123/";
+        private static readonly HealthAnalysisManager HealthBll = new HealthAnalysisManager();
 
         public static void Start()
         {
@@ -54,6 +57,15 @@ namespace HospitalEquipmentSystem.UI
             {
                 var path = ctx.Request.Url.AbsolutePath.TrimEnd('/');
                 var period = ctx.Request.QueryString["period"] ?? "";
+
+                // ===== 设备健康分析类接口（走 BLL 计算，非纯 SQL） =====
+                var bllData = ResolveBll(path, ctx.Request.QueryString["equipmentId"] ?? "");
+                if (bllData != null)
+                {
+                    WriteJson(ctx, bllData, HttpStatusCode.OK);
+                    return;
+                }
+
                 var sql = ResolveSql(path, period);
                 if (sql == null)
                 {
@@ -73,6 +85,73 @@ namespace HospitalEquipmentSystem.UI
                 Log("[请求异常] " + ex.Message);
                 WriteJson(ctx, "{\"error\":\"" + Escape(ex.Message) + "\"}", HttpStatusCode.InternalServerError);
             }
+        }
+
+        /// <summary>
+        /// 设备健康分析类接口：通过 BLL 计算后转换为 JSON 字典列表
+        /// 返回 null 表示路径不属于本类接口，交由 ResolveSql 处理
+        /// </summary>
+        private static List<Dictionary<string, object>> ResolveBll(string path, string equipmentId)
+        {
+            switch (path)
+            {
+                case "/api/stats/deviceHealth":
+                    return ToRowList(HealthBll.GetHealthScores());
+
+                case "/api/stats/predictiveMaintenance":
+                    return ToRowList(HealthBll.GetPredictiveMaintenance());
+
+                case "/api/stats/lifecycle":
+                    int eid;
+                    if (!int.TryParse(equipmentId, out eid) || eid <= 0)
+                        return null;   // 缺少设备ID参数，交给 404 处理
+                    return ToRowList(HealthBll.GetLifecycleEvents(eid));
+
+                case "/api/stats/lifecycleAll":
+                    return ToRowList(HealthBll.GetAllLifecycleEvents());
+
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// 将 BLL 返回的实体列表转换为 JSON 字典列表（与 LoadTable 输出格式一致）
+        /// </summary>
+        private static List<Dictionary<string, object>> ToRowList<T>(List<T> list)
+        {
+            var rows = new List<Dictionary<string, object>>();
+            if (list == null) return rows;
+
+            foreach (var item in list)
+            {
+                var row = new Dictionary<string, object>();
+                foreach (var prop in typeof(T).GetProperties())
+                {
+                    if (!prop.CanRead) continue;
+                    var value = prop.GetValue(item);
+                    if (value == null)
+                    {
+                        row[prop.Name] = null;
+                    }
+                    else if (value is DateTime)
+                    {
+                        row[prop.Name] = ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    else if (value is DateTime?)
+                    {
+                        row[prop.Name] = ((DateTime?)value).HasValue
+                            ? ((DateTime?)value).Value.ToString("yyyy-MM-dd HH:mm:ss")
+                            : (object)null;
+                    }
+                    else
+                    {
+                        row[prop.Name] = value;
+                    }
+                }
+                rows.Add(row);
+            }
+            return rows;
         }
 
         private static string ResolveSql(string path, string period)

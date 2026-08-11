@@ -521,7 +521,8 @@ namespace HospitalEquipmentSystem.UI
             // }
             // catch
             // {
-            DataReaderMapper.ShowPlaceholder(contentPanel, "首页仪表盘 - 功能开发中...");
+            // 内嵌山海鲸大屏（DashboardForm 内含 WebView2）
+            DataReaderMapper.ShowFormInPanel<DashboardForm>(contentPanel, autoScale: false);
             // }
         }
 

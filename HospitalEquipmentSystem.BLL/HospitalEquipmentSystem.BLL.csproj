@@ -50,6 +50,7 @@
     <Compile Include="DeptRevenueManager.cs" />
     <Compile Include="EquipmentBLL.cs" />
     <Compile Include="EquipmentManager.cs" />
+    <Compile Include="HealthAnalysisManager.cs" />
     <Compile Include="InboundRecordManager.cs" />
     <Compile Include="LoginBLL.cs" />
     <Compile Include="MaintenanceBLL.cs" />

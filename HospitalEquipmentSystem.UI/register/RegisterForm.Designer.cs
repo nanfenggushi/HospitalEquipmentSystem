@@ -503,7 +503,6 @@ namespace HospitalEquipmentSystem.UI.register
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.智能医院设备管理系统图片生成;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1507, 1046);
             this.Controls.Add(this.uiPanel2);

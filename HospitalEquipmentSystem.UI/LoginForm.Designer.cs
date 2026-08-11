@@ -201,7 +201,6 @@
             this.AcceptButton = this.btnLogin;
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.智能医院设备管理系统图片生成;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(712, 424);
             this.Controls.Add(this.lblTitle);

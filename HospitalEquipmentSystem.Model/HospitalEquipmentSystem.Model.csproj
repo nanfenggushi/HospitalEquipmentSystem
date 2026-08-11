@@ -63,6 +63,9 @@
     <Compile Include="Category.cs" />
     <Compile Include="DeptRevenue.cs" />
     <Compile Include="Statistics\CategoryUsageDto.cs" />
+    <Compile Include="Statistics\DeviceHealthDto.cs" />
+    <Compile Include="Statistics\EquipmentLifecycleEvent.cs" />
+    <Compile Include="Statistics\PredictiveMaintenanceDto.cs" />
     <Compile Include="Statistics\MaintenanceRecordsDto.cs" />
     <Compile Include="Statistics\MaintenanceTrendDto.cs" />
     <Compile Include="Statistics\MonthlyMaintenanceDto.cs" />
