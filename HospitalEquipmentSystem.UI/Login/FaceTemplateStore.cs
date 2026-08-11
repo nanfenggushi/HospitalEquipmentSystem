@@ -4,6 +4,7 @@ using ArcFaceSDK.Utils;
 using HospitalEquipment.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -30,7 +31,7 @@ namespace HospitalEquipmentSystem.UI.Login
     ///   1. 图片模板：FaceTemplates\1.jpg / 1_张三.png，文件名的第一个数字必须是 UserId。
     ///   2. 特征模板：FaceTemplates\1.dat，由 SaveFeature 生成，读取更快。
     /// 运行目录中没有 FaceTemplates 时，会提示“尚未录入人脸”。
-    /// </summary>
+    /// </summary>  
     internal static class FaceTemplateStore
     {
         private static readonly Regex UserIdPrefix = new Regex(@"^\s*(\d+)", RegexOptions.Compiled);
@@ -38,7 +39,16 @@ namespace HospitalEquipmentSystem.UI.Login
 
         public static string DirectoryPath
         {
-            get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FaceTemplates"); }
+            get
+            {
+                string configured = ConfigurationManager.AppSettings["FaceTemplatePath"];
+                if (string.IsNullOrWhiteSpace(configured))
+                    return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FaceTemplates");
+
+                return Path.IsPathRooted(configured)
+                    ? Path.GetFullPath(configured)
+                    : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, configured);
+            }
         }
 
         /// <summary>
