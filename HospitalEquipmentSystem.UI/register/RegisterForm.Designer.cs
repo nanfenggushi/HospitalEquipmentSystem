@@ -125,7 +125,7 @@ namespace HospitalEquipmentSystem.UI.register
             this.ui_txtpwd.PasswordChar = '*';
             this.ui_txtpwd.ShowText = false;
             this.ui_txtpwd.Size = new System.Drawing.Size(320, 50);
-            this.ui_txtpwd.TabIndex = 3;
+            this.ui_txtpwd.TabIndex = 4;
             this.ui_txtpwd.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.ui_txtpwd.Watermark = "请输入密码（至少6位）";
             // 
@@ -142,7 +142,7 @@ namespace HospitalEquipmentSystem.UI.register
             this.uiButton1.Radius = 25;
             this.uiButton1.Size = new System.Drawing.Size(320, 55);
             this.uiButton1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiButton1.TabIndex = 7;
+            this.uiButton1.TabIndex = 8;
             this.uiButton1.Text = "立即注册";
             this.uiButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
@@ -171,7 +171,7 @@ namespace HospitalEquipmentSystem.UI.register
             this.ui_txtverpwd.PasswordChar = '*';
             this.ui_txtverpwd.ShowText = false;
             this.ui_txtverpwd.Size = new System.Drawing.Size(320, 50);
-            this.ui_txtverpwd.TabIndex = 4;
+            this.ui_txtverpwd.TabIndex = 5;
             this.ui_txtverpwd.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.ui_txtverpwd.Watermark = "请再次输入密码";
             // 
@@ -198,7 +198,7 @@ namespace HospitalEquipmentSystem.UI.register
             this.ui_txtverma.Padding = new System.Windows.Forms.Padding(5);
             this.ui_txtverma.ShowText = false;
             this.ui_txtverma.Size = new System.Drawing.Size(200, 50);
-            this.ui_txtverma.TabIndex = 6;
+            this.ui_txtverma.TabIndex = 7;
             this.ui_txtverma.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.ui_txtverma.Watermark = "请输入验证码";
             // 
@@ -343,7 +343,7 @@ namespace HospitalEquipmentSystem.UI.register
             this.ui_txtphone.Padding = new System.Windows.Forms.Padding(5);
             this.ui_txtphone.ShowText = false;
             this.ui_txtphone.Size = new System.Drawing.Size(320, 50);
-            this.ui_txtphone.TabIndex = 5;
+            this.ui_txtphone.TabIndex = 6;
             this.ui_txtphone.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.ui_txtphone.Watermark = "请输入11位手机号";
             // 
@@ -379,7 +379,7 @@ namespace HospitalEquipmentSystem.UI.register
             this.ui_txtrealname.Padding = new System.Windows.Forms.Padding(5);
             this.ui_txtrealname.ShowText = false;
             this.ui_txtrealname.Size = new System.Drawing.Size(320, 50);
-            this.ui_txtrealname.TabIndex = 1;
+            this.ui_txtrealname.TabIndex = 3;
             this.ui_txtrealname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.ui_txtrealname.Watermark = "请输入用户名";
             // 
@@ -503,6 +503,7 @@ namespace HospitalEquipmentSystem.UI.register
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.智能医院设备管理系统图片生成;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1507, 1046);
             this.Controls.Add(this.uiPanel2);

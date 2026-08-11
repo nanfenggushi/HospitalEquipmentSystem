@@ -15,9 +15,16 @@ namespace HospitalEquipmentSystem.UI.register
         // 登录DAL
         private LoginDAL loginDAL = new LoginDAL();
 
+        /// <summary>
+        /// 注册成功的新账号Id（供登录页定位使用）
+        /// </summary>
+        public int CreatedUserId { get; private set; }
+
         public RegisterForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;   // 减少界面重绘闪烁
+            ResizeBackground();           // 大图背景一次性缩放，避免每次重绘都做高开销缩放
         }
 
         private void RegisterForm_Load(object sender, EventArgs e)
@@ -339,6 +346,9 @@ namespace HospitalEquipmentSystem.UI.register
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // 注册成功后清空表单
                     ClearForm();
+                    // 记录新账号，关闭注册页，返回登录页自动定位到新账号
+                    CreatedUserId = userId;
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
@@ -388,7 +398,26 @@ namespace HospitalEquipmentSystem.UI.register
 
         private void uiSymbolButton3_Click(object sender, EventArgs e)
         {
+            // 关闭注册页并返回登录页（登录页在对话框关闭后会重新显示）
             this.Close();
+        }
+
+        /// <summary>
+        /// 背景源图是 2847x1498 的大图，窗体每次重绘 Stretch 缩放开销极高，
+        /// 这里一次性缩放到窗体尺寸，之后重绘只是近乎等尺寸的快速复制。
+        /// </summary>
+        private void ResizeBackground()
+        {
+            Image src = BackgroundImage;
+            if (src == null) return;
+
+            // 目标尺寸：窗体客户区；若窗体可能最大化，则取屏幕尺寸（不超过原图）
+            int w = Math.Min(src.Width, Math.Max(ClientSize.Width, Screen.PrimaryScreen.Bounds.Width));
+            int h = Math.Min(src.Height, Math.Max(ClientSize.Height, Screen.PrimaryScreen.Bounds.Height));
+            if (w <= 0 || h <= 0) return;
+            if (w == src.Width && h == src.Height) return;   // 本来就够小，无需处理
+
+            BackgroundImage = new Bitmap(src, w, h);
         }
     }
 }

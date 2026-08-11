@@ -42,6 +42,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblUser = new Sunny.UI.UILabel();
             this.lblTitle = new Sunny.UI.UILabel();
             this.uiSymbolButton5 = new Sunny.UI.UISymbolButton();
+            this.uibtn_register = new Sunny.UI.UISymbolButton();
             this.loginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.loginPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.loginPanel.Controls.Add(this.uiSymbolButton5);
+            this.loginPanel.Controls.Add(this.uibtn_register);
             this.loginPanel.Controls.Add(this.chkRememberPwd);
             this.loginPanel.Controls.Add(this.lblRole);
             this.loginPanel.Controls.Add(this.btnRepair);
@@ -177,11 +179,12 @@ namespace HospitalEquipmentSystem.UI
             this.btnLogin.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Bold);
             this.btnLogin.Location = new System.Drawing.Point(22, 443);
+            this.btnLogin.Location = new System.Drawing.Point(39, 450);
             this.btnLogin.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Radius = 38;
             this.btnLogin.RectColor = System.Drawing.Color.Blue;
-            this.btnLogin.Size = new System.Drawing.Size(460, 55);
+            this.btnLogin.Size = new System.Drawing.Size(228, 55);
             this.btnLogin.Symbol = 61447;
             this.btnLogin.SymbolSize = 28;
             this.btnLogin.TabIndex = 9;
@@ -301,6 +304,29 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolButton5.Size = new System.Drawing.Size(51, 55);
             this.uiSymbolButton5.TabIndex = 11;
             // 
+            // uibtn_register
+            // 
+            this.uibtn_register.BackColor = System.Drawing.Color.Transparent;
+            this.uibtn_register.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uibtn_register.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            this.uibtn_register.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uibtn_register.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(130)))), ((int)(((byte)(230)))));
+            this.uibtn_register.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.uibtn_register.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uibtn_register.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Bold);
+            this.uibtn_register.Location = new System.Drawing.Point(301, 450);
+            this.uibtn_register.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uibtn_register.Name = "uibtn_register";
+            this.uibtn_register.Radius = 38;
+            this.uibtn_register.RectColor = System.Drawing.Color.Blue;
+            this.uibtn_register.Size = new System.Drawing.Size(228, 55);
+            this.uibtn_register.Symbol = 61447;
+            this.uibtn_register.SymbolSize = 28;
+            this.uibtn_register.TabIndex = 11;
+            this.uibtn_register.Text = "注册";
+            this.uibtn_register.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.uibtn_register.Click += new System.EventHandler(this.uibtn_register_Click);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -339,5 +365,6 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UISymbolButton btnTogglePwd;
         private Sunny.UI.UICheckBox chkRememberPwd;
         private Sunny.UI.UISymbolButton uiSymbolButton5;
+        private Sunny.UI.UISymbolButton uibtn_register;
     }
 }

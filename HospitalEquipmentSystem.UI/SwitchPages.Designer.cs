@@ -99,7 +99,6 @@ namespace HospitalEquipmentSystem.UI
             this.btnExit.TabIndex = 9;
             this.btnExit.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-          
             // 
             // btnNotify
             // 
@@ -182,7 +181,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnSystemSetting.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.btnSystemSetting.ForeColor = System.Drawing.Color.White;
             this.btnSystemSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSystemSetting.Location = new System.Drawing.Point(0, 300);
+            this.btnSystemSetting.Location = new System.Drawing.Point(0, 350);
             this.btnSystemSetting.Name = "btnSystemSetting";
             this.btnSystemSetting.Size = new System.Drawing.Size(200, 50);
             this.btnSystemSetting.TabIndex = 7;

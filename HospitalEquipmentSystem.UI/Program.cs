@@ -1,3 +1,4 @@
+using HospitalEquipmentSystem.UI.Dashboard;
 using System;                          // 引用基础命名空间，STAThread 特性在这里
 using System.IO;
 using System.Windows.Forms;            // 引用 WinForms，Application 在这里

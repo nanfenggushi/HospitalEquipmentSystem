@@ -1,10 +1,12 @@
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using HospitalEquipmentSystem.UI.Login;
+using HospitalEquipmentSystem.UI.register;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -15,12 +17,15 @@ namespace HospitalEquipmentSystem.UI
         private List<UserDto> _allUsers = new List<UserDto>();
         private UISymbolButton _selectedRoleBtn;
         private bool _isLoading = true;   // 防止初始化时误触发事件
+        private int _loadVersion;         // 人员数据加载版本号，防止过期数据覆盖新数据
 
         public LoginForm()
         {
             InitializeComponent();
             // 按需求不改 Designer 布局，人脸按钮事件在代码里挂载。
             this.uiSymbolButton5.Click += new EventHandler(BtnFaceRecognition_Click);
+            this.DoubleBuffered = true;   // 减少界面重绘闪烁
+            ResizeBackground();           // 大图背景一次性缩放，避免每次重绘都做高开销缩放
             cmbUser.SelectedIndexChanged += CmbUser_SelectedIndexChanged;
             this.Shown += (s, e) =>
             {
@@ -131,28 +136,54 @@ namespace HospitalEquipmentSystem.UI
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                _allUsers = bll.GetLoginUsers();
-                if (_allUsers.Count == 0)
-                {
-                    UIMessageBox.ShowError("系统没有任何可用账号");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                UIMessageBox.ShowError("加载人员失败：" + ex.Message);
-                return;
-            }
+            // 异步加载人员列表，界面先显示出来，不阻塞
+            LoadUsersAsync();
+        }
 
-            // 默认选中管理员
-            SelectRole(btnAdmin);
-            ApplyRoleFilter();
-            // 读取记住密码设置
-            ApplySavedCredentials();
-            txtPassword.Focus();
-            _isLoading = false;   // 初始化完成，允许 SelectedIndexChanged 生效
+        /// <summary>
+        /// 异步加载用户列表，避免加载人员时界面卡住
+        /// </summary>
+        private void LoadUsersAsync()
+        {
+            int version = ++_loadVersion;
+            var task = Task.Run(() => bll.GetLoginUsers());
+            task.ContinueWith(t =>
+            {
+                if (IsDisposed) return;
+                bool failed = t.Exception != null;
+                List<UserDto> result = failed ? null : t.Result;
+                try
+                {
+                    BeginInvoke((Action)(() =>
+                    {
+                        if (IsDisposed || version != _loadVersion) return;   // 已有更新数据，丢弃过期结果
+                        if (failed)
+                        {
+                            UIMessageBox.ShowError("加载人员失败：" + t.Exception.GetBaseException().Message);
+                            return;
+                        }
+
+                        _allUsers = result;
+                        if (_allUsers.Count == 0)
+                        {
+                            UIMessageBox.ShowError("系统没有任何可用账号");
+                            return;
+                        }
+
+                        // 默认选中管理员
+                        SelectRole(btnAdmin);
+                        ApplyRoleFilter();
+                        // 读取记住密码设置
+                        ApplySavedCredentials();
+                        txtPassword.Focus();
+                        _isLoading = false;   // 初始化完成，允许 SelectedIndexChanged 生效
+                    }));
+                }
+                catch
+                {
+                    // 窗口已关闭，忽略
+                }
+            });
         }
 
 
@@ -269,6 +300,88 @@ namespace HospitalEquipmentSystem.UI
                 txtPassword.PasswordChar = '*';    // 隐藏
                 btnTogglePwd.Symbol = 61552;        // 闭眼图标
             }
+        }
+
+        private void uibtn_register_Click(object sender, EventArgs e)
+        {
+            this.Hide();   // 关闭（隐藏）当前登录页，进入注册页
+            int createdUserId = 0;
+            using (var registerForm = new RegisterForm())
+            {
+                if (registerForm.ShowDialog() == DialogResult.OK)
+                    createdUserId = registerForm.CreatedUserId;
+            }
+
+            this.Show();             // 注册页关闭后，跳回登录页
+            this.BringToFront();
+            RefreshUsers(createdUserId);   // 刷新人员列表，新注册的账号立即可登录
+        }
+
+        /// <summary>
+        /// 从注册页返回后刷新人员列表；若刚注册成功，自动切换角色并定位到新账号
+        /// </summary>
+        private void RefreshUsers(int focusUserId)
+        {
+            try
+            {
+                _loadVersion++;            // 取消尚未完成的旧加载任务
+                _allUsers = bll.GetLoginUsers();
+                if (_allUsers.Count == 0) return;
+
+                UserDto focus = null;
+                for (int i = 0; i < _allUsers.Count; i++)
+                {
+                    if (_allUsers[i] != null && _allUsers[i].UserId == focusUserId)
+                    {
+                        focus = _allUsers[i];
+                        break;
+                    }
+                }
+
+                if (focus != null)
+                {
+                    if (focus.Role == UserRoleText.Admin) SelectRole(btnAdmin);
+                    else if (focus.Role == UserRoleText.Doctor) SelectRole(btnDoctor);
+                    else if (focus.Role == UserRoleText.Repair) SelectRole(btnRepair);
+                }
+
+                ApplyRoleFilter();
+
+                if (focus != null)
+                {
+                    for (int i = 0; i < cmbUser.Items.Count; i++)
+                    {
+                        var u = cmbUser.Items[i] as UserDto;
+                        if (u != null && u.UserId == focusUserId)
+                        {
+                            cmbUser.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.ShowError("刷新人员失败：" + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 背景源图是几千像素的大图，窗体每次重绘 Stretch 缩放开销极高，
+        /// 这里一次性缩放到窗体尺寸，之后重绘只是近乎等尺寸的快速复制。
+        /// </summary>
+        private void ResizeBackground()
+        {
+            Image src = BackgroundImage;
+            if (src == null) return;
+
+            // 目标尺寸：窗体客户区；若窗体可能最大化，则取屏幕尺寸（不超过原图）
+            int w = Math.Min(src.Width, Math.Max(ClientSize.Width, Screen.PrimaryScreen.Bounds.Width));
+            int h = Math.Min(src.Height, Math.Max(ClientSize.Height, Screen.PrimaryScreen.Bounds.Height));
+            if (w <= 0 || h <= 0) return;
+            if (w == src.Width && h == src.Height) return;   // 本来就够小，无需处理
+
+            BackgroundImage = new Bitmap(src, w, h);
         }
     }
 }
