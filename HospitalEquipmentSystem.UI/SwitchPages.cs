@@ -3,7 +3,6 @@ using HospitalEquipmentSystem.Common;
 using HospitalEquipmentSystem.UI.Dashboard;
 using Sunny.UI;
 using System;
-using System.Linq;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -129,9 +128,8 @@ namespace HospitalEquipmentSystem.UI
 
             // 默认选中首页仪表盘
             currentSelectedButton = btnDashboard;
-            UpdateMenuSelection(btnDashboard);
 
-            // 按角色应用权限并加载默认页面
+            // 按角色应用权限并加载默认页面 (内部包含了触发页面的加载逻辑)
             ApplyRolePermissions();
         }
 
@@ -182,26 +180,35 @@ namespace HospitalEquipmentSystem.UI
                 ? "未登录"
                 : LoginUser.DisplayName;
 
-            // 若当前选中的菜单被隐藏，自动触发第一个可见菜单的点击
-            if (currentSelectedButton != null && !currentSelectedButton.Visible)
+            // 【核心修复】：无论当前选中菜单是被隐藏还是可见，都必须触发 Click 事件来渲染页面
+            if (currentSelectedButton != null)
             {
-                bool foundVisible = false;
-                foreach (var b in menus)
+                // 如果当前选中的菜单因为权限不足被隐藏了
+                if (!currentSelectedButton.Visible)
                 {
-                    if (b.Visible)
+                    bool foundVisible = false;
+                    foreach (var b in menus)
                     {
-                        b.PerformClick();
-                        foundVisible = true;
-                        break;
+                        if (b.Visible)
+                        {
+                            b.PerformClick();
+                            foundVisible = true;
+                            break;
+                        }
                     }
-                }
 
-                // [修复] 未登录/无权限、所有菜单都被隐藏时，清空内容区，避免残留上一个用户的页面
-                if (!foundVisible)
+                    // 未登录/无权限、所有菜单都被隐藏时，清空内容区，避免残留上一个用户的页面
+                    if (!foundVisible)
+                    {
+                        currentSelectedButton = null;
+                        label1.Text = string.Empty;
+                        PageManager.ShowPlaceholder(contentPanel, "当前账号无可用功能");
+                    }
+                } else
                 {
-                    currentSelectedButton = null;
-                    label1.Text = string.Empty;
-                    PageManager.ShowPlaceholder(contentPanel, "当前账号无可用功能");
+                    // 【修复点】：管理员等有权限的角色，默认菜单本身就是可见的，
+                    // 此时也要显式触发一次点击事件，才能加载出右侧的内嵌窗体。
+                    currentSelectedButton.PerformClick();
                 }
             }
         }
@@ -225,18 +232,6 @@ namespace HospitalEquipmentSystem.UI
                 {
                     ApplyRolePermissions();
                     this.Show();
-
-                    if (currentSelectedButton != null && !currentSelectedButton.Visible)
-                    {
-                        foreach (var b in menus)
-                        {
-                            if (b.Visible)
-                            {
-                                b.PerformClick();
-                                break;
-                            }
-                        }
-                    }
                 } else
                 {
                     Application.Exit();
