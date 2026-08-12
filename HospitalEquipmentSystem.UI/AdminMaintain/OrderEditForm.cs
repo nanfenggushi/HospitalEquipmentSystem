@@ -15,6 +15,7 @@ namespace HospitalEquipmentSystem.UI
         private FormMode _mode;
         private int _recordId;
         private readonly MaintenanceBLL _bll = new MaintenanceBLL();
+        private string _photoPath = "";
 
         // 设备/科室 ID 映射（索引 → ID）
         private int[] _equipIds;
@@ -32,13 +33,13 @@ namespace HospitalEquipmentSystem.UI
 
             // 初始化标题和下拉项
             this.Text = "新建维修工单";
-            cmbFaultType.Items.AddRange(new object[] { "电气故障", "机械故障", "软件故障", "耗材更换", "其他" });
-            cmbFaultType.SelectedIndex = 0;
+            cmbFaultType.Visible = false;
             cmbUrgency.Items.AddRange(new object[] { "低", "普通", "紧急" });
             cmbUrgency.SelectedIndex = 1;
 
             btnSave.Click += BtnSave_Click;
             btnCancel.Click += (s, e) => this.Close();
+            btnUploadPhoto.Click += BtnUploadPhoto_Click;
             btnDelete.Visible = false;
 
             if (DesignMode) return;
@@ -152,6 +153,48 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
+        /// 拍照上传：选择照片文件并预览
+        /// </summary>
+        private void BtnUploadPhoto_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.Title = "选择故障照片";
+                if (ofd.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+                // 5MB 限制
+                var fi = new System.IO.FileInfo(ofd.FileName);
+                if (fi.Length > 5 * 1024 * 1024)
+                {
+                    UIMessageBox.ShowError("照片不能超过 5MB");
+                    return;
+                }
+
+                try
+                {
+                    // 复制到 Uploads/Photos/ 目录
+                    string dir = System.IO.Path.Combine(Application.StartupPath, "Uploads", "Photos");
+                    if (!System.IO.Directory.Exists(dir))
+                        System.IO.Directory.CreateDirectory(dir);
+
+                    string ext = System.IO.Path.GetExtension(ofd.FileName);
+                    string newName = $"{DateTime.Now:yyyyMMddHHmmss}_{Guid.NewGuid():N}{ext}";
+                    string destPath = System.IO.Path.Combine(dir, newName);
+                    System.IO.File.Copy(ofd.FileName, destPath, true);
+                    _photoPath = destPath;
+
+                    // 预览
+                    picPreview.Image = System.Drawing.Image.FromFile(destPath);
+                }
+                catch (Exception ex)
+                {
+                    UIMessageBox.ShowError($"照片上传失败：{ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
         /// 保存按钮
         /// </summary>
         private void BtnSave_Click(object sender, EventArgs e)
@@ -174,13 +217,22 @@ namespace HospitalEquipmentSystem.UI
 
             int equipId = _equipIds[cmbEquipment.SelectedIndex];
             int deptId = _deptIds[cmbDept.SelectedIndex];
-            string faultType = cmbFaultType.Text;
             string faultDesc = txtFaultDesc.Text.Trim();
             string urgency = MaintenanceHelper.UrgencyToEn(cmbUrgency.Text);
 
+            // 默认故障类型为空（由 AI 自动识别）
+            string faultType = "";
+
             bool ok;
             if (_mode == FormMode.Add)
-                ok = _bll.CreateOrder(equipId, deptId, 1, faultType, faultDesc, urgency);
+            {
+                int recordId = _bll.CreateOrder(equipId, deptId, 1, faultType, faultDesc, urgency);
+                ok = recordId > 0;
+                if (ok && !string.IsNullOrEmpty(_photoPath))
+                {
+                    _bll.UpdatePhotoPath(recordId, _photoPath);
+                }
+            }
             else
                 ok = _bll.UpdateOrder(_recordId, equipId, deptId, faultType, faultDesc, urgency);
 

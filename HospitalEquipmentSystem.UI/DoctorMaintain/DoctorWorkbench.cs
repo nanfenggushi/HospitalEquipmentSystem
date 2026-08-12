@@ -32,7 +32,6 @@ namespace HospitalEquipmentSystem.UI
         public DoctorWorkbench(MaintenanceRecord alarmRecord)
         {
             InitializeComponent();
-
             if (DesignMode) return;
 
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
@@ -218,10 +217,13 @@ namespace HospitalEquipmentSystem.UI
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    if (BLL.SubmitRepair(form.SelectedEquipmentId, form.SelectedDeptId,
-                                          LoginUser.UserId, form.FaultType, form.FaultDesc, form.Urgency))
+                    int recordId = BLL.SubmitRepair(form.SelectedEquipmentId, form.SelectedDeptId,
+                                          LoginUser.UserId, form.FaultType, form.FaultDesc, form.Urgency);
+                    if (recordId > 0)
                     {
-                        UIMessageBox.Show("报修提交成功，等待管理员分配维修员");
+                        // 保存照片路径
+                        if (!string.IsNullOrEmpty(form.PhotoPath))
+                            BLL.UpdatePhotoPath(recordId, form.PhotoPath);
                         LoadData();
                     }
                     else

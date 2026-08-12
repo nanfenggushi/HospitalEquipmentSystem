@@ -70,12 +70,16 @@ namespace HospitalEquipmentSystem.UI
             string dept = GetFilterValue(cmbDept, "全部科室");
             string keyword = txtSearch.Text.Trim();
 
+            // 日期范围
+            DateTime? dateFrom = null, dateTo = null;
+            GetDateRange(out dateFrom, out dateTo);
+
             Task.Run(() =>
             {
                 try
                 {
                     // 后台线程执行全部数据库查询，避免阻塞 UI 线程
-                    var list = BLL.GetOrders(urgency, dept, keyword, null);
+                    var list = BLL.GetOrders(urgency, dept, keyword, null, dateFrom, dateTo);
                     var kpi = BLL.GetKpiData();
                     var alerts = BLL.GetAlerts();
                     var workloads = BLL.GetWorkloads();
@@ -377,12 +381,43 @@ namespace HospitalEquipmentSystem.UI
             return MaintenanceHelper.UrgencyToEn(val);
         }
 
+        private void GetDateRange(out DateTime? dateFrom, out DateTime? dateTo)
+        {
+            dateFrom = null; dateTo = null;
+            string sel = cmbDateRange.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(sel) || sel == "全部") return;
+
+            DateTime today = DateTime.Today;
+            if (sel == "今日")
+            {
+                dateFrom = today; dateTo = today;
+            }
+            else if (sel == "本周")
+            {
+                int diff = (7 + ((int)today.DayOfWeek - 1)) % 7; // 周一=0
+                dateFrom = today.AddDays(-diff);
+                dateTo = today;
+            }
+            else if (sel == "本月")
+            {
+                dateFrom = new DateTime(today.Year, today.Month, 1);
+                dateTo = today;
+            }
+            else if (sel == "近30天")
+            {
+                dateFrom = today.AddDays(-30);
+                dateTo = today;
+            }
+        }
+
         private void WireEvents()
         {
             btnQuery.Click += BtnQuery_Click;
             btnReset.Click += BtnReset_Click;
+            cmbDateRange.SelectedIndexChanged += (s, e) => LoadData();
             btnNewOrder.Click += BtnNewOrder_Click;
             dgvOrders.CellContentClick += DgvOrders_CellContentClick;
+            dgvOrders.RowsAdded += DgvOrders_RowsAdded;
             btnPrevPage.Click += (s, e) =>
             {
                 if (_currentPage > 1)
@@ -413,13 +448,64 @@ namespace HospitalEquipmentSystem.UI
 
         private void DgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dgvOrders.Columns["Column12"].Index)
-                return;
+            if (e.RowIndex < 0) return;
 
+            var colName = dgvOrders.Columns[e.ColumnIndex].Name;
             var row = dgvOrders.Rows[e.RowIndex];
-            if (row.DataBoundItem is MaintenanceRecordDto dto)
+            if (!(row.DataBoundItem is MaintenanceRecordDto dto)) return;
+
+            if (colName == "Column12")
             {
                 ShowOperationMenu(dto);
+            }
+            else if (colName == "Column13" && dto.ProgressStageText == "已指派")
+            {
+                DoStartRepair(dto);
+            }
+        }
+
+        /// <summary>
+        /// 强制开始维修：将已指派工单强制变为 InProgress
+        /// </summary>
+        private void DoStartRepair(MaintenanceRecordDto dto)
+        {
+            if (!UIMessageBox.ShowAsk($"确认强制开始维修？\n工单号：{dto.RepairNo}\n设备：{dto.EquipmentName}\n\n此操作将跳过维修员接单步骤，直接进入处理中状态。"))
+                return;
+
+            if (BLL.StartRepair(dto.RecordId))
+            {
+                UIMessageBox.Show("已强制开始维修，工单已进入维修员处理中列表");
+                LoadData();
+            }
+            else
+                UIMessageBox.ShowError("操作失败，请重试");
+        }
+
+        /// <summary>
+        /// 行添加时动态设置 Column13 按钮可见性：仅"已指派"状态显示"开始维修"
+        /// </summary>
+        private void DgvOrders_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
+            {
+                var row = dgvOrders.Rows[i];
+                if (row.DataBoundItem is MaintenanceRecordDto dto)
+                {
+                    var cell = row.Cells["Column13"] as DataGridViewButtonCell;
+                    if (cell != null)
+                    {
+                        bool isAssigned = dto.ProgressStageText == "已指派";
+                        cell.Value = isAssigned ? "开始维修" : "";
+                        cell.Style.ForeColor = isAssigned ? Color.White : Color.Transparent;
+                        cell.Style.SelectionForeColor = isAssigned ? Color.White : Color.Transparent;
+                        cell.FlatStyle = FlatStyle.Flat;
+                        if (!isAssigned)
+                        {
+                            cell.Style.BackColor = Color.FromArgb(19, 35, 58);
+                            cell.Style.SelectionBackColor = Color.FromArgb(30, 58, 138);
+                        }
+                    }
+                }
             }
         }
 
@@ -504,7 +590,6 @@ namespace HospitalEquipmentSystem.UI
             txtSearch.Text = "";
             cmbUrgency.SelectedIndex = 0;
             cmbDept.SelectedIndex = 0;
-            cmbSource.SelectedIndex = 0;
             cmbDateRange.SelectedIndex = 0;
 
             LoadData();

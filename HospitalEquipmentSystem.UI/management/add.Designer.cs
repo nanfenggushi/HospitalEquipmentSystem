@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI.management
+﻿namespace HospitalEquipmentSystem.UI.management
 {
     partial class add
     {
@@ -653,3 +653,4 @@ namespace HospitalEquipmentSystem.UI.management
         private Sunny.UI.UIButton uiButton3;
     }
 }
+

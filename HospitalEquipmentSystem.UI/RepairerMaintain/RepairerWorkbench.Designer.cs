@@ -53,6 +53,7 @@ namespace HospitalEquipmentSystem.UI
             this.colCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDowntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colProcess = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tpInProgress = new System.Windows.Forms.TabPage();
             this.tpDone = new System.Windows.Forms.TabPage();
             this.pnlHeader.SuspendLayout();
@@ -295,7 +296,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlPager.Controls.Add(this.lblPageInfo);
             this.pnlPager.Controls.Add(this.btnNextPage);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlPager.Location = new System.Drawing.Point(0, 458);
+            this.pnlPager.Location = new System.Drawing.Point(0, 572);
             this.pnlPager.Name = "pnlPager";
             this.pnlPager.Size = new System.Drawing.Size(1260, 40);
             this.pnlPager.TabIndex = 1;
@@ -370,7 +371,8 @@ namespace HospitalEquipmentSystem.UI
             this.colResult,
             this.colCost,
             this.colDowntime,
-            this.colAction});
+            this.colAction,
+            this.colProcess});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9.5F);
@@ -497,7 +499,17 @@ namespace HospitalEquipmentSystem.UI
             this.colAction.ReadOnly = true;
             this.colAction.Text = "操作";
             this.colAction.UseColumnTextForButtonValue = true;
-            this.colAction.Width = 150;
+            this.colAction.Width = 80;
+            // 
+            // colProcess
+            // 
+            this.colProcess.HeaderText = "处理";
+            this.colProcess.MinimumWidth = 8;
+            this.colProcess.Name = "colProcess";
+            this.colProcess.ReadOnly = true;
+            this.colProcess.Text = "处理";
+            this.colProcess.UseColumnTextForButtonValue = true;
+            this.colProcess.Width = 80;
             // 
             // tpInProgress
             // 
@@ -575,6 +587,7 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn colCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDowntime;
         private System.Windows.Forms.DataGridViewButtonColumn colAction;
+        private System.Windows.Forms.DataGridViewButtonColumn colProcess;
         private System.Windows.Forms.Panel pnlPager;
         private Sunny.UI.UISymbolButton btnPrevPage;
         private Sunny.UI.UILabel lblPageInfo;

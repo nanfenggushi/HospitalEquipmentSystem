@@ -272,6 +272,12 @@
     <Compile Include="RepairerMaintain\RepairResultForm.Designer.cs">
       <DependentUpon>RepairResultForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RepairerMaintain\AgentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepairerMaintain\AgentForm.Designer.cs">
+      <DependentUpon>AgentForm.cs</DependentUpon>
+    </Compile>
     <!-- ===== 维修管理 - 医生端 ===== -->
     <Compile Include="DoctorMaintain\LoginDoctor.cs" />
     <Compile Include="DoctorMaintain\DoctorWorkbench.cs">
@@ -390,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RepairerMaintain\RepairResultForm.resx">
       <DependentUpon>RepairResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepairerMaintain\AgentForm.resx">
+      <DependentUpon>AgentForm.cs</DependentUpon>
     </EmbeddedResource>
     <!-- 医生端 resx -->
     <EmbeddedResource Include="DoctorMaintain\DoctorWorkbench.resx">

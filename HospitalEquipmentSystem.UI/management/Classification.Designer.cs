@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI.management
+﻿namespace HospitalEquipmentSystem.UI.management
 {
     partial class Classification
     {

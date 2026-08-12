@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI
+﻿namespace HospitalEquipmentSystem.UI
 {
     partial class Equipment_BorrowingUI
     {
@@ -709,9 +709,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.cmbStatus.DataSource = null;
             this.cmbStatus.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.cmbStatus.Font = new System.Drawing.Font("宋体", 10F);
-            this.cmbStatus.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cmbStatus.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbStatus.Font = new System.Drawing.Font("宋体", 10F);            this.cmbStatus.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbStatus.Location = new System.Drawing.Point(624, 5);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(0);
             this.cmbStatus.MinimumSize = new System.Drawing.Size(1, 1);
@@ -738,9 +736,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.cmbEquipment.DataSource = null;
             this.cmbEquipment.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.cmbEquipment.Font = new System.Drawing.Font("宋体", 10F);
-            this.cmbEquipment.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.Font = new System.Drawing.Font("宋体", 10F);            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbEquipment.Location = new System.Drawing.Point(624, 43);
             this.cmbEquipment.Margin = new System.Windows.Forms.Padding(0);
             this.cmbEquipment.MinimumSize = new System.Drawing.Size(1, 1);

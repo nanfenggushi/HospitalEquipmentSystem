@@ -15,7 +15,7 @@ namespace HospitalEquipmentSystem.UI
     {
         private readonly LoginBLL bll = new LoginBLL();
         private List<UserDto> _allUsers = new List<UserDto>();
-        private UISymbolButton _selectedRoleBtn;
+        private UISymbolButton _selectedRoleBtn=null;//记录上一次选中的按钮
         private bool _isLoading = true;   // 防止初始化时误触发事件
         private int _loadVersion;         // 人员数据加载版本号，防止过期数据覆盖新数据
 
@@ -78,7 +78,7 @@ namespace HospitalEquipmentSystem.UI
                 return;
             }
 
-            // 登录成功之后勾选记住密码逻辑
+            // 如果登录成功之后勾选了记住密码逻辑
             if (chkRememberPwd.Checked)
             {
                 Properties.Settings.Default.RememberPwd = true;
@@ -95,6 +95,7 @@ namespace HospitalEquipmentSystem.UI
                 Properties.Settings.Default.Save();
             }
 
+            //静态LoginUser上下文存储登录信息
             LoginUser.SetUser(user);
             this.DialogResult = DialogResult.OK;
         }
@@ -102,6 +103,7 @@ namespace HospitalEquipmentSystem.UI
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             SelectRole(btnAdmin);
+            //更新下拉框
             ApplyRoleFilter();
             ApplySavedCredentials();   // 切换角色后尝试恢复记住的密码
         }
@@ -122,12 +124,13 @@ namespace HospitalEquipmentSystem.UI
 
         private void SelectRole(UISymbolButton btn)
         {
-            if (_selectedRoleBtn != null)
-            {
+            if (_selectedRoleBtn != null)//看上一次选中的按钮为不为空
+            {//把上一次的按钮标为未选中
                 _selectedRoleBtn.FillColor = Color.FromArgb(19, 35, 58);
                 _selectedRoleBtn.FillSelectedColor = Color.FromArgb(0, 255, 255);
                 _selectedRoleBtn.ForeColor = Color.FromArgb(230, 238, 247);
             }
+            //把btn标为选中样式
             btn.FillColor = Color.FromArgb(0, 255, 255);
             btn.FillSelectedColor = Color.FromArgb(0, 255, 255);
             btn.ForeColor = Color.FromArgb(11, 22, 34);
@@ -248,8 +251,9 @@ namespace HospitalEquipmentSystem.UI
         private void ApplyRoleFilter()
         {
             string role = GetSelectRole();
-            cmbUser.DataSource = role == null
-                ? _allUsers
+            cmbUser.DataSource = 
+                role == null ?
+                 _allUsers
                 : _allUsers.FindAll(u => u.Role == role);
             cmbUser.DisplayMember = "DisplayName";
             cmbUser.ValueMember = "UserId";
@@ -273,7 +277,6 @@ namespace HospitalEquipmentSystem.UI
 
             if (cmbUser.SelectedItem is UserDto user)
             {
-
                 // 切到上次记住的用户 → 填充密码
                 if (chkRememberPwd.Checked
                     && user.UserId.ToString() == Properties.Settings.Default.SavedUser)

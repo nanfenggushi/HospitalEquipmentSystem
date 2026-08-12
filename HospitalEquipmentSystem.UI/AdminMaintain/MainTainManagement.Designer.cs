@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI
+﻿namespace HospitalEquipmentSystem.UI
 {
     partial class MainTainManagement
     {
@@ -62,11 +62,11 @@ namespace HospitalEquipmentSystem.UI
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pnlFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.txtSearch = new Sunny.UI.UITextBox();
             this.cmbUrgency = new Sunny.UI.UIComboBox();
             this.cmbDept = new Sunny.UI.UIComboBox();
-            this.cmbSource = new Sunny.UI.UIComboBox();
             this.cmbDateRange = new Sunny.UI.UIComboBox();
             this.btnQuery = new Sunny.UI.UISymbolButton();
             this.btnReset = new Sunny.UI.UISymbolButton();
@@ -534,7 +534,8 @@ namespace HospitalEquipmentSystem.UI
             this.Column9,
             this.Column10,
             this.Column11,
-            this.Column12});
+            this.Column12,
+            this.Column13});
             this.dgvOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOrders.EnableHeadersVisualStyles = false;
             this.dgvOrders.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -577,7 +578,6 @@ namespace HospitalEquipmentSystem.UI
             this.Column1.MinimumWidth = 8;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 130;
             // 
             // Column2
             // 
@@ -595,7 +595,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
+            this.Column3.Width = 65;
             // 
             // Column4
             // 
@@ -604,7 +604,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column4.MinimumWidth = 8;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 160;
+            this.Column4.Width = 120;
             // 
             // Column5
             // 
@@ -613,7 +613,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column5.MinimumWidth = 8;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 70;
+            this.Column5.Width = 55;
             // 
             // Column6
             // 
@@ -622,7 +622,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column6.MinimumWidth = 8;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            this.Column6.Width = 90;
+            this.Column6.Width = 75;
             // 
             // Column7
             // 
@@ -631,7 +631,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column7.MinimumWidth = 8;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 80;
+            this.Column7.Width = 55;
             // 
             // Column8
             // 
@@ -640,7 +640,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column8.MinimumWidth = 8;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 75;
+            this.Column8.Width = 60;
             // 
             // Column9
             // 
@@ -649,7 +649,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column9.MinimumWidth = 8;
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
-            this.Column9.Width = 120;
+            this.Column9.Width = 95;
             // 
             // Column10
             // 
@@ -658,7 +658,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column10.MinimumWidth = 8;
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
-            this.Column10.Width = 75;
+            this.Column10.Width = 55;
             // 
             // Column11
             // 
@@ -667,7 +667,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column11.MinimumWidth = 8;
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
-            this.Column11.Width = 65;
+            this.Column11.Width = 50;
             // 
             // Column12
             // 
@@ -678,7 +678,17 @@ namespace HospitalEquipmentSystem.UI
             this.Column12.Text = "操作";
             this.Column12.ToolTipText = "操作";
             this.Column12.UseColumnTextForButtonValue = true;
-            this.Column12.Width = 55;
+            this.Column12.Width = 50;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "强制操作";
+            this.Column13.MinimumWidth = 8;
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Text = "开始维修";
+            this.Column13.UseColumnTextForButtonValue = true;
+            this.Column13.Width = 75;
             // 
             // pnlFilter
             // 
@@ -686,7 +696,6 @@ namespace HospitalEquipmentSystem.UI
             this.pnlFilter.Controls.Add(this.txtSearch);
             this.pnlFilter.Controls.Add(this.cmbUrgency);
             this.pnlFilter.Controls.Add(this.cmbDept);
-            this.pnlFilter.Controls.Add(this.cmbSource);
             this.pnlFilter.Controls.Add(this.cmbDateRange);
             this.pnlFilter.Controls.Add(this.btnQuery);
             this.pnlFilter.Controls.Add(this.btnReset);
@@ -767,30 +776,6 @@ namespace HospitalEquipmentSystem.UI
             this.cmbDept.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbDept.Watermark = "";
             // 
-            // cmbSource
-            // 
-            this.cmbSource.DataSource = null;
-            this.cmbSource.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.cmbSource.Font = new System.Drawing.Font("宋体", 10F);
-            this.cmbSource.ForeColor = System.Drawing.Color.Gray;
-            this.cmbSource.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cmbSource.Items.AddRange(new object[] {
-            "全部来源",
-            "手动申报",
-            "告警生成"});
-            this.cmbSource.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbSource.Location = new System.Drawing.Point(457, 9);
-            this.cmbSource.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
-            this.cmbSource.MinimumSize = new System.Drawing.Size(1, 1);
-            this.cmbSource.Name = "cmbSource";
-            this.cmbSource.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cmbSource.Size = new System.Drawing.Size(120, 34);
-            this.cmbSource.SymbolSize = 24;
-            this.cmbSource.TabIndex = 3;
-            this.cmbSource.Text = "全部来源";
-            this.cmbSource.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmbSource.Watermark = "";
-            // 
             // cmbDateRange
             // 
             this.cmbDateRange.DataSource = null;
@@ -805,7 +790,7 @@ namespace HospitalEquipmentSystem.UI
             "本月",
             "自定义"});
             this.cmbDateRange.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbDateRange.Location = new System.Drawing.Point(585, 9);
+            this.cmbDateRange.Location = new System.Drawing.Point(457, 9);
             this.cmbDateRange.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.cmbDateRange.MinimumSize = new System.Drawing.Size(1, 1);
             this.cmbDateRange.Name = "cmbDateRange";
@@ -825,7 +810,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnQuery.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(255)))));
             this.btnQuery.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.btnQuery.Font = new System.Drawing.Font("宋体", 9F);
-            this.btnQuery.Location = new System.Drawing.Point(713, 9);
+            this.btnQuery.Location = new System.Drawing.Point(585, 9);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.btnQuery.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnQuery.Name = "btnQuery";
@@ -842,7 +827,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnReset.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.btnReset.Font = new System.Drawing.Font("宋体", 9F);
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.btnReset.Location = new System.Drawing.Point(791, 9);
+            this.btnReset.Location = new System.Drawing.Point(663, 9);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.btnReset.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnReset.Name = "btnReset";
@@ -1108,7 +1093,6 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UITextBox txtSearch;
         private Sunny.UI.UIComboBox cmbUrgency;
         private Sunny.UI.UIComboBox cmbDept;
-        private Sunny.UI.UIComboBox cmbSource;
         private Sunny.UI.UIComboBox cmbDateRange;
         private Sunny.UI.UISymbolButton btnQuery;
         private Sunny.UI.UISymbolButton btnReset;
@@ -1138,6 +1122,7 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewButtonColumn Column12;
+        private System.Windows.Forms.DataGridViewButtonColumn Column13;
         private Sunny.UI.UIPanel pnl_mid;
     }
 }

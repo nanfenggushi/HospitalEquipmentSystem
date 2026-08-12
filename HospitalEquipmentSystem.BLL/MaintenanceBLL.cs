@@ -16,9 +16,10 @@ namespace HospitalEquipment.BLL
 
         // UI 调用这个方法拿数据
         public List<MaintenanceRecordDto> GetOrders(string urgency = null, string dept = null,
-                                                     string keyword = null, string stage = null)
+                                                     string keyword = null, string stage = null,
+                                                     DateTime? dateFrom = null, DateTime? dateTo = null)
         {
-            DataTable dt = dal.GetOrderList(urgency, dept, keyword, stage);
+            DataTable dt = dal.GetOrderList(urgency, dept, keyword, stage, dateFrom, dateTo);
             return DataTableToList(dt);
         }
 
@@ -53,7 +54,7 @@ namespace HospitalEquipment.BLL
                     StatusText = MaintenanceHelper.StatusToCn(row["Status"].ToString()),
                     RepairResult = row.Table.Columns.Contains("RepairResult") ? row["RepairResult"]?.ToString() : "",
                     RepairCost = row.Table.Columns.Contains("RepairCost") ? row["RepairCost"] as decimal? : null,
-                    CompleteTime = row.Table.Columns.Contains("CompleteTime") && row["CompleteTime"] != DBNull.Value 
+                    CompleteTime = row.Table.Columns.Contains("CompleteTime") && row["CompleteTime"] != DBNull.Value
                         ? (DateTime?)row["CompleteTime"] : null,
                 });
             }
@@ -138,12 +139,12 @@ namespace HospitalEquipment.BLL
         /// <summary>
         /// 新增工单
         /// </summary>
-        public bool CreateOrder(int equipmentId, int deptId, int reporterId,
+        public int CreateOrder(int equipmentId, int deptId, int reporterId,
                                  string faultType, string faultDesc, string urgency)
         {
             string repairNo = GenerateRepairNo();
             return dal.InsertOrder(repairNo, equipmentId, deptId, reporterId,
-                                    faultType, faultDesc, urgency) > 0;
+                                    faultType, faultDesc, urgency);
         }
 
         /// <summary>
@@ -267,7 +268,7 @@ namespace HospitalEquipment.BLL
         /// <summary>
         /// 维修员提交维修结果（InProgress → Done）
         /// </summary>
-        public bool SubmitRepairResult(int recordId, string repairResult, 
+        public bool SubmitRepairResult(int recordId, string repairResult,
                                        decimal? repairCost, int? downtimeHours)
         {
             return dal.SubmitRepairResult(recordId, repairResult, repairCost, downtimeHours) > 0;
@@ -374,12 +375,20 @@ namespace HospitalEquipment.BLL
         /// <summary>
         /// 医生端：提交报修（复用已有的 CreateOrder）
         /// </summary>
-        public bool SubmitRepair(int equipmentId, int deptId, int reporterId,
+        public int SubmitRepair(int equipmentId, int deptId, int reporterId,
                                   string faultType, string faultDesc, string urgency)
         {
             string repairNo = GenerateRepairNo();
             return dal.InsertOrder(repairNo, equipmentId, deptId, reporterId,
-                                    faultType, faultDesc, urgency) > 0;
+                                    faultType, faultDesc, urgency);
+        }
+
+        /// <summary>
+        /// 更新工单照片路径
+        /// </summary>
+        public bool UpdatePhotoPath(int recordId, string photoPath)
+        {
+            return dal.UpdatePhotoPath(recordId, photoPath) > 0;
         }
     }
 }

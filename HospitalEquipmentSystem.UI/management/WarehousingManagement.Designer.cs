@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI.management
+﻿namespace HospitalEquipmentSystem.UI.management
 {
     partial class WarehousingManagement
     {
@@ -815,3 +815,4 @@ namespace HospitalEquipmentSystem.UI.management
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
+

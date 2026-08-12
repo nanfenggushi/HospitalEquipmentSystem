@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI
+﻿namespace HospitalEquipmentSystem.UI
 {
     partial class LoginForm
     {
@@ -313,7 +313,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblUser.Location = new System.Drawing.Point(50, 110);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(100, 30);
+            this.lblUser.Size = new System.Drawing.Size(115, 30);
             this.lblUser.TabIndex = 1;
             this.lblUser.Text = "用户选择";
             this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -371,3 +371,4 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UISymbolButton uibtn_register;
     }
 }
+

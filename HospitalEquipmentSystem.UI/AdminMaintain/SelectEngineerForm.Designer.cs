@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI
+﻿namespace HospitalEquipmentSystem.UI
 {
     partial class SelectEngineerForm
     {
@@ -38,9 +38,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbEngineer.DataSource = null;
             this.cmbEngineer.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cmbEngineer.FillColor = System.Drawing.Color.White;
-            this.cmbEngineer.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.cmbEngineer.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cmbEngineer.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbEngineer.Font = new System.Drawing.Font("微软雅黑", 10F);            this.cmbEngineer.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbEngineer.Location = new System.Drawing.Point(30, 120);
             this.cmbEngineer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbEngineer.MinimumSize = new System.Drawing.Size(63, 0);
@@ -112,3 +110,4 @@ namespace HospitalEquipmentSystem.UI
         }
     }
 }
+
