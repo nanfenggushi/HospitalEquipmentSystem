@@ -187,7 +187,6 @@ namespace HospitalEquipmentSystem.UI
                     names.Add(dt.Rows[i]["EquipmentName"].ToString());
                 }
                 cmbEquipment.Items.AddRange(names.ToArray());
-                RemoveDataRowViewItems(cmbEquipment);
                 cmbEquipment.SelectedIndex = 0;
             }
             else

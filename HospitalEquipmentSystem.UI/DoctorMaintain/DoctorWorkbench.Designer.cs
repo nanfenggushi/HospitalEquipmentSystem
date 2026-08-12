@@ -539,7 +539,7 @@ namespace HospitalEquipmentSystem.UI
             this.colAction.Name = "colAction";
             this.colAction.ReadOnly = true;
             this.colAction.Text = "查看详情";
-            this.colAction.UseColumnTextForButtonValue = true;
+            this.colAction.UseColumnTextForButtonValue = false;
             this.colAction.Width = 150;
             // 
             // tpPending

@@ -1,4 +1,4 @@
-﻿namespace HospitalEquipmentSystem.UI
+namespace HospitalEquipmentSystem.UI
 {
     partial class RepairSubmitForm
     {
@@ -18,7 +18,7 @@
         private void InitializeComponent()
         {
             this.lblEquipment = new Sunny.UI.UILabel();
-            this.cmbEquipment = new Sunny.UI.UIComboBox();
+            this.cmbEquipment = new System.Windows.Forms.ComboBox();
             this.rdbDept = new Sunny.UI.UIRadioButton();
             this.rdkBorrowed = new Sunny.UI.UIRadioButton();
             this.lblFaultType = new Sunny.UI.UILabel();
@@ -50,20 +50,12 @@
             // 
             // cmbEquipment
             // 
-            this.cmbEquipment.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cmbEquipment.FillColor = System.Drawing.Color.White;
-            this.cmbEquipment.Font = new System.Drawing.Font("微软雅黑", 9F);            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEquipment.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.cmbEquipment.Location = new System.Drawing.Point(26, 86);
-            this.cmbEquipment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbEquipment.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbEquipment.Name = "cmbEquipment";
-            this.cmbEquipment.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cmbEquipment.Size = new System.Drawing.Size(440, 28);
-            this.cmbEquipment.Style = Sunny.UI.UIStyle.Custom;
-            this.cmbEquipment.SymbolSize = 24;
             this.cmbEquipment.TabIndex = 2;
-            this.cmbEquipment.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmbEquipment.Watermark = "";
             // 
             // rdbDept
             // 
@@ -112,7 +104,7 @@
             // 
             this.cmbFaultType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cmbFaultType.FillColor = System.Drawing.Color.White;
-            this.cmbFaultType.Font = new System.Drawing.Font("微软雅黑", 9F);            this.cmbFaultType.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbFaultType.Font = new System.Drawing.Font("微软雅黑", 9F); this.cmbFaultType.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbFaultType.Location = new System.Drawing.Point(26, 177);
             this.cmbFaultType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbFaultType.MinimumSize = new System.Drawing.Size(63, 0);
@@ -212,7 +204,7 @@
             // 
             this.cmbUrgency.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cmbUrgency.FillColor = System.Drawing.Color.White;
-            this.cmbUrgency.Font = new System.Drawing.Font("微软雅黑", 9F);            this.cmbUrgency.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbUrgency.Font = new System.Drawing.Font("微软雅黑", 9F); this.cmbUrgency.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbUrgency.Location = new System.Drawing.Point(26, 419);
             this.cmbUrgency.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbUrgency.MinimumSize = new System.Drawing.Size(63, 0);
@@ -303,7 +295,7 @@
         #endregion
 
         private Sunny.UI.UILabel lblEquipment;
-        private Sunny.UI.UIComboBox cmbEquipment;
+        private System.Windows.Forms.ComboBox cmbEquipment;
         private Sunny.UI.UIRadioButton rdbDept;
         private Sunny.UI.UIRadioButton rdkBorrowed;
         private Sunny.UI.UILabel lblFaultType;

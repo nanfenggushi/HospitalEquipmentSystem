@@ -63,8 +63,11 @@ namespace HospitalEquipment.BLL
             // 3. 调用 AI 识别
             FaultRecognitionResult result = await _recognizer.RecognizeAsync(photoData, candidates).ConfigureAwait(false);
 
-            // 4. 写入 AI 结果到数据库
-            _maintenanceDal.UpdateAiResult(recordId, result.FaultType, result.Confidence);
+            // 4. 只将有效结果写入数据库（未识别/无可用故障类型等不写入）
+            if (!string.IsNullOrEmpty(result.FaultType) && result.FaultType != "未识别" && result.FaultType != "无可用故障类型")
+            {
+                _maintenanceDal.UpdateAiResult(recordId, result.FaultType, result.Confidence);
+            }
 
             // 5. 返回
             return result;
@@ -87,7 +90,15 @@ namespace HospitalEquipment.BLL
             int categoryId = Convert.ToInt32(row["CategoryId"]);
 
             // 2. 按 设备分类 + AI识别故障类型 查询推荐物料
-            return await _materialDal.GetByCategoryAndFault(categoryId, aiFaultType).ConfigureAwait(false);
+            var materials = await _materialDal.GetByCategoryAndFault(categoryId, aiFaultType).ConfigureAwait(false);
+
+            // 3. 若该分类下无匹配物料，兜底按故障类型全表搜索
+            if (materials == null || materials.Count == 0)
+            {
+                materials = await _materialDal.GetByFaultType(aiFaultType).ConfigureAwait(false);
+            }
+
+            return materials ?? new List<Material>();
         }
 
         /// <summary>

@@ -189,7 +189,7 @@ namespace HospitalEquipmentSystem.UI
                 LoadData();
             };
             dgvOrders.CellContentClick += DgvOrders_CellContentClick;
-            dgvOrders.RowsAdded += DgvOrders_RowsAdded;
+            dgvOrders.CellFormatting += DgvOrders_CellFormatting;
             btnPrevPage.Click += (s, e) =>
             {
                 if (_currentPage > 1)
@@ -244,26 +244,7 @@ namespace HospitalEquipmentSystem.UI
             var row = dgvOrders.Rows[e.RowIndex];
             if (!(row.DataBoundItem is MaintenanceRecordDto dto)) return;
 
-            // 未被维修员接单前（Pending 或 Assigned）的工单，按钮显示"删除"
-            bool canDelete = dto.ProgressStage == "Pending" || dto.ProgressStage == "Assigned";
-            if (canDelete)
-            {
-                if (UIMessageBox.ShowAsk($"确认删除工单【{dto.RepairNo}】吗？\n此操作不可恢复。"))
-                {
-                    if (BLL.DeleteDoctorOrder(dto.RecordId, LoginUser.UserId))
-                    {
-                        UIMessageBox.Show("删除成功");
-                        LoadData();
-                    }
-                    else
-                    {
-                        UIMessageBox.ShowError("删除失败，可能工单已被分配，无法删除");
-                    }
-                }
-                return;
-            }
-
-            // 其他状态显示详情
+            // 医生只能查看详情，不能删除
             var msg = $"工单号：{dto.RepairNo}\n" +
                       $"设备：{dto.EquipmentName}\n" +
                       $"科室：{dto.DeptName}\n" +
@@ -283,21 +264,12 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>
         /// DataGridView 行格式化：根据状态动态显示操作列按钮文字
         /// </summary>
-        private void DgvOrders_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void DgvOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
+            if (e.ColumnIndex == colAction.Index && e.RowIndex >= 0)
             {
-                var row = dgvOrders.Rows[i];
-                if (row.DataBoundItem is MaintenanceRecordDto dto)
-                {
-                    // 未被维修员接单前（Pending 或 Assigned）显示"删除"，接单后（InProgress/Done）显示"查看详情"
-                    var cell = row.Cells[colAction.Name] as DataGridViewButtonCell;
-                    if (cell != null)
-                    {
-                        bool canDelete = dto.ProgressStage == "Pending" || dto.ProgressStage == "Assigned";
-                        cell.Value = canDelete ? "删除" : "查看详情";
-                    }
-                }
+                e.Value = "查看详情";
+                e.FormattingApplied = true;
             }
         }
 

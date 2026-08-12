@@ -1,4 +1,4 @@
-﻿namespace HospitalEquipmentSystem.UI
+namespace HospitalEquipmentSystem.UI
 {
     partial class MainTainManagement
     {
@@ -784,6 +784,7 @@
             this.cmbDateRange.ForeColor = System.Drawing.Color.Gray;
             this.cmbDateRange.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cmbDateRange.Items.AddRange(new object[] {
+            "全部",
             "近30天",
             "今日",
             "本周",
@@ -798,7 +799,7 @@
             this.cmbDateRange.Size = new System.Drawing.Size(120, 34);
             this.cmbDateRange.SymbolSize = 24;
             this.cmbDateRange.TabIndex = 4;
-            this.cmbDateRange.Text = "近30天";
+            this.cmbDateRange.Text = "全部";
             this.cmbDateRange.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbDateRange.Watermark = "";
             // 

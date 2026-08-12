@@ -38,6 +38,9 @@ namespace HospitalEquipment.BLL
             if (string.IsNullOrEmpty(_apiKey))
                 return new FaultRecognitionResult { FaultType = "未配置AI密钥", Confidence = 0 };
 
+            if (photoData == null || photoData.Length == 0)
+                return new FaultRecognitionResult { FaultType = "未识别", Confidence = 0 };
+
             if (candidateFaultTypes == null || candidateFaultTypes.Count == 0)
                 return new FaultRecognitionResult { FaultType = "无可用故障类型", Confidence = 0 };
 
@@ -88,8 +91,7 @@ namespace HospitalEquipment.BLL
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    string detail = responseBody.Length > 200 ? responseBody.Substring(0, 200) : responseBody;
-                    return new FaultRecognitionResult { FaultType = $"API错误({(int)response.StatusCode}):{detail}", Confidence = 0 };
+                    return new FaultRecognitionResult { FaultType = "未识别", Confidence = 0 };
                 }
 
                 string aiText = ExtractContent(responseBody);
@@ -100,11 +102,11 @@ namespace HospitalEquipment.BLL
                         return new FaultRecognitionResult { FaultType = candidate, Confidence = 0.85m };
                 }
 
-                return new FaultRecognitionResult { FaultType = candidateFaultTypes[0], Confidence = 0.5m };
+                return new FaultRecognitionResult { FaultType = "未识别", Confidence = 0 };
             }
-            catch (Exception ex)
+            catch
             {
-                return new FaultRecognitionResult { FaultType = $"AI调用异常：{ex.Message}", Confidence = 0 };
+                return new FaultRecognitionResult { FaultType = "未识别", Confidence = 0 };
             }
         }
 

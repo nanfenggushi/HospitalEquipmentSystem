@@ -183,6 +183,29 @@ namespace HospitalEquipment.DAL
         }
 
         /// <summary>
+        /// 按故障类型全表查询启用的物料（兜底搜索，不限设备分类）
+        /// </summary>
+        public async Task<List<Material>> GetByFaultType(string faultType)
+        {
+            string sql = @"
+                SELECT MaterialId, MaterialName,
+                       CategoryId, FaultType, UnitPrice, DefaultQuantity,
+                       ISNULL(Unit, '') AS Unit, ISNULL(Description, '') AS Description,
+                       IsActive, CreatedAt
+                FROM Materials
+                WHERE FaultType = @FaultType
+                  AND IsActive = 1
+                ORDER BY MaterialName";
+
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql,
+                new SqlParameter("@FaultType", faultType)).ConfigureAwait(false))
+            {
+                if (reader == null) return new List<Material>();
+                return DataReaderMapper.MapToList<Material>(reader);
+            }
+        }
+
+        /// <summary>
         /// 获取某设备分类下所有不重复的故障类型（AI 候选故障列表的数据来源）
         /// </summary>
         public async Task<List<string>> GetDistinctFaultTypes(int categoryId)
