@@ -131,7 +131,12 @@ namespace HospitalEquipmentSystem.UI
 
             // 按角色应用权限并加载默认页面 (内部包含了触发页面的加载逻辑)
             ApplyRolePermissions();
+
+            // 加载当前时间
+            ShowCurrDate();
         }
+
+
 
         /// <summary>
         /// 根据当前登录角色控制侧边栏菜单可见性
@@ -613,6 +618,26 @@ namespace HospitalEquipmentSystem.UI
             {
                 Application.Exit();
             }
+        }
+
+        /// <summary>
+        /// 显示当前时间
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void ShowCurrDate()
+        {
+            DateTime dateTime = DateTime.Now;
+            uiLabel3.Text = dateTime.ToString("f");
+        }
+
+        /// <summary>
+        /// 每隔50秒刷新一次时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ShowCurrDate();
         }
     }
 }

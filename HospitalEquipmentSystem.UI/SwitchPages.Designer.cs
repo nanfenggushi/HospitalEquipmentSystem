@@ -31,8 +31,6 @@ namespace HospitalEquipmentSystem.UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemSwitchUser = new System.Windows.Forms.ToolStripMenuItem();
             this.sidePanel = new Sunny.UI.UIPanel();
             this.uiFlowLayoutPanelMenu = new Sunny.UI.UIFlowLayoutPanel();
             this.btnRevenue = new Sunny.UI.UISymbolButton();
@@ -52,27 +50,13 @@ namespace HospitalEquipmentSystem.UI
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1.SuspendLayout();
+            this.uiLabel3 = new Sunny.UI.UILabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.sidePanel.SuspendLayout();
             this.uiFlowLayoutPanelMenu.SuspendLayout();
             this.uiPanel1.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSwitchUser});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 28);
-            // 
-            // toolStripMenuItemSwitchUser
-            // 
-            this.toolStripMenuItemSwitchUser.Name = "toolStripMenuItemSwitchUser";
-            this.toolStripMenuItemSwitchUser.Size = new System.Drawing.Size(138, 24);
-            this.toolStripMenuItemSwitchUser.Text = "切换用户";
-            this.toolStripMenuItemSwitchUser.Click += new System.EventHandler(this.toolStripMenuItemSwitchUser_Click);
             // 
             // sidePanel
             // 
@@ -121,6 +105,22 @@ namespace HospitalEquipmentSystem.UI
             this.uiFlowLayoutPanelMenu.TabIndex = 14;
             this.uiFlowLayoutPanelMenu.Text = "uiFlowLayoutPanel1";
             this.uiFlowLayoutPanelMenu.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnRevenue
+            // 
+            this.btnRevenue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRevenue.FillColor = System.Drawing.Color.Transparent;
+            this.btnRevenue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRevenue.Location = new System.Drawing.Point(3, 317);
+            this.btnRevenue.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnRevenue.Name = "btnRevenue";
+            this.btnRevenue.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
+            this.btnRevenue.Size = new System.Drawing.Size(150, 37);
+            this.btnRevenue.Symbol = 363517;
+            this.btnRevenue.TabIndex = 14;
+            this.btnRevenue.Text = "科室收入";
+            this.btnRevenue.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRevenue.Click += new System.EventHandler(this.btnRevenue_Click);
             // 
             // btnDashboard
             // 
@@ -221,22 +221,6 @@ namespace HospitalEquipmentSystem.UI
             this.btnDataStatistics.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnDataStatistics.Click += new System.EventHandler(this.btnDataStatistics_Click);
             // 
-            // btnRevenue
-            // 
-            this.btnRevenue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRevenue.FillColor = System.Drawing.Color.Transparent;
-            this.btnRevenue.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRevenue.Location = new System.Drawing.Point(3, 317);
-            this.btnRevenue.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnRevenue.Name = "btnRevenue";
-            this.btnRevenue.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
-            this.btnRevenue.Size = new System.Drawing.Size(150, 37);
-            this.btnRevenue.Symbol = 363517;
-            this.btnRevenue.TabIndex = 14;
-            this.btnRevenue.Text = "科室收入";
-            this.btnRevenue.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRevenue.Click += new System.EventHandler(btnRevenue_Click);
-            // 
             // btnSystemSetting
             // 
             this.btnSystemSetting.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -286,6 +270,7 @@ namespace HospitalEquipmentSystem.UI
             this.topPanel.BackColor = System.Drawing.Color.White;
             this.topPanel.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.屏幕截图_2026_08_11_100623;
             this.topPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.topPanel.Controls.Add(this.uiLabel3);
             this.topPanel.Controls.Add(this.uiSymbolButton2);
             this.topPanel.Controls.Add(this.uiLabel1);
             this.topPanel.Controls.Add(this.uiSymbolButton3);
@@ -396,6 +381,23 @@ namespace HospitalEquipmentSystem.UI
             this.label1.Text = "设备管理";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // uiLabel3
+            // 
+            this.uiLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel3.ForeColor = System.Drawing.Color.White;
+            this.uiLabel3.Location = new System.Drawing.Point(192, 12);
+            this.uiLabel3.Name = "uiLabel3";
+            this.uiLabel3.Size = new System.Drawing.Size(248, 23);
+            this.uiLabel3.TabIndex = 0;
+            this.uiLabel3.Text = "时间";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 50000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // SwitchPages
             // 
             this.AllowShowTitle = false;
@@ -410,7 +412,6 @@ namespace HospitalEquipmentSystem.UI
             this.Text = "SwitchPages";
             this.ZoomScaleRect = new System.Drawing.Rectangle(22, 22, 800, 450);
             this.Load += new System.EventHandler(this.SwitchPages_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.sidePanel.ResumeLayout(false);
             this.uiFlowLayoutPanelMenu.ResumeLayout(false);
             this.uiPanel1.ResumeLayout(false);
@@ -426,8 +427,6 @@ namespace HospitalEquipmentSystem.UI
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSwitchUser;
         private Sunny.UI.UIPanel topPanel;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UISymbolButton uiSymbolButton1;
@@ -447,6 +446,8 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UISymbolButton uiSymbolButton2;
         private System.Windows.Forms.Panel contentPanel;
         private Sunny.UI.UISymbolButton btnRevenue;
+        private Sunny.UI.UILabel uiLabel3;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
