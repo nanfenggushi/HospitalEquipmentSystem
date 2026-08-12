@@ -110,7 +110,7 @@
             this.uiTitlePanel1.Name = "uiTitlePanel1";
             this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(583, 593);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(583, 568);
             this.uiTitlePanel1.TabIndex = 0;
             this.uiTitlePanel1.Text = " ➕ 新增设备";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -602,7 +602,7 @@
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            this.ClientSize = new System.Drawing.Size(589, 601);
+            this.ClientSize = new System.Drawing.Size(589, 577);
             this.Controls.Add(this.uiTitlePanel1);
             this.Name = "add";
             this.Padding = new System.Windows.Forms.Padding(0);
