@@ -11,8 +11,12 @@ namespace HospitalEquipmentSystem.Common
     /// </summary>
     public static class PageManager
     {
-        // 核心：页面缓存池。以类型为 Key，支持 Form、UserControl 等任意 Control
-        private static readonly Dictionary<Type, Control> PageCache = new Dictionary<Type, Control>();
+        // [修复] 缓存 Key 由单一 Type 改为 (Container, Type) 复合键。
+        // 原来只按 Type 缓存，如果将来同一个页面类型被用在两个不同的容器里，
+        // 会命中"属于另一个容器"的缓存实例，导致 SwitchToPage 把它设为可见，
+        // 但它实际并不在当前 container.Controls 中，界面上什么也不会显示。
+        private static readonly Dictionary<(Control Container, Type PageType), Control> PageCache =
+            new Dictionary<(Control, Type), Control>();
 
         /// <summary>
         /// 显示无参构造页面（优先从缓存加载）
@@ -22,11 +26,18 @@ namespace HospitalEquipmentSystem.Common
         /// <param name="autoScale">是否自动缩放</param>
         public static void ShowPage<T>(Control container, bool autoScale = false) where T : Control, new()
         {
-            Type type = typeof(T);
+            var key = (container, typeof(T));
 
             // 1. 如果缓存中已有该页面，直接显示，实现秒切
-            if (PageCache.TryGetValue(type, out Control existingPage) && !existingPage.IsDisposed)
+            if (PageCache.TryGetValue(key, out Control existingPage) && !existingPage.IsDisposed)
             {
+                // [修复] 防御性校验：确保缓存的页面确实挂在当前容器下，
+                // 避免极端情况下（容器被重建等）出现"缓存命中但显示不出来"的问题
+                if (existingPage.Parent != container)
+                {
+                    existingPage.Parent?.Controls.Remove(existingPage);
+                    container.Controls.Add(existingPage);
+                }
                 SwitchToPage(container, existingPage);
                 return;
             }
@@ -34,7 +45,7 @@ namespace HospitalEquipmentSystem.Common
             // 2. 如果没有，则创建新页面
             T newPage = new T();
             SetupAndShowPage(container, newPage, autoScale);
-            PageCache[type] = newPage; // 加入缓存
+            PageCache[key] = newPage; // 加入缓存
         }
 
         /// <summary>
@@ -43,10 +54,10 @@ namespace HospitalEquipmentSystem.Common
         public static void ShowPage<T>(Control container, T page, bool autoScale = false) where T : Control
         {
             if (page == null) return;
-            Type type = typeof(T);
+            var key = (container, typeof(T));
 
             // 如果该类型页面已经存在，为了加载带有新参数的页面，我们需要替换它
-            if (PageCache.TryGetValue(type, out Control oldPage))
+            if (PageCache.TryGetValue(key, out Control oldPage))
             {
                 if (oldPage != page && !oldPage.IsDisposed)
                 {
@@ -64,7 +75,7 @@ namespace HospitalEquipmentSystem.Common
             }
 
             SetupAndShowPage(container, page, autoScale);
-            PageCache[type] = page; // 更新缓存
+            PageCache[key] = page; // 更新缓存
         }
 
         /// <summary>
@@ -189,7 +200,11 @@ namespace HospitalEquipmentSystem.Common
                 {
                     if (page is Form f) f.Close(); // Form必须先Close再Dispose
                     page.Dispose();
-                } catch { }
+                } catch (Exception ex)
+                {
+                    // [修复] 不再静默吞掉异常，至少输出到调试输出，便于定位页面销毁失败的原因
+                    System.Diagnostics.Debug.WriteLine($"[PageManager] 页面销毁失败: {ex}");
+                }
             }
         }
     }

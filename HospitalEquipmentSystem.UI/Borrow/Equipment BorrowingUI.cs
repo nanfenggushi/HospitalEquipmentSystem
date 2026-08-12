@@ -54,7 +54,6 @@ namespace HospitalEquipmentSystem.UI
             ThemeHelper.ApplyDarkTheme(this);
             InitControls();
             this.Load += Equipment_BorrowingUI_Load;
-
         }
 
         // ==================== 初始化 ====================

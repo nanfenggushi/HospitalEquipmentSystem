@@ -107,6 +107,8 @@ namespace HospitalEquipmentSystem.UI
 
             // [修复] 强制修正侧边栏菜单在 UI 上的视觉排列顺序，使其严格与 menus 数组逻辑顺序一致
             // 解决 "科室收入" 因为设计器层级问题跑到最前面的 Bug
+            // 注：这是运行时补丁，根源在 Designer.cs 中 Controls.Add 的调用顺序，
+            // 建议后续直接在设计器文件中调整控件添加顺序后移除本段代码。
             if (menus.Length > 0 && menus[0].Parent != null)
             {
                 var parent = menus[0].Parent;
@@ -161,7 +163,17 @@ namespace HospitalEquipmentSystem.UI
                     btnDashboard.Visible = false;
                     break;
 
-                    // 管理员（Admin）全部可见
+                case UserRoleText.Admin:
+                    // 管理员全部可见，无需处理
+                    break;
+
+                default:
+                    // [修复] 未登录或角色未知时，收起所有功能菜单，避免出现"未登录=全权限"的漏洞
+                    foreach (var b in menus)
+                    {
+                        b.Visible = false;
+                    }
+                    break;
             }
 
             // 更新顶部栏用户角色显示
@@ -172,13 +184,23 @@ namespace HospitalEquipmentSystem.UI
             // 若当前选中的菜单被隐藏，自动触发第一个可见菜单的点击
             if (currentSelectedButton != null && !currentSelectedButton.Visible)
             {
+                bool foundVisible = false;
                 foreach (var b in menus)
                 {
                     if (b.Visible)
                     {
                         b.PerformClick();
+                        foundVisible = true;
                         break;
                     }
+                }
+
+                // [修复] 未登录/无权限、所有菜单都被隐藏时，清空内容区，避免残留上一个用户的页面
+                if (!foundVisible)
+                {
+                    currentSelectedButton = null;
+                    label1.Text = string.Empty;
+                    PageManager.ShowPlaceholder(contentPanel, "当前账号无可用功能");
                 }
             }
         }
@@ -232,7 +254,9 @@ namespace HospitalEquipmentSystem.UI
             float scaleY = (float)this.ClientSize.Height / initialHeight;
             float scale = Math.Min(scaleX, scaleY);
 
+            // [修复] 同时限制缩放下限与上限，避免超宽屏/窗口拉到极大时菜单字体和按钮无限放大
             if (scale < 0.5f) scale = 0.5f;
+            if (scale > 1.5f) scale = 1.5f;
 
             if (Math.Abs(scale - _lastScale) < 0.0001f) return;
             _lastScale = scale;
@@ -564,8 +588,9 @@ namespace HospitalEquipmentSystem.UI
             try
             {
                 PageManager.ShowPage<DeptRevenueForm>(contentPanel, autoScale: false);
-            } catch
+            } catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"[科室收入加载失败] {ex}");
                 PageManager.ShowPlaceholder(contentPanel, "科室收入 - 功能开发中...");
             }
         }
