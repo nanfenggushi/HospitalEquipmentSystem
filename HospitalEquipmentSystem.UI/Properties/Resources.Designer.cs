@@ -63,6 +63,26 @@ namespace HospitalEquipmentSystem.UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _1 {
+            get {
+                object obj = ResourceManager.GetObject("1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap _2 {
+            get {
+                object obj = ResourceManager.GetObject("2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap bg_header_gradient {
             get {
                 object obj = ResourceManager.GetObject("bg_header_gradient", resourceCulture);
@@ -256,6 +276,26 @@ namespace HospitalEquipmentSystem.UI.Properties {
         internal static System.Drawing.Bitmap 搜索__1_ {
             get {
                 object obj = ResourceManager.GetObject("搜索 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 登录页面背景jpg {
+            get {
+                object obj = ResourceManager.GetObject("登录页面背景jpg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 登录页面背景图 {
+            get {
+                object obj = ResourceManager.GetObject("登录页面背景图", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

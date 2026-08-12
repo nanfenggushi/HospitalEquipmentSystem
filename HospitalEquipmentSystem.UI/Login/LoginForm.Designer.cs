@@ -29,6 +29,8 @@ namespace HospitalEquipmentSystem.UI
         private void InitializeComponent()
         {
             this.loginPanel = new Sunny.UI.UIPanel();
+            this.uiSymbolButton5 = new Sunny.UI.UISymbolButton();
+            this.uibtn_register = new Sunny.UI.UISymbolButton();
             this.chkRememberPwd = new Sunny.UI.UICheckBox();
             this.lblRole = new Sunny.UI.UILabel();
             this.btnRepair = new Sunny.UI.UISymbolButton();
@@ -41,14 +43,13 @@ namespace HospitalEquipmentSystem.UI
             this.cmbUser = new Sunny.UI.UIComboBox();
             this.lblUser = new Sunny.UI.UILabel();
             this.lblTitle = new Sunny.UI.UILabel();
-            this.uiSymbolButton5 = new Sunny.UI.UISymbolButton();
-            this.uibtn_register = new Sunny.UI.UISymbolButton();
             this.loginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginPanel
             // 
             this.loginPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.loginPanel.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources._1;
             this.loginPanel.Controls.Add(this.uiSymbolButton5);
             this.loginPanel.Controls.Add(this.uibtn_register);
             this.loginPanel.Controls.Add(this.chkRememberPwd);
@@ -66,23 +67,61 @@ namespace HospitalEquipmentSystem.UI
             this.loginPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.loginPanel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.loginPanel.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.loginPanel.Location = new System.Drawing.Point(123, 54);
+            this.loginPanel.Location = new System.Drawing.Point(329, 125);
             this.loginPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.loginPanel.MinimumSize = new System.Drawing.Size(1, 1);
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Radius = 15;
             this.loginPanel.RectColor = System.Drawing.Color.RoyalBlue;
-            this.loginPanel.Size = new System.Drawing.Size(560, 520);
+            this.loginPanel.Size = new System.Drawing.Size(535, 520);
             this.loginPanel.TabIndex = 0;
             this.loginPanel.Text = null;
             this.loginPanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSymbolButton5
+            // 
+            this.uiSymbolButton5.BackColor = System.Drawing.Color.White;
+            this.uiSymbolButton5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton5.FillColor = System.Drawing.Color.Silver;
+            this.uiSymbolButton5.Font = new System.Drawing.Font("宋体", 12F);
+            this.uiSymbolButton5.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.人脸识别;
+            this.uiSymbolButton5.Location = new System.Drawing.Point(290, 443);
+            this.uiSymbolButton5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton5.Name = "uiSymbolButton5";
+            this.uiSymbolButton5.Radius = 38;
+            this.uiSymbolButton5.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
+            this.uiSymbolButton5.Size = new System.Drawing.Size(81, 55);
+            this.uiSymbolButton5.TabIndex = 11;
+            // 
+            // uibtn_register
+            // 
+            this.uibtn_register.BackColor = System.Drawing.Color.Transparent;
+            this.uibtn_register.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uibtn_register.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            this.uibtn_register.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uibtn_register.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(130)))), ((int)(((byte)(230)))));
+            this.uibtn_register.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.uibtn_register.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.uibtn_register.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Bold);
+            this.uibtn_register.Location = new System.Drawing.Point(412, 443);
+            this.uibtn_register.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uibtn_register.Name = "uibtn_register";
+            this.uibtn_register.Radius = 38;
+            this.uibtn_register.RectColor = System.Drawing.Color.Blue;
+            this.uibtn_register.Size = new System.Drawing.Size(98, 55);
+            this.uibtn_register.Symbol = 61447;
+            this.uibtn_register.SymbolSize = 28;
+            this.uibtn_register.TabIndex = 11;
+            this.uibtn_register.Text = "注册";
+            this.uibtn_register.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.uibtn_register.Click += new System.EventHandler(this.uibtn_register_Click);
             // 
             // chkRememberPwd
             // 
             this.chkRememberPwd.BackColor = System.Drawing.Color.Transparent;
             this.chkRememberPwd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkRememberPwd.Font = new System.Drawing.Font("宋体", 10F);
-            this.chkRememberPwd.ForeColor = System.Drawing.Color.White;
+            this.chkRememberPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.chkRememberPwd.Location = new System.Drawing.Point(396, 313);
             this.chkRememberPwd.MinimumSize = new System.Drawing.Size(1, 1);
             this.chkRememberPwd.Name = "chkRememberPwd";
@@ -94,7 +133,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblRole.BackColor = System.Drawing.Color.Transparent;
             this.lblRole.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRole.Location = new System.Drawing.Point(50, 330);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(100, 30);
@@ -104,9 +143,9 @@ namespace HospitalEquipmentSystem.UI
             // 
             // btnRepair
             // 
-            this.btnRepair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.btnRepair.BackColor = System.Drawing.Color.White;
             this.btnRepair.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRepair.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.btnRepair.FillColor = System.Drawing.Color.DarkKhaki;
             this.btnRepair.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnRepair.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.btnRepair.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -126,9 +165,10 @@ namespace HospitalEquipmentSystem.UI
             // 
             // btnDoctor
             // 
-            this.btnDoctor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.btnDoctor.BackColor = System.Drawing.Color.White;
             this.btnDoctor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDoctor.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.btnDoctor.FillColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnDoctor.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnDoctor.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnDoctor.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.btnDoctor.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -148,9 +188,9 @@ namespace HospitalEquipmentSystem.UI
             // 
             // btnAdmin
             // 
-            this.btnAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.btnAdmin.BackColor = System.Drawing.Color.White;
             this.btnAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdmin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.btnAdmin.FillColor = System.Drawing.Color.LightSeaGreen;
             this.btnAdmin.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnAdmin.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.btnAdmin.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -178,13 +218,13 @@ namespace HospitalEquipmentSystem.UI
             this.btnLogin.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.btnLogin.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Bold);
-            this.btnLogin.Location = new System.Drawing.Point(22, 443);
-            this.btnLogin.Location = new System.Drawing.Point(39, 450);
+            this.btnLogin.Location = new System.Drawing.Point(167, 443);
             this.btnLogin.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Radius = 38;
+            this.btnLogin.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.LeftTop | Sunny.UI.UICornerRadiusSides.LeftBottom)));
             this.btnLogin.RectColor = System.Drawing.Color.Blue;
-            this.btnLogin.Size = new System.Drawing.Size(228, 55);
+            this.btnLogin.Size = new System.Drawing.Size(124, 55);
             this.btnLogin.Symbol = 61447;
             this.btnLogin.SymbolSize = 28;
             this.btnLogin.TabIndex = 9;
@@ -196,10 +236,9 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassword.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.txtPassword.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.txtPassword.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.txtPassword.ForeColor = System.Drawing.Color.Gray;
             this.txtPassword.Location = new System.Drawing.Point(50, 260);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPassword.MinimumSize = new System.Drawing.Size(1, 16);
@@ -236,7 +275,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblPwd.BackColor = System.Drawing.Color.Transparent;
             this.lblPwd.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblPwd.Location = new System.Drawing.Point(50, 220);
             this.lblPwd.Name = "lblPwd";
             this.lblPwd.Size = new System.Drawing.Size(100, 30);
@@ -246,12 +285,12 @@ namespace HospitalEquipmentSystem.UI
             // 
             // cmbUser
             // 
-            this.cmbUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.cmbUser.BackColor = System.Drawing.Color.White;
             this.cmbUser.DataSource = null;
-            this.cmbUser.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.cmbUser.FillColor = System.Drawing.Color.White;
             this.cmbUser.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.cmbUser.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.cmbUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.cmbUser.ForeColor = System.Drawing.Color.Gray;
             this.cmbUser.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cmbUser.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.cmbUser.Location = new System.Drawing.Point(50, 150);
@@ -271,7 +310,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.lblUser.BackColor = System.Drawing.Color.Transparent;
             this.lblUser.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblUser.Location = new System.Drawing.Point(50, 110);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(100, 30);
@@ -291,51 +330,15 @@ namespace HospitalEquipmentSystem.UI
             this.lblTitle.Text = "医院设备借用管理系统";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiSymbolButton5
-            // 
-            this.uiSymbolButton5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton5.FillColor = System.Drawing.Color.Silver;
-            this.uiSymbolButton5.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiSymbolButton5.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.人脸识别;
-            this.uiSymbolButton5.Location = new System.Drawing.Point(488, 443);
-            this.uiSymbolButton5.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiSymbolButton5.Name = "uiSymbolButton5";
-            this.uiSymbolButton5.Radius = 38;
-            this.uiSymbolButton5.Size = new System.Drawing.Size(51, 55);
-            this.uiSymbolButton5.TabIndex = 11;
-            // 
-            // uibtn_register
-            // 
-            this.uibtn_register.BackColor = System.Drawing.Color.Transparent;
-            this.uibtn_register.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uibtn_register.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            this.uibtn_register.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.uibtn_register.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(130)))), ((int)(((byte)(230)))));
-            this.uibtn_register.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.uibtn_register.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.uibtn_register.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Bold);
-            this.uibtn_register.Location = new System.Drawing.Point(301, 450);
-            this.uibtn_register.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uibtn_register.Name = "uibtn_register";
-            this.uibtn_register.Radius = 38;
-            this.uibtn_register.RectColor = System.Drawing.Color.Blue;
-            this.uibtn_register.Size = new System.Drawing.Size(228, 55);
-            this.uibtn_register.Symbol = 61447;
-            this.uibtn_register.SymbolSize = 28;
-            this.uibtn_register.TabIndex = 11;
-            this.uibtn_register.Text = "注册";
-            this.uibtn_register.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
-            this.uibtn_register.Click += new System.EventHandler(this.uibtn_register_Click);
-            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.bg_main_dark_tech;
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.登录页面背景jpg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 640);
+            this.ClientSize = new System.Drawing.Size(1196, 778);
             this.Controls.Add(this.loginPanel);
             this.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.Name = "LoginForm";

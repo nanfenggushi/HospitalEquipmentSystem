@@ -241,7 +241,6 @@ namespace HospitalEquipmentSystem.UI.management
             // uiTextBox1
             // 
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox1.ForeColor = System.Drawing.Color.White;
             this.uiTextBox1.Icon = global::HospitalEquipmentSystem.UI.Properties.Resources.搜索;
@@ -262,6 +261,8 @@ namespace HospitalEquipmentSystem.UI.management
             this.uiComboBox1.DataSource = null;
             this.uiComboBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiComboBox1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiComboBox1.ForeColor = System.Drawing.Color.White;
+            this.uiComboBox1.ForeDisableColor = System.Drawing.Color.White;
             this.uiComboBox1.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.uiComboBox1.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.uiComboBox1.Location = new System.Drawing.Point(446, 31);

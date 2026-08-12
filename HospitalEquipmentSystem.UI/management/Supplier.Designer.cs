@@ -95,7 +95,6 @@ namespace HospitalEquipmentSystem.UI.management
             // uiTextBox1
             // 
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.uiTextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.uiTextBox1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTextBox1.ForeColor = System.Drawing.Color.White;
             this.uiTextBox1.Location = new System.Drawing.Point(1039, 3);
