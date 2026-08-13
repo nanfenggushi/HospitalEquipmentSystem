@@ -13,6 +13,7 @@ namespace HospitalEquipmentSystem.UI
         public static string Role { get; private set; }
         public static int DeptId { get; private set; }
         public static string DeptName { get; private set; }
+        public static string AvatarUrl { get; set; }
 
         /// <summary>主窗体显示：当前用户：张伟（设备科·管理员）</summary>
         public static string DisplayName
@@ -29,10 +30,11 @@ namespace HospitalEquipmentSystem.UI
             Role = user.Role;
             DeptId = user.DeptId;
             DeptName = user.DeptName;
+            AvatarUrl = user.AvatarUrl;
         }
 
         /// <summary>注销/退出登录时清空</summary>
-        public static void Reset()
+        public static void Clear()
         {
             UserId = 0; Username = null; RealName = null;
             Role = null; DeptId = 0; DeptName = null;

@@ -109,9 +109,9 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.uiLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.uiLabel1.Location = new System.Drawing.Point(54, 20);
+            this.uiLabel1.Location = new System.Drawing.Point(54, 19);
             this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(200, 16);
+            this.uiLabel1.Size = new System.Drawing.Size(200, 19);
             this.uiLabel1.TabIndex = 1;
             this.uiLabel1.Text = "设备运行实时监控中心";
             // 
@@ -130,7 +130,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.uiLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(66)))));
-            this.uiLabel3.Location = new System.Drawing.Point(950, 16);
+            this.uiLabel3.Location = new System.Drawing.Point(970, 16);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(270, 24);
             this.uiLabel3.TabIndex = 3;
@@ -500,7 +500,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel1.Radius = 10;
             this.uiTitlePanel1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(885, 480);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(885, 359);
             this.uiTitlePanel1.TabIndex = 14;
             this.uiTitlePanel1.Text = "实时报警流";
             this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -522,7 +522,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiFlowLayoutPanel1.Radius = 1;
             this.uiFlowLayoutPanel1.RectColor = System.Drawing.Color.Transparent;
             this.uiFlowLayoutPanel1.ShowText = false;
-            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(883, 437);
+            this.uiFlowLayoutPanel1.Size = new System.Drawing.Size(883, 316);
             this.uiFlowLayoutPanel1.TabIndex = 0;
             this.uiFlowLayoutPanel1.Text = "uiFlowLayoutPanel1";
             this.uiFlowLayoutPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -530,6 +530,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             // uiTitlePanel2
             // 
+            this.uiTitlePanel2.Controls.Add(this.uiPanel9);
             this.uiTitlePanel2.Controls.Add(this.uiLabel29);
             this.uiTitlePanel2.Controls.Add(this.uiProcessBar8);
             this.uiTitlePanel2.Controls.Add(this.uiLabel30);
@@ -555,7 +556,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiTitlePanel2.Radius = 10;
             this.uiTitlePanel2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.uiTitlePanel2.ShowText = false;
-            this.uiTitlePanel2.Size = new System.Drawing.Size(300, 410);
+            this.uiTitlePanel2.Size = new System.Drawing.Size(331, 359);
             this.uiTitlePanel2.TabIndex = 15;
             this.uiTitlePanel2.Text = "各科室设备分布";
             this.uiTitlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -746,7 +747,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanel9.Controls.Add(this.uiSymbolLabel1);
             this.uiPanel9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.uiPanel9.Font = new System.Drawing.Font("宋体", 12F);
-            this.uiPanel9.Location = new System.Drawing.Point(920, 778);
+            this.uiPanel9.Location = new System.Drawing.Point(16, 276);
             this.uiPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.uiPanel9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel9.Name = "uiPanel9";
@@ -767,7 +768,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiPanel10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel10.Name = "uiPanel10";
             this.uiPanel10.Radius = 0;
-            this.uiPanel10.Size = new System.Drawing.Size(10, 52);
+            this.uiPanel10.Size = new System.Drawing.Size(6, 52);
             this.uiPanel10.TabIndex = 6;
             this.uiPanel10.Text = null;
             this.uiPanel10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -788,7 +789,7 @@ namespace HospitalEquipmentSystem.UI
             this.uiSymbolLabel1.BackColor = System.Drawing.Color.Transparent;
             this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.uiSymbolLabel1.ForeColor = System.Drawing.Color.Red;
-            this.uiSymbolLabel1.Location = new System.Drawing.Point(10, 4);
+            this.uiSymbolLabel1.Location = new System.Drawing.Point(14, 12);
             this.uiSymbolLabel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel1.Name = "uiSymbolLabel1";
             this.uiSymbolLabel1.Size = new System.Drawing.Size(200, 24);
@@ -803,8 +804,7 @@ namespace HospitalEquipmentSystem.UI
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1240, 850);
-            this.Controls.Add(this.uiPanel9);
+            this.ClientSize = new System.Drawing.Size(1260, 718);
             this.Controls.Add(this.uiTitlePanel2);
             this.Controls.Add(this.uiTitlePanel1);
             this.Controls.Add(this.uiPanel8);

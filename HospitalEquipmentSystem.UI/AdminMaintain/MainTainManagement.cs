@@ -504,7 +504,6 @@ namespace HospitalEquipmentSystem.UI
             txtSearch.Text = "";
             cmbUrgency.SelectedIndex = 0;
             cmbDept.SelectedIndex = 0;
-            cmbSource.SelectedIndex = 0;
             cmbDateRange.SelectedIndex = 0;
 
             LoadData();

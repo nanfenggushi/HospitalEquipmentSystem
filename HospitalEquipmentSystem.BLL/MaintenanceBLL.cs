@@ -372,14 +372,22 @@ namespace HospitalEquipment.BLL
         }
 
         /// <summary>
-        /// 医生端：提交报修（复用已有的 CreateOrder）
+        /// 医生端：提交报修（复用已有的 CreateOrder），返回新工单 RecordId
         /// </summary>
-        public bool SubmitRepair(int equipmentId, int deptId, int reporterId,
+        public int SubmitRepair(int equipmentId, int deptId, int reporterId,
                                   string faultType, string faultDesc, string urgency)
         {
             string repairNo = GenerateRepairNo();
             return dal.InsertOrder(repairNo, equipmentId, deptId, reporterId,
-                                    faultType, faultDesc, urgency) > 0;
+                                    faultType, faultDesc, urgency);
+        }
+
+        /// <summary>
+        /// 医生端：写入故障照片路径
+        /// </summary>
+        public bool UpdatePhotoPath(int recordId, string photoPath)
+        {
+            return dal.UpdatePhotoPath(recordId, photoPath) > 0;
         }
     }
 }

@@ -1,3 +1,8 @@
+using HospitalEquipment.BLL;
+using HospitalEquipment.Model;
+using HospitalEquipment.Model.management;
+using HospitalEquipment.Util;
+using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,11 +11,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HospitalEquipment.BLL;
-using HospitalEquipment.Model;
-using HospitalEquipment.Util;
-using HospitalEquipment.Model.management;
-using Sunny.UI;
 
 namespace HospitalEquipmentSystem.UI
 {
@@ -60,7 +60,6 @@ namespace HospitalEquipmentSystem.UI
 
         private void InitControls()
         {
-            lblUser.Text = "当前用户：" + LoginUser.DisplayName;
 
             cmbStatus.Items.Add("全部状态");
             cmbStatus.Items.Add("待审批");
@@ -147,10 +146,8 @@ namespace HospitalEquipmentSystem.UI
         {
             Task.Run(delegate
             {
-                try { BorrowBLL.MarkOverdue(); }
-                catch (Exception) { }
-                SafeBeginInvoke(() =>
-                {
+                try { BorrowBLL.MarkOverdue(); } catch (Exception) { }
+                SafeBeginInvoke(() => {
                     RefreshStats();
                     LoadData();
                     LoadEquipment();
@@ -167,12 +164,10 @@ namespace HospitalEquipmentSystem.UI
             try
             {
                 BeginInvoke(action);
-            }
-            catch (ObjectDisposedException)
+            } catch (ObjectDisposedException)
             {
                 // 窗体已销毁，忽略本次更新
-            }
-            catch (InvalidOperationException)
+            } catch (InvalidOperationException)
             {
                 // 窗体已关闭，忽略本次更新
             }
@@ -202,14 +197,12 @@ namespace HospitalEquipmentSystem.UI
                 try
                 {
                     records = BorrowBLL.Search(keyword, status, equipmentId, from, to, page, PageSize, out total);
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     SafeBeginInvoke(() => UIMessageBox.ShowError("数据加载失败：" + ex.Message));
                     return;
                 }
-                SafeBeginInvoke(() =>
-                {
+                SafeBeginInvoke(() => {
                     if (generation != _loadGeneration) return;
                     ApplyData(records, total);
                 });
@@ -270,14 +263,12 @@ namespace HospitalEquipmentSystem.UI
                     borrowing = BorrowBLL.BorrowingCount();
                     overdue = BorrowBLL.OverdueCount();
                     dueToday = BorrowBLL.DueTodayCount();
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     SafeBeginInvoke(() => UIMessageBox.ShowError("统计加载失败：" + ex.Message));
                     return;
                 }
-                SafeBeginInvoke(() =>
-                {
+                SafeBeginInvoke(() => {
                     lblPendingValue.Text = pending.ToString();
                     lblBorrowingValue.Text = borrowing.ToString();
                     lblOverdueValue.Text = overdue.ToString();
@@ -294,14 +285,12 @@ namespace HospitalEquipmentSystem.UI
                 try
                 {
                     list = BorrowBLL.GetAllEquipment();
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     SafeBeginInvoke(() => UIMessageBox.ShowError("设备列表加载失败：" + ex.Message));
                     return;
                 }
-                SafeBeginInvoke(() =>
-                {
+                SafeBeginInvoke(() => {
                     var allEquip = new List<Equipment>();
                     allEquip.Add(new Equipment { EquipmentId = 0, EquipmentName = "全部设备" });
                     allEquip.AddRange(list ?? new List<Equipment>());
@@ -390,10 +379,8 @@ namespace HospitalEquipmentSystem.UI
         {
             Task.Run(delegate
             {
-                try { BorrowBLL.MarkOverdue(); }
-                catch (Exception) { }
-                SafeBeginInvoke(() =>
-                {
+                try { BorrowBLL.MarkOverdue(); } catch (Exception) { }
+                SafeBeginInvoke(() => {
                     LoadData();
                     if (pnlCalendar.Visible) LoadCalendarDates();
                     if (pnlChart.Visible) LoadCharts();
@@ -490,15 +477,13 @@ namespace HospitalEquipmentSystem.UI
                 pnlCalendar.Visible = false;
                 pnlChart.Visible = false;
                 pnlList.Visible = true;
-            }
-            else if (sender == btnCalendarView)
+            } else if (sender == btnCalendarView)
             {
                 pnlList.Visible = false;
                 pnlChart.Visible = false;
                 pnlCalendar.Visible = true;
                 ShowCalendarView();
-            }
-            else
+            } else
             {
                 pnlList.Visible = false;
                 pnlCalendar.Visible = false;
@@ -526,18 +511,15 @@ namespace HospitalEquipmentSystem.UI
                 try
                 {
                     dates = BorrowBLL.ReturnDates();
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
-                    SafeBeginInvoke(() =>
-                    {
+                    SafeBeginInvoke(() => {
                         _loadingCalendar = false;
                         UIMessageBox.ShowError("日历数据加载失败：" + ex.Message);
                     });
                     return;
                 }
-                SafeBeginInvoke(() =>
-                {
+                SafeBeginInvoke(() => {
                     monthCalendar1.RemoveAllBoldedDates();
                     foreach (DateTime d in dates)
                     {
@@ -598,14 +580,12 @@ namespace HospitalEquipmentSystem.UI
                 try
                 {
                     records = BorrowBLL.GetByReturnDate(date);
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     SafeBeginInvoke(() => UIMessageBox.ShowError("应还列表加载失败：" + ex.Message));
                     return;
                 }
-                SafeBeginInvoke(() =>
-                {
+                SafeBeginInvoke(() => {
                     // 期间用户又切换了日期则丢弃过期结果
                     if (monthCalendar1.SelectionStart.Date != date) return;
                     if (date == _calendarDisplayDate) return;
@@ -650,8 +630,7 @@ namespace HospitalEquipmentSystem.UI
                         status = BorrowBLL.EquipmentStatus();
                         lastError = null;
                         break;
-                    }
-                    catch (Exception ex)
+                    } catch (Exception ex)
                     {
                         lastError = ex;
                         if (attempt == 1) Thread.Sleep(1500);
@@ -663,8 +642,7 @@ namespace HospitalEquipmentSystem.UI
                     SafeBeginInvoke(() => UIMessageBox.ShowError("统计数据加载失败（已自动重试一次）：" + err.Message));
                     return;
                 }
-                SafeBeginInvoke(() =>
-                {
+                SafeBeginInvoke(() => {
                     LoadBarChart(top);
                     LoadPieChart(dept);
                     LoadLineChart(borrow, ret);

@@ -53,6 +53,7 @@ namespace HospitalEquipmentSystem.UI
             this.colCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDowntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colProcess = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tpInProgress = new System.Windows.Forms.TabPage();
             this.tpDone = new System.Windows.Forms.TabPage();
             this.pnlHeader.SuspendLayout();
@@ -74,13 +75,13 @@ namespace HospitalEquipmentSystem.UI
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.pnlHeader.Font = new System.Drawing.Font("宋体", 12F);
-            this.pnlHeader.Location = new System.Drawing.Point(0, 35);
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlHeader.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Padding = new System.Windows.Forms.Padding(20, 12, 20, 12);
             this.pnlHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlHeader.Size = new System.Drawing.Size(1292, 80);
+            this.pnlHeader.Size = new System.Drawing.Size(1260, 80);
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Text = null;
             this.pnlHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,7 +103,7 @@ namespace HospitalEquipmentSystem.UI
             this.lblRepairer.BackColor = System.Drawing.Color.Transparent;
             this.lblRepairer.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblRepairer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblRepairer.Location = new System.Drawing.Point(1000, 28);
+            this.lblRepairer.Location = new System.Drawing.Point(984, 27);
             this.lblRepairer.Name = "lblRepairer";
             this.lblRepairer.Size = new System.Drawing.Size(170, 24);
             this.lblRepairer.TabIndex = 1;
@@ -113,7 +114,7 @@ namespace HospitalEquipmentSystem.UI
             // 
             this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefresh.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btnRefresh.Location = new System.Drawing.Point(1176, 26);
+            this.btnRefresh.Location = new System.Drawing.Point(1160, 27);
             this.btnRefresh.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(90, 32);
@@ -130,10 +131,10 @@ namespace HospitalEquipmentSystem.UI
             this.pnlKpiContainer.Controls.Add(this.pnlKpi2);
             this.pnlKpiContainer.Controls.Add(this.pnlKpi3);
             this.pnlKpiContainer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlKpiContainer.Location = new System.Drawing.Point(0, 115);
+            this.pnlKpiContainer.Location = new System.Drawing.Point(0, 80);
             this.pnlKpiContainer.Name = "pnlKpiContainer";
             this.pnlKpiContainer.Padding = new System.Windows.Forms.Padding(15, 10, 15, 5);
-            this.pnlKpiContainer.Size = new System.Drawing.Size(1292, 100);
+            this.pnlKpiContainer.Size = new System.Drawing.Size(1260, 100);
             this.pnlKpiContainer.TabIndex = 1;
             // 
             // pnlKpi1
@@ -268,11 +269,11 @@ namespace HospitalEquipmentSystem.UI
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.tabControl.ItemSize = new System.Drawing.Size(150, 40);
-            this.tabControl.Location = new System.Drawing.Point(0, 215);
+            this.tabControl.Location = new System.Drawing.Point(0, 180);
             this.tabControl.MainPage = "";
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1292, 617);
+            this.tabControl.Size = new System.Drawing.Size(1260, 538);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 2;
             this.tabControl.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -284,7 +285,7 @@ namespace HospitalEquipmentSystem.UI
             this.tpPending.Controls.Add(this.dgvOrders);
             this.tpPending.Location = new System.Drawing.Point(0, 40);
             this.tpPending.Name = "tpPending";
-            this.tpPending.Size = new System.Drawing.Size(1292, 577);
+            this.tpPending.Size = new System.Drawing.Size(1260, 498);
             this.tpPending.TabIndex = 0;
             this.tpPending.Text = "待接单";
             // 
@@ -295,9 +296,9 @@ namespace HospitalEquipmentSystem.UI
             this.pnlPager.Controls.Add(this.lblPageInfo);
             this.pnlPager.Controls.Add(this.btnNextPage);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlPager.Location = new System.Drawing.Point(0, 537);
+            this.pnlPager.Location = new System.Drawing.Point(0, 572);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(1292, 40);
+            this.pnlPager.Size = new System.Drawing.Size(1260, 40);
             this.pnlPager.TabIndex = 1;
             // 
             // btnPrevPage
@@ -312,6 +313,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnPrevPage.Symbol = 61696;
             this.btnPrevPage.TabIndex = 0;
             this.btnPrevPage.Text = "上一页";
+            this.btnPrevPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // lblPageInfo
             // 
@@ -337,6 +339,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnNextPage.Symbol = 61697;
             this.btnNextPage.TabIndex = 2;
             this.btnNextPage.Text = "下一页";
+            this.btnNextPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // dgvOrders
             // 
@@ -368,7 +371,8 @@ namespace HospitalEquipmentSystem.UI
             this.colResult,
             this.colCost,
             this.colDowntime,
-            this.colAction});
+            this.colAction,
+            this.colProcess});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9.5F);
@@ -402,7 +406,7 @@ namespace HospitalEquipmentSystem.UI
             this.dgvOrders.RowTemplate.Height = 38;
             this.dgvOrders.SelectedIndex = -1;
             this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrders.Size = new System.Drawing.Size(1292, 577);
+            this.dgvOrders.Size = new System.Drawing.Size(1260, 498);
             this.dgvOrders.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.dgvOrders.TabIndex = 0;
             // 
@@ -495,7 +499,17 @@ namespace HospitalEquipmentSystem.UI
             this.colAction.ReadOnly = true;
             this.colAction.Text = "操作";
             this.colAction.UseColumnTextForButtonValue = true;
-            this.colAction.Width = 150;
+            this.colAction.Width = 80;
+            // 
+            // colProcess
+            // 
+            this.colProcess.HeaderText = "处理";
+            this.colProcess.MinimumWidth = 8;
+            this.colProcess.Name = "colProcess";
+            this.colProcess.ReadOnly = true;
+            this.colProcess.Text = "处理";
+            this.colProcess.UseColumnTextForButtonValue = true;
+            this.colProcess.Width = 80;
             // 
             // tpInProgress
             // 
@@ -517,13 +531,16 @@ namespace HospitalEquipmentSystem.UI
             // 
             // RepairerWorkbench
             // 
+            this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1292, 832);
+            this.ClientSize = new System.Drawing.Size(1260, 718);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.pnlKpiContainer);
             this.Controls.Add(this.pnlHeader);
             this.Name = "RepairerWorkbench";
+            this.Padding = new System.Windows.Forms.Padding(0);
+            this.ShowTitle = false;
             this.Text = "维修员工作台";
             this.ZoomScaleRect = new System.Drawing.Rectangle(22, 22, 1300, 850);
             this.pnlHeader.ResumeLayout(false);
@@ -570,6 +587,7 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn colCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDowntime;
         private System.Windows.Forms.DataGridViewButtonColumn colAction;
+        private System.Windows.Forms.DataGridViewButtonColumn colProcess;
         private System.Windows.Forms.Panel pnlPager;
         private Sunny.UI.UISymbolButton btnPrevPage;
         private Sunny.UI.UILabel lblPageInfo;

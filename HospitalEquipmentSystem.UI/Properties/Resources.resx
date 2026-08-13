@@ -118,73 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="人脸识别1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="人脸识别2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="供应商" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\供应商.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bg_header_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bg_header_gradient.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bg_main_dark_tech" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bg_main_dark_tech.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="入库" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\入库.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="人脸识别" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="分类" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\分类.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="列表" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\列表.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="人脸识别12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="搜索 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\搜索 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="人脸识别_o1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别_o.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="人脸识别3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="搜索" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\搜索.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="列表模式 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\列表模式 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="人脸识别_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\人脸识别_o.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="人脸识别21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\人脸识别2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bg_header_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_header_gradient.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="屏幕截图 2026-08-11 100623" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\屏幕截图 2026-08-11 100623.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="顶部栏" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\顶部栏.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="搜索 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\搜索 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="菜单栏背景图" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\菜单栏背景图.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="人脸识别3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="人脸识别1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ChatGPT Image 2026年8月11日 10_03_53" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChatGPT Image 2026年8月11日 10_03_53.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="人脸识别2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="人脸识别21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_main_dark_tech" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_main_dark_tech.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="供应商" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\供应商.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="人脸识别_o1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别_o.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="登录页面背景jpg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\登录页面背景jpg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="搜索" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\搜索.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="列表模式 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\列表模式 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="分类" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\分类.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="人脸识别12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="登录页面背景图" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\登录页面背景图.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="入库" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\入库.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="列表" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\列表.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="菜单栏背景图" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\菜单栏背景图.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="人脸识别" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\人脸识别.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="主页面" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主页面.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="智能医院设备管理系统图片生成" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\智能医院设备管理系统图片生成.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="admin1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

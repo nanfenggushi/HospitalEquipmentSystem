@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Util;
@@ -10,11 +11,12 @@ using HospitalEquipment.Util;
 namespace HospitalEquipmentSystem.UI
 {
     /// <summary>
-    /// 医生端提交报修弹窗：选择设备（本科室 / 借用）+ 填写故障信息
+    /// 医生端提交报修弹窗：选择设备（本科室 / 借用）+ 上传故障照片 + 填写故障信息
     /// </summary>
     public partial class RepairSubmitForm : UIForm
     {
         private MaintenanceBLL _bll;
+        private static readonly string UPLOAD_DIR = Path.Combine(Application.StartupPath, "Uploads", "Photos");
 
         /// <summary>选中的设备ID</summary>
         public int SelectedEquipmentId { get; private set; }
@@ -22,14 +24,17 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>设备所属科室ID</summary>
         public int SelectedDeptId { get; private set; }
 
-        /// <summary>故障类型（文本）</summary>
-        public string FaultType => cmbFaultType.Text;
+        /// <summary>故障类型（文本，已隐藏控件，返回空字符串）</summary>
+        public string FaultType => "";
 
         /// <summary>故障描述</summary>
         public string FaultDesc => txtFaultDesc.Text.Trim();
 
         /// <summary>紧急度（英文值）</summary>
         public string Urgency { get; private set; } = "Normal";
+
+        /// <summary>上传的照片路径</summary>
+        public string PhotoPath { get; private set; }
 
         // 设备映射：索引 → ID/DeptId
         private int[] _equipIds;
@@ -51,25 +56,72 @@ namespace HospitalEquipmentSystem.UI
             rdbDept.CheckedChanged += (s, e) => { if (rdbDept.Checked) LoadEquipmentByDept(); };
             rdkBorrowed.CheckedChanged += (s, e) => { if (rdkBorrowed.Checked) LoadBorrowedEquipment(); };
 
-            LoadFaultTypes();
+            // 故障类型控件已隐藏（改用 AI 自动识别）
+            lblFaultType.Visible = false;
+            cmbFaultType.Visible = false;
+
+            // 拍照上传按钮事件
+            btnUploadPhoto.Click += BtnUploadPhoto_Click;
+
             LoadUrgencies();
             LoadEquipmentByDept();
         }
 
-        // ==================== 下拉框数据加载 ====================
+        // ==================== 拍照上传 ====================
 
         /// <summary>
-        /// 加载故障类型（List<string> → Items.AddRange，纯字符串）
+        /// 打开文件选择框，选择图片并显示预览
         /// </summary>
-        private void LoadFaultTypes()
+        private void BtnUploadPhoto_Click(object sender, EventArgs e)
         {
-            List<string> types = BLL.GetFaultTypeOptionsList();
-            cmbFaultType.Items.Clear();
-            cmbFaultType.Items.AddRange(types.ToArray());
-            // 强制清除可能残留的 DataRowView 项
-            RemoveDataRowViewItems(cmbFaultType);
-            if (cmbFaultType.Items.Count > 0) cmbFaultType.SelectedIndex = 0;
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Title = "选择故障照片";
+                ofd.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.FilterIndex = 1;
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string selectedFile = ofd.FileName;
+
+                // 文件大小限制 5MB
+                var fileInfo = new FileInfo(selectedFile);
+                if (fileInfo.Length > 5 * 1024 * 1024)
+                {
+                    UIMessageBox.ShowWarning("图片大小不能超过 5MB！");
+                    return;
+                }
+
+                // 确保上传目录存在
+                if (!Directory.Exists(UPLOAD_DIR))
+                    Directory.CreateDirectory(UPLOAD_DIR);
+
+                // 保存到上传目录（用源文件名 + 时间戳避免冲突）
+                string fileName = $"{DateTime.Now:yyyyMMddHHmmss}_{Guid.NewGuid().ToString("N").Substring(0, 8)}{Path.GetExtension(selectedFile)}";
+                string savePath = Path.Combine(UPLOAD_DIR, fileName);
+                File.Copy(selectedFile, savePath, true);
+
+                PhotoPath = savePath;
+
+                // 显示预览
+                try
+                {
+                    picPreview.Image?.Dispose();
+                    // 用 FromFile 直接加载，避免文件被锁定
+                    using (var fs = new FileStream(savePath, FileMode.Open, FileAccess.Read))
+                    {
+                        picPreview.Image = Image.FromStream(fs);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    UIMessageBox.ShowError($"预览照片失败：{ex.Message}");
+                }
+            }
         }
+
+        // ==================== 下拉框数据加载 ====================
 
         /// <summary>
         /// 加载紧急程度（Dictionary → 中文显示 + 数组存英文值）
@@ -135,7 +187,6 @@ namespace HospitalEquipmentSystem.UI
                     names.Add(dt.Rows[i]["EquipmentName"].ToString());
                 }
                 cmbEquipment.Items.AddRange(names.ToArray());
-                RemoveDataRowViewItems(cmbEquipment);
                 cmbEquipment.SelectedIndex = 0;
             }
             else
@@ -149,11 +200,9 @@ namespace HospitalEquipmentSystem.UI
 
         /// <summary>
         /// 强制删除 ComboBox 中所有 DataRowView 类型的项
-        /// （SunnyUI UIComboBox 在某些情况下会残留 DataRowView 项，显示为 "System.Data.DataRowView"）
         /// </summary>
         private void RemoveDataRowViewItems(UIComboBox combo)
         {
-            // 倒序遍历删除，避免索引错位
             for (int i = combo.Items.Count - 1; i >= 0; i--)
             {
                 var item = combo.Items[i];
@@ -184,6 +233,10 @@ namespace HospitalEquipmentSystem.UI
                 return;
             }
 
+            // 不在此处调用 AI 识别 — AI 分析延迟到维修员的 AgentForm 处理
+            // 提交后直接返回 OK，由调用方创建工单并提示
+
+            UIMessageBox.Show("工单已提交，维修员将尽快处理");
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

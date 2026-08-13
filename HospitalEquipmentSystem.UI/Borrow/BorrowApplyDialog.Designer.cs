@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI
+﻿namespace HospitalEquipmentSystem.UI
 {
     partial class BorrowApplyDialog
     {
@@ -59,9 +59,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbEquipment.DataSource = null;
             this.cmbEquipment.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.cmbEquipment.Font = new System.Drawing.Font("宋体", 12F);
-            this.cmbEquipment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.cmbEquipment.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbEquipment.Location = new System.Drawing.Point(150, 73);
             this.cmbEquipment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbEquipment.MinimumSize = new System.Drawing.Size(1, 1);
@@ -277,3 +275,4 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UIButton btnCancel;
     }
 }
+

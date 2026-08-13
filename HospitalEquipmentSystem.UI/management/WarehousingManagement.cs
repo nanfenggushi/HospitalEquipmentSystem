@@ -530,5 +530,15 @@ namespace HospitalEquipmentSystem.UI.management
             await LoadData();
         }
         #endregion
+
+        private void uiTitlePanel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
