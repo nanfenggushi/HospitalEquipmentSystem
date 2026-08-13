@@ -1,10 +1,16 @@
+using HospitalEquipment.BLL;
+using HospitalEquipment.Common;
 using HospitalEquipment.Model;
 using HospitalEquipmentSystem.Common;
 using HospitalEquipmentSystem.UI.Dashboard;
+using HospitalEquipmentSystem.UI.Properties;
 using Sunny.UI;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -66,6 +72,8 @@ namespace HospitalEquipmentSystem.UI
             "首页仪表盘", "设备管理", "维修管理", "借用管理", "监控中心", "科室收入", "数据统计", "系统设置"
         };
 
+        private UserBLL _userBLL = new UserBLL();
+
         /// <summary>
         /// 构造函数：初始化窗体控件及事件绑定
         /// </summary>
@@ -94,7 +102,7 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>
         /// 窗体加载事件：记录初始比例参数并初始化状态
         /// </summary>
-        private void SwitchPages_Load(object sender, EventArgs e)
+        private async void SwitchPages_Load(object sender, EventArgs e)
         {
             // 记录初始大小
             initialWidth = this.ClientSize.Width;
@@ -107,8 +115,6 @@ namespace HospitalEquipmentSystem.UI
 
             // [修复] 强制修正侧边栏菜单在 UI 上的视觉排列顺序，使其严格与 menus 数组逻辑顺序一致
             // 解决 "科室收入" 因为设计器层级问题跑到最前面的 Bug
-            // 注：这是运行时补丁，根源在 Designer.cs 中 Controls.Add 的调用顺序，
-            // 建议后续直接在设计器文件中调整控件添加顺序后移除本段代码。
             if (menus.Length > 0 && menus[0].Parent != null)
             {
                 var parent = menus[0].Parent;
@@ -119,7 +125,7 @@ namespace HospitalEquipmentSystem.UI
                     int idx = parent.Controls.GetChildIndex(m);
                     if (idx < minIndex) minIndex = idx;
                 }
-                // 按我们定义的正确顺序，依次覆盖控件层级
+                // 按定义的正确顺序，依次覆盖控件层级
                 for (int i = 0; i < menus.Length; i++)
                 {
                     parent.Controls.SetChildIndex(menus[i], minIndex + i);
@@ -130,25 +136,31 @@ namespace HospitalEquipmentSystem.UI
             currentSelectedButton = btnDashboard;
 
             // 按角色应用权限并加载默认页面 (内部包含了触发页面的加载逻辑)
-            ApplyRolePermissions();
+            await ApplyRolePermissions();
 
             // 加载当前时间
-            ShowCurrDate();
+            ShowCurrDateTime();
+
+            // 首次登录后，加载显示当前用户名和头像
+            if (uiLabel2 != null && !string.IsNullOrEmpty(LoginUser.Username))
+            {
+                uiLabel2.Text = LoginUser.Username;
+            }
+            await LoadUserAvatarAsync(LoginUser.AvatarUrl);
         }
 
-
-
         /// <summary>
-        /// 根据当前登录角色控制侧边栏菜单可见性
+        /// 根据当前登录角色控制侧边栏菜单可见性并加载默认页面
         /// </summary>
-        private void ApplyRolePermissions()
+        private async Task ApplyRolePermissions()
         {
-            // 恢复所有菜单可见性
+            // 1. 恢复所有菜单可见性
             foreach (var b in menus)
             {
                 b.Visible = true;
             }
 
+            // 2. 根据角色隐藏无权限菜单
             switch (LoginUser.Role)
             {
                 case UserRoleText.Doctor:
@@ -168,11 +180,11 @@ namespace HospitalEquipmentSystem.UI
                     break;
 
                 case UserRoleText.Admin:
-                    // 管理员全部可见，无需处理
+                    // 管理员全部可见
                     break;
 
                 default:
-                    // [修复] 未登录或角色未知时，收起所有功能菜单，避免出现"未登录=全权限"的漏洞
+                    // 未登录或角色未知时，收起所有功能菜单
                     foreach (var b in menus)
                     {
                         b.Visible = false;
@@ -180,66 +192,31 @@ namespace HospitalEquipmentSystem.UI
                     break;
             }
 
-            // 更新顶部栏用户角色显示
-            uiLabel2.Text = string.IsNullOrEmpty(LoginUser.Role)
-                ? "未登录"
-                : LoginUser.DisplayName;
-
-            // 【核心修复】：无论当前选中菜单是被隐藏还是可见，都必须触发 Click 事件来渲染页面
-            if (currentSelectedButton != null)
+            // 3. 决定加载哪个菜单页面
+            // 如果当前选中的菜单有效且对新角色可见，则直接点击当前菜单；
+            // 否则自动寻找新角色的第一个可见菜单进行点击。
+            if (currentSelectedButton != null && currentSelectedButton.Visible)
             {
-                // 如果当前选中的菜单因为权限不足被隐藏了
-                if (!currentSelectedButton.Visible)
+                currentSelectedButton.PerformClick();
+            } else
+            {
+                bool foundVisible = false;
+                foreach (var b in menus)
                 {
-                    bool foundVisible = false;
-                    foreach (var b in menus)
+                    if (b.Visible)
                     {
-                        if (b.Visible)
-                        {
-                            b.PerformClick();
-                            foundVisible = true;
-                            break;
-                        }
+                        b.PerformClick(); // 找到第一个有权限的菜单，自动点击加载页面
+                        foundVisible = true;
+                        break;
                     }
-
-                    // 未登录/无权限、所有菜单都被隐藏时，清空内容区，避免残留上一个用户的页面
-                    if (!foundVisible)
-                    {
-                        currentSelectedButton = null;
-                        label1.Text = string.Empty;
-                        PageManager.ShowPlaceholder(contentPanel, "当前账号无可用功能");
-                    }
-                } else
-                {
-                    // 【修复点】：管理员等有权限的角色，默认菜单本身就是可见的，
-                    // 此时也要显式触发一次点击事件，才能加载出右侧的内嵌窗体。
-                    currentSelectedButton.PerformClick();
                 }
-            }
-        }
 
-        /// <summary>
-        /// 切换用户点击事件
-        /// </summary>
-        private void toolStripMenuItemSwitchUser_Click(object sender, EventArgs e)
-        {
-            if (!UIMessageBox.ShowAsk("确定要切换用户吗？", true))
-                return;
-
-            LoginUser.Reset();
-            PageManager.ClearCache(); // 清理页面缓存（使用通用 PageManager）
-
-            this.Hide();
-
-            using (var login = new LoginForm())
-            {
-                if (login.ShowDialog() == DialogResult.OK)
+                // 如果该角色一个可用菜单都没有
+                if (!foundVisible)
                 {
-                    ApplyRolePermissions();
-                    this.Show();
-                } else
-                {
-                    Application.Exit();
+                    currentSelectedButton = null;
+                    label1.Text = string.Empty;
+                    PageManager.ShowPlaceholder(contentPanel, "当前账号无可用功能");
                 }
             }
         }
@@ -255,7 +232,7 @@ namespace HospitalEquipmentSystem.UI
             float scaleY = (float)this.ClientSize.Height / initialHeight;
             float scale = Math.Min(scaleX, scaleY);
 
-            // [修复] 同时限制缩放下限与上限，避免超宽屏/窗口拉到极大时菜单字体和按钮无限放大
+            // 同时限制缩放下限与上限，避免超宽屏/窗口拉到极大时菜单字体和按钮无限放大
             if (scale < 0.5f) scale = 0.5f;
             if (scale > 1.5f) scale = 1.5f;
 
@@ -280,7 +257,7 @@ namespace HospitalEquipmentSystem.UI
                 oldTitleFont.Dispose();
             }
 
-            // [修复] 缩放菜单按钮，统一管理全局动态字体
+            // [缩放菜单按钮，统一管理全局动态字体
             int newButtonHeight = (int)(initialMenuButtonHeight * scale);
             float newFontSize = initialMenuFontSize * scale;
 
@@ -353,7 +330,7 @@ namespace HospitalEquipmentSystem.UI
 
             currentSelectedButton = selectedButton;
 
-            // [修复] 更新顶部标题文字 (不再每次都新建数组，直接匹配同步好的全局数组)
+            // 更新顶部标题文字 (不再每次都新建数组，直接匹配同步好的全局数组)
             for (int i = 0; i < menus.Length; i++)
             {
                 if (menus[i] == selectedButton)
@@ -369,14 +346,14 @@ namespace HospitalEquipmentSystem.UI
         private void ResetButtonStyle(UISymbolButton button)
         {
             button.FillColor = Color.Transparent;
-            // [修复] 使用动态缓存的常规字体，而不是写死的 12pt 静态字体，防止缩放后点击变小
+            // 使用动态缓存的常规字体，而不是写死的 12pt 静态字体，防止缩放后点击变小
             button.Font = _currentMenuFontRegular;
         }
 
         private void SetButtonSelectedStyle(UISymbolButton button)
         {
             button.FillColor = Color.FromArgb(210, 158, 64);
-            // [修复] 使用动态缓存的加粗字体
+            // 使用动态缓存的加粗字体
             button.Font = _currentMenuFontBold;
         }
 
@@ -624,7 +601,7 @@ namespace HospitalEquipmentSystem.UI
         /// 显示当前时间
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        private void ShowCurrDate()
+        private void ShowCurrDateTime()
         {
             DateTime dateTime = DateTime.Now;
             uiLabel3.Text = dateTime.ToString("f");
@@ -637,7 +614,145 @@ namespace HospitalEquipmentSystem.UI
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ShowCurrDate();
+            ShowCurrDateTime();
+        }
+
+        /// <summary>
+        /// 异步加载网络头像
+        /// </summary>
+        /// <param name="url">头像的公网URL</param>
+        public async Task LoadUserAvatarAsync(string url)
+        {
+            // 1. 如果 URL 为空，直接显示默认头像
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                SetDefaultAvatar();
+                return;
+            }
+
+            try
+            {
+                // 2. 使用 HttpClient 异步下载图片字节流
+                using (HttpClient client = new HttpClient())
+                {
+                    // 设置超时时间，防止网络不好卡太久（比如设置为5秒）
+                    client.Timeout = System.TimeSpan.FromSeconds(5);
+
+                    byte[] imageBytes = await client.GetByteArrayAsync(url);
+
+                    // 3. 将字节流转换为 Image 对象
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        Image originalImage = Image.FromStream(ms);
+
+                        // 【重要踩坑点】：必须 new 一个 Bitmap，否则 MemoryStream 释放后，
+                        // SunnyUI 内部重绘图片时可能会报“GDI+ 一般性错误”
+                        Bitmap safeImage = new Bitmap(originalImage);
+
+                        // 4. 赋值给 SunnyUI 的头像组件
+                        uiAvatar1.Image = safeImage;
+                    }
+                }
+            } catch (Exception ex)
+            {
+                // 下载失败（比如链接失效、网络断开等），记录日志并显示默认头像
+                Console.WriteLine($"加载头像失败: {ex.Message}");
+                SetDefaultAvatar();
+            }
+        }
+
+        /// <summary>
+        /// 设置默认兜底头像
+        /// </summary>
+        private void SetDefaultAvatar()
+        {
+            uiAvatar1.Image = Resources.admin;
+        }
+
+        /// <summary>
+        /// 修改头像
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ChangeAvatarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Title = "选择新头像";
+                dialog.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp";
+                dialog.Multiselect = false;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string localFilePath = dialog.FileName;
+
+                    // 鼠标变成转圈等待状态，防止上传慢时用户以为软件卡死了
+                    Cursor = Cursors.WaitCursor;
+
+                    try
+                    {
+                        // 1. 本地预览 (使用文件流读取，避免图片文件被软件强制锁定)
+                        using (FileStream fs = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+                        {
+                            uiAvatar1.Image = Image.FromStream(fs);
+                        }
+
+                        // 2. 上传到 Cloudflare R2 对象存储
+                        string newAvatarUrl = await R2Helper.UploadImageAsync(localFilePath, "avatars");
+
+                        // 3. 更新到数据库
+                        bool isSuccess = await _userBLL.UpdateAvatarUrlInDatabaseAsync(LoginUser.UserId, newAvatarUrl);
+
+                        if (isSuccess)
+                        {
+                            Sunny.UI.UIMessageBox.ShowSuccess("头像修改成功！");
+                            // 更新全局的用户状态信息
+                            LoginUser.AvatarUrl = newAvatarUrl;
+                        }
+                    } catch (Exception ex)
+                    {
+                        Sunny.UI.UIMessageBox.ShowError("头像上传失败: " + ex.Message);
+                        // 恢复原头像
+                        await LoadUserAvatarAsync(LoginUser.AvatarUrl);
+                    } finally
+                    {
+                        // 无论成功还是失败，最后都要把鼠标恢复成默认箭头
+                        Cursor = Cursors.Default;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 切换用户点击事件
+        /// </summary>
+        private void SwitchLoginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // 二次确认，明确提示意图
+            if (!Sunny.UI.UIMessageBox.ShowAsk("确定要退出当前账号并重新登录吗？", true))
+                return;
+
+            // 清理全局变量
+            LoginUser.Clear();
+
+            // 直接重启整个程序（最安全的注销方式，避免任何界面重绘残留和内存泄漏）
+            Application.Restart();
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// 左键点击头像弹出菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiAvatar1_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs me = (MouseEventArgs)e;
+            if (me.Button == MouseButtons.Left)
+            {
+                // 在头像的左下角弹出菜单
+                avatarMenu.Show(uiAvatar1, new Point(0, uiAvatar1.Height));
+            }
         }
     }
 }

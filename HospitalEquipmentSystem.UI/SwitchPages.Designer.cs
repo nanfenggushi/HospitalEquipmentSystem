@@ -43,18 +43,23 @@ namespace HospitalEquipmentSystem.UI
             this.btnSystemSetting = new Sunny.UI.UISymbolButton();
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.avatarMenu = new Sunny.UI.UIContextMenuStrip(this.components);
+            this.ChangeAvatarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SwitchLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.topPanel = new Sunny.UI.UIPanel();
+            this.uiAvatar1 = new Sunny.UI.UIAvatar();
+            this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.uiLabel3 = new Sunny.UI.UILabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.sidePanel.SuspendLayout();
             this.uiFlowLayoutPanelMenu.SuspendLayout();
             this.uiPanel1.SuspendLayout();
+            this.avatarMenu.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -265,11 +270,49 @@ namespace HospitalEquipmentSystem.UI
             this.contentPanel.Size = new System.Drawing.Size(1260, 720);
             this.contentPanel.TabIndex = 15;
             // 
+            // avatarMenu
+            // 
+            this.avatarMenu.BackColor = System.Drawing.Color.Transparent;
+            this.avatarMenu.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.avatarMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.avatarMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ChangeAvatarToolStripMenuItem,
+            this.SwitchLoginToolStripMenuItem});
+            this.avatarMenu.Name = "avatarMenu";
+            this.avatarMenu.Size = new System.Drawing.Size(163, 56);
+            // 
+            // ChangeAvatarToolStripMenuItem
+            // 
+            this.ChangeAvatarToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.ChangeAvatarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ChangeAvatarToolStripMenuItem.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.camera;
+            this.ChangeAvatarToolStripMenuItem.Name = "ChangeAvatarToolStripMenuItem";
+            this.ChangeAvatarToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.ChangeAvatarToolStripMenuItem.Text = "修改头像";
+            this.ChangeAvatarToolStripMenuItem.Click += new System.EventHandler(this.ChangeAvatarToolStripMenuItem_Click);
+            // 
+            // SwitchLoginToolStripMenuItem
+            // 
+            this.SwitchLoginToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.SwitchLoginToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.SwitchLoginToolStripMenuItem.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.logout;
+            this.SwitchLoginToolStripMenuItem.Name = "SwitchLoginToolStripMenuItem";
+            this.SwitchLoginToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.SwitchLoginToolStripMenuItem.Text = "切换用户";
+            this.SwitchLoginToolStripMenuItem.Click += new System.EventHandler(this.SwitchLoginToolStripMenuItem_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 50000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.White;
             this.topPanel.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.屏幕截图_2026_08_11_100623;
             this.topPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.topPanel.Controls.Add(this.uiAvatar1);
             this.topPanel.Controls.Add(this.uiLabel3);
             this.topPanel.Controls.Add(this.uiSymbolButton2);
             this.topPanel.Controls.Add(this.uiLabel1);
@@ -289,6 +332,35 @@ namespace HospitalEquipmentSystem.UI
             this.topPanel.TabIndex = 2;
             this.topPanel.Text = null;
             this.topPanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiAvatar1
+            // 
+            this.uiAvatar1.AvatarSize = 37;
+            this.uiAvatar1.BackColor = System.Drawing.Color.Transparent;
+            this.uiAvatar1.ContextMenuStrip = this.avatarMenu;
+            this.uiAvatar1.FillColor = System.Drawing.Color.Transparent;
+            this.uiAvatar1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiAvatar1.Icon = Sunny.UI.UIAvatar.UIIcon.Image;
+            this.uiAvatar1.Image = global::HospitalEquipmentSystem.UI.Properties.Resources.admin1;
+            this.uiAvatar1.Location = new System.Drawing.Point(1184, 4);
+            this.uiAvatar1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiAvatar1.Name = "uiAvatar1";
+            this.uiAvatar1.Size = new System.Drawing.Size(37, 37);
+            this.uiAvatar1.Symbol = 62141;
+            this.uiAvatar1.TabIndex = 13;
+            this.uiAvatar1.Text = "uiAvatar1";
+            this.uiAvatar1.Click += new System.EventHandler(this.uiAvatar1_Click);
+            // 
+            // uiLabel3
+            // 
+            this.uiLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel3.ForeColor = System.Drawing.Color.White;
+            this.uiLabel3.Location = new System.Drawing.Point(192, 12);
+            this.uiLabel3.Name = "uiLabel3";
+            this.uiLabel3.Size = new System.Drawing.Size(248, 23);
+            this.uiLabel3.TabIndex = 0;
+            this.uiLabel3.Text = "时间";
             // 
             // uiSymbolButton2
             // 
@@ -338,13 +410,14 @@ namespace HospitalEquipmentSystem.UI
             // uiLabel2
             // 
             this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.uiLabel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel2.ForeColor = System.Drawing.Color.White;
-            this.uiLabel2.Location = new System.Drawing.Point(994, 4);
+            this.uiLabel2.Font = new System.Drawing.Font("宋体", 16F);
+            this.uiLabel2.ForeColor = System.Drawing.Color.Gold;
+            this.uiLabel2.Location = new System.Drawing.Point(1227, 7);
             this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(243, 37);
+            this.uiLabel2.Size = new System.Drawing.Size(100, 37);
             this.uiLabel2.TabIndex = 0;
-            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiLabel2.Text = "用户名";
+            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiSymbolButton1
             // 
@@ -381,23 +454,6 @@ namespace HospitalEquipmentSystem.UI
             this.label1.Text = "设备管理";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // uiLabel3
-            // 
-            this.uiLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.uiLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel3.ForeColor = System.Drawing.Color.White;
-            this.uiLabel3.Location = new System.Drawing.Point(192, 12);
-            this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(248, 23);
-            this.uiLabel3.TabIndex = 0;
-            this.uiLabel3.Text = "时间";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 50000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // SwitchPages
             // 
             this.AllowShowTitle = false;
@@ -415,6 +471,7 @@ namespace HospitalEquipmentSystem.UI
             this.sidePanel.ResumeLayout(false);
             this.uiFlowLayoutPanelMenu.ResumeLayout(false);
             this.uiPanel1.ResumeLayout(false);
+            this.avatarMenu.ResumeLayout(false);
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -448,6 +505,10 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UISymbolButton btnRevenue;
         private Sunny.UI.UILabel uiLabel3;
         private System.Windows.Forms.Timer timer1;
+        private Sunny.UI.UIAvatar uiAvatar1;
+        private Sunny.UI.UIContextMenuStrip avatarMenu;
+        private System.Windows.Forms.ToolStripMenuItem ChangeAvatarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SwitchLoginToolStripMenuItem;
     }
 }
 

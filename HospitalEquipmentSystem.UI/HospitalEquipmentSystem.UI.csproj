@@ -488,6 +488,10 @@
     <None Include="Resources\人脸识别2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\admin1.jpg" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\camera.png" />
+    <None Include="Resources\admin.jpg" />
     <None Include="Resources\2.png" />
     <None Include="Resources\1.jpeg" />
     <Content Include="Resources\1管理员.png" />
@@ -495,7 +499,6 @@
     <None Include="Resources\登录页面背景图.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\顶部栏.png" />
     <None Include="Resources\ChatGPT Image 2026年8月11日 10_03_53.png" />
     <None Include="Resources\屏幕截图 2026-08-11 100623.png" />
     <None Include="Resources\菜单栏背景图.png" />

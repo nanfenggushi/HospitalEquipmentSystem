@@ -1,9 +1,5 @@
 using HospitalEquipment.DAL;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HospitalEquipment.BLL
@@ -27,6 +23,17 @@ namespace HospitalEquipment.BLL
             if (pageIndex < 1) pageIndex = 1;
             if (pageSize < 1) pageSize = 5;
             return dal.GetPagedUsers(pageIndex, pageSize, keyword);
+        }
+
+        /// <summary>
+        /// 修改头像地址
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="newAvatarUrl"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateAvatarUrlInDatabaseAsync(int userId, string newAvatarUrl)
+        {
+            return await dal.UpdateAvatarUrlInDatabaseAsync(userId, newAvatarUrl);
         }
     }
 }

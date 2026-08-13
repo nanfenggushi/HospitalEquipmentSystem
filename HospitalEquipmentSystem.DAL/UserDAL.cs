@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HospitalEquipment.DAL
@@ -67,6 +65,33 @@ namespace HospitalEquipment.DAL
             DataTable dt = DbHelper.GetDataTable(sql, pagedParams.ToArray());
 
             return (dt, total);
+        }
+
+        /// <summary>
+        /// 感觉当前用户id修改头像地址
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="newAvatarUrl"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<bool> UpdateAvatarUrlInDatabaseAsync(int userId, string newAvatarUrl)
+        {
+            string sql = @"UPDATE Users
+                         SET AvatarUrl = @url
+                         WHERE UserId = @id;";
+
+            bool status = await DbHelper.ExecuteNonQueryAsync(sql, new SqlParameter[] {
+                new SqlParameter("@url", newAvatarUrl),
+                new SqlParameter("@id", userId)
+            }) > 0;
+
+            if (status)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }

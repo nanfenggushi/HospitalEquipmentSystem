@@ -15,7 +15,7 @@ namespace HospitalEquipment.DAL
         {
             //
             string sql = @"
-                SELECT u.UserId, u.Username, u.RealName, u.Role, u.DeptId,
+                SELECT u.UserId, u.Username, u.RealName, u.Role, u.DeptId, u.AvatarUrl, 
                        ISNULL(d.DeptName, '') AS DeptName
                 FROM Users u
                 LEFT JOIN Departments d ON u.DeptId = d.DeptId
@@ -29,7 +29,7 @@ namespace HospitalEquipment.DAL
         {
             string sql = @"
                 SELECT u.UserId, u.Username, u.RealName, u.Role, u.DeptId,
-                       ISNULL(d.DeptName, '') AS DeptName
+                       ISNULL(d.DeptName, '') AS DeptName, u.AvatarUrl
                 FROM Users u
                 LEFT JOIN Departments d ON u.DeptId = d.DeptId
                 WHERE u.UserId = @UserId AND u.PasswordHash = @Password AND u.IsActive = 1";
