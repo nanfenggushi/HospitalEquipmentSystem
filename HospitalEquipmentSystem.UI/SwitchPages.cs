@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -73,6 +74,18 @@ namespace HospitalEquipmentSystem.UI
         };
 
         private UserBLL _userBLL = new UserBLL();
+
+        #region 窗体拖动 API
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+        // 消息代码
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x02;
+        #endregion
 
         /// <summary>
         /// 构造函数：初始化窗体控件及事件绑定
@@ -752,6 +765,18 @@ namespace HospitalEquipmentSystem.UI
             {
                 // 在头像的左下角弹出菜单
                 avatarMenu.Show(uiAvatar1, new Point(0, uiAvatar1.Height));
+            }
+        }
+
+        private void topPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            // 只有左键按下时才允许拖动
+            if (e.Button == MouseButtons.Left)
+            {
+                // 释放鼠标捕获
+                ReleaseCapture();
+                // 向当前窗体发送拖动消息
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }

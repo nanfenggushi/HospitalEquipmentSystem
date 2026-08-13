@@ -332,6 +332,7 @@ namespace HospitalEquipmentSystem.UI
             this.topPanel.TabIndex = 2;
             this.topPanel.Text = null;
             this.topPanel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseDown);
             // 
             // uiAvatar1
             // 
