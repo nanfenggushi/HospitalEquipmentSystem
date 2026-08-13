@@ -155,6 +155,15 @@ namespace HospitalEquipment.DAL
         }
 
         /// <summary>
+        /// 物理删除物料（彻底移除记录）
+        /// </summary>
+        public async Task<int> DeletePermanent(int materialId)
+        {
+            string sql = "DELETE FROM Materials WHERE MaterialId = @Id";
+            return await DbHelper.ExecuteNonQueryAsync(sql, new SqlParameter("@Id", materialId)).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// 按设备分类 + 故障类型查询启用的物料（物料推荐的数据来源）
         /// </summary>
         public async Task<List<Material>> GetByCategoryAndFault(int categoryId, string faultType)

@@ -165,6 +165,10 @@ namespace HospitalEquipmentSystem.UI.management
             {
                 ToggleMaterialActive(materialId, row);
             }
+            else if (dgvMaterials.Columns[e.ColumnIndex].Name == "colDelete")
+            {
+                DeleteMaterial(materialId);
+            }
         }
 
         private async void EditMaterial(int materialId)
@@ -210,6 +214,22 @@ namespace HospitalEquipmentSystem.UI.management
             catch (Exception ex)
             {
                 UIMessageBox.Show($"操作失败：{ex.Message}", "错误", UIStyle.Red);
+            }
+        }
+
+        private async void DeleteMaterial(int materialId)
+        {
+            try
+            {
+                if (!UIMessageBox.ShowAsk("确认彻底删除该物料吗？\n删除后不可恢复。")) return;
+
+                await Manager.DeleteMaterialPermanent(materialId);
+                UIMessageBox.Show("删除成功！", "提示", UIStyle.Green);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.Show($"删除失败：{ex.Message}", "错误", UIStyle.Red);
             }
         }
 

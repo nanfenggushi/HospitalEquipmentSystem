@@ -89,14 +89,8 @@ namespace HospitalEquipment.BLL
 
             int categoryId = Convert.ToInt32(row["CategoryId"]);
 
-            // 2. 按 设备分类 + AI识别故障类型 查询推荐物料
+            // 2. 严格按 设备分类 + AI识别故障类型 查询推荐物料
             var materials = await _materialDal.GetByCategoryAndFault(categoryId, aiFaultType).ConfigureAwait(false);
-
-            // 3. 若该分类下无匹配物料，兜底按故障类型全表搜索
-            if (materials == null || materials.Count == 0)
-            {
-                materials = await _materialDal.GetByFaultType(aiFaultType).ConfigureAwait(false);
-            }
 
             return materials ?? new List<Material>();
         }

@@ -82,6 +82,14 @@ namespace HospitalEquipment.BLL
         }
 
         /// <summary>
+        /// 物理删除物料（彻底移除记录）
+        /// </summary>
+        public async Task DeleteMaterialPermanent(int id)
+        {
+            await dal.DeletePermanent(id).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// 按设备分类 + 故障类型获取推荐物料列表
         /// </summary>
         public async Task<List<Material>> GetRecommendedMaterials(int categoryId, string faultType)

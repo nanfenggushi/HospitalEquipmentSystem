@@ -23,6 +23,7 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn colSubtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMatId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIsManual;
+        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.ComboBox cmbMaterialSelect;
         private Sunny.UI.UITextBox txtManualQty;
         private Sunny.UI.UISymbolButton btnAddToGrid;
@@ -73,6 +74,7 @@ namespace HospitalEquipmentSystem.UI
             this.colSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMatId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnConfirm = new Sunny.UI.UISymbolButton();
             this.grpAi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFault)).BeginInit();
@@ -113,7 +115,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbFaultType.SymbolSize = 24;
             this.cmbFaultType.TabIndex = 0;
             this.cmbFaultType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmbFaultType.Visible = false;
+            this.cmbFaultType.Visible = true;
             this.cmbFaultType.Watermark = "手动选择故障类型";
             // 
             // btnConfirmFault
@@ -130,7 +132,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnConfirmFault.TabIndex = 1;
             this.btnConfirmFault.Text = "确认故障类型，加载推荐物料";
             this.btnConfirmFault.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnConfirmFault.Visible = false;
+            this.btnConfirmFault.Visible = true;
             // 
             // lblAiResult
             // 
@@ -312,7 +314,8 @@ namespace HospitalEquipmentSystem.UI
             this.colUnitPrice,
             this.colSubtotal,
             this.colMatId,
-            this.colIsManual});
+            this.colIsManual,
+            this.colDelete});
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -414,6 +417,15 @@ namespace HospitalEquipmentSystem.UI
             this.colIsManual.Name = "colIsManual";
             this.colIsManual.Visible = false;
             this.colIsManual.Width = 150;
+            // 
+            // colDelete
+            // 
+            this.colDelete.HeaderText = "删除";
+            this.colDelete.MinimumWidth = 8;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Text = "删除";
+            this.colDelete.UseColumnTextForButtonValue = true;
+            this.colDelete.Width = 60;
             // 
             // btnConfirm
             // 

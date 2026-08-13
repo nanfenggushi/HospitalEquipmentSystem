@@ -70,6 +70,7 @@ namespace HospitalEquipmentSystem.UI
             btnConfirm.Click += BtnConfirm_Click;
             dgvMaterials.CellValueChanged += DgvMaterials_CellValueChanged;
             dgvMaterials.CurrentCellDirtyStateChanged += DgvMaterials_CurrentCellDirtyStateChanged;
+            dgvMaterials.CellContentClick += DgvMaterials_CellContentClick;
             dgvMaterials.DataError += (s, ev) => { ev.ThrowException = false; };
         }
 
@@ -78,8 +79,29 @@ namespace HospitalEquipmentSystem.UI
             base.OnLoad(e);
             // 强制设置下拉框字体（SUNNY UI 可能不继承 Design 时设置的字体）
             cmbMaterialSelect.Font = new System.Drawing.Font("微软雅黑", 9F);
+            // 手动分析区始终可见，加载时即填充故障类型下拉框
+            LoadFaultTypeOptions();
             await LoadMaterialDropdown();
             await LoadOrderInfo();
+        }
+
+        /// <summary>
+        /// 填充手动分析下拉框（从数据库获取全部故障类型，不限设备分类）
+        /// </summary>
+        private void LoadFaultTypeOptions()
+        {
+            cmbFaultType.Items.Clear();
+            List<string> faultTypes = MntBLL.GetFaultTypeOptionsList();
+            if (faultTypes != null && faultTypes.Count > 0)
+            {
+                foreach (var ft in faultTypes) cmbFaultType.Items.Add(ft);
+                cmbFaultType.SelectedIndex = 0;
+            }
+            else
+            {
+                cmbFaultType.Items.Add("请先在物料管理中配置故障类型");
+                cmbFaultType.SelectedIndex = 0;
+            }
         }
 
         // ==================== 数据加载 ====================
@@ -116,7 +138,16 @@ namespace HospitalEquipmentSystem.UI
                     ? Convert.ToDecimal(_orderRow["AiConfidence"]) : 0;
                 if (!string.IsNullOrEmpty(aiFaultType))
                 {
-                    lblAiResult.Text = $"AI识别：{aiFaultType}（置信度 {aiConfidence:P0}）";
+                    if (aiConfidence < 0.5m)
+                    {
+                        lblAiResult.ForeColor = Color.Red;
+                        lblAiResult.Text = $"AI识别：{aiFaultType}（置信度 {aiConfidence:P0}）⚠️ 置信度较低，建议手动选择故障类型";
+                    }
+                    else
+                    {
+                        lblAiResult.ForeColor = Color.Black;
+                        lblAiResult.Text = $"AI识别：{aiFaultType}（置信度 {aiConfidence:P0}）";
+                    }
                     await LoadRecommendedMaterials();
                 }
                 else
@@ -176,12 +207,24 @@ namespace HospitalEquipmentSystem.UI
                     return;
                 }
 
-                lblAiResult.Text = $"AI识别：{result.FaultType}（置信度 {result.Confidence:P0}）";
+                if (result.Confidence < 0.5m)
+                {
+                    lblAiResult.ForeColor = Color.Red;
+                    lblAiResult.Text = $"AI识别：{result.FaultType}（置信度 {result.Confidence:P0}）⚠️ 置信度较低，建议手动选择故障类型";
 
-                DataTable dt = MntBLL.GetOrderById(_recordId);
-                if (dt != null && dt.Rows.Count > 0) _orderRow = dt.Rows[0];
+                    // 低置信度不加载物料，清空网格并提示手动选择
+                    ShowManualSelectHint("置信度较低，请手动选择故障类型后确认");
+                }
+                else
+                {
+                    lblAiResult.ForeColor = Color.Black;
+                    lblAiResult.Text = $"AI识别：{result.FaultType}（置信度 {result.Confidence:P0}）";
 
-                await LoadRecommendedMaterials();
+                    DataTable dt = MntBLL.GetOrderById(_recordId);
+                    if (dt != null && dt.Rows.Count > 0) _orderRow = dt.Rows[0];
+
+                    await LoadRecommendedMaterials();
+                }
             }
             catch (Exception ex)
             {
@@ -195,28 +238,26 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
-        /// AI 失败时的降级方案：显示数据库中全部故障类型供手动选择
+        /// AI 失败时的降级方案：提示手动选择（下拉框始终可见，只需刷新选项）
         /// </summary>
         private void FallbackToManualSelection()
         {
             lblAiResult.Text = "AI 无法识别，请手动选择故障类型";
+            LoadFaultTypeOptions();
+            ShowManualSelectHint("AI 无法识别，请手动选择故障类型");
+        }
 
-            // 从数据库获取全部故障类型（不限设备分类）
-            List<string> faultTypes = MntBLL.GetFaultTypeOptionsList();
-
-            cmbFaultType.Items.Clear();
-            if (faultTypes.Count > 0)
-            {
-                foreach (var ft in faultTypes) cmbFaultType.Items.Add(ft);
-                cmbFaultType.SelectedIndex = 0;
-            }
-            else
-            {
-                cmbFaultType.Items.Add("请先在物料管理中配置故障类型");
-                cmbFaultType.SelectedIndex = 0;
-            }
+        /// <summary>
+        /// 清空物料网格并显示手动选择提示，同时重置故障类型选中项
+        /// </summary>
+        private void ShowManualSelectHint(string message)
+        {
+            dgvMaterials.Rows.Clear();
+            dgvMaterials.Rows.Add(false, message, 0, "", 0, 0, DBNull.Value, "0");
             cmbFaultType.Visible = true;
             btnConfirmFault.Visible = true;
+            cmbFaultType.SelectedIndex = -1;
+            RecalcAmounts();
         }
 
         /// <summary>
@@ -241,8 +282,6 @@ namespace HospitalEquipmentSystem.UI
                 if (dt != null && dt.Rows.Count > 0) _orderRow = dt.Rows[0];
 
                 lblAiResult.Text = $"手动选择：{selected}";
-                cmbFaultType.Visible = false;
-                btnConfirmFault.Visible = false;
 
                 await LoadRecommendedMaterials();
             }
@@ -266,6 +305,7 @@ namespace HospitalEquipmentSystem.UI
                 if (recommended == null || recommended.Count == 0)
                 {
                     dgvMaterials.Rows.Clear();
+                    dgvMaterials.Rows.Add(false, "该设备+故障类型组合下暂无预配置物料，请手动添加", 0, "", 0, 0, DBNull.Value, "0");
                     return;
                 }
 
@@ -411,6 +451,20 @@ namespace HospitalEquipmentSystem.UI
                  dgvMaterials.CurrentCell.OwningColumn.Name == "colQuantity"))
             {
                 dgvMaterials.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        /// <summary>
+        /// 点击删除按钮时移除该行并刷新金额
+        /// </summary>
+        private void DgvMaterials_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgvMaterials.Columns[e.ColumnIndex].Name == "colDelete")
+            {
+                dgvMaterials.Rows.RemoveAt(e.RowIndex);
+                RecalcAmounts();
             }
         }
 

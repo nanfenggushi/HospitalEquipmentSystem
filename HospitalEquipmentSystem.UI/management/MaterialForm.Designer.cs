@@ -19,6 +19,7 @@ namespace HospitalEquipmentSystem.UI.management
         private System.Windows.Forms.DataGridViewTextBoxColumn colActive;
         private System.Windows.Forms.DataGridViewButtonColumn colEdit;
         private System.Windows.Forms.DataGridViewButtonColumn colToggle;
+        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.Panel pnlPager;
         private Sunny.UI.UISymbolButton btnPrevPage;
         private Sunny.UI.UILabel lblPageInfo;
@@ -54,6 +55,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.colActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colToggle = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pnlPager = new System.Windows.Forms.Panel();
             this.btnPrevPage = new Sunny.UI.UISymbolButton();
             this.lblPageInfo = new Sunny.UI.UILabel();
@@ -121,7 +123,7 @@ namespace HospitalEquipmentSystem.UI.management
             this.dgvMaterials.ColumnHeadersHeight = 36;
             this.dgvMaterials.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
                 this.colId, this.colName, this.colFaultType, this.colPrice, this.colQty, this.colUnit,
-                this.colActive, this.colEdit, this.colToggle
+                this.colActive, this.colEdit, this.colToggle, this.colDelete
             });
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(11, 22, 34);
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10F);
@@ -179,6 +181,12 @@ namespace HospitalEquipmentSystem.UI.management
             this.colToggle.Text = "切换";
             this.colToggle.UseColumnTextForButtonValue = true;
             this.colToggle.Width = 70;
+
+            this.colDelete.HeaderText = "删除";
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Text = "删除";
+            this.colDelete.UseColumnTextForButtonValue = true;
+            this.colDelete.Width = 70;
 
             this.pnlPager.BackColor = System.Drawing.Color.FromArgb(19, 35, 58);
             this.pnlPager.Controls.Add(this.btnPrevPage);
