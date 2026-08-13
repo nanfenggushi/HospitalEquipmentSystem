@@ -34,8 +34,8 @@ namespace HospitalEquipmentSystem.UI
                 int absY = loginPanel.Top + txtPassword.Top + (txtPassword.Height - btnTogglePwd.Height) / 2;
                 btnTogglePwd.Location = new Point(absX, absY);
                 btnTogglePwd.Parent = this;
-                btnTogglePwd.FillColor = Color.FromArgb(19, 35, 58);
-                btnTogglePwd.SymbolColor = Color.FromArgb(230, 238, 247);
+                btnTogglePwd.FillColor = Color.Transparent;
+                btnTogglePwd.SymbolColor = Color.FromArgb(19, 35, 58);
                 btnTogglePwd.BringToFront();
             };
         }
