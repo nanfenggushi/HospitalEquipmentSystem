@@ -1,14 +1,8 @@
 using HospitalEquipment.Util;
+using HospitalEquipmentSystem.Common;
 using HospitalEquipmentSystem.UI.management;
 using Sunny.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI
@@ -38,10 +32,10 @@ namespace HospitalEquipmentSystem.UI
             string path = button.TagString;
             switch (path)
             {
-                case "List": Redirect.NavigateTo<List>(uiPanel1); break;
-                case "class": Redirect.NavigateTo<Classification>(uiPanel1); break;
-                case "Supply": Redirect.NavigateTo<Supplier>(uiPanel1); break;
-                case "Warehousing": Redirect.NavigateTo<WarehousingManagement>(uiPanel1); break;
+                case "List": PageManager.ShowPage<List>(uiPanel1); break;
+                case "class": PageManager.ShowPage<Classification>(uiPanel1); break;
+                case "Supply": PageManager.ShowPage<Supplier>(uiPanel1); break;
+                case "Warehousing": PageManager.ShowPage<WarehousingManagement>(uiPanel1); break;
             }
         }
     }
