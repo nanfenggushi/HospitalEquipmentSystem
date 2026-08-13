@@ -62,8 +62,6 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="DeptRevenue.cs" />
-    <Compile Include="MaintenanceMaterial.cs" />
-    <Compile Include="Material.cs" />
     <Compile Include="Statistics\CategoryUsageDto.cs" />
     <Compile Include="Statistics\DeviceHealthDto.cs" />
     <Compile Include="Statistics\EquipmentLifecycleEvent.cs" />

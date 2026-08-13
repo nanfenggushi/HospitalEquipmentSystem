@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.DAL;
 
@@ -24,19 +25,34 @@ namespace HospitalEquipmentSystem.UI.register
         {
             InitializeComponent();
             this.DoubleBuffered = true;   // 减少界面重绘闪烁
-            ResizeBackground();           // 大图背景一次性缩放，避免每次重绘都做高开销缩放
+          
         }
 
-        private void RegisterForm_Load(object sender, EventArgs e)
+        private async void RegisterForm_Load(object sender, EventArgs e)
         {
-            // 从数据库加载身份下拉框
-            BindRoleComboBox();
-            // 从数据库加载科室下拉框
-            BindDepartmentComboBox();
+            await LoadComboBoxDataAsync();
             // 生成初始验证码
             GenerateCaptcha();
             // 绑定用户名失去焦点事件
             ui_txtrealname.Leave += Ui_txtusername_Leave;
+        }
+
+        private async Task LoadComboBoxDataAsync()
+        {
+            try
+            {
+                var data = await Task.Run(() => new
+                {
+                    Roles = loginDAL.GetExistingRoles(),
+                    Departments = loginDAL.GetActiveDepartments()
+                });
+                if (IsDisposed) return;
+                BindRoleComboBox(data.Roles);
+                BindDepartmentComboBox(data.Departments);
+            }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -46,7 +62,11 @@ namespace HospitalEquipmentSystem.UI.register
         /// </summary>
         private void BindRoleComboBox()
         {
-            DataTable dt = loginDAL.GetExistingRoles();
+            BindRoleComboBox(loginDAL.GetExistingRoles());
+        }
+
+        private void BindRoleComboBox(DataTable dt)
+        {
             // 数据库没有角色记录时，兜底使用默认三种
             if (dt.Rows.Count == 0)
             {
@@ -70,14 +90,18 @@ namespace HospitalEquipmentSystem.UI.register
         /// </summary>
         private void BindDepartmentComboBox()
         {
-            DataTable dt = loginDAL.GetActiveDepartments();
+            BindDepartmentComboBox(loginDAL.GetActiveDepartments());
+        }
+
+        private void BindDepartmentComboBox(DataTable dt)
+        {
             uiComboBox_dept.DataSource = dt;
             uiComboBox_dept.ValueMember = "DeptId";
             uiComboBox_dept.DisplayMember = "DeptName";
             uiComboBox_dept.SelectedIndex = dt.Rows.Count > 0 ? 0 : -1;
         }
 
-      
+
 
         /// <summary>
         /// 用户名失去焦点时，实时检测是否已存在
@@ -235,11 +259,11 @@ namespace HospitalEquipmentSystem.UI.register
             string verifyPassword = ui_txtverpwd.Text;
             string phone = ui_txtphone.Text.Trim();
             string captchaInput = ui_txtverma.Text.Trim();
-          
+
             string role = uiComboBox1.SelectedValue?.ToString();
             string deptValue = uiComboBox_dept.SelectedValue?.ToString();
             string title = uiComboBox1.Text.ToString();
-            bool hasError = false; 
+            bool hasError = false;
 
             // 1. 验证真实姓名
             if (string.IsNullOrEmpty(realName))
@@ -252,11 +276,6 @@ namespace HospitalEquipmentSystem.UI.register
             if (string.IsNullOrEmpty(username))
             {
                 uiLabel7.Text = "请输入用户名";
-                hasError = true;
-            }
-            else if (username.Length < 3)
-            {
-                uiLabel7.Text = "用户名至少3位";
                 hasError = true;
             }
             else if (loginDAL.IsUsernameExists(username))
@@ -383,18 +402,7 @@ namespace HospitalEquipmentSystem.UI.register
             ui_txtname.Focus();
         }
 
-        private void uiSymbolButton1_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void uiSymbolButton2_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Maximized)
-                this.WindowState = FormWindowState.Normal;
-            else
-                this.WindowState = FormWindowState.Maximized;
-        }
+      
 
         private void uiSymbolButton3_Click(object sender, EventArgs e)
         {
@@ -402,22 +410,6 @@ namespace HospitalEquipmentSystem.UI.register
             this.Close();
         }
 
-        /// <summary>
-        /// 背景源图是 2847x1498 的大图，窗体每次重绘 Stretch 缩放开销极高，
-        /// 这里一次性缩放到窗体尺寸，之后重绘只是近乎等尺寸的快速复制。
-        /// </summary>
-        private void ResizeBackground()
-        {
-            Image src = BackgroundImage;
-            if (src == null) return;
 
-            // 目标尺寸：窗体客户区；若窗体可能最大化，则取屏幕尺寸（不超过原图）
-            int w = Math.Min(src.Width, Math.Max(ClientSize.Width, Screen.PrimaryScreen.Bounds.Width));
-            int h = Math.Min(src.Height, Math.Max(ClientSize.Height, Screen.PrimaryScreen.Bounds.Height));
-            if (w <= 0 || h <= 0) return;
-            if (w == src.Width && h == src.Height) return;   // 本来就够小，无需处理
-
-            BackgroundImage = new Bitmap(src, w, h);
-        }
-    }
+    } 
 }

@@ -25,9 +25,6 @@ namespace HospitalEquipmentSystem.UI
         // 从监控中心告警卡片跳转过来时，需要高亮定位的工单ID
         private int? _highlightRecordId;
 
-        // 标记是否已加载过数据（OnLoad 可能多次触发）
-        private bool _dataLoaded = false;
-
         public RepairerWorkbench() : this(null)
         {
         }
@@ -65,17 +62,7 @@ namespace HospitalEquipmentSystem.UI
             }
 
             WireEvents();
-            // LoadData() 改为在 OnLoad 中调用，避免 Handle 未创建时 BeginInvoke 失败
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            if (!DesignMode && !_dataLoaded)
-            {
-                _dataLoaded = true;
-                LoadData();
-            }
+            LoadData();
         }
 
         // ==================== 数据加载 ====================
@@ -199,7 +186,6 @@ namespace HospitalEquipmentSystem.UI
                 LoadData();
             };
             dgvOrders.CellContentClick += DgvOrders_CellContentClick;
-            dgvOrders.RowsAdded += DgvOrders_RowsAdded;
             btnPrevPage.Click += (s, e) =>
             {
                 if (_currentPage > 1)
@@ -220,15 +206,14 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
-        /// 根据当前 Tab 更新操作按钮列头文字
-        /// 待接单 → colAction="接单" | 处理中 → colProcess="处理" | 已完成 → colAction="查看详情"
+        /// 根据当前 Tab 更新操作按钮文字
         /// </summary>
         private void UpdateActionButtonText()
         {
             if (tabControl.SelectedTab == tpPending)
                 colAction.Text = "接单";
             else if (tabControl.SelectedTab == tpInProgress)
-                colProcess.Text = "处理";
+                colAction.Text = "提交结果";
             else if (tabControl.SelectedTab == tpDone)
                 colAction.Text = "查看详情";
         }
@@ -243,38 +228,27 @@ namespace HospitalEquipmentSystem.UI
             var row = dgvOrders.Rows[e.RowIndex];
             if (!(row.DataBoundItem is MaintenanceRecordDto dto)) return;
 
-            // 待接单：colAction → 接单
-            if (colName == colAction.Name && dto.ProgressStage == "Assigned")
+            if (colName == colAction.Name)
             {
-                DirectAcceptOrder(dto);
-                return;
-            }
-
-            // 处理中：colProcess → 打开 AI 检修助手
-            if (colName == colProcess.Name && dto.ProgressStage == "InProgress")
-            {
-                using (var agent = new AgentForm(dto.RecordId))
+                switch (dto.ProgressStage)
                 {
-                    if (agent.ShowDialog() == DialogResult.OK)
-                        LoadData();
+                    case "Assigned":
+                        AcceptOrder(dto);
+                        break;
+                    case "InProgress":
+                        SubmitResult(dto);
+                        break;
+                    case "Done":
+                        ViewDetail(dto);
+                        break;
                 }
-                return;
-            }
-
-            // 已完成：colAction → 查看详情（含物料清单）
-            if (colName == colAction.Name && dto.ProgressStage == "Done")
-            {
-#pragma warning disable CS4014
-                ViewDetailAsync(dto);
-#pragma warning restore CS4014
-                return;
             }
         }
 
         /// <summary>
-        /// 直接接单：Assigned → InProgress（不走 Agent 页面）
+        /// 接单：Assigned → InProgress
         /// </summary>
-        private void DirectAcceptOrder(MaintenanceRecordDto dto)
+        private void AcceptOrder(MaintenanceRecordDto dto)
         {
             if (this.ShowAskDialog($"确认接单？\n工单号：{dto.RepairNo}\n设备：{dto.EquipmentName}"))
             {
@@ -289,124 +263,40 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
-        /// 行添加时动态设置按钮文字和可见性
-        /// 待接单(Assigned): colAction="接单"可见, colProcess隐藏
-        /// 处理中(InProgress): colAction隐藏, colProcess="处理"可见
-        /// 已完成(Done): colAction="查看详情"可见, colProcess隐藏
+        /// 提交维修结果：InProgress → Done
         /// </summary>
-        private void DgvOrders_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void SubmitResult(MaintenanceRecordDto dto)
         {
-            for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
+            using (var form = new RepairResultForm(dto.RepairNo, dto.EquipmentName))
             {
-                var row = dgvOrders.Rows[i];
-                if (row.DataBoundItem is MaintenanceRecordDto dto)
+                if (form.ShowDialog() == DialogResult.OK)
                 {
-                    var actionCell = row.Cells[colAction.Name] as DataGridViewButtonCell;
-                    var processCell = row.Cells[colProcess.Name] as DataGridViewButtonCell;
-
-                    bool isAssigned = dto.ProgressStage == "Assigned";
-                    bool isInProgress = dto.ProgressStage == "InProgress";
-                    bool isDone = dto.ProgressStage == "Done";
-
-                    // colAction：待接单显示"接单"，已完成显示"查看详情"，处理中隐藏
-                    if (actionCell != null)
+                    if (BLL.SubmitRepairResult(dto.RecordId, form.RepairResult,
+                                                form.RepairCost, form.DowntimeHours))
                     {
-                        if (isAssigned)
-                        {
-                            actionCell.Value = "接单";
-                            SetCellVisible(actionCell, true);
-                        }
-                        else if (isDone)
-                        {
-                            actionCell.Value = "查看详情";
-                            SetCellVisible(actionCell, true);
-                        }
-                        else
-                        {
-                            actionCell.Value = "";
-                            SetCellHidden(actionCell);
-                        }
+                        UIMessageBox.Show($"工单 {dto.RepairNo} 维修完成");
+                        LoadData();
                     }
-
-                    // colProcess：处理中显示"处理"，其余隐藏
-                    if (processCell != null)
-                    {
-                        if (isInProgress)
-                        {
-                            processCell.Value = "处理";
-                            SetCellVisible(processCell, true);
-                        }
-                        else
-                        {
-                            processCell.Value = "";
-                            SetCellHidden(processCell);
-                        }
-                    }
+                    else
+                        UIMessageBox.ShowError("提交失败，请重试");
                 }
             }
-        }
-
-        private void SetCellVisible(DataGridViewButtonCell cell, bool visible)
-        {
-            cell.Style.ForeColor = System.Drawing.Color.White;
-            cell.Style.SelectionForeColor = System.Drawing.Color.White;
-            cell.FlatStyle = FlatStyle.Flat;
-        }
-
-        private void SetCellHidden(DataGridViewButtonCell cell)
-        {
-            cell.Style.ForeColor = System.Drawing.Color.Transparent;
-            cell.Style.SelectionForeColor = System.Drawing.Color.Transparent;
-            cell.Style.BackColor = System.Drawing.Color.FromArgb(19, 35, 58);
-            cell.Style.SelectionBackColor = System.Drawing.Color.FromArgb(30, 58, 138);
-            cell.FlatStyle = FlatStyle.Flat;
         }
 
         /// <summary>
-        /// 查看详情（已完成工单）：异步加载物料清单后弹窗展示完整信息
+        /// 查看详情（已完成工单）
         /// </summary>
-        private async Task ViewDetailAsync(MaintenanceRecordDto dto)
+        private void ViewDetail(MaintenanceRecordDto dto)
         {
-            var matManager = new MaintenanceMaterialManager(new MockFaultRecognizer());
-            List<MaintenanceMaterial> materials = null;
-            try
-            {
-                materials = await matManager.GetExistingMaterials(dto.RecordId);
-            }
-            catch
-            {
-                materials = new List<MaintenanceMaterial>();
-            }
-
-            decimal materialTotal = materials?.Sum(m => m.Subtotal) ?? 0;
-
-            var sb = new System.Text.StringBuilder();
-            sb.AppendLine($"工单号：{dto.RepairNo}");
-            sb.AppendLine($"设备：{dto.EquipmentName}");
-            sb.AppendLine($"故障描述：{dto.FaultDesc}");
-            sb.AppendLine($"维修结果：{dto.RepairResult ?? "无"}");
-
-            if (materials != null && materials.Count > 0)
-            {
-                sb.AppendLine("──────────────");
-                sb.AppendLine("【物料清单】");
-                foreach (var m in materials)
-                {
-                    sb.AppendLine($"  {m.MaterialName}  x{m.Quantity}  ¥{m.UnitPrice:F2}  ¥{m.Subtotal:F2}");
-                }
-                sb.AppendLine("──────────────");
-                sb.AppendLine($"物料总金额：¥{materialTotal:F2}");
-            }
-            else
-            {
-                sb.AppendLine("物料清单：无物料记录");
-            }
-
-            sb.AppendLine($"维修费用：{(dto.RepairCost.HasValue ? $"¥{dto.RepairCost.Value:F2}" : "无")}");
-            sb.AppendLine($"停机时长：{(dto.DowntimeHours.HasValue ? $"{dto.DowntimeHours}h" : "无")}");
-            sb.AppendLine($"完成时间：{(dto.CompleteTime.HasValue ? dto.CompleteTime.Value.ToString("yyyy-MM-dd HH:mm") : "无")}");
-
-            UIMessageBox.Show(sb.ToString());
+            var msg = $"工单号：{dto.RepairNo}\n" +
+                      $"设备：{dto.EquipmentName}\n" +
+                      $"科室：{dto.DeptName}\n" +
+                      $"故障描述：{dto.FaultDesc}\n" +
+                      $"维修结果：{dto.RepairResult ?? "无"}\n" +
+                      (dto.RepairCost.HasValue ? $"维修费用：{dto.RepairCost:C}\n" : "") +
+                      (dto.DowntimeHours.HasValue ? $"停机时长：{dto.DowntimeHours}h\n" : "") +
+                      (dto.CompleteTime.HasValue ? $"完成时间：{dto.CompleteTime:yyyy-MM-dd HH:mm}" : "");
+            UIMessageBox.Show(msg);
         }
 
         // ==================== 双缓冲防闪烁 ====================

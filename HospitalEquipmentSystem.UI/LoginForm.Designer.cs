@@ -148,7 +148,9 @@
             // 
             this.cmbUser.DataSource = null;
             this.cmbUser.FillColor = System.Drawing.Color.White;
-            this.cmbUser.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));            this.cmbUser.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbUser.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmbUser.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cmbUser.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbUser.Location = new System.Drawing.Point(199, 37);
             this.cmbUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbUser.MinimumSize = new System.Drawing.Size(63, 0);

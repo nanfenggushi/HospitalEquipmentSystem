@@ -20,16 +20,14 @@ namespace HospitalEquipment.DAL
         /// <param name="keyword">关键字搜索：匹配工单号/设备名/故障描述</param>
         /// <param name="stage">进度阶段筛选：null=全部</param>
         public DataTable GetOrderList(string urgency = null, string dept = null,
-                                       string keyword = null, string stage = null,
-                                       DateTime? dateFrom = null, DateTime? dateTo = null)
+                                       string keyword = null, string stage = null)
         {
             string sql = @"
                 SELECT m.RecordId, m.RepairNo, e.EquipmentName, 
                        m.FaultType, m.FaultDesc, m.Urgency,
                        m.ProgressStage, d.DeptName, 
                        ISNULL(u.RealName, '未指派') AS RepairerName,
-                       m.ReportTime, m.DowntimeHours, m.Status,
-                       ISNULL(m.PhotoPath, '') AS PhotoPath
+                       m.ReportTime, m.DowntimeHours, m.Status
                 FROM MaintenanceRecords m
                 LEFT JOIN Equipment e ON m.EquipmentId = e.EquipmentId
                 LEFT JOIN Departments d ON m.ReportDeptId = d.DeptId
@@ -64,18 +62,6 @@ namespace HospitalEquipment.DAL
             {
                 sql += " AND m.ProgressStage = @Stage";
                 parameters.Add(new SqlParameter("@Stage", stage));
-            }
-
-            // 日期范围筛选
-            if (dateFrom.HasValue)
-            {
-                sql += " AND m.ReportTime >= @DateFrom";
-                parameters.Add(new SqlParameter("@DateFrom", dateFrom.Value));
-            }
-            if (dateTo.HasValue)
-            {
-                sql += " AND m.ReportTime < DATEADD(DAY, 1, @DateTo)";
-                parameters.Add(new SqlParameter("@DateTo", dateTo.Value));
             }
 
             sql += " ORDER BY m.ReportTime DESC";
@@ -160,8 +146,7 @@ namespace HospitalEquipment.DAL
                      Urgency, ProgressStage, Status, ReportTime)
                 VALUES 
                     (@RepairNo, @EquipmentId, @ReportDeptId, @ReporterId, @FaultType, @FaultDesc,
-                     @Urgency, 'Pending', 'Pending', GETDATE());
-                SELECT CAST(SCOPE_IDENTITY() AS INT);";
+                     @Urgency, 'Pending', 'Pending', GETDATE())";
 
             var parameters = new SqlParameter[]
             {
@@ -173,8 +158,7 @@ namespace HospitalEquipment.DAL
                 new SqlParameter("@FaultDesc", faultDesc),
                 new SqlParameter("@Urgency", urgency),
             };
-            object result = DbHelper.ExecuteScalar(sql, parameters);
-            return result != null ? Convert.ToInt32(result) : 0;
+            return DbHelper.ExecuteNonQuery(sql, parameters);
         }
 
         /// <summary>
@@ -275,10 +259,7 @@ namespace HospitalEquipment.DAL
         public DataTable GetOrderById(int recordId)
         {
             string sql = @"
-                SELECT m.*, e.EquipmentName, e.CategoryId, d.DeptName, ISNULL(u.RealName, '') AS RepairerName,
-                       ISNULL(m.PhotoPath, '') AS PhotoPath,
-                       ISNULL(m.AiFaultType, '') AS AiFaultType,
-                       ISNULL(m.AiConfidence, 0) AS AiConfidence
+                SELECT m.*, e.EquipmentName, d.DeptName, ISNULL(u.RealName, '') AS RepairerName
                 FROM MaintenanceRecords m
                 LEFT JOIN Equipment e ON m.EquipmentId = e.EquipmentId
                 LEFT JOIN Departments d ON m.ReportDeptId = d.DeptId
@@ -325,8 +306,7 @@ namespace HospitalEquipment.DAL
                        m.ProgressStage, d.DeptName, 
                        ISNULL(u.RealName, '') AS RepairerName,
                        m.ReportTime, m.DowntimeHours, m.Status,
-                       m.RepairResult, m.RepairCost, m.CompleteTime,
-                       ISNULL(m.PhotoPath, '') AS PhotoPath
+                       m.RepairResult, m.RepairCost, m.CompleteTime
                 FROM MaintenanceRecords m
                 LEFT JOIN Equipment e ON m.EquipmentId = e.EquipmentId
                 LEFT JOIN Departments d ON m.ReportDeptId = d.DeptId
@@ -418,8 +398,7 @@ namespace HospitalEquipment.DAL
                        m.ProgressStage, d.DeptName, 
                        ISNULL(u.RealName, '') AS RepairerName,
                        m.ReportTime, m.DowntimeHours, m.Status,
-                       m.RepairResult, m.RepairCost, m.CompleteTime,
-                       ISNULL(m.PhotoPath, '') AS PhotoPath
+                       m.RepairResult, m.RepairCost, m.CompleteTime
                 FROM MaintenanceRecords m
                 LEFT JOIN Equipment e ON m.EquipmentId = e.EquipmentId
                 LEFT JOIN Departments d ON m.ReportDeptId = d.DeptId
@@ -517,33 +496,6 @@ namespace HospitalEquipment.DAL
                            WHERE Urgency IS NOT NULL AND LTRIM(RTRIM(Urgency)) <> ''
                            ORDER BY Urgency";
             return DbHelper.GetDataTable(sql);
-        }
-
-        // ==================== AI / 照片相关方法 ====================
-
-        /// <summary>
-        /// 写入故障照片路径（医生上传照片后调用）
-        /// </summary>
-        public int UpdatePhotoPath(int recordId, string photoPath)
-        {
-            string sql = "UPDATE MaintenanceRecords SET PhotoPath = @PhotoPath WHERE RecordId = @RecordId";
-            return DbHelper.ExecuteNonQuery(sql,
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@PhotoPath", photoPath ?? ""));
-        }
-
-        /// <summary>
-        /// 写入 AI 识别结果（Agent 分析完成后调用）
-        /// </summary>
-        public int UpdateAiResult(int recordId, string faultType, decimal confidence)
-        {
-            string sql = @"UPDATE MaintenanceRecords 
-                           SET AiFaultType = @FaultType, AiConfidence = @Confidence 
-                           WHERE RecordId = @RecordId";
-            return DbHelper.ExecuteNonQuery(sql,
-                new SqlParameter("@RecordId", recordId),
-                new SqlParameter("@FaultType", faultType ?? ""),
-                new SqlParameter("@Confidence", confidence));
         }
     }
 }

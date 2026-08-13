@@ -62,11 +62,11 @@ namespace HospitalEquipmentSystem.UI
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pnlFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.txtSearch = new Sunny.UI.UITextBox();
             this.cmbUrgency = new Sunny.UI.UIComboBox();
             this.cmbDept = new Sunny.UI.UIComboBox();
+            this.cmbSource = new Sunny.UI.UIComboBox();
             this.cmbDateRange = new Sunny.UI.UIComboBox();
             this.btnQuery = new Sunny.UI.UISymbolButton();
             this.btnReset = new Sunny.UI.UISymbolButton();
@@ -119,7 +119,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlHeader.Padding = new System.Windows.Forms.Padding(20, 12, 20, 12);
             this.pnlHeader.Radius = 10;
             this.pnlHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlHeader.Size = new System.Drawing.Size(1260, 80);
+            this.pnlHeader.Size = new System.Drawing.Size(1292, 80);
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Text = null;
             this.pnlHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,7 +145,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnNewOrder.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(255)))));
             this.btnNewOrder.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.btnNewOrder.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnNewOrder.Location = new System.Drawing.Point(1110, 21);
+            this.btnNewOrder.Location = new System.Drawing.Point(1142, 21);
             this.btnNewOrder.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnNewOrder.Name = "btnNewOrder";
             this.btnNewOrder.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
@@ -170,7 +170,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlKpiContainer.Margin = new System.Windows.Forms.Padding(0);
             this.pnlKpiContainer.Name = "pnlKpiContainer";
             this.pnlKpiContainer.Padding = new System.Windows.Forms.Padding(16, 10, 16, 6);
-            this.pnlKpiContainer.Size = new System.Drawing.Size(1260, 120);
+            this.pnlKpiContainer.Size = new System.Drawing.Size(1292, 120);
             this.pnlKpiContainer.TabIndex = 1;
             this.pnlKpiContainer.WrapContents = false;
             // 
@@ -422,7 +422,7 @@ namespace HospitalEquipmentSystem.UI
             this.tlpBody.Name = "tlpBody";
             this.tlpBody.RowCount = 1;
             this.tlpBody.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBody.Size = new System.Drawing.Size(1220, 478);
+            this.tlpBody.Size = new System.Drawing.Size(1252, 592);
             this.tlpBody.TabIndex = 2;
             // 
             // pnlLeft
@@ -441,7 +441,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Radius = 10;
             this.pnlLeft.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlLeft.Size = new System.Drawing.Size(871, 478);
+            this.pnlLeft.Size = new System.Drawing.Size(894, 592);
             this.pnlLeft.TabIndex = 0;
             this.pnlLeft.Text = null;
             this.pnlLeft.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -453,9 +453,9 @@ namespace HospitalEquipmentSystem.UI
             this.pnlPager.Controls.Add(this.lblPageInfo);
             this.pnlPager.Controls.Add(this.btnNextPage);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlPager.Location = new System.Drawing.Point(0, 438);
+            this.pnlPager.Location = new System.Drawing.Point(0, 552);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(871, 40);
+            this.pnlPager.Size = new System.Drawing.Size(894, 40);
             this.pnlPager.TabIndex = 4;
             // 
             // btnPrevPage
@@ -534,8 +534,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column9,
             this.Column10,
             this.Column11,
-            this.Column12,
-            this.Column13});
+            this.Column12});
             this.dgvOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOrders.EnableHeadersVisualStyles = false;
             this.dgvOrders.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -566,7 +565,7 @@ namespace HospitalEquipmentSystem.UI
             this.dgvOrders.ScrollBarStyleInherited = false;
             this.dgvOrders.SelectedIndex = -1;
             this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrders.Size = new System.Drawing.Size(871, 384);
+            this.dgvOrders.Size = new System.Drawing.Size(894, 498);
             this.dgvOrders.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.dgvOrders.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.dgvOrders.TabIndex = 3;
@@ -578,6 +577,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column1.MinimumWidth = 8;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Width = 130;
             // 
             // Column2
             // 
@@ -595,7 +595,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 65;
+            this.Column3.Width = 80;
             // 
             // Column4
             // 
@@ -604,7 +604,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column4.MinimumWidth = 8;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 120;
+            this.Column4.Width = 160;
             // 
             // Column5
             // 
@@ -613,7 +613,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column5.MinimumWidth = 8;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 55;
+            this.Column5.Width = 70;
             // 
             // Column6
             // 
@@ -622,7 +622,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column6.MinimumWidth = 8;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            this.Column6.Width = 75;
+            this.Column6.Width = 90;
             // 
             // Column7
             // 
@@ -631,7 +631,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column7.MinimumWidth = 8;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 55;
+            this.Column7.Width = 80;
             // 
             // Column8
             // 
@@ -640,7 +640,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column8.MinimumWidth = 8;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
+            this.Column8.Width = 75;
             // 
             // Column9
             // 
@@ -649,7 +649,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column9.MinimumWidth = 8;
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
-            this.Column9.Width = 95;
+            this.Column9.Width = 120;
             // 
             // Column10
             // 
@@ -658,7 +658,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column10.MinimumWidth = 8;
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
-            this.Column10.Width = 55;
+            this.Column10.Width = 75;
             // 
             // Column11
             // 
@@ -667,7 +667,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column11.MinimumWidth = 8;
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
-            this.Column11.Width = 50;
+            this.Column11.Width = 65;
             // 
             // Column12
             // 
@@ -678,17 +678,7 @@ namespace HospitalEquipmentSystem.UI
             this.Column12.Text = "操作";
             this.Column12.ToolTipText = "操作";
             this.Column12.UseColumnTextForButtonValue = true;
-            this.Column12.Width = 50;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "强制操作";
-            this.Column13.MinimumWidth = 8;
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Text = "开始维修";
-            this.Column13.UseColumnTextForButtonValue = true;
-            this.Column13.Width = 75;
+            this.Column12.Width = 55;
             // 
             // pnlFilter
             // 
@@ -696,6 +686,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlFilter.Controls.Add(this.txtSearch);
             this.pnlFilter.Controls.Add(this.cmbUrgency);
             this.pnlFilter.Controls.Add(this.cmbDept);
+            this.pnlFilter.Controls.Add(this.cmbSource);
             this.pnlFilter.Controls.Add(this.cmbDateRange);
             this.pnlFilter.Controls.Add(this.btnQuery);
             this.pnlFilter.Controls.Add(this.btnReset);
@@ -704,7 +695,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlFilter.Margin = new System.Windows.Forms.Padding(0);
             this.pnlFilter.Name = "pnlFilter";
             this.pnlFilter.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.pnlFilter.Size = new System.Drawing.Size(871, 52);
+            this.pnlFilter.Size = new System.Drawing.Size(894, 52);
             this.pnlFilter.TabIndex = 2;
             // 
             // txtSearch
@@ -776,6 +767,30 @@ namespace HospitalEquipmentSystem.UI
             this.cmbDept.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbDept.Watermark = "";
             // 
+            // cmbSource
+            // 
+            this.cmbSource.DataSource = null;
+            this.cmbSource.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.cmbSource.Font = new System.Drawing.Font("宋体", 10F);
+            this.cmbSource.ForeColor = System.Drawing.Color.Gray;
+            this.cmbSource.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cmbSource.Items.AddRange(new object[] {
+            "全部来源",
+            "手动申报",
+            "告警生成"});
+            this.cmbSource.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbSource.Location = new System.Drawing.Point(457, 9);
+            this.cmbSource.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
+            this.cmbSource.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cmbSource.Name = "cmbSource";
+            this.cmbSource.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cmbSource.Size = new System.Drawing.Size(120, 34);
+            this.cmbSource.SymbolSize = 24;
+            this.cmbSource.TabIndex = 3;
+            this.cmbSource.Text = "全部来源";
+            this.cmbSource.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmbSource.Watermark = "";
+            // 
             // cmbDateRange
             // 
             this.cmbDateRange.DataSource = null;
@@ -784,14 +799,13 @@ namespace HospitalEquipmentSystem.UI
             this.cmbDateRange.ForeColor = System.Drawing.Color.Gray;
             this.cmbDateRange.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.cmbDateRange.Items.AddRange(new object[] {
-            "全部",
             "近30天",
             "今日",
             "本周",
             "本月",
             "自定义"});
             this.cmbDateRange.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cmbDateRange.Location = new System.Drawing.Point(457, 9);
+            this.cmbDateRange.Location = new System.Drawing.Point(585, 9);
             this.cmbDateRange.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.cmbDateRange.MinimumSize = new System.Drawing.Size(1, 1);
             this.cmbDateRange.Name = "cmbDateRange";
@@ -799,7 +813,7 @@ namespace HospitalEquipmentSystem.UI
             this.cmbDateRange.Size = new System.Drawing.Size(120, 34);
             this.cmbDateRange.SymbolSize = 24;
             this.cmbDateRange.TabIndex = 4;
-            this.cmbDateRange.Text = "全部";
+            this.cmbDateRange.Text = "近30天";
             this.cmbDateRange.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbDateRange.Watermark = "";
             // 
@@ -811,7 +825,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnQuery.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(255)))));
             this.btnQuery.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.btnQuery.Font = new System.Drawing.Font("宋体", 9F);
-            this.btnQuery.Location = new System.Drawing.Point(585, 9);
+            this.btnQuery.Location = new System.Drawing.Point(713, 9);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.btnQuery.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnQuery.Name = "btnQuery";
@@ -828,7 +842,7 @@ namespace HospitalEquipmentSystem.UI
             this.btnReset.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.btnReset.Font = new System.Drawing.Font("宋体", 9F);
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.btnReset.Location = new System.Drawing.Point(663, 9);
+            this.btnReset.Location = new System.Drawing.Point(791, 9);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.btnReset.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnReset.Name = "btnReset";
@@ -851,7 +865,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlMainHeader.Padding = new System.Windows.Forms.Padding(14, 8, 14, 8);
             this.pnlMainHeader.Radius = 0;
             this.pnlMainHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlMainHeader.Size = new System.Drawing.Size(871, 42);
+            this.pnlMainHeader.Size = new System.Drawing.Size(894, 42);
             this.pnlMainHeader.TabIndex = 0;
             this.pnlMainHeader.Text = null;
             this.pnlMainHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -873,12 +887,12 @@ namespace HospitalEquipmentSystem.UI
             this.pnlRight.Controls.Add(this.pnlAlerts);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Font = new System.Drawing.Font("宋体", 12F);
-            this.pnlRight.Location = new System.Drawing.Point(882, 0);
+            this.pnlRight.Location = new System.Drawing.Point(905, 0);
             this.pnlRight.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.pnlRight.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Radius = 0;
-            this.pnlRight.Size = new System.Drawing.Size(338, 478);
+            this.pnlRight.Size = new System.Drawing.Size(347, 592);
             this.pnlRight.TabIndex = 1;
             this.pnlRight.Text = null;
             this.pnlRight.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -890,13 +904,13 @@ namespace HospitalEquipmentSystem.UI
             this.pnlWorkload.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlWorkload.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.pnlWorkload.Font = new System.Drawing.Font("宋体", 12F);
-            this.pnlWorkload.Location = new System.Drawing.Point(0, 258);
+            this.pnlWorkload.Location = new System.Drawing.Point(0, 330);
             this.pnlWorkload.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.pnlWorkload.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlWorkload.Name = "pnlWorkload";
             this.pnlWorkload.Radius = 10;
             this.pnlWorkload.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlWorkload.Size = new System.Drawing.Size(338, 220);
+            this.pnlWorkload.Size = new System.Drawing.Size(347, 262);
             this.pnlWorkload.TabIndex = 1;
             this.pnlWorkload.Text = null;
             this.pnlWorkload.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -910,7 +924,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlWorkloadList.Margin = new System.Windows.Forms.Padding(0);
             this.pnlWorkloadList.Name = "pnlWorkloadList";
             this.pnlWorkloadList.Padding = new System.Windows.Forms.Padding(10, 8, 10, 8);
-            this.pnlWorkloadList.Size = new System.Drawing.Size(338, 173);
+            this.pnlWorkloadList.Size = new System.Drawing.Size(347, 215);
             this.pnlWorkloadList.TabIndex = 1;
             this.pnlWorkloadList.WrapContents = false;
             // 
@@ -927,7 +941,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlWorkloadHeader.Padding = new System.Windows.Forms.Padding(14, 8, 14, 8);
             this.pnlWorkloadHeader.Radius = 0;
             this.pnlWorkloadHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlWorkloadHeader.Size = new System.Drawing.Size(338, 47);
+            this.pnlWorkloadHeader.Size = new System.Drawing.Size(347, 47);
             this.pnlWorkloadHeader.TabIndex = 0;
             this.pnlWorkloadHeader.Text = null;
             this.pnlWorkloadHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -956,7 +970,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlAlerts.Name = "pnlAlerts";
             this.pnlAlerts.Radius = 10;
             this.pnlAlerts.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlAlerts.Size = new System.Drawing.Size(338, 258);
+            this.pnlAlerts.Size = new System.Drawing.Size(347, 330);
             this.pnlAlerts.TabIndex = 0;
             this.pnlAlerts.Text = null;
             this.pnlAlerts.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -972,7 +986,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlAlertsList.Padding = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.pnlAlertsList.ScrollBarBackColor = System.Drawing.Color.DimGray;
             this.pnlAlertsList.ScrollBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.pnlAlertsList.Size = new System.Drawing.Size(338, 206);
+            this.pnlAlertsList.Size = new System.Drawing.Size(347, 278);
             this.pnlAlertsList.TabIndex = 1;
             this.pnlAlertsList.WrapContents = false;
             // 
@@ -989,7 +1003,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlAlertsHeader.Padding = new System.Windows.Forms.Padding(14, 8, 14, 8);
             this.pnlAlertsHeader.Radius = 0;
             this.pnlAlertsHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlAlertsHeader.Size = new System.Drawing.Size(338, 52);
+            this.pnlAlertsHeader.Size = new System.Drawing.Size(347, 52);
             this.pnlAlertsHeader.TabIndex = 0;
             this.pnlAlertsHeader.Text = null;
             this.pnlAlertsHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1018,7 +1032,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnl_mid.Padding = new System.Windows.Forms.Padding(20);
             this.pnl_mid.Radius = 10;
             this.pnl_mid.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnl_mid.Size = new System.Drawing.Size(1260, 518);
+            this.pnl_mid.Size = new System.Drawing.Size(1292, 632);
             this.pnl_mid.TabIndex = 3;
             this.pnl_mid.Text = null;
             this.pnl_mid.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1028,7 +1042,7 @@ namespace HospitalEquipmentSystem.UI
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1260, 718);
+            this.ClientSize = new System.Drawing.Size(1292, 832);
             this.Controls.Add(this.pnl_mid);
             this.Controls.Add(this.pnlKpiContainer);
             this.Controls.Add(this.pnlHeader);
@@ -1094,6 +1108,7 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UITextBox txtSearch;
         private Sunny.UI.UIComboBox cmbUrgency;
         private Sunny.UI.UIComboBox cmbDept;
+        private Sunny.UI.UIComboBox cmbSource;
         private Sunny.UI.UIComboBox cmbDateRange;
         private Sunny.UI.UISymbolButton btnQuery;
         private Sunny.UI.UISymbolButton btnReset;
@@ -1123,7 +1138,6 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewButtonColumn Column12;
-        private System.Windows.Forms.DataGridViewButtonColumn Column13;
         private Sunny.UI.UIPanel pnl_mid;
     }
 }

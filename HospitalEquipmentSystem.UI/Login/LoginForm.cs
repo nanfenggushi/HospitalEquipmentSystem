@@ -15,7 +15,7 @@ namespace HospitalEquipmentSystem.UI
     {
         private readonly LoginBLL bll = new LoginBLL();
         private List<UserDto> _allUsers = new List<UserDto>();
-        private UISymbolButton _selectedRoleBtn=null;//记录上一次选中的按钮
+        private UISymbolButton _selectedRoleBtn;
         private bool _isLoading = true;   // 防止初始化时误触发事件
         private int _loadVersion;         // 人员数据加载版本号，防止过期数据覆盖新数据
 
@@ -25,7 +25,7 @@ namespace HospitalEquipmentSystem.UI
             // 按需求不改 Designer 布局，人脸按钮事件在代码里挂载。
             this.uiSymbolButton5.Click += new EventHandler(BtnFaceRecognition_Click);
             this.DoubleBuffered = true;   // 减少界面重绘闪烁
-            ResizeBackground();           // 大图背景一次性缩放，避免每次重绘都做高开销缩放
+           
             cmbUser.SelectedIndexChanged += CmbUser_SelectedIndexChanged;
             this.Shown += (s, e) =>
             {
@@ -34,8 +34,8 @@ namespace HospitalEquipmentSystem.UI
                 int absY = loginPanel.Top + txtPassword.Top + (txtPassword.Height - btnTogglePwd.Height) / 2;
                 btnTogglePwd.Location = new Point(absX, absY);
                 btnTogglePwd.Parent = this;
-                btnTogglePwd.FillColor = Color.Transparent;
-                btnTogglePwd.SymbolColor = Color.FromArgb(19, 35, 58);
+                btnTogglePwd.FillColor = Color.FromArgb(19, 35, 58);
+                btnTogglePwd.SymbolColor = Color.FromArgb(230, 238, 247);
                 btnTogglePwd.BringToFront();
             };
         }
@@ -78,7 +78,7 @@ namespace HospitalEquipmentSystem.UI
                 return;
             }
 
-            // 如果登录成功之后勾选了记住密码逻辑
+            // 登录成功之后勾选记住密码逻辑
             if (chkRememberPwd.Checked)
             {
                 Properties.Settings.Default.RememberPwd = true;
@@ -95,7 +95,6 @@ namespace HospitalEquipmentSystem.UI
                 Properties.Settings.Default.Save();
             }
 
-            //静态LoginUser上下文存储登录信息
             LoginUser.SetUser(user);
             this.DialogResult = DialogResult.OK;
         }
@@ -103,12 +102,11 @@ namespace HospitalEquipmentSystem.UI
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             SelectRole(btnAdmin);
-            //更新下拉框
             ApplyRoleFilter();
             ApplySavedCredentials();   // 切换角色后尝试恢复记住的密码
         }
 
-        private void btnDoctor_Click(object sender, EventArgs e)
+        private void btnDoctor_Click_1(object sender, EventArgs e)
         {
             SelectRole(btnDoctor);
             ApplyRoleFilter();
@@ -124,13 +122,12 @@ namespace HospitalEquipmentSystem.UI
 
         private void SelectRole(UISymbolButton btn)
         {
-            if (_selectedRoleBtn != null)//看上一次选中的按钮为不为空
-            {//把上一次的按钮标为未选中
+            if (_selectedRoleBtn != null)
+            {
                 _selectedRoleBtn.FillColor = Color.FromArgb(19, 35, 58);
                 _selectedRoleBtn.FillSelectedColor = Color.FromArgb(0, 255, 255);
                 _selectedRoleBtn.ForeColor = Color.FromArgb(230, 238, 247);
             }
-            //把btn标为选中样式
             btn.FillColor = Color.FromArgb(0, 255, 255);
             btn.FillSelectedColor = Color.FromArgb(0, 255, 255);
             btn.ForeColor = Color.FromArgb(11, 22, 34);
@@ -251,9 +248,8 @@ namespace HospitalEquipmentSystem.UI
         private void ApplyRoleFilter()
         {
             string role = GetSelectRole();
-            cmbUser.DataSource = 
-                role == null ?
-                 _allUsers
+            cmbUser.DataSource = role == null
+                ? _allUsers
                 : _allUsers.FindAll(u => u.Role == role);
             cmbUser.DisplayMember = "DisplayName";
             cmbUser.ValueMember = "UserId";
@@ -277,6 +273,7 @@ namespace HospitalEquipmentSystem.UI
 
             if (cmbUser.SelectedItem is UserDto user)
             {
+
                 // 切到上次记住的用户 → 填充密码
                 if (chkRememberPwd.Checked
                     && user.UserId.ToString() == Properties.Settings.Default.SavedUser)
@@ -323,12 +320,14 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>
         /// 从注册页返回后刷新人员列表；若刚注册成功，自动切换角色并定位到新账号
         /// </summary>
-        private void RefreshUsers(int focusUserId)
+        private async void RefreshUsers(int focusUserId)
         {
             try
             {
                 _loadVersion++;            // 取消尚未完成的旧加载任务
-                _allUsers = bll.GetLoginUsers();
+                List<UserDto> users = await Task.Run(() => bll.GetLoginUsers());
+                if (IsDisposed) return;
+                _allUsers = users;
                 if (_allUsers.Count == 0) return;
 
                 UserDto focus = null;
@@ -367,24 +366,6 @@ namespace HospitalEquipmentSystem.UI
             {
                 UIMessageBox.ShowError("刷新人员失败：" + ex.Message);
             }
-        }
-
-        /// <summary>
-        /// 背景源图是几千像素的大图，窗体每次重绘 Stretch 缩放开销极高，
-        /// 这里一次性缩放到窗体尺寸，之后重绘只是近乎等尺寸的快速复制。
-        /// </summary>
-        private void ResizeBackground()
-        {
-            Image src = BackgroundImage;
-            if (src == null) return;
-
-            // 目标尺寸：窗体客户区；若窗体可能最大化，则取屏幕尺寸（不超过原图）
-            int w = Math.Min(src.Width, Math.Max(ClientSize.Width, Screen.PrimaryScreen.Bounds.Width));
-            int h = Math.Min(src.Height, Math.Max(ClientSize.Height, Screen.PrimaryScreen.Bounds.Height));
-            if (w <= 0 || h <= 0) return;
-            if (w == src.Width && h == src.Height) return;   // 本来就够小，无需处理
-
-            BackgroundImage = new Bitmap(src, w, h);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace HospitalEquipmentSystem.UI
+namespace HospitalEquipmentSystem.UI
 {
     partial class Equipment_BorrowingUI
     {
@@ -35,6 +35,7 @@
             this.uiPanelHeader = new Sunny.UI.UIPanel();
             this.lblTitle = new Sunny.UI.UILabel();
             this.lblSubtitle = new Sunny.UI.UILabel();
+            this.lblUser = new Sunny.UI.UILabel();
             this.btnApply = new Sunny.UI.UISymbolButton();
             this.uiPanelPager = new Sunny.UI.UIPanel();
             this.btnNextPage = new Sunny.UI.UISymbolButton();
@@ -119,6 +120,7 @@
             // 
             this.uiPanelHeader.Controls.Add(this.lblTitle);
             this.uiPanelHeader.Controls.Add(this.lblSubtitle);
+            this.uiPanelHeader.Controls.Add(this.lblUser);
             this.uiPanelHeader.Controls.Add(this.btnApply);
             this.uiPanelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.uiPanelHeader.FillColor = System.Drawing.Color.Transparent;
@@ -131,7 +133,7 @@
             this.uiPanelHeader.Padding = new System.Windows.Forms.Padding(20, 12, 20, 12);
             this.uiPanelHeader.Radius = 10;
             this.uiPanelHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.uiPanelHeader.Size = new System.Drawing.Size(1260, 80);
+            this.uiPanelHeader.Size = new System.Drawing.Size(1292, 80);
             this.uiPanelHeader.TabIndex = 0;
             this.uiPanelHeader.Text = null;
             this.uiPanelHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -160,6 +162,18 @@
             this.lblSubtitle.Text = "设备借用申请 → 审批 → 使用 → 归还验收 全流程管理";
             this.lblSubtitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblUser
+            // 
+            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblUser.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblUser.Location = new System.Drawing.Point(852, 12);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(200, 20);
+            this.lblUser.TabIndex = 3;
+            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // btnApply
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -169,7 +183,7 @@
             this.btnApply.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(255)))));
             this.btnApply.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
             this.btnApply.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnApply.Location = new System.Drawing.Point(1110, 21);
+            this.btnApply.Location = new System.Drawing.Point(1142, 21);
             this.btnApply.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnApply.Name = "btnApply";
             this.btnApply.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
@@ -178,7 +192,6 @@
             this.btnApply.Symbol = 61543;
             this.btnApply.TabIndex = 2;
             this.btnApply.Text = "申请借用";
-            this.btnApply.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uiPanelPager
             // 
@@ -194,7 +207,7 @@
             this.uiPanelPager.Margin = new System.Windows.Forms.Padding(0);
             this.uiPanelPager.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanelPager.Name = "uiPanelPager";
-            this.uiPanelPager.Size = new System.Drawing.Size(1260, 40);
+            this.uiPanelPager.Size = new System.Drawing.Size(1292, 40);
             this.uiPanelPager.TabIndex = 1;
             this.uiPanelPager.Text = null;
             this.uiPanelPager.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -211,7 +224,6 @@
             this.btnNextPage.Symbol = 61697;
             this.btnNextPage.TabIndex = 2;
             this.btnNextPage.Text = "下一页";
-            this.btnNextPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // lblPageInfo
             // 
@@ -237,14 +249,13 @@
             this.btnPrevPage.Symbol = 61696;
             this.btnPrevPage.TabIndex = 0;
             this.btnPrevPage.Text = "上一页";
-            this.btnPrevPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // lblTotalLabel
             // 
             this.lblTotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalLabel.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lblTotalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            this.lblTotalLabel.Location = new System.Drawing.Point(940, 10);
+            this.lblTotalLabel.Location = new System.Drawing.Point(972, 10);
             this.lblTotalLabel.Name = "lblTotalLabel";
             this.lblTotalLabel.Size = new System.Drawing.Size(200, 20);
             this.lblTotalLabel.TabIndex = 3;
@@ -262,7 +273,7 @@
             this.uiPanelBody.Margin = new System.Windows.Forms.Padding(0);
             this.uiPanelBody.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanelBody.Name = "uiPanelBody";
-            this.uiPanelBody.Size = new System.Drawing.Size(1260, 712);
+            this.uiPanelBody.Size = new System.Drawing.Size(1292, 712);
             this.uiPanelBody.TabIndex = 2;
             this.uiPanelBody.Text = null;
             this.uiPanelBody.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -279,7 +290,7 @@
             this.pnlViews.Margin = new System.Windows.Forms.Padding(0);
             this.pnlViews.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlViews.Name = "pnlViews";
-            this.pnlViews.Size = new System.Drawing.Size(1260, 530);
+            this.pnlViews.Size = new System.Drawing.Size(1292, 530);
             this.pnlViews.TabIndex = 2;
             this.pnlViews.Text = null;
             this.pnlViews.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -294,7 +305,7 @@
             this.pnlChart.Location = new System.Drawing.Point(0, 0);
             this.pnlChart.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlChart.Name = "pnlChart";
-            this.pnlChart.Size = new System.Drawing.Size(1260, 530);
+            this.pnlChart.Size = new System.Drawing.Size(1292, 530);
             this.pnlChart.TabIndex = 2;
             this.pnlChart.Visible = false;
             this.pnlChart.SizeChanged += new System.EventHandler(this.pnlChart_SizeChanged);
@@ -302,13 +313,11 @@
             // chartLayout
             // 
             this.chartLayout.ColumnCount = 2;
-            this.chartLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.73016F));
-            this.chartLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.26984F));
+            this.chartLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.chartLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.chartLayout.Controls.Add(this.titlePanel4, 1, 1);
             this.chartLayout.Controls.Add(this.titlePanel3, 0, 1);
             this.chartLayout.Controls.Add(this.titlePanel1, 0, 0);
-            this.chartLayout.Controls.Add(this.titlePanel2, 1, 0);
-            this.chartLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartLayout.Location = new System.Drawing.Point(0, 0);
             this.chartLayout.Margin = new System.Windows.Forms.Padding(4);
             this.chartLayout.MinimumSize = new System.Drawing.Size(0, 500);
@@ -316,7 +325,7 @@
             this.chartLayout.RowCount = 2;
             this.chartLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.chartLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.chartLayout.Size = new System.Drawing.Size(1260, 530);
+            this.chartLayout.Size = new System.Drawing.Size(1292, 530);
             this.chartLayout.TabIndex = 0;
             this.chartLayout.TagString = null;
             // 
@@ -325,7 +334,7 @@
             this.titlePanel4.Controls.Add(this.chartDoughnut);
             this.titlePanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.titlePanel4.Font = new System.Drawing.Font("宋体", 12F);
-            this.titlePanel4.Location = new System.Drawing.Point(622, 273);
+            this.titlePanel4.Location = new System.Drawing.Point(654, 273);
             this.titlePanel4.Margin = new System.Windows.Forms.Padding(8);
             this.titlePanel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.titlePanel4.Name = "titlePanel4";
@@ -362,7 +371,7 @@
             this.titlePanel3.Name = "titlePanel3";
             this.titlePanel3.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
             this.titlePanel3.ShowText = false;
-            this.titlePanel3.Size = new System.Drawing.Size(598, 249);
+            this.titlePanel3.Size = new System.Drawing.Size(630, 249);
             this.titlePanel3.TabIndex = 2;
             this.titlePanel3.Text = "近12个月借用/归还趋势";
             this.titlePanel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -379,9 +388,43 @@
             this.chartLine.MinimumSize = new System.Drawing.Size(1, 1);
             this.chartLine.MouseDownType = Sunny.UI.UILineChartMouseDownType.Zoom;
             this.chartLine.Name = "chartLine";
-            this.chartLine.Size = new System.Drawing.Size(596, 214);
+            this.chartLine.Size = new System.Drawing.Size(628, 214);
             this.chartLine.SubFont = new System.Drawing.Font("宋体", 10.5F);
             this.chartLine.TabIndex = 0;
+            // 
+            // titlePanel2
+            // 
+            this.titlePanel2.Controls.Add(this.chartPie);
+            this.titlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.titlePanel2.Location = new System.Drawing.Point(773, 8);
+            this.titlePanel2.Margin = new System.Windows.Forms.Padding(8);
+            this.titlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.titlePanel2.Name = "titlePanel2";
+            this.titlePanel2.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
+            this.titlePanel2.ShowText = false;
+            this.titlePanel2.Size = new System.Drawing.Size(749, 350);
+            this.titlePanel2.Size = new System.Drawing.Size(634, 294);
+            this.titlePanel2.TabIndex = 1;
+            this.titlePanel2.Text = "科室借用分布";
+            this.titlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titlePanel2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.titlePanel2.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.titlePanel2.TitleHeight = 34;
+            // 
+            // chartPie
+            // 
+            this.chartPie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartPie.Font = new System.Drawing.Font("宋体", 12F);
+            this.chartPie.LegendFont = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.Location = new System.Drawing.Point(1, 34);
+            this.chartPie.MinimumSize = new System.Drawing.Size(1, 1);
+            this.chartPie.Name = "chartPie";
+            this.chartPie.Size = new System.Drawing.Size(747, 315);
+            this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.Size = new System.Drawing.Size(632, 259);
+            this.chartPie.SubFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chartPie.TabIndex = 0;
             // 
             // titlePanel1
             // 
@@ -394,7 +437,7 @@
             this.titlePanel1.Name = "titlePanel1";
             this.titlePanel1.Padding = new System.Windows.Forms.Padding(1, 34, 1, 1);
             this.titlePanel1.ShowText = false;
-            this.titlePanel1.Size = new System.Drawing.Size(598, 249);
+            this.titlePanel1.Size = new System.Drawing.Size(630, 249);
             this.titlePanel1.TabIndex = 0;
             this.titlePanel1.Text = "设备借用 TOP10";
             this.titlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -410,7 +453,7 @@
             this.chartBar.Location = new System.Drawing.Point(1, 34);
             this.chartBar.MinimumSize = new System.Drawing.Size(1, 1);
             this.chartBar.Name = "chartBar";
-            this.chartBar.Size = new System.Drawing.Size(596, 214);
+            this.chartBar.Size = new System.Drawing.Size(628, 214);
             this.chartBar.SubFont = new System.Drawing.Font("宋体", 10.5F);
             this.chartBar.TabIndex = 0;
             // 
@@ -419,7 +462,7 @@
             this.titlePanel2.Controls.Add(this.chartPie);
             this.titlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.titlePanel2.Font = new System.Drawing.Font("宋体", 12F);
-            this.titlePanel2.Location = new System.Drawing.Point(622, 8);
+            this.titlePanel2.Location = new System.Drawing.Point(654, 8);
             this.titlePanel2.Margin = new System.Windows.Forms.Padding(8);
             this.titlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.titlePanel2.Name = "titlePanel2";
@@ -456,7 +499,7 @@
             this.pnlCalendar.Margin = new System.Windows.Forms.Padding(0);
             this.pnlCalendar.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlCalendar.Name = "pnlCalendar";
-            this.pnlCalendar.Size = new System.Drawing.Size(1260, 530);
+            this.pnlCalendar.Size = new System.Drawing.Size(1292, 530);
             this.pnlCalendar.TabIndex = 1;
             this.pnlCalendar.Text = null;
             this.pnlCalendar.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -469,11 +512,11 @@
             this.pnlCalendarRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCalendarRight.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.pnlCalendarRight.Font = new System.Drawing.Font("宋体", 12F);
-            this.pnlCalendarRight.Location = new System.Drawing.Point(0, 207);
+            this.pnlCalendarRight.Location = new System.Drawing.Point(0, 244);
             this.pnlCalendarRight.Margin = new System.Windows.Forms.Padding(0);
             this.pnlCalendarRight.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlCalendarRight.Name = "pnlCalendarRight";
-            this.pnlCalendarRight.Size = new System.Drawing.Size(1260, 323);
+            this.pnlCalendarRight.Size = new System.Drawing.Size(1292, 286);
             this.pnlCalendarRight.TabIndex = 1;
             this.pnlCalendarRight.Text = null;
             this.pnlCalendarRight.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -491,7 +534,7 @@
             this.lstCalendar.Name = "lstCalendar";
             this.lstCalendar.Padding = new System.Windows.Forms.Padding(2);
             this.lstCalendar.ShowText = false;
-            this.lstCalendar.Size = new System.Drawing.Size(1260, 287);
+            this.lstCalendar.Size = new System.Drawing.Size(1292, 250);
             this.lstCalendar.TabIndex = 1;
             this.lstCalendar.Text = null;
             // 
@@ -502,7 +545,7 @@
             this.lblCalendarHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.lblCalendarHint.Location = new System.Drawing.Point(0, 0);
             this.lblCalendarHint.Name = "lblCalendarHint";
-            this.lblCalendarHint.Size = new System.Drawing.Size(1260, 36);
+            this.lblCalendarHint.Size = new System.Drawing.Size(1292, 36);
             this.lblCalendarHint.TabIndex = 0;
             this.lblCalendarHint.Text = "选择日期查看当日应还借用";
             this.lblCalendarHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -527,7 +570,7 @@
             this.pnlList.Margin = new System.Windows.Forms.Padding(0);
             this.pnlList.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(1260, 530);
+            this.pnlList.Size = new System.Drawing.Size(1292, 530);
             this.pnlList.TabIndex = 0;
             this.pnlList.Text = null;
             this.pnlList.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -586,7 +629,7 @@
             this.dgvList.ScrollBarStyleInherited = false;
             this.dgvList.SelectedIndex = -1;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(1260, 530);
+            this.dgvList.Size = new System.Drawing.Size(1292, 530);
             this.dgvList.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.dgvList.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
             this.dgvList.TabIndex = 0;
@@ -620,7 +663,7 @@
             this.pnlToolbar.Name = "pnlToolbar";
             this.pnlToolbar.Radius = 10;
             this.pnlToolbar.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlToolbar.Size = new System.Drawing.Size(1260, 88);
+            this.pnlToolbar.Size = new System.Drawing.Size(1292, 88);
             this.pnlToolbar.TabIndex = 1;
             this.pnlToolbar.Text = null;
             this.pnlToolbar.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -637,7 +680,6 @@
             this.btnChartView.Symbol = 61568;
             this.btnChartView.TabIndex = 2;
             this.btnChartView.Text = "统计视图";
-            this.btnChartView.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // btnCalendarView
             // 
@@ -651,7 +693,6 @@
             this.btnCalendarView.Symbol = 61555;
             this.btnCalendarView.TabIndex = 1;
             this.btnCalendarView.Text = "日历视图";
-            this.btnCalendarView.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // btnListView
             // 
@@ -665,7 +706,6 @@
             this.btnListView.Symbol = 61642;
             this.btnListView.TabIndex = 0;
             this.btnListView.Text = "列表视图";
-            this.btnListView.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // lblKeyword
             // 
@@ -709,7 +749,9 @@
             // 
             this.cmbStatus.DataSource = null;
             this.cmbStatus.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.cmbStatus.Font = new System.Drawing.Font("宋体", 10F);            this.cmbStatus.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbStatus.Font = new System.Drawing.Font("宋体", 10F);
+            this.cmbStatus.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cmbStatus.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbStatus.Location = new System.Drawing.Point(624, 5);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(0);
             this.cmbStatus.MinimumSize = new System.Drawing.Size(1, 1);
@@ -736,7 +778,9 @@
             // 
             this.cmbEquipment.DataSource = null;
             this.cmbEquipment.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.cmbEquipment.Font = new System.Drawing.Font("宋体", 10F);            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.Font = new System.Drawing.Font("宋体", 10F);
+            this.cmbEquipment.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cmbEquipment.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cmbEquipment.Location = new System.Drawing.Point(624, 43);
             this.cmbEquipment.Margin = new System.Windows.Forms.Padding(0);
             this.cmbEquipment.MinimumSize = new System.Drawing.Size(1, 1);
@@ -765,7 +809,6 @@
             this.btnSearch.Symbol = 61442;
             this.btnSearch.TabIndex = 9;
             this.btnSearch.Text = "搜索";
-            this.btnSearch.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // btnReset
             // 
@@ -780,7 +823,6 @@
             this.btnReset.Size = new System.Drawing.Size(70, 34);
             this.btnReset.TabIndex = 10;
             this.btnReset.Text = "重置";
-            this.btnReset.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // btnRefresh
             // 
@@ -795,7 +837,6 @@
             this.btnRefresh.Size = new System.Drawing.Size(46, 34);
             this.btnRefresh.Symbol = 61473;
             this.btnRefresh.TabIndex = 11;
-            this.btnRefresh.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRefresh.TipsText = "刷新";
             // 
             // lblDateRange
@@ -884,7 +925,7 @@
             this.pnlStats.Margin = new System.Windows.Forms.Padding(0);
             this.pnlStats.MinimumSize = new System.Drawing.Size(1, 1);
             this.pnlStats.Name = "pnlStats";
-            this.pnlStats.Size = new System.Drawing.Size(1260, 94);
+            this.pnlStats.Size = new System.Drawing.Size(1292, 94);
             this.pnlStats.TabIndex = 0;
             this.pnlStats.Text = null;
             this.pnlStats.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -907,7 +948,7 @@
             this.uiTableLayoutPanel1.Padding = new System.Windows.Forms.Padding(12, 8, 12, 8);
             this.uiTableLayoutPanel1.RowCount = 1;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1260, 94);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1292, 94);
             this.uiTableLayoutPanel1.TabIndex = 0;
             this.uiTableLayoutPanel1.TagString = null;
             // 
@@ -919,12 +960,12 @@
             this.cardDueToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardDueToday.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.cardDueToday.Font = new System.Drawing.Font("宋体", 12F);
-            this.cardDueToday.Location = new System.Drawing.Point(943, 12);
+            this.cardDueToday.Location = new System.Drawing.Point(967, 12);
             this.cardDueToday.Margin = new System.Windows.Forms.Padding(4);
             this.cardDueToday.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardDueToday.Name = "cardDueToday";
             this.cardDueToday.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.cardDueToday.Size = new System.Drawing.Size(301, 70);
+            this.cardDueToday.Size = new System.Drawing.Size(309, 70);
             this.cardDueToday.TabIndex = 3;
             this.cardDueToday.Text = null;
             this.cardDueToday.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -962,12 +1003,12 @@
             this.cardOverdue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardOverdue.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.cardOverdue.Font = new System.Drawing.Font("宋体", 12F);
-            this.cardOverdue.Location = new System.Drawing.Point(634, 12);
+            this.cardOverdue.Location = new System.Drawing.Point(650, 12);
             this.cardOverdue.Margin = new System.Windows.Forms.Padding(4);
             this.cardOverdue.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardOverdue.Name = "cardOverdue";
             this.cardOverdue.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.cardOverdue.Size = new System.Drawing.Size(301, 70);
+            this.cardOverdue.Size = new System.Drawing.Size(309, 70);
             this.cardOverdue.TabIndex = 2;
             this.cardOverdue.Text = null;
             this.cardOverdue.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1006,12 +1047,12 @@
             this.cardBorrowing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardBorrowing.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
             this.cardBorrowing.Font = new System.Drawing.Font("宋体", 12F);
-            this.cardBorrowing.Location = new System.Drawing.Point(325, 12);
+            this.cardBorrowing.Location = new System.Drawing.Point(333, 12);
             this.cardBorrowing.Margin = new System.Windows.Forms.Padding(4);
             this.cardBorrowing.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardBorrowing.Name = "cardBorrowing";
             this.cardBorrowing.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.cardBorrowing.Size = new System.Drawing.Size(301, 70);
+            this.cardBorrowing.Size = new System.Drawing.Size(309, 70);
             this.cardBorrowing.TabIndex = 1;
             this.cardBorrowing.Text = null;
             this.cardBorrowing.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1055,7 +1096,7 @@
             this.cardPending.MinimumSize = new System.Drawing.Size(1, 1);
             this.cardPending.Name = "cardPending";
             this.cardPending.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.cardPending.Size = new System.Drawing.Size(301, 70);
+            this.cardPending.Size = new System.Drawing.Size(309, 70);
             this.cardPending.TabIndex = 0;
             this.cardPending.Text = null;
             this.cardPending.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1090,10 +1131,8 @@
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
-            this.AutoScrollMinSize = new System.Drawing.Size(0, 718);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1260, 832);
+            this.ClientSize = new System.Drawing.Size(1292, 832);
             this.Controls.Add(this.uiPanelBody);
             this.Controls.Add(this.uiPanelPager);
             this.Controls.Add(this.uiPanelHeader);
@@ -1132,6 +1171,7 @@
         private Sunny.UI.UIPanel uiPanelHeader;
         private Sunny.UI.UILabel lblTitle;
         private Sunny.UI.UILabel lblSubtitle;
+        private Sunny.UI.UILabel lblUser;
         private Sunny.UI.UIPanel uiPanelPager;
         private Sunny.UI.UILabel lblTotalLabel;
         private Sunny.UI.UISymbolButton btnPrevPage;

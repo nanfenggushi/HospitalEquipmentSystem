@@ -113,7 +113,7 @@ namespace HospitalEquipmentSystem.UI.management
             int bottom = pnlPager.Height;
             int availableHeight = Math.Max(0, ClientSize.Height - top - bottom);
             int x = Math.Max(0, (ClientSize.Width - form.Width) / 2);
-            int y = Math.Max(0, top - 31);
+            int y = top + Math.Max(0, (availableHeight - form.Height) / 2);
             return new Point(x, y);
         }
 

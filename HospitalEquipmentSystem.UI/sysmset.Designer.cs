@@ -1,4 +1,4 @@
-namespace HospitalEquipmentSystem.UI {
+﻿namespace HospitalEquipmentSystem.UI {
     partial class sysmset {
         /// <summary>
         /// 必需的设计器变量。

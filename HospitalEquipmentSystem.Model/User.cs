@@ -39,10 +39,5 @@ namespace HospitalEquipment.Model
 
         /// <summary>用户记录创建时间</summary>
         public DateTime CreatedAt { get; set; }
-
-        /// <summary>
-        /// 头像地址
-        /// </summary>
-        public string AvatarUrl { get; set; }
     }
 }

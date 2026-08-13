@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace HospitalEquipment.Model
 {
@@ -69,14 +69,5 @@ namespace HospitalEquipment.Model
 
         /// <summary>设备编号（关联 Equipment 表查出）</summary>
         public string EquipmentNo { get; set; }
-
-        /// <summary>故障照片文件路径（可空）</summary>
-        public string PhotoPath { get; set; }
-
-        /// <summary>AI 识别出的故障类型（可空）</summary>
-        public string AiFaultType { get; set; }
-
-        /// <summary>AI 置信度 0.00~1.00（可空）</summary>
-        public decimal? AiConfidence { get; set; }
     }
 }

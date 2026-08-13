@@ -66,7 +66,7 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
                     uiLabel3.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
             }, null, 0, 1000);
 
-            // 4. 报警流区域初始高度（足以显示一张卡片），等数据出现后再向下变大，直到 uiPanel9 上方停止
+          
        
 
             // 4.1 启用自动滚动：内容超出可视区域（封顶后数据继续增加）才出现滚动条
@@ -179,33 +179,9 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
         }
 
 
-        // ==================== 报警流动态高度 ====================
-
-        /// <summary>
-        /// 规则：卡片越多面板越长，但封顶在 uiPanel9 上方，不再变大
-        /// </summary>
-        private void UpdateFlowPanelHeight()
-        {
-            // 没有卡片就不延伸
-            if (uiFlowLayoutPanel1.FlowLayoutPanel.Controls.Count == 0)
-            {
-                return;
-            }
-
-            // 取最新一张卡片的实际高度作为延伸量，保证延伸大小和卡片控件大小一致
-            int cardHeight = uiFlowLayoutPanel1.FlowLayoutPanel.Controls[0].Height;
-
-            // 新面板高度 = 当前高度 + 一条数据的高度（每次只延伸一条数据）
-           
-            // 封顶：uiPanel9 顶部 - 本面板顶部 - 5 像素间距
-            int maxPanelHeight = uiPanel9.Top - uiTitlePanel1.Top - 20;
-            if (uiTitlePanel1.Height < maxPanelHeight)
-            {
-                uiTitlePanel1.Height += cardHeight;
-            }
+       
              
 
-        }
         // ==================== 黄色跳动实心圆 ====================
 
         /// <summary>
@@ -626,8 +602,7 @@ namespace HospitalEquipmentSystem.UI           // 声明当前代码所属的命
                 uiFlowLayoutPanel1.FlowLayoutPanel.Controls.RemoveAt(uiFlowLayoutPanel1.FlowLayoutPanel.Controls.Count - 1);
             }
 
-            // 卡片数量变化后，动态调整面板高度（延伸到 uiPanel9 上方停止）
-            UpdateFlowPanelHeight();
+          
         }
 
         /// <summary>

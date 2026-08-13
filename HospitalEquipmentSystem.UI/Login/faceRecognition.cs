@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace HospitalEquipmentSystem.UI.Login
@@ -184,7 +185,7 @@ namespace HospitalEquipmentSystem.UI.Login
             }
         }
 
-        /// <summary>摄像头帧入口：未识别时只显示预览，开始识别后同帧送入 ArcFace。</summary>
+/// <summary>摄像头帧入口：未识别时只显示预览，开始识别后同帧送入 ArcFace。</summary>
         private void FrameTimer_Tick(object sender, EventArgs e)
         {
             if (_camera == null || !_camera.IsRunning)
@@ -238,7 +239,7 @@ namespace HospitalEquipmentSystem.UI.Login
                 return;
             }
 
-            // RGB 活体检测：只接受返回“真人”的帧，降低照片/视频攻击风险。
+            // RGB 活体检测：只接受返回"真人"的帧，降低照片/视频攻击风险。
             int processResult = _engine.ASFProcess(frame, multiFaceInfo, FaceEngineMask.ASF_LIVENESS);
             if (processResult == 0)
             {
