@@ -1,4 +1,4 @@
-﻿namespace HospitalEquipmentSystem.UI
+﻿﻿﻿﻿namespace HospitalEquipmentSystem.UI
 {
     partial class LoginForm
     {
@@ -92,6 +92,7 @@
             this.uiSymbolButton5.RadiusSides = ((Sunny.UI.UICornerRadiusSides)((Sunny.UI.UICornerRadiusSides.RightTop | Sunny.UI.UICornerRadiusSides.RightBottom)));
             this.uiSymbolButton5.Size = new System.Drawing.Size(81, 55);
             this.uiSymbolButton5.TabIndex = 11;
+            this.uiSymbolButton5.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
             // uibtn_register
             // 
@@ -265,7 +266,7 @@
             this.btnTogglePwd.Name = "btnTogglePwd";
             this.btnTogglePwd.RectColor = System.Drawing.Color.Transparent;
             this.btnTogglePwd.Size = new System.Drawing.Size(36, 28);
-            this.btnTogglePwd.Symbol = 61550;
+            this.btnTogglePwd.Symbol = 61552;
             this.btnTogglePwd.SymbolSize = 22;
             this.btnTogglePwd.TabIndex = 1;
             this.btnTogglePwd.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

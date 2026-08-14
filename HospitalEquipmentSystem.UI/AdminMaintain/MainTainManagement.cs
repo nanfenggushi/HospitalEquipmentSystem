@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
 using HospitalEquipment.Util;
+using Microsoft.VisualBasic;
 
 namespace HospitalEquipmentSystem.UI
 {
@@ -487,7 +488,33 @@ namespace HospitalEquipmentSystem.UI
                     break;
                 case "已完成":
                     menu.Items.Add("查看详情", null, (s, ev) =>
-                        UIMessageBox.Show($"工单号: {dto.RepairNo}\n设备: {dto.EquipmentName}\n维修人: {dto.RepairerName}\n停机时长: {dto.DowntimeHours}h"));
+                    {
+                        string downtimeText = dto.DowntimeHours?.ToString() ?? "0";
+                        UIMessageBox.Show($"工单号: {dto.RepairNo}\n设备: {dto.EquipmentName}\n维修人: {dto.RepairerName}\n停机时长: {downtimeText} 小时");
+
+                        if (UIMessageBox.ShowAsk($"是否修改停机时长？\n当前值：{downtimeText} 小时"))
+                        {
+                            string input = Interaction.InputBox(
+                                "请输入新的停机时长（小时）：", "修改停机时长", downtimeText);
+                            if (string.IsNullOrEmpty(input))
+                                return;
+
+                            if (int.TryParse(input.Trim(), out int newHours) && newHours >= 0)
+                            {
+                                if (BLL.UpdateDowntimeHours(dto.RecordId, newHours))
+                                {
+                                    UIMessageBox.Show("停机时长已更新");
+                                    LoadData();
+                                }
+                                else
+                                    UIMessageBox.Show("更新失败，请重试");
+                            }
+                            else
+                            {
+                                UIMessageBox.Show("输入无效，请输入非负整数");
+                            }
+                        }
+                    });
                     break;
             }
 

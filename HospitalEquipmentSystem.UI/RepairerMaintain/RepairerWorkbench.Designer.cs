@@ -296,7 +296,7 @@ namespace HospitalEquipmentSystem.UI
             this.pnlPager.Controls.Add(this.lblPageInfo);
             this.pnlPager.Controls.Add(this.btnNextPage);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlPager.Location = new System.Drawing.Point(0, 572);
+            this.pnlPager.Location = new System.Drawing.Point(0, 458);
             this.pnlPager.Name = "pnlPager";
             this.pnlPager.Size = new System.Drawing.Size(1260, 40);
             this.pnlPager.TabIndex = 1;
@@ -346,7 +346,7 @@ namespace HospitalEquipmentSystem.UI
             this.dgvOrders.AllowUserToAddRows = false;
             this.dgvOrders.AllowUserToDeleteRows = false;
             this.dgvOrders.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvOrders.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOrders.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
             this.dgvOrders.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -400,14 +400,15 @@ namespace HospitalEquipmentSystem.UI
             this.dgvOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvOrders.RowHeadersVisible = false;
             this.dgvOrders.RowHeadersWidth = 62;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.InactiveCaption;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgvOrders.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOrders.RowTemplate.Height = 38;
             this.dgvOrders.SelectedIndex = -1;
             this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrders.Size = new System.Drawing.Size(1260, 498);
-            this.dgvOrders.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgvOrders.StripeEvenColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvOrders.StripeOddColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvOrders.TabIndex = 0;
             // 
             // colRepairNo

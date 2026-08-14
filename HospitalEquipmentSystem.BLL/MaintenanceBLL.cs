@@ -53,7 +53,7 @@ namespace HospitalEquipment.BLL
                     StatusText = MaintenanceHelper.StatusToCn(row["Status"].ToString()),
                     RepairResult = row.Table.Columns.Contains("RepairResult") ? row["RepairResult"]?.ToString() : "",
                     RepairCost = row.Table.Columns.Contains("RepairCost") ? row["RepairCost"] as decimal? : null,
-                    CompleteTime = row.Table.Columns.Contains("CompleteTime") && row["CompleteTime"] != DBNull.Value 
+                    CompleteTime = row.Table.Columns.Contains("CompleteTime") && row["CompleteTime"] != DBNull.Value
                         ? (DateTime?)row["CompleteTime"] : null,
                 });
             }
@@ -267,10 +267,18 @@ namespace HospitalEquipment.BLL
         /// <summary>
         /// 维修员提交维修结果（InProgress → Done）
         /// </summary>
-        public bool SubmitRepairResult(int recordId, string repairResult, 
+        public bool SubmitRepairResult(int recordId, string repairResult,
                                        decimal? repairCost, int? downtimeHours)
         {
             return dal.SubmitRepairResult(recordId, repairResult, repairCost, downtimeHours) > 0;
+        }
+
+        /// <summary>
+        /// 管理员端：单独更新停机时长
+        /// </summary>
+        public bool UpdateDowntimeHours(int recordId, int downtimeHours)
+        {
+            return dal.UpdateDowntimeHours(recordId, downtimeHours) > 0;
         }
 
         // ==================== 医生端方法 ====================

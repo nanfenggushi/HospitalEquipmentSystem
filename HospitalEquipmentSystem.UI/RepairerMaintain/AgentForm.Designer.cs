@@ -31,6 +31,10 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.Label lblManualAmount;
         private System.Windows.Forms.Label lblTotalAmount;
         private Sunny.UI.UISymbolButton btnConfirm;
+        private System.Windows.Forms.Panel pnlDowntime;
+        private System.Windows.Forms.Label lblDowntime;
+        private System.Windows.Forms.TextBox txtDowntimeHours;
+        private System.Windows.Forms.Label lblDowntimeUnit;
 
         protected override void Dispose(bool disposing)
         {
@@ -76,9 +80,14 @@ namespace HospitalEquipmentSystem.UI
             this.colIsManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnConfirm = new Sunny.UI.UISymbolButton();
+            this.pnlDowntime = new System.Windows.Forms.Panel();
+            this.lblDowntime = new System.Windows.Forms.Label();
+            this.txtDowntimeHours = new System.Windows.Forms.TextBox();
+            this.lblDowntimeUnit = new System.Windows.Forms.Label();
             this.grpAi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFault)).BeginInit();
             this.grpMaterials.SuspendLayout();
+            this.pnlDowntime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterials)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,6 +215,10 @@ namespace HospitalEquipmentSystem.UI
             this.grpMaterials.Controls.Add(this.cmbMaterialSelect);
             this.grpMaterials.Controls.Add(this.dgvMaterials);
             this.grpMaterials.Controls.Add(this.btnConfirm);
+            this.grpMaterials.Controls.Add(this.pnlDowntime);
+            this.pnlDowntime.Controls.Add(this.lblDowntime);
+            this.pnlDowntime.Controls.Add(this.txtDowntimeHours);
+            this.pnlDowntime.Controls.Add(this.lblDowntimeUnit);
             this.grpMaterials.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
             this.grpMaterials.Location = new System.Drawing.Point(12, 292);
             this.grpMaterials.Name = "grpMaterials";
@@ -443,6 +456,49 @@ namespace HospitalEquipmentSystem.UI
             this.btnConfirm.Text = "确认物料清单";
             this.btnConfirm.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
+            // pnlDowntime
+            // 
+            this.pnlDowntime.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDowntime.Location = new System.Drawing.Point(340, 198);
+            this.pnlDowntime.Name = "pnlDowntime";
+            this.pnlDowntime.Size = new System.Drawing.Size(200, 28);
+            this.pnlDowntime.TabIndex = 8;
+            // 
+            // lblDowntime
+            // 
+            this.lblDowntime.AutoSize = true;
+            this.lblDowntime.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblDowntime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblDowntime.Location = new System.Drawing.Point(0, 5);
+            this.lblDowntime.Name = "lblDowntime";
+            this.lblDowntime.Size = new System.Drawing.Size(56, 17);
+            this.lblDowntime.TabIndex = 0;
+            this.lblDowntime.Text = "停机时长";
+            // 
+            // txtDowntimeHours
+            // 
+            this.txtDowntimeHours.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.txtDowntimeHours.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDowntimeHours.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.txtDowntimeHours.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.txtDowntimeHours.Location = new System.Drawing.Point(62, 1);
+            this.txtDowntimeHours.Name = "txtDowntimeHours";
+            this.txtDowntimeHours.Size = new System.Drawing.Size(80, 24);
+            this.txtDowntimeHours.TabIndex = 1;
+            this.txtDowntimeHours.Text = "0";
+            this.txtDowntimeHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblDowntimeUnit
+            // 
+            this.lblDowntimeUnit.AutoSize = true;
+            this.lblDowntimeUnit.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lblDowntimeUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            this.lblDowntimeUnit.Location = new System.Drawing.Point(148, 5);
+            this.lblDowntimeUnit.Name = "lblDowntimeUnit";
+            this.lblDowntimeUnit.Size = new System.Drawing.Size(32, 17);
+            this.lblDowntimeUnit.TabIndex = 2;
+            this.lblDowntimeUnit.Text = "小时";
+            // 
             // AgentForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -465,6 +521,8 @@ namespace HospitalEquipmentSystem.UI
             ((System.ComponentModel.ISupportInitialize)(this.picFault)).EndInit();
             this.grpMaterials.ResumeLayout(false);
             this.grpMaterials.PerformLayout();
+            this.pnlDowntime.ResumeLayout(false);
+            this.pnlDowntime.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterials)).EndInit();
             this.ResumeLayout(false);
 

@@ -128,6 +128,15 @@ namespace HospitalEquipmentSystem.UI
                 // 显示故障描述
                 lblFaultDesc.Text = _orderRow["FaultDesc"]?.ToString() ?? "";
 
+                // 自动计算预估停机时长（报修时间 → 当前时间）
+                if (_orderRow["ReportTime"] != DBNull.Value)
+                {
+                    var reportTime = Convert.ToDateTime(_orderRow["ReportTime"]);
+                    int estimatedHours = (int)Math.Ceiling((DateTime.Now - reportTime).TotalHours);
+                    if (estimatedHours < 0) estimatedHours = 0;
+                    txtDowntimeHours.Text = estimatedHours.ToString();
+                }
+
                 // 显示照片
                 string photoPath = _orderRow["PhotoPath"]?.ToString();
                 LoadPhoto(photoPath);
@@ -614,7 +623,15 @@ namespace HospitalEquipmentSystem.UI
                 }
 
                 // ④ 完成维修：写入 RepairResult、RepairCost，状态更新为 Done
-                bool success = MntBLL.SubmitRepairResult(_recordId, repairResult, totalAmount, 0);
+                // 自动计算停机时长：优先取用户输入，无效时按"当前时间 - 报修时间"估算
+                int downtimeHours = 0;
+                if (!int.TryParse(txtDowntimeHours.Text.Trim(), out downtimeHours) || downtimeHours <= 0)
+                {
+                    var reportTime = Convert.ToDateTime(_orderRow["ReportTime"]);
+                    downtimeHours = (int)Math.Ceiling((DateTime.Now - reportTime).TotalHours);
+                    txtDowntimeHours.Text = downtimeHours.ToString();  // 回填到文本框
+                }
+                bool success = MntBLL.SubmitRepairResult(_recordId, repairResult, totalAmount, downtimeHours);
                 if (!success)
                 {
                     UIMessageBox.ShowError("提交维修结果失败，请重试");

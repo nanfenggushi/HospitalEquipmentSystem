@@ -403,6 +403,19 @@ namespace HospitalEquipment.DAL
                 new SqlParameter("@DowntimeHours", (object)downtimeHours ?? DBNull.Value));
         }
 
+        /// <summary>
+        /// 管理员端：单独更新停机时长
+        /// </summary>
+        public int UpdateDowntimeHours(int recordId, int downtimeHours)
+        {
+            string sql = @"UPDATE MaintenanceRecords 
+                           SET DowntimeHours = @DowntimeHours 
+                           WHERE RecordId = @RecordId";
+            return DbHelper.ExecuteNonQuery(sql,
+                new SqlParameter("@DowntimeHours", downtimeHours),
+                new SqlParameter("@RecordId", recordId));
+        }
+
         // ==================== 医生端方法 ====================
 
         /// <summary>
