@@ -1,5 +1,6 @@
 using Sunny.UI;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,6 +15,8 @@ namespace HospitalEquipmentSystem.UI.register
         private string currentCaptcha = "";
         // 登录DAL
         private LoginDAL loginDAL = new LoginDAL();
+        // 输入控件 -> 对应错误提示Label
+        private readonly Dictionary<Control, UILabel> controlErrorLabels = new Dictionary<Control, UILabel>();
 
         /// <summary>
         /// 注册成功的新账号Id（供登录页定位使用）
@@ -35,8 +38,110 @@ namespace HospitalEquipmentSystem.UI.register
             BindDepartmentComboBox();
             // 生成初始验证码
             GenerateCaptcha();
-            // 绑定用户名失去焦点事件
-            ui_txtrealname.Leave += Ui_txtusername_Leave;
+            // 为所有输入控件绑定焦点事件（Enter 清错误提示 / Leave 即时校验）
+            WireFocusEvents();
+        }
+
+        /// <summary>
+        /// 为所有输入控件绑定焦点事件：
+        /// Enter（获得焦点）-> 清空该字段的错误提示
+        /// Leave（失去焦点）-> 即时校验该字段并显示提示
+        /// </summary>
+        private void WireFocusEvents()
+        {
+            controlErrorLabels[ui_txtname] = uiLabel11;          // 真实姓名
+            controlErrorLabels[ui_txtrealname] = uiLabel7;       // 用户名
+            controlErrorLabels[ui_txtpwd] = uiLabel8;            // 密码
+            controlErrorLabels[ui_txtverpwd] = uiLabel9;         // 确认密码
+            controlErrorLabels[ui_txtphone] = uiLabel12;         // 手机号
+            controlErrorLabels[ui_txtverma] = uiLabel10;         // 验证码
+            controlErrorLabels[uiComboBox1] = uiLabel_role_err;  // 用户身份
+            controlErrorLabels[uiComboBox_dept] = uiLabel_dept_err; // 科室
+
+            foreach (Control c in controlErrorLabels.Keys)
+            {
+                c.Enter += Input_Enter;   // 获得焦点：清空该字段错误提示
+                c.Leave += Input_Leave;   // 失去焦点：即时校验
+            }
+        }
+
+        /// <summary>
+        /// 控件获得焦点：清空对应的错误提示，方便用户重新编辑
+        /// </summary>
+        private void Input_Enter(object sender, EventArgs e)
+        {
+            if (sender is Control control && controlErrorLabels.TryGetValue(control, out UILabel lbl))
+            {
+                lbl.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// 控件失去焦点：校验该字段，输入无误则清空错误提示，有误则显示
+        /// </summary>
+        private void Input_Leave(object sender, EventArgs e)
+        {
+            if (sender is Control control)
+            {
+                string error = ValidateField(control);
+                if (controlErrorLabels.TryGetValue(control, out UILabel lbl))
+                {
+                    lbl.Text = error;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 校验单个字段，返回错误信息；无误返回空字符串
+        /// </summary>
+        private string ValidateField(Control control)
+        {
+            try
+            {
+                if (control == ui_txtname)
+                {
+                    if (string.IsNullOrEmpty(ui_txtname.Text.Trim())) return "请输入真实姓名";
+                    return "";
+                }
+                if (control == ui_txtrealname)
+                {
+                    string username = ui_txtrealname.Text.Trim();
+                    if (string.IsNullOrEmpty(username)) return "请输入用户名";
+                    if (username.Length < 3) return "用户名至少3位";
+                    if (loginDAL.IsUsernameExists(username)) return "用户名已被注册";
+                    return "";
+                }
+                if (control == ui_txtpwd)
+                {
+                    if (string.IsNullOrEmpty(ui_txtpwd.Text)) return "请输入密码";
+                    if (ui_txtpwd.Text.Length < 6) return "密码至少6位";
+                    return "";
+                }
+                if (control == ui_txtverpwd)
+                {
+                    if (string.IsNullOrEmpty(ui_txtverpwd.Text)) return "请再次输入密码";
+                    return ui_txtverpwd.Text != ui_txtpwd.Text ? "两次密码不一致" : "";
+                }
+                if (control == ui_txtphone)
+                {
+                    if (string.IsNullOrEmpty(ui_txtphone.Text.Trim())) return "请输入手机号";
+                    return IsValidPhone(ui_txtphone.Text.Trim()) ? "" : "手机号格式不正确";
+                }
+                if (control == ui_txtverma)
+                {
+                    if (string.IsNullOrEmpty(ui_txtverma.Text.Trim())) return "请输入验证码";
+                    return ui_txtverma.Text.Trim().ToUpper() == currentCaptcha.ToUpper() ? "" : "验证码错误";
+                }
+                if (control == uiComboBox1)
+                    return string.IsNullOrEmpty(uiComboBox1.SelectedValue?.ToString()) ? "请选择用户身份" : "";
+                if (control == uiComboBox_dept)
+                    return string.IsNullOrEmpty(uiComboBox_dept.SelectedValue?.ToString()) ? "请选择科室" : "";
+            }
+            catch
+            {
+                // 数据库查询失败等异常不阻塞失焦校验，保持静默
+            }
+            return "";
         }
 
         /// <summary>
@@ -78,25 +183,6 @@ namespace HospitalEquipmentSystem.UI.register
         }
 
       
-
-        /// <summary>
-        /// 用户名失去焦点时，实时检测是否已存在
-        /// </summary>
-        private void Ui_txtusername_Leave(object sender, EventArgs e)
-        {
-            string username = ui_txtrealname.Text.Trim();
-            if (!string.IsNullOrEmpty(username))
-            {
-                if (loginDAL.IsUsernameExists(username))
-                {
-                    uiLabel7.Text = "用户名已被注册";
-                }
-                else
-                {
-                    uiLabel7.Text = "";
-                }
-            }
-        }
 
         /// <summary>
         /// 生成验证码图片
