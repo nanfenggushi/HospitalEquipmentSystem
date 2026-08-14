@@ -55,7 +55,13 @@ namespace HospitalEquipmentSystem.UI
             }
 
             WireEvents();
-            LoadData();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            if (!DesignMode)
+                LoadData();
         }
 
         // ==================== 数据加载 ====================
@@ -384,6 +390,7 @@ namespace HospitalEquipmentSystem.UI
             btnReset.Click += BtnReset_Click;
             btnNewOrder.Click += BtnNewOrder_Click;
             dgvOrders.CellContentClick += DgvOrders_CellContentClick;
+            dgvOrders.CellFormatting += DgvOrders_CellFormatting;
             btnPrevPage.Click += (s, e) =>
             {
                 if (_currentPage > 1)
@@ -424,6 +431,34 @@ namespace HospitalEquipmentSystem.UI
             }
         }
 
+        private void DgvOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // 维修人列为空时显示"未分配"
+            if (dgvOrders.Columns[e.ColumnIndex].Name == "Column8")
+            {
+                if (e.Value == null || string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.Value = "未分配";
+                }
+                return;
+            }
+
+            // 被拒绝工单标红
+            var row = dgvOrders.Rows[e.RowIndex];
+            if (row.DataBoundItem is MaintenanceRecordDto dto && !string.IsNullOrEmpty(dto.RejectReason))
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(60, 20, 20);      // 深红背景
+                row.DefaultCellStyle.ForeColor = Color.FromArgb(255, 180, 180);   // 浅红文字
+            }
+            else
+            {
+                row.DefaultCellStyle.BackColor = dgvOrders.DefaultCellStyle.BackColor;
+                row.DefaultCellStyle.ForeColor = dgvOrders.DefaultCellStyle.ForeColor;
+            }
+        }
+
         private void ShowOperationMenu(MaintenanceRecordDto dto)
         {
             var menu = new ContextMenuStrip();
@@ -445,6 +480,13 @@ namespace HospitalEquipmentSystem.UI
             switch (dto.ProgressStageText)
             {
                 case "待分配":
+                    if (!string.IsNullOrEmpty(dto.RejectReason))
+                    {
+                        var rejectItem = menu.Items.Add($"⚠ 维修员拒绝理由：{dto.RejectReason}");
+                        rejectItem.Enabled = false;
+                        rejectItem.ForeColor = Color.FromArgb(239, 68, 68);
+                        menu.Items.Add(new ToolStripSeparator());
+                    }
                     menu.Items.Add("指派维修人", null, (s, ev) =>
                     {
                         using (var frm = new SelectEngineerForm(BLL))

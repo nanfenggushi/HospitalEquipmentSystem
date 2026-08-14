@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Model;
+using Microsoft.VisualBasic;
 
 namespace HospitalEquipmentSystem.UI
 {
@@ -250,6 +251,13 @@ namespace HospitalEquipmentSystem.UI
                 return;
             }
 
+            // 待接单：colReject → 拒绝接单
+            if (colName == colReject.Name && dto.ProgressStage == "Assigned")
+            {
+                DirectRejectOrder(dto);
+                return;
+            }
+
             // 处理中：colProcess → 打开 AI 检修助手
             if (colName == colProcess.Name && dto.ProgressStage == "InProgress")
             {
@@ -289,6 +297,24 @@ namespace HospitalEquipmentSystem.UI
         }
 
         /// <summary>
+        /// 拒绝接单：Assigned → Pending（清空指派人并记录拒绝理由）
+        /// </summary>
+        private void DirectRejectOrder(MaintenanceRecordDto dto)
+        {
+            string reason = Interaction.InputBox("请输入拒绝理由：", "拒绝接单", "");
+            if (string.IsNullOrEmpty(reason))
+                return;
+
+            if (BLL.RejectOrder(dto.RecordId, LoginUser.UserId, reason))
+            {
+                UIMessageBox.Show("已退回管理员");
+                LoadData();
+            }
+            else
+                UIMessageBox.ShowError("拒绝失败，请重试");
+        }
+
+        /// <summary>
         /// 行添加时动态设置按钮文字和可见性
         /// 待接单(Assigned): colAction="接单"可见, colProcess隐藏
         /// 处理中(InProgress): colAction隐藏, colProcess="处理"可见
@@ -302,6 +328,7 @@ namespace HospitalEquipmentSystem.UI
                 if (row.DataBoundItem is MaintenanceRecordDto dto)
                 {
                     var actionCell = row.Cells[colAction.Name] as DataGridViewButtonCell;
+                    var rejectCell = row.Cells[colReject.Name] as DataGridViewButtonCell;
                     var processCell = row.Cells[colProcess.Name] as DataGridViewButtonCell;
 
                     bool isAssigned = dto.ProgressStage == "Assigned";
@@ -325,6 +352,21 @@ namespace HospitalEquipmentSystem.UI
                         {
                             actionCell.Value = "";
                             SetCellHidden(actionCell);
+                        }
+                    }
+
+                    // colReject：待接单显示"拒绝"，其余隐藏
+                    if (rejectCell != null)
+                    {
+                        if (isAssigned)
+                        {
+                            rejectCell.Value = "拒绝";
+                            SetCellVisible(rejectCell, true);
+                        }
+                        else
+                        {
+                            rejectCell.Value = "";
+                            SetCellHidden(rejectCell);
                         }
                     }
 

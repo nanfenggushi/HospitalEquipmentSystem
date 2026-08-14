@@ -229,6 +229,9 @@ namespace HospitalEquipmentSystem.UI
                     lblAiResult.ForeColor = Color.Black;
                     lblAiResult.Text = $"AI识别：{result.FaultType}（置信度 {result.Confidence:P0}）";
 
+                    // AI 自动确认故障类型（置信度 >= 50%），同步更新 FaultType
+                    MntBLL.UpdateFaultType(_recordId, result.FaultType);
+
                     DataTable dt = MntBLL.GetOrderById(_recordId);
                     if (dt != null && dt.Rows.Count > 0) _orderRow = dt.Rows[0];
 
@@ -287,6 +290,8 @@ namespace HospitalEquipmentSystem.UI
             {
                 var mntDal = new HospitalEquipment.DAL.MaintenanceDAL();
                 mntDal.UpdateAiResult(_recordId, selected, 0);
+                // 同时更新 FaultType 字段，让管理员端也能看到确认后的故障类型
+                mntDal.UpdateFaultType(_recordId, selected);
                 DataTable dt = MntBLL.GetOrderById(_recordId);
                 if (dt != null && dt.Rows.Count > 0) _orderRow = dt.Rows[0];
 

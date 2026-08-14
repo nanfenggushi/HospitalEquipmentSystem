@@ -267,12 +267,6 @@
     <Compile Include="RepairerMaintain\RepairerWorkbench.Designer.cs">
       <DependentUpon>RepairerWorkbench.cs</DependentUpon>
     </Compile>
-    <Compile Include="RepairerMaintain\RepairResultForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RepairerMaintain\RepairResultForm.Designer.cs">
-      <DependentUpon>RepairResultForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="RepairerMaintain\AgentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,9 +387,6 @@
     <!-- 维修员端 resx -->
     <EmbeddedResource Include="RepairerMaintain\RepairerWorkbench.resx">
       <DependentUpon>RepairerWorkbench.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepairerMaintain\RepairResultForm.resx">
-      <DependentUpon>RepairResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RepairerMaintain\AgentForm.resx">
       <DependentUpon>AgentForm.cs</DependentUpon>

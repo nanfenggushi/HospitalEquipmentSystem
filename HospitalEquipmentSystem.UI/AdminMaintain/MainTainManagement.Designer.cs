@@ -45,24 +45,14 @@ namespace HospitalEquipmentSystem.UI
             this.lblKpi6Sub = new Sunny.UI.UILabel();
             this.tlpBody = new System.Windows.Forms.TableLayoutPanel();
             this.pnlLeft = new Sunny.UI.UIPanel();
+            this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
+            this.dgvOrders = new Sunny.UI.UIDataGridView();
             this.pnlPager = new System.Windows.Forms.Panel();
             this.btnPrevPage = new Sunny.UI.UISymbolButton();
             this.lblPageInfo = new Sunny.UI.UILabel();
             this.btnNextPage = new Sunny.UI.UISymbolButton();
-            this.dgvOrders = new Sunny.UI.UIDataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.pnlMainHeader = new Sunny.UI.UIPanel();
+            this.lblTableTitle = new Sunny.UI.UILabel();
             this.pnlFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.txtSearch = new Sunny.UI.UITextBox();
             this.cmbUrgency = new Sunny.UI.UIComboBox();
@@ -70,8 +60,6 @@ namespace HospitalEquipmentSystem.UI
             this.cmbDateRange = new Sunny.UI.UIComboBox();
             this.btnQuery = new Sunny.UI.UISymbolButton();
             this.btnReset = new Sunny.UI.UISymbolButton();
-            this.pnlMainHeader = new Sunny.UI.UIPanel();
-            this.lblTableTitle = new Sunny.UI.UILabel();
             this.pnlRight = new Sunny.UI.UIPanel();
             this.pnlWorkload = new Sunny.UI.UIPanel();
             this.pnlWorkloadList = new System.Windows.Forms.FlowLayoutPanel();
@@ -82,7 +70,17 @@ namespace HospitalEquipmentSystem.UI
             this.pnlAlertsHeader = new Sunny.UI.UIPanel();
             this.lblAlertsTitle = new Sunny.UI.UILabel();
             this.pnl_mid = new Sunny.UI.UIPanel();
-            this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pnlHeader.SuspendLayout();
             this.pnlKpiContainer.SuspendLayout();
             this.pnlKpi1.SuspendLayout();
@@ -93,17 +91,17 @@ namespace HospitalEquipmentSystem.UI
             this.pnlKpi6.SuspendLayout();
             this.tlpBody.SuspendLayout();
             this.pnlLeft.SuspendLayout();
-            this.pnlPager.SuspendLayout();
+            this.uiTableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
-            this.pnlFilter.SuspendLayout();
+            this.pnlPager.SuspendLayout();
             this.pnlMainHeader.SuspendLayout();
+            this.pnlFilter.SuspendLayout();
             this.pnlRight.SuspendLayout();
             this.pnlWorkload.SuspendLayout();
             this.pnlWorkloadHeader.SuspendLayout();
             this.pnlAlerts.SuspendLayout();
             this.pnlAlertsHeader.SuspendLayout();
             this.pnl_mid.SuspendLayout();
-            this.uiTableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -445,6 +443,96 @@ namespace HospitalEquipmentSystem.UI
             this.pnlLeft.Text = null;
             this.pnlLeft.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // uiTableLayoutPanel1
+            // 
+            this.uiTableLayoutPanel1.ColumnCount = 1;
+            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTableLayoutPanel1.Controls.Add(this.dgvOrders, 0, 2);
+            this.uiTableLayoutPanel1.Controls.Add(this.pnlPager, 0, 3);
+            this.uiTableLayoutPanel1.Controls.Add(this.pnlMainHeader, 0, 0);
+            this.uiTableLayoutPanel1.Controls.Add(this.pnlFilter, 0, 1);
+            this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
+            this.uiTableLayoutPanel1.RowCount = 4;
+            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.623431F));
+            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.50628F));
+            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.03766F));
+            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.623431F));
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(871, 478);
+            this.uiTableLayoutPanel1.TabIndex = 5;
+            this.uiTableLayoutPanel1.TagString = null;
+            // 
+            // dgvOrders
+            // 
+            this.dgvOrders.AllowUserToAddRows = false;
+            this.dgvOrders.AllowUserToDeleteRows = false;
+            this.dgvOrders.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvOrders.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvOrders.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.dgvOrders.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvOrders.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvOrders.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvOrders.ColumnHeadersHeight = 32;
+            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9,
+            this.Column10,
+            this.Column12});
+            this.dgvOrders.EnableHeadersVisualStyles = false;
+            this.dgvOrders.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.dgvOrders.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.dgvOrders.Location = new System.Drawing.Point(0, 101);
+            this.dgvOrders.Margin = new System.Windows.Forms.Padding(0);
+            this.dgvOrders.Name = "dgvOrders";
+            this.dgvOrders.ReadOnly = true;
+            this.dgvOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvOrders.RowHeadersVisible = false;
+            this.dgvOrders.RowHeadersWidth = 62;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvOrders.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvOrders.RowTemplate.Height = 38;
+            this.dgvOrders.ScrollBarBackColor = System.Drawing.Color.DimGray;
+            this.dgvOrders.ScrollBarStyleInherited = false;
+            this.dgvOrders.SelectedIndex = -1;
+            this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvOrders.Size = new System.Drawing.Size(871, 330);
+            this.dgvOrders.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
+            this.dgvOrders.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
+            this.dgvOrders.TabIndex = 3;
+            // 
             // pnlPager
             // 
             this.pnlPager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
@@ -496,197 +584,33 @@ namespace HospitalEquipmentSystem.UI
             this.btnNextPage.Text = "下一页";
             this.btnNextPage.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             // 
-            // dgvOrders
+            // pnlMainHeader
             // 
-            this.dgvOrders.AllowUserToAddRows = false;
-            this.dgvOrders.AllowUserToDeleteRows = false;
-            this.dgvOrders.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvOrders.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvOrders.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            this.dgvOrders.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvOrders.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvOrders.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(179)))), ((int)(((byte)(200)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvOrders.ColumnHeadersHeight = 32;
-            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13});
-            this.dgvOrders.EnableHeadersVisualStyles = false;
-            this.dgvOrders.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.dgvOrders.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.dgvOrders.Location = new System.Drawing.Point(0, 101);
-            this.dgvOrders.Margin = new System.Windows.Forms.Padding(0);
-            this.dgvOrders.Name = "dgvOrders";
-            this.dgvOrders.ReadOnly = true;
-            this.dgvOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvOrders.RowHeadersVisible = false;
-            this.dgvOrders.RowHeadersWidth = 62;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(111)))), ((int)(((byte)(214)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvOrders.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvOrders.RowTemplate.Height = 38;
-            this.dgvOrders.ScrollBarBackColor = System.Drawing.Color.DimGray;
-            this.dgvOrders.ScrollBarStyleInherited = false;
-            this.dgvOrders.SelectedIndex = -1;
-            this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrders.Size = new System.Drawing.Size(871, 330);
-            this.dgvOrders.StripeEvenColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
-            this.dgvOrders.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(29)))), ((int)(((byte)(46)))));
-            this.dgvOrders.TabIndex = 3;
+            this.pnlMainHeader.Controls.Add(this.lblTableTitle);
+            this.pnlMainHeader.FillColor = System.Drawing.Color.Transparent;
+            this.pnlMainHeader.Font = new System.Drawing.Font("宋体", 12F);
+            this.pnlMainHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlMainHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMainHeader.MinimumSize = new System.Drawing.Size(1, 1);
+            this.pnlMainHeader.Name = "pnlMainHeader";
+            this.pnlMainHeader.Padding = new System.Windows.Forms.Padding(14, 8, 14, 8);
+            this.pnlMainHeader.Radius = 0;
+            this.pnlMainHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.pnlMainHeader.Size = new System.Drawing.Size(868, 44);
+            this.pnlMainHeader.TabIndex = 0;
+            this.pnlMainHeader.Text = null;
+            this.pnlMainHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Column1
+            // lblTableTitle
             // 
-            this.Column1.DataPropertyName = "RepairNo";
-            this.Column1.HeaderText = "工单号";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "EquipmentName";
-            this.Column2.HeaderText = "设备";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "FaultType";
-            this.Column3.HeaderText = "故障类型";
-            this.Column3.MinimumWidth = 8;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 65;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "FaultDesc";
-            this.Column4.HeaderText = "故障描述";
-            this.Column4.MinimumWidth = 8;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 120;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "UrgencyText";
-            this.Column5.HeaderText = "紧急度";
-            this.Column5.MinimumWidth = 8;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 55;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "ProgressStageText";
-            this.Column6.HeaderText = "进度阶段";
-            this.Column6.MinimumWidth = 8;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 75;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "DeptName";
-            this.Column7.HeaderText = "科室";
-            this.Column7.MinimumWidth = 8;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 55;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "RepairerName";
-            this.Column8.HeaderText = "维修人";
-            this.Column8.MinimumWidth = 8;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "ReportTime";
-            this.Column9.HeaderText = "申报时间";
-            this.Column9.MinimumWidth = 8;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 95;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "DowntimeHours";
-            this.Column10.HeaderText = "停机时长";
-            this.Column10.MinimumWidth = 8;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Width = 55;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "StatusText";
-            this.Column11.HeaderText = "状态";
-            this.Column11.MinimumWidth = 8;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Width = 50;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "操作";
-            this.Column12.MinimumWidth = 8;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Text = "操作";
-            this.Column12.ToolTipText = "操作";
-            this.Column12.UseColumnTextForButtonValue = true;
-            this.Column12.Width = 50;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "强制操作";
-            this.Column13.MinimumWidth = 8;
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Text = "开始维修";
-            this.Column13.UseColumnTextForButtonValue = true;
-            this.Column13.Width = 75;
+            this.lblTableTitle.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTableTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
+            this.lblTableTitle.Location = new System.Drawing.Point(17, 10);
+            this.lblTableTitle.Name = "lblTableTitle";
+            this.lblTableTitle.Size = new System.Drawing.Size(200, 23);
+            this.lblTableTitle.TabIndex = 0;
+            this.lblTableTitle.Text = "维修工单列表";
+            this.lblTableTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlFilter
             // 
@@ -834,34 +758,6 @@ namespace HospitalEquipmentSystem.UI
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "重置";
             this.btnReset.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            // 
-            // pnlMainHeader
-            // 
-            this.pnlMainHeader.Controls.Add(this.lblTableTitle);
-            this.pnlMainHeader.FillColor = System.Drawing.Color.Transparent;
-            this.pnlMainHeader.Font = new System.Drawing.Font("宋体", 12F);
-            this.pnlMainHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlMainHeader.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlMainHeader.MinimumSize = new System.Drawing.Size(1, 1);
-            this.pnlMainHeader.Name = "pnlMainHeader";
-            this.pnlMainHeader.Padding = new System.Windows.Forms.Padding(14, 8, 14, 8);
-            this.pnlMainHeader.Radius = 0;
-            this.pnlMainHeader.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
-            this.pnlMainHeader.Size = new System.Drawing.Size(868, 44);
-            this.pnlMainHeader.TabIndex = 0;
-            this.pnlMainHeader.Text = null;
-            this.pnlMainHeader.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTableTitle
-            // 
-            this.lblTableTitle.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTableTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(247)))));
-            this.lblTableTitle.Location = new System.Drawing.Point(17, 10);
-            this.lblTableTitle.Name = "lblTableTitle";
-            this.lblTableTitle.Size = new System.Drawing.Size(200, 23);
-            this.lblTableTitle.TabIndex = 0;
-            this.lblTableTitle.Text = "维修工单列表";
-            this.lblTableTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlRight
             // 
@@ -1019,25 +915,106 @@ namespace HospitalEquipmentSystem.UI
             this.pnl_mid.Text = null;
             this.pnl_mid.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiTableLayoutPanel1
+            // Column1
             // 
-            this.uiTableLayoutPanel1.ColumnCount = 1;
-            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Controls.Add(this.dgvOrders, 0, 2);
-            this.uiTableLayoutPanel1.Controls.Add(this.pnlPager, 0, 3);
-            this.uiTableLayoutPanel1.Controls.Add(this.pnlMainHeader, 0, 0);
-            this.uiTableLayoutPanel1.Controls.Add(this.pnlFilter, 0, 1);
-            this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
-            this.uiTableLayoutPanel1.RowCount = 4;
-            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.623431F));
-            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.50628F));
-            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.03766F));
-            this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.623431F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(871, 478);
-            this.uiTableLayoutPanel1.TabIndex = 5;
-            this.uiTableLayoutPanel1.TagString = null;
+            this.Column1.DataPropertyName = "RepairNo";
+            this.Column1.HeaderText = "工单号";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "EquipmentName";
+            this.Column2.HeaderText = "设备";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 120;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "FaultType";
+            this.Column3.HeaderText = "故障类型";
+            this.Column3.MinimumWidth = 8;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 65;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "FaultDesc";
+            this.Column4.HeaderText = "故障描述";
+            this.Column4.MinimumWidth = 8;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 120;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "UrgencyText";
+            this.Column5.HeaderText = "紧急度";
+            this.Column5.MinimumWidth = 8;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 55;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "ProgressStageText";
+            this.Column6.HeaderText = "进度阶段";
+            this.Column6.MinimumWidth = 8;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 75;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "DeptName";
+            this.Column7.HeaderText = "科室";
+            this.Column7.MinimumWidth = 8;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 55;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "RepairerName";
+            this.Column8.HeaderText = "维修人";
+            this.Column8.MinimumWidth = 8;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 60;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "ReportTime";
+            this.Column9.HeaderText = "申报时间";
+            this.Column9.MinimumWidth = 8;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 95;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "DowntimeHours";
+            this.Column10.HeaderText = "停机时长";
+            this.Column10.MinimumWidth = 8;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 55;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "操作";
+            this.Column12.MinimumWidth = 8;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Text = "操作";
+            this.Column12.ToolTipText = "操作";
+            this.Column12.UseColumnTextForButtonValue = true;
+            this.Column12.Width = 50;
             // 
             // MainTainManagement
             // 
@@ -1063,18 +1040,18 @@ namespace HospitalEquipmentSystem.UI
             this.pnlKpi6.ResumeLayout(false);
             this.tlpBody.ResumeLayout(false);
             this.pnlLeft.ResumeLayout(false);
-            this.pnlPager.ResumeLayout(false);
+            this.uiTableLayoutPanel1.ResumeLayout(false);
+            this.uiTableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
-            this.pnlFilter.ResumeLayout(false);
+            this.pnlPager.ResumeLayout(false);
             this.pnlMainHeader.ResumeLayout(false);
+            this.pnlFilter.ResumeLayout(false);
             this.pnlRight.ResumeLayout(false);
             this.pnlWorkload.ResumeLayout(false);
             this.pnlWorkloadHeader.ResumeLayout(false);
             this.pnlAlerts.ResumeLayout(false);
             this.pnlAlertsHeader.ResumeLayout(false);
             this.pnl_mid.ResumeLayout(false);
-            this.uiTableLayoutPanel1.ResumeLayout(false);
-            this.uiTableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1128,6 +1105,8 @@ namespace HospitalEquipmentSystem.UI
         private Sunny.UI.UIPanel pnlWorkloadHeader;
         private Sunny.UI.UILabel lblWorkloadTitle;
         private System.Windows.Forms.FlowLayoutPanel pnlWorkloadList;
+        private Sunny.UI.UIPanel pnl_mid;
+        private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -1138,10 +1117,6 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewButtonColumn Column12;
-        private System.Windows.Forms.DataGridViewButtonColumn Column13;
-        private Sunny.UI.UIPanel pnl_mid;
-        private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel1;
     }
 }

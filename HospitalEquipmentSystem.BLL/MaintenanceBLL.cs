@@ -47,9 +47,12 @@ namespace HospitalEquipment.BLL
                         ? MaintenanceHelper.StageToRepairerCn(row["ProgressStage"].ToString())
                         : MaintenanceHelper.StageToCn(row["ProgressStage"].ToString()),
                     DeptName = row["DeptName"].ToString(),
-                    RepairerName = row["RepairerName"].ToString(),
+                    RepairerName = string.IsNullOrWhiteSpace(row["RepairerName"]?.ToString())
+                        ? "未分配"
+                        : row["RepairerName"].ToString(),
                     ReportTime = Convert.ToDateTime(row["ReportTime"]),
                     DowntimeHours = row["DowntimeHours"] as decimal?,
+                    RejectReason = row.Table.Columns.Contains("RejectReason") ? row["RejectReason"]?.ToString() : "",
                     StatusText = MaintenanceHelper.StatusToCn(row["Status"].ToString()),
                     RepairResult = row.Table.Columns.Contains("RepairResult") ? row["RepairResult"]?.ToString() : "",
                     RepairCost = row.Table.Columns.Contains("RepairCost") ? row["RepairCost"] as decimal? : null,
@@ -265,6 +268,14 @@ namespace HospitalEquipment.BLL
         }
 
         /// <summary>
+        /// 维修员拒绝接单（Assigned → Pending，清空指派人并记录理由）
+        /// </summary>
+        public bool RejectOrder(int recordId, int repairerId, string reason)
+        {
+            return dal.RejectOrder(recordId, repairerId, reason) > 0;
+        }
+
+        /// <summary>
         /// 维修员提交维修结果（InProgress → Done）
         /// </summary>
         public bool SubmitRepairResult(int recordId, string repairResult,
@@ -396,6 +407,14 @@ namespace HospitalEquipment.BLL
         public bool UpdatePhotoPath(int recordId, string photoPath)
         {
             return dal.UpdatePhotoPath(recordId, photoPath) > 0;
+        }
+
+        /// <summary>
+        /// 更新工单故障类型字段（维修员确认 / AI 自动确认后调用）
+        /// </summary>
+        public bool UpdateFaultType(int recordId, string faultType)
+        {
+            return dal.UpdateFaultType(recordId, faultType) > 0;
         }
     }
 }

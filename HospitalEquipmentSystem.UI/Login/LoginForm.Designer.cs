@@ -1,4 +1,4 @@
-﻿﻿﻿﻿namespace HospitalEquipmentSystem.UI
+﻿﻿﻿﻿﻿﻿namespace HospitalEquipmentSystem.UI
 {
     partial class LoginForm
     {

@@ -53,6 +53,7 @@ namespace HospitalEquipmentSystem.UI
             this.colCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDowntime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colReject = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colProcess = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tpInProgress = new System.Windows.Forms.TabPage();
             this.tpDone = new System.Windows.Forms.TabPage();
@@ -372,6 +373,7 @@ namespace HospitalEquipmentSystem.UI
             this.colCost,
             this.colDowntime,
             this.colAction,
+            this.colReject,
             this.colProcess});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(35)))), ((int)(((byte)(58)))));
@@ -502,6 +504,16 @@ namespace HospitalEquipmentSystem.UI
             this.colAction.UseColumnTextForButtonValue = true;
             this.colAction.Width = 80;
             // 
+            // colReject
+            // 
+            this.colReject.HeaderText = "拒绝";
+            this.colReject.MinimumWidth = 8;
+            this.colReject.Name = "colReject";
+            this.colReject.ReadOnly = true;
+            this.colReject.Text = "拒绝";
+            this.colReject.UseColumnTextForButtonValue = true;
+            this.colReject.Width = 80;
+            // 
             // colProcess
             // 
             this.colProcess.HeaderText = "处理";
@@ -588,6 +600,7 @@ namespace HospitalEquipmentSystem.UI
         private System.Windows.Forms.DataGridViewTextBoxColumn colCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDowntime;
         private System.Windows.Forms.DataGridViewButtonColumn colAction;
+        private System.Windows.Forms.DataGridViewButtonColumn colReject;
         private System.Windows.Forms.DataGridViewButtonColumn colProcess;
         private System.Windows.Forms.Panel pnlPager;
         private Sunny.UI.UISymbolButton btnPrevPage;

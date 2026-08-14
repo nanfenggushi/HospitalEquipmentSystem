@@ -29,6 +29,7 @@ namespace HospitalEquipment.DAL
                        m.ProgressStage, d.DeptName, 
                        ISNULL(u.RealName, '未指派') AS RepairerName,
                        m.ReportTime, m.DowntimeHours, m.Status,
+                       ISNULL(m.RejectReason, '') AS RejectReason,
                        ISNULL(m.PhotoPath, '') AS PhotoPath
                 FROM MaintenanceRecords m
                 LEFT JOIN Equipment e ON m.EquipmentId = e.EquipmentId
@@ -235,7 +236,9 @@ namespace HospitalEquipment.DAL
         {
             string sql = @"
                 UPDATE MaintenanceRecords 
-                SET AssignedTo = @EngineerId, ProgressStage = 'Assigned'
+                SET AssignedTo = @EngineerId, 
+                    ProgressStage = 'Assigned', 
+                    RejectReason = NULL
                 WHERE RecordId = @RecordId AND ProgressStage = 'Pending'";
 
             return DbHelper.ExecuteNonQuery(sql,
@@ -326,6 +329,7 @@ namespace HospitalEquipment.DAL
                        ISNULL(u.RealName, '') AS RepairerName,
                        m.ReportTime, m.DowntimeHours, m.Status,
                        m.RepairResult, m.RepairCost, m.CompleteTime,
+                       ISNULL(m.RejectReason, '') AS RejectReason,
                        ISNULL(m.PhotoPath, '') AS PhotoPath
                 FROM MaintenanceRecords m
                 LEFT JOIN Equipment e ON m.EquipmentId = e.EquipmentId
@@ -378,6 +382,25 @@ namespace HospitalEquipment.DAL
             return DbHelper.ExecuteNonQuery(sql,
                 new SqlParameter("@RecordId", recordId),
                 new SqlParameter("@RepairerId", repairerId));
+        }
+
+        /// <summary>
+        /// 维修员拒绝接单：Assigned → Pending（清空指派人，记录拒绝理由）
+        /// </summary>
+        public int RejectOrder(int recordId, int repairerId, string reason)
+        {
+            string sql = @"UPDATE MaintenanceRecords 
+                        SET ProgressStage = 'Pending', 
+                            AssignedTo = NULL, 
+                            Status = 'Pending', 
+                            RejectReason = @Reason 
+                        WHERE RecordId = @RecordId 
+                          AND AssignedTo = @RepairerId 
+                          AND ProgressStage = 'Assigned'";
+            return DbHelper.ExecuteNonQuery(sql,
+                new SqlParameter("@RecordId", recordId),
+                new SqlParameter("@RepairerId", repairerId),
+                new SqlParameter("@Reason", reason ?? ""));
         }
 
         /// <summary>
@@ -557,6 +580,19 @@ namespace HospitalEquipment.DAL
                 new SqlParameter("@RecordId", recordId),
                 new SqlParameter("@FaultType", faultType ?? ""),
                 new SqlParameter("@Confidence", confidence));
+        }
+
+        /// <summary>
+        /// 更新工单故障类型字段（维修员确认 / AI 自动确认后调用）
+        /// </summary>
+        public int UpdateFaultType(int recordId, string faultType)
+        {
+            string sql = @"UPDATE MaintenanceRecords 
+                           SET FaultType = @FaultType 
+                           WHERE RecordId = @RecordId";
+            return DbHelper.ExecuteNonQuery(sql,
+                new SqlParameter("@FaultType", faultType),
+                new SqlParameter("@RecordId", recordId));
         }
     }
 }

@@ -40,6 +40,9 @@ namespace HospitalEquipment.Model
         /// <summary>维修费用</summary>
         public decimal? RepairCost { get; set; }
 
+        /// <summary>维修员拒绝接单理由（为空表示未被拒绝）</summary>
+        public string RejectReason { get; set; }
+
         /// <summary>完成时间</summary>
         public System.DateTime? CompleteTime { get; set; }
     }

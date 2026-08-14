@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using HospitalEquipment.BLL;
 using HospitalEquipment.Util;
@@ -15,6 +16,10 @@ namespace HospitalEquipmentSystem.UI
         private FormMode _mode;
         private int _recordId;
         private readonly MaintenanceBLL _bll = new MaintenanceBLL();
+
+        // 拍照上传后的照片本地路径
+        private string _photoPath;
+        private static readonly string UPLOAD_DIR = Path.Combine(Application.StartupPath, "Uploads", "Photos");
 
         // 设备/科室 ID 映射（索引 → ID）
         private int[] _equipIds;
@@ -32,13 +37,14 @@ namespace HospitalEquipmentSystem.UI
 
             // 初始化标题和下拉项
             this.Text = "新建维修工单";
-            cmbFaultType.Items.AddRange(new object[] { "电气故障", "机械故障", "软件故障", "耗材更换", "其他" });
-            cmbFaultType.SelectedIndex = 0;
+            cmbFaultType.Items.AddRange(new object[] { "待确认", "电气故障", "机械故障", "软件故障", "耗材更换", "其他" });
+            cmbFaultType.SelectedIndex = 0; // 默认选"待确认"
             cmbUrgency.Items.AddRange(new object[] { "低", "普通", "紧急" });
             cmbUrgency.SelectedIndex = 1;
 
             btnSave.Click += BtnSave_Click;
             btnCancel.Click += (s, e) => this.Close();
+            btnUploadPhoto.Click += BtnUploadPhoto_Click;
             btnDelete.Visible = false;
 
             if (DesignMode) return;
@@ -149,6 +155,42 @@ namespace HospitalEquipmentSystem.UI
                     break;
                 }
             }
+
+            // 编辑模式：加载已有照片
+            var photoPath = row["PhotoPath"]?.ToString();
+            if (!string.IsNullOrEmpty(photoPath) && File.Exists(photoPath))
+            {
+                _photoPath = photoPath;
+                picPreview.Image = Image.FromFile(photoPath);
+            }
+        }
+
+        /// <summary>
+        /// 拍照上传：选择图片并复制到 Uploads/Photos 目录
+        /// </summary>
+        private void BtnUploadPhoto_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.Title = "选择故障照片";
+                if (ofd.ShowDialog() != DialogResult.OK) return;
+
+                // 确保目录存在
+                if (!Directory.Exists(UPLOAD_DIR))
+                    Directory.CreateDirectory(UPLOAD_DIR);
+
+                // 生成文件名：{时间戳}.jpg
+                string fileName = $"{DateTime.Now:yyyyMMddHHmmss}.jpg";
+                string destPath = Path.Combine(UPLOAD_DIR, fileName);
+
+                // 复制文件
+                File.Copy(ofd.FileName, destPath, true);
+                _photoPath = destPath;
+
+                // 显示预览
+                picPreview.Image = Image.FromFile(destPath);
+            }
         }
 
         /// <summary>
@@ -175,17 +217,31 @@ namespace HospitalEquipmentSystem.UI
             int equipId = _equipIds[cmbEquipment.SelectedIndex];
             int deptId = _deptIds[cmbDept.SelectedIndex];
             string faultType = cmbFaultType.Text;
+            // "待确认"不是具体故障类型，保存为空字符串，留待维修员确认
+            if (faultType == "待确认")
+                faultType = "";
             string faultDesc = txtFaultDesc.Text.Trim();
             string urgency = MaintenanceHelper.UrgencyToEn(cmbUrgency.Text);
 
             bool ok;
             if (_mode == FormMode.Add)
-                ok = _bll.CreateOrder(equipId, deptId, 1, faultType, faultDesc, urgency);
+            {
+                // 新增模式：先创建工单拿到 RecordId，再写照片路径
+                int newId = _bll.SubmitRepair(equipId, deptId, 1, faultType, faultDesc, urgency);
+                ok = newId > 0;
+                if (ok) _recordId = newId;
+            }
             else
+            {
                 ok = _bll.UpdateOrder(_recordId, equipId, deptId, faultType, faultDesc, urgency);
+            }
 
             if (ok)
             {
+                // 保存成功后写入照片路径
+                if (!string.IsNullOrEmpty(_photoPath) && _recordId > 0)
+                    _bll.UpdatePhotoPath(_recordId, _photoPath);
+
                 UIMessageBox.Show(_mode == FormMode.Add ? "工单创建成功！" : "工单修改成功！");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
