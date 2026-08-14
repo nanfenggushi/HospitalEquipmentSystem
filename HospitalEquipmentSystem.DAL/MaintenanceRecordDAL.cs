@@ -128,7 +128,8 @@ namespace HospitalEquipment.DAL
         /// <returns></returns>
         public async Task<List<MaintenanceRecordsDto>> GetAlarmListAsync()
         {
-            string sql = @"SELECT Equipment.EquipmentName, MaintenanceRecords.FaultDesc, 
+            string sql = @"SELECT MaintenanceRecords.RecordId, MaintenanceRecords.RepairNo,
+                        Equipment.EquipmentName, MaintenanceRecords.FaultDesc, 
                         MaintenanceRecords.Urgency, MaintenanceRecords.ReportTime
                         FROM MaintenanceRecords
                         JOIN Equipment ON MaintenanceRecords.EquipmentId = Equipment.EquipmentId

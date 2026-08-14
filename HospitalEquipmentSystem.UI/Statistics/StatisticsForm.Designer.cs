@@ -33,11 +33,6 @@
             this.uiTableLayoutPanel4 = new Sunny.UI.UITableLayoutPanel();
             this.uiPanel10 = new Sunny.UI.UIPanel();
             this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiPanel17 = new Sunny.UI.UIPanel();
             this.uiSymbolLabel5 = new Sunny.UI.UISymbolLabel();
             this.uiPanel9 = new Sunny.UI.UIPanel();
@@ -78,6 +73,11 @@
             this.lblTotalCount = new Sunny.UI.UISymbolLabel();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.uiTableLayoutPanel1.SuspendLayout();
             this.uiTableLayoutPanel4.SuspendLayout();
             this.uiPanel10.SuspendLayout();
@@ -210,45 +210,7 @@
             this.uiDataGridView1.Size = new System.Drawing.Size(619, 263);
             this.uiDataGridView1.StripeOddColor = System.Drawing.Color.White;
             this.uiDataGridView1.TabIndex = 2;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "EquipmentName";
-            this.Column1.HeaderText = "设备名称";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "FaultDesc";
-            this.Column2.HeaderText = "故障现象";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "Urgency";
-            this.Column3.HeaderText = "紧急程度";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "ReportTime";
-            this.Column4.HeaderText = "故障时间";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "操作";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 125;
+            this.uiDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.uiDataGridView1_CellContentClick);
             // 
             // uiPanel17
             // 
@@ -825,6 +787,49 @@
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "EquipmentName";
+            this.Column1.HeaderText = "设备名称";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "FaultDesc";
+            this.Column2.HeaderText = "故障现象";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Urgency";
+            this.Column3.HeaderText = "紧急程度";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "ReportTime";
+            this.Column4.HeaderText = "故障时间";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "操作";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column5.Text = "分配工单";
+            this.Column5.UseColumnTextForButtonValue = true;
+            this.Column5.Width = 125;
+            // 
             // StatisticsForm
             // 
             this.AllowShowTitle = false;
@@ -895,11 +900,6 @@
         private Sunny.UI.UIDataGridView uiDataGridView1;
         private Sunny.UI.UIPanel uiPanel17;
         private Sunny.UI.UISymbolLabel uiSymbolLabel5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Timer timer1;
         private Sunny.UI.UIPanel uiPanel2;
         private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel2;
@@ -918,5 +918,10 @@
         private Sunny.UI.UIPanel uiPanel18;
         private Sunny.UI.UISymbolLabel lblTotalCount;
         private Sunny.UI.UILabel uiLabel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewButtonColumn Column5;
     }
 }

@@ -5,6 +5,15 @@ namespace HospitalEquipment.Model.Dashboard
     public class MaintenanceRecordsDto
     {
         /// <summary>
+        /// 工单记录ID（分配操作要用，对应 MaintenanceRecords.RecordId）
+        /// </summary>
+        public int RecordId { get; set; }
+
+        /// <summary>
+        /// 工单号
+        /// </summary>
+        public string RepairNo { get; set; }
+        /// <summary>
         /// 设备名称
         /// </summary>
         public string EquipmentName { get; set; }

@@ -15,6 +15,7 @@ namespace HospitalEquipmentSystem.UI.Dashboard
     {
         private readonly EquipmentBLL _equipmentBLL = new EquipmentBLL();
         private readonly MaintenanceRecordsBLL _maintenanceRecordsBLL = new MaintenanceRecordsBLL();
+        private MaintenanceBLL _maintenanceBLL = new MaintenanceBLL();
 
         // 移除全局的 cardDto，确保每个组件使用自己的独立数据
         private bool isRefreshing = false; // 防止实时报警列表查询时间大于刷新间隔时重复查询数据
@@ -417,6 +418,40 @@ namespace HospitalEquipmentSystem.UI.Dashboard
             } finally
             {
                 this.Cursor = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// 为实时报警添加分配工单功能
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 只处理"分配工单"这一列（Column5），且要是有效行
+            if (e.RowIndex < 0 || e.ColumnIndex != uiDataGridView1.Columns["Column5"].Index)
+                return;
+
+            var row = uiDataGridView1.Rows[e.RowIndex];
+            if (!(row.DataBoundItem is MaintenanceRecordsDto dto))
+                return;
+
+            // 这份列表本来就只查 ProgressStage='Pending' 的工单，不用再额外判断状态
+            using (var frm = new SelectEngineerForm(_maintenanceBLL))
+            {
+                if (frm.ShowDialog() == DialogResult.OK && frm.SelectedEngineerId > 0)
+                {
+                    if (_maintenanceBLL.AssignRepairer(dto.RecordId, frm.SelectedEngineerId))
+                    {
+                        UIMessageBox.Show($"工单 {dto.RepairNo}（{dto.EquipmentName}）已成功指派维修人");
+
+                        // 分配后该工单变为 Assigned 状态，会自然从这份 Pending 列表里消失，刷新一下即可
+                        _ = LoadAndRenderRealTimeAlarmListAsync();
+                    } else
+                    {
+                        UIMessageBox.Show("指派失败，请重试");
+                    }
+                }
             }
         }
     }
