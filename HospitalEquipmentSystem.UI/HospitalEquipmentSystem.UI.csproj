@@ -488,6 +488,7 @@
     <None Include="Resources\人脸识别2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\注册界面背景图.png" />
     <None Include="Resources\admin1.jpg" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\camera.png" />

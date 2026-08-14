@@ -323,6 +323,16 @@ namespace HospitalEquipmentSystem.UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 注册界面背景图 {
+            get {
+                object obj = ResourceManager.GetObject("注册界面背景图", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 登录页面背景jpg {
             get {
                 object obj = ResourceManager.GetObject("登录页面背景jpg", resourceCulture);
