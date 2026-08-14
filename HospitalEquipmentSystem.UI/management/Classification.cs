@@ -22,7 +22,8 @@ namespace HospitalEquipmentSystem.UI.management
         private async void Classification_Load(object sender, EventArgs e)
         {
             // 绑定按钮事件（如果设计器未绑定，在此统一绑定）
-            this.uiButton1.Click += uiButton1_Click;        // 新增根分类
+            // uiButton1 的 Click 已在设计器中绑定（Classification.Designer.cs），
+            // 若在此重复绑定会导致点击一次执行两次新增，故不再重复绑定。
             this.uiButton4.Click += uiButton4_Click;        // 保存
             this.uiButton3.Click += uiButton3_Click;        // 删除
             this.uiButton5.Click += uiButton5_Click;        // 取消

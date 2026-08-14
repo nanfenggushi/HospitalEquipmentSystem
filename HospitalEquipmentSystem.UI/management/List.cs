@@ -316,7 +316,10 @@ namespace HospitalEquipmentSystem.UI.management
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Title = "选择设备导入文件";
-                ofd.Filter = "Excel 工作簿 (*.xlsx)|*.xlsx";
+                ofd.Filter = "CSV 文件 (*.csv)|*.csv|Excel 工作簿 (*.xlsx)|*.xlsx|所有文件 (*.*)|*.*";
+                // 默认打开导入模板目录；目录不存在时回退到 E:\C Project
+                string importTemplateDir = @"E:\C Project\导入模板";
+                ofd.InitialDirectory = System.IO.Directory.Exists(importTemplateDir) ? importTemplateDir : @"E:\C Project";
                 if (ofd.ShowDialog() != DialogResult.OK) return;
 
                 if (!UIMessageBox.ShowAsk($"确定要从文件导入设备数据吗？\n文件：{ofd.FileName}"))

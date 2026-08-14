@@ -317,7 +317,7 @@
             // 
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox5.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox5.ForeColor = System.Drawing.Color.Black;
             this.uiTextBox5.Location = new System.Drawing.Point(151, 413);
             this.uiTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox5.MinimumSize = new System.Drawing.Size(1, 16);
@@ -405,7 +405,7 @@
             this.uiComboBox3.DataSource = null;
             this.uiComboBox3.FillColor = System.Drawing.Color.White;
             this.uiComboBox3.Font = new System.Drawing.Font("宋体", 10F);
-            this.uiComboBox3.ForeColor = System.Drawing.Color.White;
+            this.uiComboBox3.ForeColor = System.Drawing.Color.Black;
             this.uiComboBox3.ItemFillColor = System.Drawing.Color.Black;
             this.uiComboBox3.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.uiComboBox3.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));

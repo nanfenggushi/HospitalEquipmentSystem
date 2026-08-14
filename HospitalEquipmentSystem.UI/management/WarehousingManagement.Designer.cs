@@ -73,6 +73,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uiLabel13 = new Sunny.UI.UILabel();
             this.uiTableLayoutPanel1 = new Sunny.UI.UITableLayoutPanel();
             this.uiPanel1.SuspendLayout();
             this.uiPanel2.SuspendLayout();
@@ -187,7 +188,7 @@
             this.uiPanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiSymbolLabel1
-            // 
+            //
             this.uiSymbolLabel1.Font = new System.Drawing.Font("微软雅黑", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSymbolLabel1.ForeColor = System.Drawing.Color.White;
             this.uiSymbolLabel1.Location = new System.Drawing.Point(1, 9);
@@ -200,9 +201,10 @@
             this.uiSymbolLabel1.SymbolSize = 35;
             this.uiSymbolLabel1.TabIndex = 36;
             this.uiSymbolLabel1.Text = "设备入库管理";
-            // 
+            //
             // uiTitlePanel1
             // 
+            this.uiTitlePanel1.Controls.Add(this.uiLabel13);
             this.uiTitlePanel1.Controls.Add(this.uiButton6);
             this.uiTitlePanel1.Controls.Add(this.uiButton3);
             this.uiTitlePanel1.Controls.Add(this.uiButton5);
@@ -396,7 +398,7 @@
             // 
             this.uiTextBox5.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox5.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiTextBox5.ForeColor = System.Drawing.Color.White;
+            this.uiTextBox5.ForeColor = System.Drawing.Color.Black;
             this.uiTextBox5.Location = new System.Drawing.Point(537, 159);
             this.uiTextBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox5.MinimumSize = new System.Drawing.Size(1, 16);
@@ -738,8 +740,18 @@
             this.Column6.Name = "Column6";
             this.Column6.Width = 125;
             // 
-            // uiTableLayoutPanel1
+            // uiLabel13
             // 
+            this.uiLabel13.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel13.ForeColor = System.Drawing.Color.White;
+            this.uiLabel13.Location = new System.Drawing.Point(762, 159);
+            this.uiLabel13.Name = "uiLabel13";
+            this.uiLabel13.Size = new System.Drawing.Size(55, 29);
+            this.uiLabel13.TabIndex = 64;
+            this.uiLabel13.Text = "元";
+            // uiTableLayoutPanel1
+            //
             this.uiTableLayoutPanel1.ColumnCount = 1;
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTableLayoutPanel1.Controls.Add(this.uiTitlePanel1, 0, 1);
@@ -822,6 +834,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private Sunny.UI.UILabel uiLabel13;
         private Sunny.UI.UISymbolLabel uiSymbolLabel1;
         private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel1;
     }
