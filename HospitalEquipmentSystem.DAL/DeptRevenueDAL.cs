@@ -1,6 +1,4 @@
 ﻿using HospitalEquipment.Model;
-using HospitalEquipment.Model.management;
-using HospitalEquipment.Util;
 using HospitalEquipmentSystem.Common;
 using System;
 using System.Collections.Generic;
@@ -22,7 +20,7 @@ FROM DeptRevenue r
 LEFT JOIN Departments d ON r.DeptId = d.DeptId
 WHERE r.Period = @Period
 ORDER BY r.Amount DESC";
-            using (SqlDataReader reader=await DbHelper.ExecuteReaderAsync(sql,new SqlParameter("@Period",period)).ConfigureAwait(false))
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql, new SqlParameter("@Period", period)).ConfigureAwait(false))
             {
                 if (reader == null) return new List<DeptRevenue>();
                 return DataReaderMapper.MapToList<DeptRevenue>(reader);
@@ -35,13 +33,13 @@ ORDER BY r.Amount DESC";
         public async Task<List<string>> GetPeriodsAsync()
         {
             string sql = "SELECT DISTINCT Period FROM DeptRevenue ORDER BY Period DESC";
-            var periods=new List<string>();
-            using (SqlDataReader reader=await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
+            var periods = new List<string>();
+            using (SqlDataReader reader = await DbHelper.ExecuteReaderAsync(sql).ConfigureAwait(false))
             {
                 if (reader == null) return periods;
-                while (reader.Read()) 
+                while (reader.Read())
                 {
-                    if(!reader.IsDBNull(0)) periods.Add(reader.GetString(0).Trim());
+                    if (!reader.IsDBNull(0)) periods.Add(reader.GetString(0).Trim());
                 }
             }
             return periods;
@@ -77,7 +75,8 @@ ORDER BY r.Amount DESC";
                 new SqlParameter("@DeptId",model.DeptId),
                 new SqlParameter("@Period",model.Period),
                 new SqlParameter("@Amount",model.Amount),
-                new SqlParameter("@Remark",model.Remark ?? "")
+                new SqlParameter("@Remark",model.Remark ?? ""),
+                new SqlParameter("@RevenueId",model.RevenueId)
             };
             return await DbHelper.ExecuteNonQueryAsync(sql, parameters).ConfigureAwait(false);
         }
@@ -85,10 +84,10 @@ ORDER BY r.Amount DESC";
         /// <summary>
         /// 删除科室收入
         /// </summary>
-        public async Task<int> DeleteAsync(int revenueId) 
+        public async Task<int> DeleteAsync(int revenueId)
         {
             string sql = "DELETE FROM DeptRevenue WHERE RevenueId = @RevenueId";
-            return await DbHelper.ExecuteNonQueryAsync(sql, new SqlParameter("@RevenueId",revenueId)).ConfigureAwait(false);
+            return await DbHelper.ExecuteNonQueryAsync(sql, new SqlParameter("@RevenueId", revenueId)).ConfigureAwait(false);
 
         }
 
