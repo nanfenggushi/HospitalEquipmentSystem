@@ -339,7 +339,7 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.BackgroundImage = global::HospitalEquipmentSystem.UI.Properties.Resources.登录页面背景jpg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1196, 778);
+            this.ClientSize = new System.Drawing.Size(793, 647);
             this.Controls.Add(this.loginPanel);
             this.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.Name = "LoginForm";
