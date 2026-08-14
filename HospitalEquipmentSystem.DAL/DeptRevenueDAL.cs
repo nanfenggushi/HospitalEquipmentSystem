@@ -59,7 +59,8 @@ ORDER BY r.Amount DESC";
                 new SqlParameter("@DeptId",model.DeptId),
                 new SqlParameter("@Period",model.Period),
                 new SqlParameter("@Amount",model.Amount),
-                new SqlParameter("@Remark",model.Remark ?? "")
+                new SqlParameter("@Remark",model.Remark ?? ""),
+                new SqlParameter("@RevenueId",model.RevenueId)
             };
             return await DbHelper.ExecuteNonQueryAsync(sql, parameters).ConfigureAwait(false);
         }

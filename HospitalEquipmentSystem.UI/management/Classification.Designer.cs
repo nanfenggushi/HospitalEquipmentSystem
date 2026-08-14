@@ -49,7 +49,6 @@
             this.uiPanel3 = new Sunny.UI.UIPanel();
             this.uiLabel7 = new Sunny.UI.UILabel();
             this.uiLabel8 = new Sunny.UI.UILabel();
-            this.uiLabel10 = new Sunny.UI.UILabel();
             this.uiLabel9 = new Sunny.UI.UILabel();
             this.uiPanel1.SuspendLayout();
             this.uiPanel2.SuspendLayout();
@@ -339,7 +338,6 @@
             // 
             this.uiPanel3.Controls.Add(this.uiLabel7);
             this.uiPanel3.Controls.Add(this.uiLabel8);
-            this.uiPanel3.Controls.Add(this.uiLabel10);
             this.uiPanel3.Controls.Add(this.uiLabel9);
             this.uiPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPanel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
@@ -372,16 +370,6 @@
             this.uiLabel8.Size = new System.Drawing.Size(235, 32);
             this.uiLabel8.TabIndex = 30;
             this.uiLabel8.Text = "含子分类设备: 36 台";
-            // 
-            // uiLabel10
-            // 
-            this.uiLabel10.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel10.ForeColor = System.Drawing.Color.White;
-            this.uiLabel10.Location = new System.Drawing.Point(453, 142);
-            this.uiLabel10.Name = "uiLabel10";
-            this.uiLabel10.Size = new System.Drawing.Size(385, 32);
-            this.uiLabel10.TabIndex = 35;
-            this.uiLabel10.Text = "💡 右键点击分类节点可: 新增子分类/重命名/删除";
             // 
             // uiLabel9
             // 
@@ -438,7 +426,6 @@
         private Sunny.UI.UIPanel uiPanel3;
         private Sunny.UI.UILabel uiLabel7;
         private Sunny.UI.UILabel uiLabel8;
-        private Sunny.UI.UILabel uiLabel10;
         private Sunny.UI.UILabel uiLabel9;
     }
 }
