@@ -1,15 +1,11 @@
-﻿using Sunny.UI;
+﻿using HospitalEquipment.BLL;
+using Sunny.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HospitalEquipment.BLL;
 
 
 
@@ -27,11 +23,10 @@ namespace HospitalEquipmentSystem.UI
         public sysmset()
         {
             InitializeComponent();
-            
-            }
-         
-            private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
-           {
+        }
+
+        private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
+        {
             GraphicsPath path = new GraphicsPath();
             path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
             path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
@@ -39,27 +34,24 @@ namespace HospitalEquipmentSystem.UI
             path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
             path.CloseAllFigures();
             return path;
-            }
-        
-         
-
-        
+        }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            // 选中标签文字白色
-             
-
-             
+            // 角色权限页文字颜色跟随浅色主题
             foreach (Control c in tabPageRole.Controls)
             {
-                
                 if (c is Label lbl)
                 {
-                    lbl
-        .ForeColor = Color.White;
+                    lbl.ForeColor = Color.FromArgb(31, 41, 55);
                 }
             }
+
+            // 统一三个表格的视觉样式（浅色卡片风格）
+            ApplyGridStyle(dgvUser);
+            ApplyGridStyle(dgvLog);
+            ApplyGridStyle(uiDataGridView1);
+
             // 用户管理表格 - 从数据库加载数据
             await LoadUsers();
 
@@ -73,23 +65,58 @@ namespace HospitalEquipmentSystem.UI
             dgvLog.Rows.Add("admin", "登录系统", "2026‑07‑30 08:00", "10.0.0.12");
             dgvLog.Rows.Add("doctor_zhang", "查看设备 EQ‑1003", "2026‑07‑30 09:12", "10.0.0.33");
             dgvLog.Rows.Add("repair_li", "维修工单 RP‑502 完成", "2026‑07‑29 16:40", "10.0.0.21");
+
             //系统参数
             LoadSystemParams();
+        }
 
-            DataGridView dgv = dgvUser;
+        /// <summary>
+        /// 统一应用于所有 DataGridView 的浅色卡片样式，避免各表格配色互相打架。
+        /// 一处修改，全局生效；不需要在每个网格里各写一套颜色。
+        /// </summary>
+        private void ApplyGridStyle(DataGridView dgv)
+        {
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.BackgroundColor = Color.White;
+            dgv.GridColor = Color.FromArgb(230, 232, 236);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+
+            dgv.ColumnHeadersHeight = 40;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(50, 60, 80);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("微软雅黑", 10.2F, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.EnableHeadersVisualStyles = false;
+
+            dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.DefaultCellStyle.ForeColor = Color.FromArgb(31, 41, 55);
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(245, 247, 250);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb(40, 48, 60);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 250, 251); dgv.CellMouseEnter += (s, ev) =>
+            dgv.DefaultCellStyle.Font = new Font("微软雅黑", 10.2F, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(235, 243, 255);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.FromArgb(31, 41, 55);
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 250, 251);
+            dgv.RowHeadersVisible = false;
+            dgv.RowTemplate.Height = 40;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            if (dgv is UIDataGridView uiDgv)
             {
+                uiDgv.ScrollBarColor = Color.FromArgb(200, 205, 214);
+                uiDgv.ScrollBarBackColor = Color.White;
+                uiDgv.ScrollBarRectColor = Color.Transparent;
+                uiDgv.RectColor = Color.FromArgb(230, 232, 236);
+                uiDgv.StripeOddColor = Color.FromArgb(249, 250, 251);
+            }
+
+            // 鼠标悬停高亮，离开时按奇偶行还原
+            dgv.CellMouseEnter += (s, ev) => {
                 if (ev.RowIndex >= 0 && !dgv.Rows[ev.RowIndex].Selected)
                 {
                     dgv.Rows[ev.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(238, 242, 255);
                 }
             };
-
-            dgv.CellMouseLeave += (s, ev) =>
-            {
+            dgv.CellMouseLeave += (s, ev) => {
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
                     if (!row.Selected)
@@ -100,8 +127,6 @@ namespace HospitalEquipmentSystem.UI
                     }
                 }
             };
-            
-
         }
 
         #region 用户管理 - 数据库分页加载
@@ -139,13 +164,11 @@ namespace HospitalEquipmentSystem.UI
                     uiPagination1.TotalCount = totalCount;
                     uiPagination1.PageSize = pageSize;
                     uiPagination1.ActivePage = currentPage;
-                }
-                finally
+                } finally
                 {
                     isBindingPagination = false;
                 }
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 UIMessageBox.Show($"加载用户数据失败：{ex.Message}", "错误", UIStyle.Red);
             }
@@ -198,24 +221,7 @@ namespace HospitalEquipmentSystem.UI
             {
                 uiDataGridView1.Rows.Add(item.param, item.group, item.value);
             }
-
-            // 表格基础样式
-            uiDataGridView1.BackgroundColor = Color.White;
-            uiDataGridView1.BorderStyle = BorderStyle.None;
-            uiDataGridView1.GridColor = Color.FromArgb(230, 232, 236);
-            uiDataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
-            uiDataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(50, 60, 80);
-            uiDataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("微软雅黑", 10.2F, FontStyle.Regular);
-            uiDataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            uiDataGridView1.ColumnHeadersHeight = 40;
-            uiDataGridView1.DefaultCellStyle.BackColor = Color.White;
-            uiDataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(31, 41, 55);
-            uiDataGridView1.DefaultCellStyle.Font = new Font("微软雅黑", 10.2F, FontStyle.Regular);
-            uiDataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            uiDataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(245, 247, 250);
-            uiDataGridView1.DefaultCellStyle.SelectionForeColor = Color.FromArgb(31, 41, 55);
-            uiDataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-            uiDataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            // 表格样式已在 Form1_Load 中通过 ApplyGridStyle 统一设置，这里只负责填充数据
         }
 
         private void uiDataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -291,13 +297,8 @@ namespace HospitalEquipmentSystem.UI
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-             
+
         }
-
-        
-        
-
-         
 
         private void dgvUser_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -378,23 +379,11 @@ namespace HospitalEquipmentSystem.UI
                 }
                 e.Handled = true;
             }
-
-
-
-
         }
 
         private void uiDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-             
+
         }
     }
 }
-            
-
-             
-         
-    
-
-    
-
