@@ -47,9 +47,7 @@ namespace HospitalEquipment.BLL
                         ? MaintenanceHelper.StageToRepairerCn(row["ProgressStage"].ToString())
                         : MaintenanceHelper.StageToCn(row["ProgressStage"].ToString()),
                     DeptName = row["DeptName"].ToString(),
-                    RepairerName = string.IsNullOrWhiteSpace(row["RepairerName"]?.ToString())
-                        ? "未分配"
-                        : row["RepairerName"].ToString(),
+                    RepairerName = NormalizeRepairerName(row["RepairerName"]?.ToString()),
                     ReportTime = Convert.ToDateTime(row["ReportTime"]),
                     DowntimeHours = row["DowntimeHours"] as decimal?,
                     RejectReason = row.Table.Columns.Contains("RejectReason") ? row["RejectReason"]?.ToString() : "",
@@ -61,6 +59,16 @@ namespace HospitalEquipment.BLL
                 });
             }
             return list;
+        }
+
+        /// <summary>
+        /// 规范化维修人名称：空值 / "未指派" / collation 乱码 "???" 统一显示为 "未分配"
+        /// </summary>
+        private static string NormalizeRepairerName(string raw)
+        {
+            if (string.IsNullOrWhiteSpace(raw) || raw == "未指派" || raw == "???")
+                return "未分配";
+            return raw;
         }
 
         /// <summary>
@@ -344,27 +352,6 @@ namespace HospitalEquipment.BLL
         public DataTable GetBorrowedEquipmentByApplicant(int applicantId)
         {
             return dal.GetBorrowedEquipmentByApplicant(applicantId);
-        }
-
-        /// <summary>
-        /// 故障类型下拉框选项：返回字符串列表，避免 UI 层 DataRowView 问题
-        /// </summary>
-        public List<string> GetFaultTypeOptionsList()
-        {
-            DataTable dt = dal.GetDistinctFaultTypes();
-            var list = new List<string>();
-            if (dt != null)
-            {
-                foreach (DataRow row in dt.Rows)
-                    list.Add(row["FaultType"].ToString());
-            }
-            if (list.Count == 0)
-            {
-                list.Add("硬件故障");
-                list.Add("软件故障");
-                list.Add("其他");
-            }
-            return list;
         }
 
         /// <summary>

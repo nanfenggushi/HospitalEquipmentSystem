@@ -102,6 +102,9 @@ namespace HospitalEquipment.BLL
         /// </summary>
         public async Task<List<string>> GetAvailableFaultTypes(int categoryId)
         {
+            // categoryId <= 0 表示不限设备分类，返回全部已配置的故障类型
+            if (categoryId <= 0)
+                return await dal.GetAllFaultTypes().ConfigureAwait(false);
             return await dal.GetDistinctFaultTypes(categoryId).ConfigureAwait(false);
         }
     }

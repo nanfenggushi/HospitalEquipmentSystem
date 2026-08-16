@@ -37,7 +37,7 @@ namespace HospitalEquipmentSystem.UI
 
             // 初始化标题和下拉项
             this.Text = "新建维修工单";
-            cmbFaultType.Items.AddRange(new object[] { "待确认", "电气故障", "机械故障", "软件故障", "耗材更换", "其他" });
+            cmbFaultType.Items.AddRange(new object[] { "电气故障", "机械故障", "软件故障" });
             cmbFaultType.SelectedIndex = 0; // 默认选"待确认"
             cmbUrgency.Items.AddRange(new object[] { "低", "普通", "紧急" });
             cmbUrgency.SelectedIndex = 1;

@@ -27,7 +27,7 @@ namespace HospitalEquipment.DAL
                 SELECT m.RecordId, m.RepairNo, e.EquipmentName, 
                        m.FaultType, m.FaultDesc, m.Urgency,
                        m.ProgressStage, d.DeptName, 
-                       ISNULL(u.RealName, '未指派') AS RepairerName,
+                       ISNULL(u.RealName, N'未分配') AS RepairerName,
                        m.ReportTime, m.DowntimeHours, m.Status,
                        ISNULL(m.RejectReason, '') AS RejectReason,
                        ISNULL(m.PhotoPath, '') AS PhotoPath
@@ -120,7 +120,7 @@ namespace HospitalEquipment.DAL
         public DataTable GetRepairerWorkloads()
         {
             string sql = @"
-                SELECT ISNULL(u.RealName, '未指派') AS RepairerName, 
+                SELECT ISNULL(u.RealName, N'未指派') AS RepairerName, 
                        COUNT(*) AS TaskCount
                 FROM MaintenanceRecords m
                 LEFT JOIN Users u ON m.AssignedTo = u.UserId
@@ -531,17 +531,6 @@ namespace HospitalEquipment.DAL
                   AND b.Status IN ('Pending', 'Approved', 'Overdue')
                 ORDER BY e.EquipmentName";
             return DbHelper.GetDataTable(sql, new SqlParameter("@ApplicantId", applicantId));
-        }
-
-        /// <summary>
-        /// 查询维修表中已有的故障类型（DISTINCT，下拉框绑定用）
-        /// </summary>
-        public DataTable GetDistinctFaultTypes()
-        {
-            string sql = @"SELECT DISTINCT FaultType FROM MaintenanceRecords
-                           WHERE FaultType IS NOT NULL AND LTRIM(RTRIM(FaultType)) <> ''
-                           ORDER BY FaultType";
-            return DbHelper.GetDataTable(sql);
         }
 
         /// <summary>

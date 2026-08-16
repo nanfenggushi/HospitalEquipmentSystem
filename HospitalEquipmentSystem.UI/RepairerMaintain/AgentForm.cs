@@ -88,18 +88,28 @@ namespace HospitalEquipmentSystem.UI
         /// <summary>
         /// 填充手动分析下拉框（从数据库获取全部故障类型，不限设备分类）
         /// </summary>
-        private void LoadFaultTypeOptions()
+
+
+        private async void LoadFaultTypeOptions()
         {
             cmbFaultType.Items.Clear();
-            List<string> faultTypes = MntBLL.GetFaultTypeOptionsList();
+            // 只允许已配置物料的三种故障类型，避免历史脏数据污染下拉框
+            var allowed = new HashSet<string> { "电气故障", "机械故障", "软件故障" };
+            // 从物料字典表查故障类型，确保每种类型都有对应物料
+            List<string> faultTypes = await MaterialMgr.GetAvailableFaultTypes(0);
             if (faultTypes != null && faultTypes.Count > 0)
             {
-                foreach (var ft in faultTypes) cmbFaultType.Items.Add(ft);
-                cmbFaultType.SelectedIndex = 0;
+                foreach (var ft in faultTypes)
+                {
+                    if (allowed.Contains(ft))
+                        cmbFaultType.Items.Add(ft);
+                }
+                if (cmbFaultType.Items.Count > 0)
+                    cmbFaultType.SelectedIndex = 0;
             }
             else
             {
-                cmbFaultType.Items.Add("请先在物料管理中配置故障类型");
+                cmbFaultType.Items.Add("暂无可选故障类型");
                 cmbFaultType.SelectedIndex = 0;
             }
         }

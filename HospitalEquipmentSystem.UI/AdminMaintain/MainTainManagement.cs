@@ -53,7 +53,7 @@ namespace HospitalEquipmentSystem.UI
                 txtSearch.Text = alarmRecord.RepairNo ?? alarmRecord.EquipmentName ?? "";
                 _highlightRecordId = alarmRecord.RecordId;
             }
-
+            dgvOrders.Columns["Column8"].DefaultCellStyle.NullValue = "未分配";
             WireEvents();
         }
 
@@ -439,6 +439,35 @@ namespace HospitalEquipmentSystem.UI
             if (dgvOrders.Columns[e.ColumnIndex].Name == "Column8")
             {
                 if (e.Value == null || string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.Value = "未分配";
+                }
+                return;
+            }
+
+            // 被拒绝工单标红
+            var row = dgvOrders.Rows[e.RowIndex];
+            if (row.DataBoundItem is MaintenanceRecordDto dto && !string.IsNullOrEmpty(dto.RejectReason))
+            {
+                row.DefaultCellStyle.BackColor = Color.FromArgb(60, 20, 20);      // 深红背景
+                row.DefaultCellStyle.ForeColor = Color.FromArgb(255, 180, 180);   // 浅红文字
+            }
+            else
+            {
+                row.DefaultCellStyle.BackColor = dgvOrders.DefaultCellStyle.BackColor;
+                row.DefaultCellStyle.ForeColor = dgvOrders.DefaultCellStyle.ForeColor;
+            }
+        }
+
+        private void DgvOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // 维修人列为空或"未指派"时显示"未分配"
+            if (dgvOrders.Columns[e.ColumnIndex].Name == "Column8")
+            {
+                string repairer = e.Value?.ToString() ?? "";
+                if (string.IsNullOrWhiteSpace(repairer) || repairer == "未指派")
                 {
                     e.Value = "未分配";
                 }
